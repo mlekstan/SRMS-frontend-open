@@ -1,0 +1,84 @@
+.nav-bar {
+  background-color: var(--first-color);
+  position: fixed;
+  width: 100vw;
+  height: 6.25rem;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 20% 40% auto;
+}
+
+.menu-section {
+  display: flex;
+  align-items: center;
+  padding-left: 1.875em;
+}
+
+.menu-icon {
+  width: 3.75em;
+  height: 3.75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-section {
+  display: flex;
+  height: inherit;
+  align-items: center;
+}
+
+.logo {
+  width: auto;
+  height: 3.125em;
+  cursor: pointer;
+}
+
+.nav-section {
+  height: inherit;
+  display: flex;
+  justify-content: right;
+  width: auto;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  padding-right: 1.25em;
+}
+
+.user-info {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1.25em;
+  padding-left: 1.25em;
+}
+
+.user-img {
+  height: 4.375em;
+  width: 4.375em;
+  display: inline-block;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  border-radius: 50%;
+  margin-right: 1.25em;
+}
+
+.menu-icon:hover {
+  background-color: var(--second-color);
+  transition: all 0.1s linear 0s;
+}
+
+.user-profile:hover {
+  background-color: var(--second-color);
+  transition: all 0.1s linear 0s;
+}
