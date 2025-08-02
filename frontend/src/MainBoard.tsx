@@ -1,5 +1,5 @@
-import startRentalImg from '@/assets/bicycles.png';
-import checkScheduleImg from '@/assets/delivery-scheduled.png';
+import startRentalImg from '@/assets/scooter.png';
+import checkScheduleImg from '@/assets/pay-day.png';
 import styles from '@/MainBoard.module.css';
 
 
@@ -11,8 +11,8 @@ type TileProps = {
 
 
 const tiles = [
-  {imgSrc: startRentalImg, label: 'Rozpocznij proces wypożycznia-sprzedaży'},
-  {imgSrc: checkScheduleImg, label: 'Sprawdź staus sprzętu'}
+  {imgSrc: startRentalImg, label: 'Sprzedaż usługi wypożyczenia'},
+  {imgSrc: checkScheduleImg, label: 'Status sprzętu'}
 ];
 
 

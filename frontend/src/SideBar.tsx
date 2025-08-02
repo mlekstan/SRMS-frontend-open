@@ -27,7 +27,7 @@ const sideBarOptions = [
 
 
 function SideBarOption({ icon: Icon, label, visible }: SideBarOptionProps) {
-  const cssClassName = clsx(styles['side-bar-option-title'], !visible && styles['side-bar-option-title-hidden']);
+  const cssClassName = clsx(styles['side-bar-option-title'], !visible && styles['hidden']);
   
   return (
     <li className={styles['side-bar-option']}>
@@ -43,7 +43,7 @@ function SideBarOption({ icon: Icon, label, visible }: SideBarOptionProps) {
 
 
 export default function SideBar({ visible }: SideBarProps) {
-  const cssClassNames = clsx(styles['side-bar'], !visible && styles['side-bar-hidden']);
+  const cssClassNames = clsx(styles['side-bar'], !visible && styles['hidden']);
   
   const options = sideBarOptions.map((option, idx) => {
     return <SideBarOption key={idx} icon={option.icon} label={option.label} visible={visible} />;

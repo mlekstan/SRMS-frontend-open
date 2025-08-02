@@ -1,10 +1,7 @@
 .nav-bar {
   background-color: var(--first-color);
-  position: fixed;
-  width: 100vw;
-  height: 6.25rem;
-  top: 0;
-  left: 0;
+  grid-area: navbar;
+  position: static;
   display: grid;
   grid-template-columns: 20% 40% auto;
 }
