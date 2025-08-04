@@ -2,14 +2,14 @@
   background-color: var(--first-color);
   grid-area: navbar;
   position: static;
-  display: grid;
-  grid-template-columns: 20% 40% auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu-section {
   display: flex;
   align-items: center;
-  padding-left: 1.875em;
+  padding: 0 1.875em;
 }
 
 .menu-icon {
@@ -22,9 +22,11 @@
 }
 
 .logo-section {
+  overflow: hidden;
   display: flex;
   height: inherit;
   align-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -48,6 +50,7 @@
   width: auto;
   cursor: pointer;
   padding-right: 1.25em;
+  margin-left: 1.875em;
 }
 
 .user-info {
@@ -78,4 +81,11 @@
 .user-profile:hover {
   background-color: var(--second-color);
   transition: all 0.1s linear 0s;
+}
+
+
+@media only screen and (max-width: 466px) {
+  .logo-section {
+    display: none;
+  }
 }

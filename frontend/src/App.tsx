@@ -2,21 +2,23 @@ import { useState } from 'react';
 import NavBar from '@/NavBar.tsx';
 import SideBar from '@/SideBar.tsx';
 import MainBoard from '@/MainBoard.tsx';
+import BottomBar from '@/BottomBar.tsx';
 import '@/App.css'
 
 export default function App() {
-  const [sideBarVisible, setSideBarVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   function handleBurgerClick() {
-    setSideBarVisible(!sideBarVisible);
+    setMenuVisible(!menuVisible);
   }
   
   return (
-    <>
+    <div className='app-container'>
       <NavBar onBurgerClick={handleBurgerClick} />
-      <SideBar visible={sideBarVisible} />
+      <SideBar visible={menuVisible} />
       <MainBoard />
-    </>
+      <BottomBar visible={menuVisible} />
+    </div>
   );
 }
 

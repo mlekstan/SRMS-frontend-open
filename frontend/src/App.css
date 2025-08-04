@@ -1,4 +1,4 @@
-#root {
+.app-container {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -10,6 +10,18 @@
     "navbar navbar"
     "sidebar main-board";
 }
+
+
+@media only screen and (max-width: 830px) {
+  .app-container {
+    grid-template-rows: var(--navbar-height) 1fr auto;
+    grid-template-areas: 
+      "navbar navbar"
+      "sidebar main-board"
+      "bottombar bottombar";
+  }
+}
+
 
 
 /* #root {

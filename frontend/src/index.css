@@ -11,8 +11,10 @@
   --third-color: rgb(217, 217, 217);
   --fourth-color: rgb(243, 243, 243);
 
-  --navbar-height: 120px;
+  --navbar-height: 100px;
   --sidebar-width: 350px;
+  --bottombar-height: 50px;
+
   
   /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);

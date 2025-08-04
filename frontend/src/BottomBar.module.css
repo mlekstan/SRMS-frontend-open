@@ -1,0 +1,38 @@
+.bottom-bar {
+  grid-area: bottombar;
+  background-color: var(--fourth-color);
+  display: none;
+  height: var(--bottombar-height);
+  width: 100vw;
+  overflow: auto;
+}
+
+.options-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bottom-bar-option {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1.25em;
+  cursor: pointer;
+  transition: background-color ease 0.3s 0s;
+}
+
+.bottom-bar.hidden {
+  display: none;
+}
+
+.bottom-bar-option:hover {
+  background-color: var(--third-color);
+}
+
+@media only screen and (max-width: 830px) {
+  .bottom-bar {
+    display: block;
+  }
+}

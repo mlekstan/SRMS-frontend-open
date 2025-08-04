@@ -19,7 +19,7 @@ type SideBarProps = {
 }
 
 
-const sideBarOptions = [
+export const sideBarOptions = [
   { icon: RentSignalIcon, label: 'Usługa wypożyczenia' },
   { icon: SellIcon, label: 'Usługa sprzedaży' },
   { icon: SettingsIcon, label: 'Ustawienia' }  
@@ -50,10 +50,10 @@ export default function SideBar({ visible }: SideBarProps) {
   });
   
   return (
-    <div className={cssClassNames}>
+    <aside className={cssClassNames}>
       <ul>
         {options}
       </ul>
-    </div>
+    </aside>
   );
 }
