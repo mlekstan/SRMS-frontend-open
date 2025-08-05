@@ -1,0 +1,97 @@
+.profile-menu-wrapper {
+  width: 320px;
+  height: auto;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  position: absolute;
+  top: var(--navbar-height);
+  right: 0px;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: transparent;
+  background-color: var(--fourth-color);
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.12)) drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+}
+
+.profile-menu {
+  width: 100%;
+  height: auto;
+  position: static;
+  display: grid;
+  grid-template-columns: 8fr 1fr 7fr;
+  grid-template-areas:
+    "branch space logout"
+    "user-info user-info user-info";
+}
+
+
+.branch-name {
+  grid-area: branch;
+  display: inline-block;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+  white-space: nowrap; /* older browsers */
+}
+
+.logout {
+  font-size: 0.9em;
+  grid-area: logout;
+  display: inline-block;
+  place-self: center end;
+  cursor: pointer;
+  transition: color ease 0.3s 0s;
+}
+
+.user-img-info-container {
+  width: 100%;
+  grid-area: user-info;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: 0.5em;
+}
+
+.user-img-container {
+  background-color: var(--second-color);
+  height: 4.375em;
+  width: 4.375em;
+  display: flex;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info-container {
+  min-width: 0; 
+}
+
+.user-name {
+  display: block;
+  min-width: 0px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+  white-space: nowrap; /* older browsers */
+}
+
+.user-login {
+  font-size: 0.7em;
+  display: block;
+  min-width: 0px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+  white-space: nowrap; /* older browsers */
+}
+
+
+.logout:hover {
+  color: red;
+}

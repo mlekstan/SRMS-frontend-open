@@ -1,6 +1,7 @@
 import startRentalImg from '@/assets/scooter.png';
 import checkScheduleImg from '@/assets/pay-day.png';
 import styles from '@/MainBoard.module.css';
+import ProfileMenu from '@/ProfileMenu.tsx';
 
 
 
@@ -30,9 +31,10 @@ function Tile({ imageSrc, label }: TileProps) {
 }
 
 
-export default function MainBoard() {
+export default function MainBoard({ profileMenuVisible }) {
   return (
     <div className={styles['main-board']}>
+      { profileMenuVisible && <ProfileMenu /> }
       <div className={styles['tiles-container']}>
         {
           tiles.map((tile, idx) => (<Tile key={idx} imageSrc={tile.imgSrc} label={tile.label} />))

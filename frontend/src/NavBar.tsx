@@ -2,11 +2,11 @@ import { useState} from 'react';
 import '@/App.css';
 import styles from '@/NavBar.module.css';
 import BurgerMenuIcon from '@/assets/burger-menu.svg?react';
+import UserIcon from '@/assets/user.svg?react';
 
 
 
 function BurgerMenu({ onClick }) {
-
   return (
     <div onClick={onClick} className={styles['menu-icon']}>
       <BurgerMenuIcon width='40px' height='40px' fill='white' />
@@ -15,22 +15,25 @@ function BurgerMenu({ onClick }) {
 }
 
 
-function UserProfile() {
- 
+export function UserImgContainer({ userImg: UserImg }) {
   return (
-    <div className={styles['user-profile']}>
-      <div className={styles['user-info']}>
-        <span className={styles['user-first-name']}>Michał</span>
-        <span className={styles['user-second-name']}>Lekstan</span>
-      </div>
-      <div className={styles['user-img']}></div>
+    <div className={styles['user-img-container']}>
+      <UserImg width='30px' height='30px' fill='white' />
     </div>
-  )
+  );
+}
+  
+
+function UserProfile({ onClick }) {
+  return (
+    <div onClick={onClick} className={styles['user-profile']}>
+      <UserImgContainer userImg={UserIcon} />
+    </div>
+  );
 }
 
 
-export default function NavBar({ onBurgerClick }) {
-  
+export default function NavBar({ onBurgerClick, onProfileClick }) {
   return (
     <nav className={styles['nav-bar']}>
       <div className={styles['menu-section']}>
@@ -40,10 +43,10 @@ export default function NavBar({ onBurgerClick }) {
         <img className={styles['logo']} src='https://hexal.com.pl/wp-content/uploads/2025/05/HEXAL-logo.svg'></img>
       </div>
       <div className={styles['nav-section']}>
-        <UserProfile />
+        <UserProfile onClick={onProfileClick} />
       </div>
     </nav>
-  )
+  );
 }
 
 
