@@ -9,12 +9,12 @@ const __dirname = import.meta.dirname;
 
 export default defineConfig({
   plugins: [
-    react(), 
-    svgr(), 
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
-    })
+    }),
+    react(), 
+    svgr(), 
   ],
   resolve: {
     alias: {

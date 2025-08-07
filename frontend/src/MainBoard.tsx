@@ -1,43 +1,45 @@
 import startRentalImg from '@/assets/scooter.png';
 import checkScheduleImg from '@/assets/pay-day.png';
 import styles from '@/MainBoard.module.css';
-import ProfileMenu from '@/ProfileMenu.tsx';
+import { Link } from '@tanstack/react-router';
 
 
 
 type TileProps = {
   imageSrc: string,
-  label: string
+  label: string,
+  linkTo: string,
 }
 
 
 const tiles = [
-  {imgSrc: startRentalImg, label: 'Sprzedaż usługi wypożyczenia'},
-  {imgSrc: checkScheduleImg, label: 'Status sprzętu'}
+  {imgSrc: startRentalImg, label: 'Sprzedaż usługi wypożyczenia', path: '/app/rental/rental-sale'},
+  {imgSrc: checkScheduleImg, label: 'Status sprzętu', path: '/app/rental/eq-status'},
 ];
 
 
-function Tile({ imageSrc, label }: TileProps) {
+function Tile({ imageSrc, label, linkTo }: TileProps) {
   return (
-    <div className={styles['tile']}>
-      <div className={styles['img-container']}>
-        <img src={imageSrc}></img>
+    <Link to={linkTo} >
+      <div className={styles['tile']}>
+        <div className={styles['img-container']}>
+          <img src={imageSrc}></img>
+        </div>
+        <div className={styles['text-container']}>
+          <span>{label}</span>
+        </div>
       </div>
-      <div className={styles['text-container']}>
-        <span>{label}</span>
-      </div>
-    </div>
+    </Link>
   );
 }
 
 
-export default function MainBoard({ profileMenuVisible }) {
+export default function MainBoard() {
   return (
     <div className={styles['main-board']}>
-      { profileMenuVisible && <ProfileMenu /> }
       <div className={styles['tiles-container']}>
         {
-          tiles.map((tile, idx) => (<Tile key={idx} imageSrc={tile.imgSrc} label={tile.label} />))
+          tiles.map((tile, idx) => (<Tile key={idx} imageSrc={tile.imgSrc} label={tile.label} linkTo={tile.path} />))
         }
       </div>  
     </div>

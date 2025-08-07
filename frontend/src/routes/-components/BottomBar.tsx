@@ -1,5 +1,5 @@
 import { default as styles } from '@/BottomBar.module.css';
-import { sideBarOptions as bottomBarOptions } from '@/SideBar.tsx';
+import { sideBarOptions as bottomBarOptions } from '@/routes/-components/SideBar';
 import { clsx } from 'clsx';
 import { FC, SVGProps } from 'react';
 

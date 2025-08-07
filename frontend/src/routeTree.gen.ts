@@ -9,50 +9,231 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteRouteImport } from './routes/login/route'
+import { Route as AppRouteRouteImport } from './routes/app/route'
+import { Route as AppSettingsRouteRouteImport } from './routes/app/settings/route'
+import { Route as AppSaleRouteRouteImport } from './routes/app/sale/route'
+import { Route as AppRentalRouteRouteImport } from './routes/app/rental/route'
+import { Route as AppSaleTestRouteImport } from './routes/app/sale/test'
+import { Route as AppRentalRentalSaleRouteImport } from './routes/app/rental/rental-sale'
+import { Route as AppRentalEqStatusRouteImport } from './routes/app/rental/eq-status'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const LoginRouteRoute = LoginRouteRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppSettingsRouteRoute = AppSettingsRouteRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSaleRouteRoute = AppSaleRouteRouteImport.update({
+  id: '/sale',
+  path: '/sale',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppRentalRouteRoute = AppRentalRouteRouteImport.update({
+  id: '/rental',
+  path: '/rental',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSaleTestRoute = AppSaleTestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => AppSaleRouteRoute,
+} as any)
+const AppRentalRentalSaleRoute = AppRentalRentalSaleRouteImport.update({
+  id: '/rental-sale',
+  path: '/rental-sale',
+  getParentRoute: () => AppRentalRouteRoute,
+} as any)
+const AppRentalEqStatusRoute = AppRentalEqStatusRouteImport.update({
+  id: '/eq-status',
+  path: '/eq-status',
+  getParentRoute: () => AppRentalRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/login': typeof LoginRouteRoute
+  '/app/rental': typeof AppRentalRouteRouteWithChildren
+  '/app/sale': typeof AppSaleRouteRouteWithChildren
+  '/app/settings': typeof AppSettingsRouteRoute
+  '/app/rental/eq-status': typeof AppRentalEqStatusRoute
+  '/app/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/app/sale/test': typeof AppSaleTestRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/login': typeof LoginRouteRoute
+  '/app/rental': typeof AppRentalRouteRouteWithChildren
+  '/app/sale': typeof AppSaleRouteRouteWithChildren
+  '/app/settings': typeof AppSettingsRouteRoute
+  '/app/rental/eq-status': typeof AppRentalEqStatusRoute
+  '/app/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/app/sale/test': typeof AppSaleTestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/login': typeof LoginRouteRoute
+  '/app/rental': typeof AppRentalRouteRouteWithChildren
+  '/app/sale': typeof AppSaleRouteRouteWithChildren
+  '/app/settings': typeof AppSettingsRouteRoute
+  '/app/rental/eq-status': typeof AppRentalEqStatusRoute
+  '/app/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/app/sale/test': typeof AppSaleTestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/app'
+    | '/login'
+    | '/app/rental'
+    | '/app/sale'
+    | '/app/settings'
+    | '/app/rental/eq-status'
+    | '/app/rental/rental-sale'
+    | '/app/sale/test'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/app'
+    | '/login'
+    | '/app/rental'
+    | '/app/sale'
+    | '/app/settings'
+    | '/app/rental/eq-status'
+    | '/app/rental/rental-sale'
+    | '/app/sale/test'
+  id:
+    | '__root__'
+    | '/app'
+    | '/login'
+    | '/app/rental'
+    | '/app/sale'
+    | '/app/settings'
+    | '/app/rental/eq-status'
+    | '/app/rental/rental-sale'
+    | '/app/sale/test'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
+  LoginRouteRoute: typeof LoginRouteRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/sale': {
+      id: '/app/sale'
+      path: '/sale'
+      fullPath: '/app/sale'
+      preLoaderRoute: typeof AppSaleRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/rental': {
+      id: '/app/rental'
+      path: '/rental'
+      fullPath: '/app/rental'
+      preLoaderRoute: typeof AppRentalRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/sale/test': {
+      id: '/app/sale/test'
+      path: '/test'
+      fullPath: '/app/sale/test'
+      preLoaderRoute: typeof AppSaleTestRouteImport
+      parentRoute: typeof AppSaleRouteRoute
+    }
+    '/app/rental/rental-sale': {
+      id: '/app/rental/rental-sale'
+      path: '/rental-sale'
+      fullPath: '/app/rental/rental-sale'
+      preLoaderRoute: typeof AppRentalRentalSaleRouteImport
+      parentRoute: typeof AppRentalRouteRoute
+    }
+    '/app/rental/eq-status': {
+      id: '/app/rental/eq-status'
+      path: '/eq-status'
+      fullPath: '/app/rental/eq-status'
+      preLoaderRoute: typeof AppRentalEqStatusRouteImport
+      parentRoute: typeof AppRentalRouteRoute
     }
   }
 }
 
+interface AppRentalRouteRouteChildren {
+  AppRentalEqStatusRoute: typeof AppRentalEqStatusRoute
+  AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
+}
+
+const AppRentalRouteRouteChildren: AppRentalRouteRouteChildren = {
+  AppRentalEqStatusRoute: AppRentalEqStatusRoute,
+  AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
+}
+
+const AppRentalRouteRouteWithChildren = AppRentalRouteRoute._addFileChildren(
+  AppRentalRouteRouteChildren,
+)
+
+interface AppSaleRouteRouteChildren {
+  AppSaleTestRoute: typeof AppSaleTestRoute
+}
+
+const AppSaleRouteRouteChildren: AppSaleRouteRouteChildren = {
+  AppSaleTestRoute: AppSaleTestRoute,
+}
+
+const AppSaleRouteRouteWithChildren = AppSaleRouteRoute._addFileChildren(
+  AppSaleRouteRouteChildren,
+)
+
+interface AppRouteRouteChildren {
+  AppRentalRouteRoute: typeof AppRentalRouteRouteWithChildren
+  AppSaleRouteRoute: typeof AppSaleRouteRouteWithChildren
+  AppSettingsRouteRoute: typeof AppSettingsRouteRoute
+}
+
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppRentalRouteRoute: AppRentalRouteRouteWithChildren,
+  AppSaleRouteRoute: AppSaleRouteRouteWithChildren,
+  AppSettingsRouteRoute: AppSettingsRouteRoute,
+}
+
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
+  LoginRouteRoute: LoginRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import NavBar from '@/NavBar.tsx';
-import SideBar from '@/SideBar.tsx';
-import MainBoard from '@/MainBoard.tsx';
-import BottomBar from '@/BottomBar.tsx';
+import NavBar from '@/routes/-components/NavBar';
+import SideBar from '@/routes/-components/SideBar';
+import MainBoard from '@/MainBoard';
+import BottomBar from '@/routes/-components/BottomBar';
 import '@/App.css'
+import { Outlet } from '@tanstack/react-router';
 
 export default function App() {
   const [menuVisible, setMenuVisible] = useState(true);
@@ -21,7 +22,8 @@ export default function App() {
     <div className='app-container'>
       <NavBar onBurgerClick={handleBurgerClick} onProfileClick={handleProfileClick} />
       <SideBar visible={menuVisible} />
-      <MainBoard profileMenuVisible={profileMenuVisible}/>
+      <Outlet />
+      {/* <MainBoard profileMenuVisible={profileMenuVisible}/> */}
       <BottomBar visible={menuVisible} />
     </div>
   );
