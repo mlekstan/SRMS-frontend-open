@@ -10,21 +10,21 @@ import { Link } from '@tanstack/react-router';
 
 
 type SideBarOptionProps = {
-  icon: FC<SVGProps<SVGSVGElement>>,
-  label: string,
-  visible: boolean,
-  linkTo: string,
+  icon: FC<SVGProps<SVGSVGElement>>;
+  label: string;
+  visible: boolean;
+  linkTo: string;
 }
 
 type SideBarProps = {
-  visible: boolean,
+  visible: boolean;
 }
 
 
 export const sideBarOptions = [
-  { icon: RentSignalIcon, label: 'Usługa wypożyczenia', path: '/app/rental' },
-  { icon: SellIcon, label: 'Usługa sprzedaży', path: '/app/sale' },
-  { icon: SettingsIcon, label: 'Ustawienia', path: '/app/settings' }  
+  { icon: RentSignalIcon, label: 'Usługa wypożyczenia', path: '/rental' },
+  { icon: SellIcon, label: 'Usługa sprzedaży', path: '/sale' },
+  { icon: SettingsIcon, label: 'Ustawienia', path: '/settings' }  
 ];
 
 
@@ -32,7 +32,7 @@ function SideBarOption({ icon: Icon, label, visible, linkTo }: SideBarOptionProp
   const cssClassName = clsx(styles['side-bar-option-title'], !visible && styles['hidden']);
   
   return (
-    <Link to={linkTo}>
+    <Link to={linkTo} style={{textDecoration: 'none', color: 'inherit'}}>
       <li className={styles['side-bar-option']}>
         <div className={clsx(styles['side-bar-option-icon'], cssClassName)}>
           <Icon width='35px' height='35px' fill=''/>
