@@ -23,6 +23,13 @@
   transition: background-color ease 0.3s 0s;
 }
 
+.bottom-bar-option.selected {
+  border-bottom-style: solid;
+  border-color: var(--first-color);
+  border-bottom-width: 5px;
+  box-sizing: border-box;
+}
+
 .bottom-bar.hidden {
   display: none;
 }

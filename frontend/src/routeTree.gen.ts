@@ -14,8 +14,12 @@ import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppSettingsRouteRouteImport } from './routes/_app/settings/route'
 import { Route as AppSaleIndexRouteImport } from './routes/_app/sale/index'
 import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
+import { Route as AppRegisterIndexRouteImport } from './routes/_app/register/index'
 import { Route as AppRentalRentalSaleRouteImport } from './routes/_app/rental/rental-sale'
 import { Route as AppRentalEquipStatusRouteImport } from './routes/_app/rental/equip-status'
+import { Route as AppRegisterItemRouteImport } from './routes/_app/register/item'
+import { Route as AppRegisterClientRouteImport } from './routes/_app/register/client'
+import { Route as AppRegisterCardRouteImport } from './routes/_app/register/card'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
@@ -41,6 +45,11 @@ const AppRentalIndexRoute = AppRentalIndexRouteImport.update({
   path: '/rental/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRegisterIndexRoute = AppRegisterIndexRouteImport.update({
+  id: '/register/',
+  path: '/register/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppRentalRentalSaleRoute = AppRentalRentalSaleRouteImport.update({
   id: '/rental/rental-sale',
   path: '/rental/rental-sale',
@@ -51,20 +60,43 @@ const AppRentalEquipStatusRoute = AppRentalEquipStatusRouteImport.update({
   path: '/rental/equip-status',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRegisterItemRoute = AppRegisterItemRouteImport.update({
+  id: '/register/item',
+  path: '/register/item',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppRegisterClientRoute = AppRegisterClientRouteImport.update({
+  id: '/register/client',
+  path: '/register/client',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppRegisterCardRoute = AppRegisterCardRouteImport.update({
+  id: '/register/card',
+  path: '/register/card',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
+  '/register/card': typeof AppRegisterCardRoute
+  '/register/client': typeof AppRegisterClientRoute
+  '/register/item': typeof AppRegisterItemRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/register': typeof AppRegisterIndexRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
+  '/register/card': typeof AppRegisterCardRoute
+  '/register/client': typeof AppRegisterClientRoute
+  '/register/item': typeof AppRegisterItemRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/register': typeof AppRegisterIndexRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
 }
@@ -73,8 +105,12 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRouteRoute
   '/_app/settings': typeof AppSettingsRouteRoute
+  '/_app/register/card': typeof AppRegisterCardRoute
+  '/_app/register/client': typeof AppRegisterClientRoute
+  '/_app/register/item': typeof AppRegisterItemRoute
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/_app/rental/rental-sale': typeof AppRentalRentalSaleRoute
+  '/_app/register/': typeof AppRegisterIndexRoute
   '/_app/rental/': typeof AppRentalIndexRoute
   '/_app/sale/': typeof AppSaleIndexRoute
 }
@@ -83,16 +119,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/login'
     | '/settings'
+    | '/register/card'
+    | '/register/client'
+    | '/register/item'
     | '/rental/equip-status'
     | '/rental/rental-sale'
+    | '/register'
     | '/rental'
     | '/sale'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
     | '/settings'
+    | '/register/card'
+    | '/register/client'
+    | '/register/item'
     | '/rental/equip-status'
     | '/rental/rental-sale'
+    | '/register'
     | '/rental'
     | '/sale'
   id:
@@ -100,8 +144,12 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/settings'
+    | '/_app/register/card'
+    | '/_app/register/client'
+    | '/_app/register/item'
     | '/_app/rental/equip-status'
     | '/_app/rental/rental-sale'
+    | '/_app/register/'
     | '/_app/rental/'
     | '/_app/sale/'
   fileRoutesById: FileRoutesById
@@ -148,6 +196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRentalIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/': {
+      id: '/_app/register/'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AppRegisterIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/rental/rental-sale': {
       id: '/_app/rental/rental-sale'
       path: '/rental/rental-sale'
@@ -162,21 +217,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRentalEquipStatusRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/item': {
+      id: '/_app/register/item'
+      path: '/register/item'
+      fullPath: '/register/item'
+      preLoaderRoute: typeof AppRegisterItemRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/register/client': {
+      id: '/_app/register/client'
+      path: '/register/client'
+      fullPath: '/register/client'
+      preLoaderRoute: typeof AppRegisterClientRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/register/card': {
+      id: '/_app/register/card'
+      path: '/register/card'
+      fullPath: '/register/card'
+      preLoaderRoute: typeof AppRegisterCardRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppSettingsRouteRoute: typeof AppSettingsRouteRoute
+  AppRegisterCardRoute: typeof AppRegisterCardRoute
+  AppRegisterClientRoute: typeof AppRegisterClientRoute
+  AppRegisterItemRoute: typeof AppRegisterItemRoute
   AppRentalEquipStatusRoute: typeof AppRentalEquipStatusRoute
   AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
+  AppRegisterIndexRoute: typeof AppRegisterIndexRoute
   AppRentalIndexRoute: typeof AppRentalIndexRoute
   AppSaleIndexRoute: typeof AppSaleIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSettingsRouteRoute: AppSettingsRouteRoute,
+  AppRegisterCardRoute: AppRegisterCardRoute,
+  AppRegisterClientRoute: AppRegisterClientRoute,
+  AppRegisterItemRoute: AppRegisterItemRoute,
   AppRentalEquipStatusRoute: AppRentalEquipStatusRoute,
   AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
+  AppRegisterIndexRoute: AppRegisterIndexRoute,
   AppRentalIndexRoute: AppRentalIndexRoute,
   AppSaleIndexRoute: AppSaleIndexRoute,
 }

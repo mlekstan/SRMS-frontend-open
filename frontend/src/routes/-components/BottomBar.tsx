@@ -1,20 +1,26 @@
-import { default as styles } from '@/BottomBar.module.css';
-import { sideBarOptions as bottomBarOptions } from '@/routes/-components/SideBar';
-import { clsx } from 'clsx';
-import { FC, SVGProps } from 'react';
+import { default as styles } from '@/BottomBar.module.css'
+import { useLocation, Link } from '@tanstack/react-router'
+import { menuOptions } from '@/routes/-components/SideBar'
+import { clsx } from 'clsx'
+import type { FC, SVGProps } from 'react'
+
+
+
+interface BottomBarOptionProps {
+  icon: FC<SVGProps<SVGSVGElement>>;
+  linkTo: string;
+}
 
 
 
 export default function BottomBar({ visible }: {visible: boolean}) {
-  
-  
   return (
     <div className={clsx(styles['bottom-bar'], !visible && styles['hidden'])}>
       <div className={styles['options-container']}>
         {
-          bottomBarOptions.map((option: object, idx: number) => {
+          menuOptions.map((option, idx) => {
             return (
-              <BottomBarOption key={idx} icon={option.icon}/>
+              <BottomBarOption key={idx} icon={option.icon} linkTo={option.path} />
             );
           })
         }
@@ -24,10 +30,18 @@ export default function BottomBar({ visible }: {visible: boolean}) {
 }
 
 
-function BottomBarOption({ icon: Icon }: {icon: FC<SVGProps<SVGSVGElement>>}) {
+function BottomBarOption({ icon: Icon, linkTo }: BottomBarOptionProps) {
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  });
+
+  const linkToRegExp = new RegExp(`^${linkTo}`, 'ig');
+
   return (
-    <div className={styles['bottom-bar-option']}>
-      <Icon width='25px' height='25px' fill='' />
-    </div>
+    <Link to={linkTo} >
+      <div className={ clsx(styles['bottom-bar-option'], pathname.match(linkToRegExp) && styles['selected']) }>
+        <Icon width='25px' height='25px' fill='' />
+      </div>
+    </Link>
   );
 }

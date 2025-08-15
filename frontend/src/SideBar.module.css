@@ -26,6 +26,12 @@
   cursor: pointer;
 }
 
+.side-bar-option.selected {
+  border-left-style: solid;
+  border-color: var(--first-color);
+  border-left-width: 8px;
+}
+
 .side-bar-option-icon {
   display: flex;
   align-items: center;

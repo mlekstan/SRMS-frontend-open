@@ -1,39 +1,49 @@
-import { useState } from 'react';
-import { FC, SVGProps } from 'react';
+import { useLocation } from '@tanstack/react-router'
+import type { FC, SVGProps } from 'react';
 import { clsx } from 'clsx';
 import styles from '@/SideBar.module.css';
-import RentSignalIcon from '@/assets/rent-signal.svg?react';
-import SellIcon from '@/assets/sell.svg?react';
-import SettingsIcon from '@/assets/settings.svg?react';
+import RentSignalIcon from '@/assets/menu/rent-signal.svg?react';
+import SellIcon from '@/assets/menu/sell.svg?react';
+import SettingsIcon from '@/assets/menu/settings.svg?react';
+import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
 import { Link } from '@tanstack/react-router';
 
 
 
-type SideBarOptionProps = {
+interface SideBarOptionProps {
   icon: FC<SVGProps<SVGSVGElement>>;
   label: string;
   visible: boolean;
   linkTo: string;
 }
 
-type SideBarProps = {
-  visible: boolean;
+export interface MenuOption {
+  icon: FC<SVGProps<SVGSVGElement>>;
+  label: string;
+  path: string;
 }
 
 
-export const sideBarOptions = [
+
+export const menuOptions: Array<MenuOption> = [
   { icon: RentSignalIcon, label: 'Usługa wypożyczenia', path: '/rental' },
   { icon: SellIcon, label: 'Usługa sprzedaży', path: '/sale' },
-  { icon: SettingsIcon, label: 'Ustawienia', path: '/settings' }  
+  { icon: SquarePlusIcon, label: 'Rejestracja', path: '/register' },
+  { icon: SettingsIcon, label: 'Ustawienia', path: '/settings' },
 ];
 
 
 function SideBarOption({ icon: Icon, label, visible, linkTo }: SideBarOptionProps) {
-  const cssClassName = clsx(styles['side-bar-option-title'], !visible && styles['hidden']);
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  });
+
+  const linkToRegExp = new RegExp(`^${linkTo}`, 'ig')
+  const cssClassName = clsx(!visible && styles['hidden'], pathname.match(linkToRegExp) && styles['selected']);
   
   return (
     <Link to={linkTo} style={{textDecoration: 'none', color: 'inherit'}}>
-      <li className={styles['side-bar-option']}>
+      <li className={clsx(styles['side-bar-option'], cssClassName)}>
         <div className={clsx(styles['side-bar-option-icon'], cssClassName)}>
           <Icon width='35px' height='35px' fill=''/>
         </div>
@@ -46,10 +56,10 @@ function SideBarOption({ icon: Icon, label, visible, linkTo }: SideBarOptionProp
 }
 
 
-export default function SideBar({ visible }: SideBarProps) {
+export default function SideBar({ visible }: { visible: boolean }) {
   const cssClassNames = clsx(styles['side-bar'], !visible && styles['hidden']);
   
-  const options = sideBarOptions.map((option, idx) => {
+  const options = menuOptions.map((option, idx) => {
     return <SideBarOption key={idx} icon={option.icon} label={option.label} visible={visible} linkTo={option.path}/>;
   });
   

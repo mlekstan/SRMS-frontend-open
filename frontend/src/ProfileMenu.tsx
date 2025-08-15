@@ -1,5 +1,5 @@
 import { default as styles } from '@/ProfileMenu.module.css';
-import UserIcon from '@/assets/user.svg?react';
+import UserIcon from '@/assets/navbar/user.svg?react';
 
 
 export default function ProfileMenu() {

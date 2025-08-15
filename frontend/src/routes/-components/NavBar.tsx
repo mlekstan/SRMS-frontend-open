@@ -1,8 +1,7 @@
-import { useState} from 'react';
 import '@/App.css';
 import styles from '@/NavBar.module.css';
-import BurgerMenuIcon from '@/assets/burger-menu.svg?react';
-import UserIcon from '@/assets/user.svg?react';
+import BurgerMenuIcon from '@/assets/navbar/burger-menu.svg?react';
+import UserIcon from '@/assets/navbar/user.svg?react';
 
 
 
