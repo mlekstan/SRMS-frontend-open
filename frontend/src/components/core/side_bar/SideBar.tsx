@@ -1,7 +1,8 @@
+import { memo } from 'react'
 import { useLocation } from '@tanstack/react-router'
 import type { FC, SVGProps } from 'react';
 import { clsx } from 'clsx';
-import styles from '@/SideBar.module.css';
+import styles from '@/components/core/side_bar/SideBar.module.css';
 import RentSignalIcon from '@/assets/menu/rent-signal.svg?react';
 import SellIcon from '@/assets/menu/sell.svg?react';
 import SettingsIcon from '@/assets/menu/settings.svg?react';
@@ -33,7 +34,9 @@ export const menuOptions: Array<MenuOption> = [
 ];
 
 
-function SideBarOption({ icon: Icon, label, visible, linkTo }: SideBarOptionProps) {
+function SideBarOption({ visible, icon: Icon, label, linkTo }: SideBarOptionProps) {
+  console.log(`side option ${linkTo}`)
+  
   const pathname = useLocation({
     select: (location) => location.pathname,
   });
@@ -56,7 +59,9 @@ function SideBarOption({ icon: Icon, label, visible, linkTo }: SideBarOptionProp
 }
 
 
-export default function SideBar({ visible }: { visible: boolean }) {
+function SideBar({ visible }: { visible: boolean }) {
+  console.log("render side")
+  
   const cssClassNames = clsx(styles['side-bar'], !visible && styles['hidden']);
   
   const options = menuOptions.map((option, idx) => {
@@ -71,3 +76,6 @@ export default function SideBar({ visible }: { visible: boolean }) {
     </aside>
   );
 }
+
+
+export default memo(SideBar);

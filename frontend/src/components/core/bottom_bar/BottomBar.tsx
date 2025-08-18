@@ -1,6 +1,7 @@
-import { default as styles } from '@/BottomBar.module.css'
+import { memo } from 'react'
+import { default as styles } from '@/components/core/bottom_bar/BottomBar.module.css'
 import { useLocation, Link } from '@tanstack/react-router'
-import { menuOptions } from '@/routes/-components/SideBar'
+import { menuOptions } from '@/components/core/side_bar/SideBar'
 import { clsx } from 'clsx'
 import type { FC, SVGProps } from 'react'
 
@@ -13,7 +14,9 @@ interface BottomBarOptionProps {
 
 
 
-export default function BottomBar({ visible }: {visible: boolean}) {
+function BottomBar({ visible }: {visible: boolean}) {
+  console.log("render bottom")
+  
   return (
     <div className={clsx(styles['bottom-bar'], !visible && styles['hidden'])}>
       <div className={styles['options-container']}>
@@ -45,3 +48,7 @@ function BottomBarOption({ icon: Icon, linkTo }: BottomBarOptionProps) {
     </Link>
   );
 }
+
+
+
+export default memo(BottomBar);

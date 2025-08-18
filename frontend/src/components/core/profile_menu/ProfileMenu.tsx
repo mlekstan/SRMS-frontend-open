@@ -1,8 +1,10 @@
-import { default as styles } from '@/ProfileMenu.module.css';
+import { default as styles } from '@/components/core/profile_menu/ProfileMenu.module.css';
 import UserIcon from '@/assets/navbar/user.svg?react';
 
 
 export default function ProfileMenu() {
+  console.log("profile menu")
+  
   return (
     <div className={styles['profile-menu-wrapper']}>
       <div className={styles['profile-menu']}>

@@ -1,5 +1,6 @@
-import '@/App.css';
-import styles from '@/NavBar.module.css';
+import { memo } from 'react'
+import '@/components/core/app/App.css';
+import styles from '@/components/core/nav_bar/NavBar.module.css';
 import BurgerMenuIcon from '@/assets/navbar/burger-menu.svg?react';
 import UserIcon from '@/assets/navbar/user.svg?react';
 
@@ -32,7 +33,9 @@ function UserProfile({ onClick }) {
 }
 
 
-export default function NavBar({ onBurgerClick, onProfileClick }) {
+function NavBar({ onBurgerClick, onProfileClick }) {
+  console.log("render nav")
+  
   return (
     <nav className={styles['nav-bar']}>
       <div className={styles['menu-section']}>
@@ -48,6 +51,8 @@ export default function NavBar({ onBurgerClick, onProfileClick }) {
   );
 }
 
+
+export default memo(NavBar);
 
 
 

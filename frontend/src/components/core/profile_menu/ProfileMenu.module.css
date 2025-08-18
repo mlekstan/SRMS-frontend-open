@@ -4,7 +4,8 @@
   padding-top: 1em;
   padding-left: 1em;
   padding-right: 1em;
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   top: var(--navbar-height);
   right: 0px;
   outline-style: solid;

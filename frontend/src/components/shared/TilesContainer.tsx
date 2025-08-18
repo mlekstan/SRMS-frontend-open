@@ -1,4 +1,4 @@
-import styles from '@/TilesContainer.module.css';
+import styles from '@/components/shared/TilesContainer.module.css';
 import { Link } from '@tanstack/react-router';
 
 
