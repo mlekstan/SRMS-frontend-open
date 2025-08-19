@@ -1,51 +1,49 @@
 import { memo } from 'react'
-import { useLocation } from '@tanstack/react-router'
-import type { FC, SVGProps } from 'react';
 import { clsx } from 'clsx';
-import styles from '@/components/core/side_bar/SideBar.module.css';
+import type { FC, SVGProps } from 'react';
+import { useLocation, Link, linkOptions } from '@tanstack/react-router'
 import RentSignalIcon from '@/assets/menu/rent-signal.svg?react';
 import SellIcon from '@/assets/menu/sell.svg?react';
 import SettingsIcon from '@/assets/menu/settings.svg?react';
 import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
-import { Link } from '@tanstack/react-router';
+import styles from '@/components/core/side_bar/SideBar.module.css';
 
 
 
 interface SideBarOptionProps {
-  icon: FC<SVGProps<SVGSVGElement>>;
-  label: string;
   visible: boolean;
-  linkTo: string;
-}
+  option: MenuOption; 
+};
 
 export interface MenuOption {
-  icon: FC<SVGProps<SVGSVGElement>>;
+  to: string;
   label: string;
-  path: string;
-}
+  icon: FC<SVGProps<SVGSVGElement>>; 
+};
 
 
+export const menuOptions = linkOptions([
+  { to: '/rental', label: 'Usługa wypożyczenia', icon: RentSignalIcon },
+  { to: '/sale', label: 'Usługa sprzedaży', icon: SellIcon },
+  { to: '/register', label: 'Rejestracja', icon: SquarePlusIcon },
+  { to: '/settings', label: 'Ustawienia', icon: SettingsIcon },
+]);
 
-export const menuOptions: Array<MenuOption> = [
-  { icon: RentSignalIcon, label: 'Usługa wypożyczenia', path: '/rental' },
-  { icon: SellIcon, label: 'Usługa sprzedaży', path: '/sale' },
-  { icon: SquarePlusIcon, label: 'Rejestracja', path: '/register' },
-  { icon: SettingsIcon, label: 'Ustawienia', path: '/settings' },
-];
 
-
-function SideBarOption({ visible, icon: Icon, label, linkTo }: SideBarOptionProps) {
-  console.log(`side option ${linkTo}`)
+function SideBarOption({ visible, option }: SideBarOptionProps) {
   
   const pathname = useLocation({
     select: (location) => location.pathname,
   });
 
-  const linkToRegExp = new RegExp(`^${linkTo}`, 'ig')
+  const {to, label, icon: Icon} = option;
+  console.log(`side option ${to}`)
+  
+  const linkToRegExp = new RegExp(`^${to}`, 'ig')
   const cssClassName = clsx(!visible && styles['hidden'], pathname.match(linkToRegExp) && styles['selected']);
   
   return (
-    <Link to={linkTo} style={{textDecoration: 'none', color: 'inherit'}}>
+    <Link to={to} style={{textDecoration: 'none', color: 'inherit'}}>
       <li className={clsx(styles['side-bar-option'], cssClassName)}>
         <div className={clsx(styles['side-bar-option-icon'], cssClassName)}>
           <Icon width='35px' height='35px' fill=''/>
@@ -65,7 +63,7 @@ function SideBar({ visible }: { visible: boolean }) {
   const cssClassNames = clsx(styles['side-bar'], !visible && styles['hidden']);
   
   const options = menuOptions.map((option, idx) => {
-    return <SideBarOption key={idx} icon={option.icon} label={option.label} visible={visible} linkTo={option.path}/>;
+    return <SideBarOption key={idx} visible={visible} option={option} />;
   });
   
   return (

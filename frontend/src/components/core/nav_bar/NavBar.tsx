@@ -1,9 +1,8 @@
-import { memo } from 'react'
-import '@/components/core/app/App.css';
-import styles from '@/components/core/nav_bar/NavBar.module.css';
+import { memo } from 'react';
 import BurgerMenuIcon from '@/assets/navbar/burger-menu.svg?react';
 import UserIcon from '@/assets/navbar/user.svg?react';
-
+import '@/components/core/app/App.css';
+import styles from '@/components/core/nav_bar/NavBar.module.css';
 
 
 function BurgerMenu({ onClick }) {

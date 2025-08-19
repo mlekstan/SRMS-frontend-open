@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TextFieldWrapper from '@/routes/_app/register/-components/TextFieldWrapper';
 
 
-type dataField = {
+export type dataField = {
   label: string,
   required: boolean,
   type: string
@@ -19,7 +19,7 @@ type FullAccordionProps = {
 
 const FullAccordion = ({title, dataFields}: FullAccordionProps) => {
   const [valid, setValid] = useState(dataFields.map((val) => !val.required));
-
+  
   let style = {};
   if (valid.includes(false)) {
     style = {color: 'error.main'};
@@ -39,12 +39,13 @@ const FullAccordion = ({title, dataFields}: FullAccordionProps) => {
           noValidate
           autoComplete="off"
         >    
-          {dataFields.map((value, index) => {
-            
-            return (
-              <TextFieldWrapper key={index} values={value} ancestorValid={valid} setAncestorValid={setValid} index={index} />         
-            );
-          })}
+          {
+            dataFields.map((value, index) => {
+              return (
+                <TextFieldWrapper key={index} values={value} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />         
+              );
+            })
+          }
         </Box>
       </AccordionDetails>
     </Accordion>
