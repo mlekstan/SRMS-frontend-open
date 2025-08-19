@@ -42,7 +42,7 @@ const FullAccordion = ({title, dataFields}: FullAccordionProps) => {
           {
             dataFields.map((value, index) => {
               return (
-                <TextFieldWrapper key={index} values={value} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />         
+                <TextFieldWrapper key={index} propsValues={value} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />         
               );
             })
           }
