@@ -1,25 +1,29 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TextFieldWrapper from '@/routes/_app/register/-components/TextFieldWrapper';
+import { formContext, useFormContext } from '../client';
 
 
 export type dataField = {
+  fieldName: string,
   label: string,
   required: boolean,
   type: string
+  imaskProps: object,
 };
 
 type FullAccordionProps = {
   title: string,
-  dataFields: Array<dataField>
+  fieldsDefs: Array<dataField>,
 };
 
-const FullAccordion = ({title, dataFields}: FullAccordionProps) => {
-  const [valid, setValid] = useState(dataFields.map((val) => !val.required));
+const FullAccordion = ({ title, fieldsDefs }: FullAccordionProps) => {
+  const [valid, setValid] = useState(fieldsDefs.map((fieldDef) => !fieldDef.required));
+  const form = useFormContext();
   
+
   let style = {};
   if (valid.includes(false)) {
     style = {color: 'error.main'};
@@ -40,9 +44,14 @@ const FullAccordion = ({title, dataFields}: FullAccordionProps) => {
           autoComplete="off"
         >    
           {
-            dataFields.map((value, index) => {
+            fieldsDefs.map((fieldDef, index) => {
               return (
-                <TextFieldWrapper key={index} propsValues={value} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />         
+                <form.Field
+                  name={fieldDef.fieldName}
+                  children={(field) => (
+                    <TextFieldWrapper key={index} fieldDef={fieldDef} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />
+                  )}
+                />      
               );
             })
           }
