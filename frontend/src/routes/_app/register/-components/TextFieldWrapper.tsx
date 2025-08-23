@@ -9,7 +9,7 @@ import { useFieldContext } from "@/routes/_app/register/client";
 
 type TextFieldWrapperProps = {
   fieldDef: dataField,
-  field: any,
+  // field: any,
   ancestorValid: boolean,
   setAncestorValid: Dispatch<SetStateAction<boolean[]>>
   index: number,
@@ -27,7 +27,7 @@ const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props
 
 
 function TextFieldWrapper({ fieldDef, ancestorValid, setAncestorValid, index }: TextFieldWrapperProps ) {
-  const field = useFieldContext<string>();
+  // const field = useFieldContext<string>();
 
   
   const { label, required, type, imaskProps, customAutocomplete: CustomAutocomplete } = fieldDef;
@@ -41,7 +41,7 @@ function TextFieldWrapper({ fieldDef, ancestorValid, setAncestorValid, index }: 
         required={required} 
         type={type}
         onChange={(e) => {
-          field.handleChange
+          // field.handleChange
   
           valid = !(required && e.target.value === '');
           if (ancestorValid !== valid) {

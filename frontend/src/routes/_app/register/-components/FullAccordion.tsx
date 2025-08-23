@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { formContext, useFormContext } from '../client';
+import TextFieldWrapper from './TextFieldWrapper';
 
 
 export type dataField = {
@@ -21,7 +22,7 @@ type FullAccordionProps = {
 
 const FullAccordion = ({ title, fieldsDefs }: FullAccordionProps) => {
   const [valid, setValid] = useState(fieldsDefs.map((fieldDef) => !fieldDef.required));
-  const form = useFormContext();
+  // const form = useFormContext();
   
 
   let style = {};
@@ -46,12 +47,12 @@ const FullAccordion = ({ title, fieldsDefs }: FullAccordionProps) => {
           {
             fieldsDefs.map((fieldDef, index) => {
               return (
-                <form.Field
-                  name={fieldDef.fieldName}
-                  children={(field) => (
+                // <form.Field
+                  // name={fieldDef.fieldName}
+                  // children={(field) => (
                     <TextFieldWrapper key={index} fieldDef={fieldDef} ancestorValid={valid[index]} setAncestorValid={setValid} index={index} />
-                  )}
-                />      
+                  // )}
+                // />      
               );
             })
           }
