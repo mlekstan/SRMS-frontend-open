@@ -6,7 +6,6 @@ import styles from '@/components/core/main_board/MainBoard.module.css'
 
 
 function MainBoard() {
-  console.log("render main borad")
   
   return (
     <div className={styles['main-board']}>

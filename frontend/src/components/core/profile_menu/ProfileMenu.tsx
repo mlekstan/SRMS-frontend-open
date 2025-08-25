@@ -3,7 +3,6 @@ import UserIcon from '@/assets/navbar/user.svg?react';
 
 
 export default function ProfileMenu() {
-  console.log("profile menu")
   
   return (
     <div className={styles['profile-menu-wrapper']}>

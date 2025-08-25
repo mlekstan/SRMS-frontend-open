@@ -21,6 +21,7 @@ export const clientFormOpts = formOptions({
       zipCode: '',
     },
     contactData: {
+      areaCode: '',
       phoneNumber: '',
       email: '',
     },

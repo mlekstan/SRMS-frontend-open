@@ -8,7 +8,6 @@ import { default as styles } from '@/components/core/bottom_bar/BottomBar.module
 
 
 function BottomBar({ visible }: {visible: boolean}) {
-  console.log("render bottom")
   
   return (
     <div className={clsx(styles['bottom-bar'], !visible && styles['hidden'])}>

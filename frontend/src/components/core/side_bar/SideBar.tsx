@@ -37,7 +37,6 @@ function SideBarOption({ visible, option }: SideBarOptionProps) {
   });
 
   const {to, label, icon: Icon} = option;
-  console.log(`side option ${to}`)
   
   const linkToRegExp = new RegExp(`^${to}`, 'ig')
   const cssClassName = clsx(!visible && styles['hidden'], pathname.match(linkToRegExp) && styles['selected']);
@@ -58,7 +57,6 @@ function SideBarOption({ visible, option }: SideBarOptionProps) {
 
 
 function SideBar({ visible }: { visible: boolean }) {
-  console.log("render side")
   
   const cssClassNames = clsx(styles['side-bar'], !visible && styles['hidden']);
   

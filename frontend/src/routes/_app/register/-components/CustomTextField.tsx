@@ -21,29 +21,22 @@ const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props
 });
 
 
-function CustomTextField({ setAccordionValid }) {
+function CustomTextField({ props }) {
   const field = useFieldContext();
-  const imaskProps = { mask: "0000000000000" , overwrite: true, lazy: false, placeholderChar: '_' };
+  const { label, required, disabled, type, imaskProps, ...other } = props;
+  const value = disabled ? "" : field.state.value ?? "";
 
-  console.log(field.state)
-
-  
-  useEffect(() => {
-    if (!field.state.meta.isValid) {
-      setAccordionValid(() => false);
-    } else {
-      setAccordionValid(() => true);
-    }
-  })
+  console.log("Custom text field")
   
   return (
     <TextField 
       helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}
       error={!field.state.meta.isValid}
-      label={"Kod karty klienta"}
-      required={true} 
-      type={"text"}
-      
+      label={label}
+      required={required}
+      value={value}
+      type={type}
+      disabled={disabled}
       onChange={(e) => {  
         console.log(e.target.value)
         field.handleChange(e.target.value.split("_").join(""))

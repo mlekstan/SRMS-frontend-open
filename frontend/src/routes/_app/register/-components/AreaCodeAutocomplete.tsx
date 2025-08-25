@@ -1,15 +1,20 @@
 import { Autocomplete, TextField, Box } from "@mui/material";
 import options from "@/assets/data/countries.json";
+import { useFieldContext } from "../-form/hooks/form-context";
 
 
-export default function CountriesAutocomplete({ label, onChange }) {
+export default function AreaCodeAutocomplete({ label }) {
+  const field = useFieldContext()
+
+  console.log("Area code autocomplete")
+  
   return (
     <Autocomplete 
       id="country-select-demo"
       sx={{ width: 300 }}
       options={options}
       autoHighlight
-      onChange={onChange}
+      onChange={(e, value) => field.handleChange(value)}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => {
         const { key, ...optionProps } = props;
@@ -27,7 +32,7 @@ export default function CountriesAutocomplete({ label, onChange }) {
               src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
               alt=""
             />
-            {option.label} ({option.code}) +{option.phone}
+            {option.label} ({option.code})
           </Box>
         );
       }}

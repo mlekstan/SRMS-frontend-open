@@ -7,10 +7,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 
 
-export default function ChildFormAccordion({ children, title, accordionValid }) {
+export default function ChildFormAccordion({ children, title, valid }) {
   
+  console.log("Accordion")
+
+
   let style = {};
-  if (accordionValid === false) {
+  if (valid === false) {
     style = {color: 'error.main'};
   }
 

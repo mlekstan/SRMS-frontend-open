@@ -11,7 +11,6 @@ export default function App() {
   const [menuVisible, setMenuVisible] = useState(true);
   const [profileMenuVisible, setProfileMenuVisible] = useState(false);
   
-  console.log('render')
 
   // function handleBurgerClick() {
   //   setMenuVisible(!menuVisible);

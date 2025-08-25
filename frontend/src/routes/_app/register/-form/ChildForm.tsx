@@ -1,41 +1,43 @@
-import { useState } from "react";
-import { withForm } from "@/routes/_app/register/-form/hooks/form";
-import { clientFormOpts } from "./form-options";
+import { useStore } from "@tanstack/react-form";
 import ChildFormAccordion from "../-components/ChildFormAccordion";
+import CustomTextField from "../-components/CustomTextField";
+import { clientFormOpts } from "./form-options";
+import { withForm } from "./hooks/form";
+import { PhoneFieldsGroup } from "./PhoneFieldsGroup";
+import { useEffect, useState } from "react";
 
+
+
+function isEmpty(obj: object) {
+  for (let prop in obj) {
+    if (Object.hasOwn(obj, prop))
+      return false;
+  }
+  return true;
+}
 
 
 export const ChildForm = withForm({
   ...clientFormOpts,
-
   props: {
     title: "Child form"
   },
   render: function Render({ form, title }) {
-    const [valid, setValid] = useState(() => true);
-
+    const isValid = useStore(form.store, (state) => state.isValid)
+    
     return (
-      <ChildFormAccordion title={title} accordionValid={valid} >
-        <form.AppField 
-          name="cardData.cardBarcode"
-          validators={{
-            onMount: ({ value }) => 
-              value === "" ? "Pole nie może być puste" : undefined,
-            onChange: ({ value }) => {
-              if (value === "") {
-                return ("Pole nie może być puste")
-              } else if (value.length < 13) {
-                return ("Pole musi mieć 13 znaków")
-              }
-              return (undefined)
-            }
-              
-          }}
-          children={(field) => (<field.CustomTextField setAccordionValid={setValid} />)}
+      <ChildFormAccordion title={title} valid={isValid} >
+        <PhoneFieldsGroup form={form} fields={{areaCode: "contactData.areaCode", phoneNumber: "contactData.phoneNumber"}} />
         
-        />
-      </ChildFormAccordion>
+        <form.AppField name="contactData.email" >
+          {(field) => <field.CustomTextField props={{label: "E-mail", required: false, type: "text", imaskProps: { mask: /^\S*@?\S*$/, overwrite: true, lazy: false }}}/>}
 
+        </form.AppField>
+
+
+      </ChildFormAccordion>
     );
   }
+
+
 })

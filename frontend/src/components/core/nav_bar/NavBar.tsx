@@ -33,7 +33,6 @@ function UserProfile({ onClick }) {
 
 
 function NavBar({ onBurgerClick, onProfileClick }) {
-  console.log("render nav")
   
   return (
     <nav className={styles['nav-bar']}>
