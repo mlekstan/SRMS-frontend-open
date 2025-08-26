@@ -1,4 +1,3 @@
-import { useContext, useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material"
@@ -10,7 +9,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 export default function ChildFormAccordion({ children, title, valid }) {
   
   console.log("Accordion")
-
 
   let style = {};
   if (valid === false) {
@@ -27,10 +25,7 @@ export default function ChildFormAccordion({ children, title, valid }) {
       </AccordionSummary>
       <AccordionDetails>
         <Box
-          component="form"
           sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
         >    
           {children}
         </Box>

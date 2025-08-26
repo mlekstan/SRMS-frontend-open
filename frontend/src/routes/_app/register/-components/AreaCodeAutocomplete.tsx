@@ -1,20 +1,34 @@
+import { useContext, useEffect } from "react";
 import { Autocomplete, TextField, Box } from "@mui/material";
 import options from "@/assets/data/countries.json";
 import { useFieldContext } from "../-form/hooks/form-context";
+import { AccordionValidUpdateContext } from "../-form/hooks/child-context";
+
 
 
 export default function AreaCodeAutocomplete({ label }) {
-  const field = useFieldContext()
+  const field = useFieldContext();
+  const setAccordionValidState = useContext(AccordionValidUpdateContext);
+
+  useEffect(() => {
+    setAccordionValidState((prev) => {
+      const copy = {...prev};
+      copy[field.name] = field.state.meta.isValid;
+      return (copy);
+    })
+  }, [field.state.meta.isValid])
+
+
 
   console.log("Area code autocomplete")
   
   return (
     <Autocomplete 
-      id="country-select-demo"
-      sx={{ width: 300 }}
+      id="country-areacode-select"
+      sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      onChange={(e, value) => field.handleChange(value)}
+      onChange={(e, value) => field.handleChange(value?.phone)}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => {
         const { key, ...optionProps } = props;

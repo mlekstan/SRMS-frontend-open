@@ -7,15 +7,10 @@ export const PhoneFieldsGroup = withFieldGroup({
     areaCode: '',
     phoneNumber: ''
   },
-  props: {
-    
-  },
   render: function Render({ group }) {
-    const rawAreaCode = useStore(group.store, (state) => state.values.areaCode)
-    
-    const areaCodePhone = !rawAreaCode ? "" : rawAreaCode.phone;
+    const areaCode = useStore(group.store, (state) => state.values.areaCode)
 
-    console.log("Group", areaCodePhone)
+    console.log("Group", areaCode)
 
     return (
       <>
@@ -26,7 +21,19 @@ export const PhoneFieldsGroup = withFieldGroup({
 
         <group.AppField 
           name="phoneNumber"
-          children={(field) => <field.CustomTextField props={{label: "Numer telefonu", required: false, disabled: !areaCodePhone, type: "text", imaskProps: { mask: `+${areaCodePhone}} ${"0".repeat(14)}`, overwrite: true, lazy: true }}} />}
+          children={(field) => 
+            <field.CustomTextField 
+              props={
+                {
+                  label: "Numer telefonu", 
+                  required: false, 
+                  disabled: !areaCode, 
+                  type: "text", 
+                  imaskProps: { mask: `+${areaCode}} ${"0".repeat(13)}`, overwrite: true, lazy: true }
+                }
+              } 
+            />
+          }
         />     
       </>
     );

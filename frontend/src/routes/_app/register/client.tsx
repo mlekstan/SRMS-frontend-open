@@ -16,12 +16,6 @@ export const Route = createFileRoute('/_app/register/client')({
 
 
 
-const breadcrumbsOptions = linkOptions([
-  {to: '/register', label: 'Rejestracja', icon: ''},
-  {to: '/register/client', label: 'Zarejestruj klienta', icon: ''},
-]);
-
-
 const FormPaper = styled(Paper)<PaperProps>(({ theme }) => ({
   '&': {
     padding: theme.spacing(12),
@@ -43,6 +37,11 @@ const FormPaperContainer = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 
+
+const breadcrumbsOptions = linkOptions([
+  {to: '/register', label: 'Rejestracja', icon: ''},
+  {to: '/register/client', label: 'Zarejestruj klienta', icon: ''},
+]);
 
 
 function RouteComponent() {
@@ -68,7 +67,7 @@ function RouteComponent() {
       </Breadcrumbs>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Zarejestruj nowego klienta</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new client</Typography>
         <ClientForm />   
       </FormPaper>
     </FormPaperContainer>
