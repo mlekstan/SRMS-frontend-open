@@ -1,8 +1,8 @@
 import { forwardRef, useEffect, useContext } from "react";
 import { IMaskInput } from "react-imask";
 import { TextField } from "@mui/material";
-import { useFieldContext } from "../-form/hooks/form-context";
-import { AccordionValidUpdateContext } from "../-form/hooks/child-context";
+import { useFieldContext } from "../-forms/hooks/form-context";
+import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
 
 
 
@@ -28,7 +28,7 @@ function CustomTextField({ props }) {
   const { label, required, disabled, type, imaskProps, ...other } = props;
   const value = disabled ? "" : field.state.value ?? "";
   
-  console.log("Custom text field", field.state.value);
+  console.log("Custom text field", field);
 
   useEffect(() => {
     setAccordionValidState((prev) => {

@@ -1,9 +1,11 @@
 import { Box, Button } from "@mui/material";
-import { ChildForm } from "@/routes/_app/register/-form/ChildForm";
-import { clientFormOpts } from "@/routes/_app/register/-form/form-options";
-import { useAppForm } from "@/routes/_app/register/-form/hooks/form";
-import { clientFormConfig } from "./configs/clientForm-config";
+import { clientFormOpts } from "./clientForm-options";
+import { useAppForm } from "../hooks/form";
+import { clientFormConfig } from "./clientForm-config";
+import { createChildForm } from "../createChildForm";
 
+
+const ChildForm = createChildForm(clientFormOpts);
 
 
 export default function ClientForm() {

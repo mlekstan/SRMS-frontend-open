@@ -1,12 +1,11 @@
 import { useContext, useEffect } from "react";
 import { Autocomplete, TextField } from "@mui/material";
-import options from "@/assets/data/countries.json";
 import { useFieldContext } from "../-forms/hooks/form-context";
 import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
 
+const options = ["True", "False"];
 
-
-export default function CountriesAutocomplete({ props }) {
+export default function BoolAutocomplete({ props }) {
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
   
@@ -20,7 +19,7 @@ export default function CountriesAutocomplete({ props }) {
 
   const { label, ...others } = props
 
-  console.log("Countries autocomplete")
+  console.log("Bool autocomplete", field.state.value)
 
   return (
     <Autocomplete 
@@ -28,13 +27,14 @@ export default function CountriesAutocomplete({ props }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      defaultValue={options[177]}
       onChange={(e, value) => field.handleChange(value)}
-      getOptionLabel={(option) => option.label}
+      getOptionLabel={(option) => option}
       renderInput={(params) => (
         <TextField
           {...params}
           label={label}
+          helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}
+          error={!field.state.meta.isValid}
           slotProps={{
             htmlInput: {
               ...params.inputProps,

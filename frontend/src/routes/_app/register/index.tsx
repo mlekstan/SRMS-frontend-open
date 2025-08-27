@@ -10,8 +10,8 @@ export const Route = createFileRoute('/_app/register/')({
 
 const tiles = [
   { imgSrc: addFriendImg, label: 'Zarejestruj klienta', path: '/register/client' },
-  { imgSrc: addImg, label: 'Zarejestruj sprzęt', path: '/register/card' },
-  { imgSrc: drivingLicenseImg, label: 'Zarejestruj kartę', path: '/register/item' },
+  { imgSrc: addImg, label: 'Zarejestruj sprzęt', path: '/register/item' },
+  { imgSrc: drivingLicenseImg, label: 'Zarejestruj kartę', path: '/register/card' },
 ]
 
 

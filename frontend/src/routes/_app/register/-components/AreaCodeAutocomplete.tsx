@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Autocomplete, TextField, Box } from "@mui/material";
 import options from "@/assets/data/countries.json";
-import { useFieldContext } from "../-form/hooks/form-context";
-import { AccordionValidUpdateContext } from "../-form/hooks/child-context";
+import { useFieldContext } from "../-forms/hooks/form-context";
+import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
 
 
 
@@ -28,6 +28,7 @@ export default function AreaCodeAutocomplete({ label }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
+      defaultValue={options[177]}
       onChange={(e, value) => field.handleChange(value?.phone)}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => {

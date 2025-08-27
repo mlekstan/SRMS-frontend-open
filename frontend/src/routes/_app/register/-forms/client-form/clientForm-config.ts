@@ -5,17 +5,17 @@ export const clientFormConfig = {
   cardFieldsConfig: [
     { 
       fieldName: "cardData.cardBarcode",
-      label: 'Kod karty klienta', 
+      label: 'Barcode', 
       required: true, 
       type: 'text', 
-      imaskProps: { mask: "0000000000000" , overwrite: true, lazy: false, placeholderChar: '_' },
+      imaskProps: { mask: "0".repeat(13) , overwrite: true, lazy: false, placeholderChar: '_' },
       validators: {
         onChange: ({ value }) => {
           const length = value.split("_").join("").length
           if (length === 0) {
             return ("Can't be empty");
           } else if (length > 0 && length < 13) {
-            return ("Must have at lest 13 characters");
+            return ("Must have at least 13 characters");
           } else {
             return undefined;
           }
@@ -26,7 +26,7 @@ export const clientFormConfig = {
   personalFieldsConfig: [
     { 
       fieldName: "personalData.firstName", 
-      label: 'Imię', 
+      label: 'Frist name', 
       required: true, 
       type: 'text', 
       imaskProps: { mask: /^\p{L}{1,40}$/u , overwrite: true, lazy: false },
@@ -38,14 +38,14 @@ export const clientFormConfig = {
     },
     { 
       fieldName: "personalData.secondName", 
-      label: 'Drugie imię', 
+      label: 'Second name', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^\p{L}{0,40}$/u , overwrite: true, lazy: false }
     },
     { 
       fieldName: "personalData.lastName", 
-      label: 'Nazwisko', 
+      label: 'Last name', 
       required: true,
       type: 'text', 
       imaskProps: { mask: /^\p{L}{1,80}$/u , overwrite: true, lazy: false },
@@ -57,7 +57,7 @@ export const clientFormConfig = {
     },
     { 
       fieldName: "personalData.identityCardNumber", 
-      label: 'ID dokumentu', 
+      label: 'Identity card number', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^\p{L}{0,15}$/u , overwrite: true, lazy: false }
@@ -66,42 +66,42 @@ export const clientFormConfig = {
   residenceFieldsConfig: [
     { 
       fieldName: "residenceData.country", 
-      label: 'Kraj',
+      label: 'Country',
       required: false, 
       type: 'text', 
       imaskProps: {}, 
       componentName: "CountriesAutocomplete"},
     { 
       fieldName: "residenceData.city", 
-      label: 'Miasto', 
+      label: 'City', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }
     },
     { 
       fieldName: "residenceData.street", 
-      label: 'Ulica', 
+      label: 'Street', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }
     },
     { 
       fieldName: "residenceData.streetNumber", 
-      label: 'Numer ulicy', 
+      label: 'Street number', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
     },
     { 
       fieldName: "residenceData.flatNumber", 
-      label: 'Numer lokalu', 
+      label: 'Flat number', 
       required: false, 
       type: 'text', 
       imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
     },
     { 
       fieldName: "residenceData.zipCode", 
-      label: 'Kod pocztowy',
+      label: 'Zip code',
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^.{0,10}$/, overwrite: true, lazy: false }
