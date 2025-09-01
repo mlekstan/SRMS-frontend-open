@@ -16,8 +16,6 @@ export const cardFormConfig = {
             return ("Can't be empty");
           } else if (length > 0 && length < 13) {
             return ("Must have at least 13 characters");
-          } else {
-            return undefined;
           }
         },
       }
@@ -32,8 +30,6 @@ export const cardFormConfig = {
         onChange: ({ value }) => {
           if (!value) {
             return ("Can't be empty");
-          } else {
-            return undefined;
           }
         },
       },

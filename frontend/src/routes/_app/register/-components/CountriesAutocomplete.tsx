@@ -18,7 +18,7 @@ export default function CountriesAutocomplete({ props }) {
     })
   }, [field.state.meta.isValid])
 
-  const { label, ...others } = props
+  const { label, required, type, ...others } = props
 
   console.log("Countries autocomplete")
 
@@ -28,12 +28,14 @@ export default function CountriesAutocomplete({ props }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      defaultValue={options[177]}
       onChange={(e, value) => field.handleChange(value)}
       getOptionLabel={(option) => option.label}
       renderInput={(params) => (
         <TextField
           {...params}
+          helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}
+          error={!field.state.meta.isValid}
+          required={required}
           label={label}
           slotProps={{
             htmlInput: {

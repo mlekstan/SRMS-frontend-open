@@ -1,4 +1,5 @@
-import { PhoneFieldsGroup } from "../PhoneFieldsGroup"
+import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
+import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
 
 
 export const clientFormConfig = {
@@ -16,8 +17,6 @@ export const clientFormConfig = {
             return ("Can't be empty");
           } else if (length > 0 && length < 13) {
             return ("Must have at least 13 characters");
-          } else {
-            return undefined;
           }
         },
       }
@@ -64,48 +63,33 @@ export const clientFormConfig = {
     },    
   ],
   residenceFieldsConfig: [
-    { 
-      fieldName: "residenceData.country", 
-      label: 'Country',
-      required: false, 
-      type: 'text', 
-      imaskProps: {}, 
-      componentName: "CountriesAutocomplete"},
-    { 
-      fieldName: "residenceData.city", 
-      label: 'City', 
-      required: false, 
-      type: 'text', 
-      imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }
+    {
+      group: [
+        { 
+          fieldName: "residenceData.country", 
+        },
+        { 
+          fieldName: "residenceData.city", 
+        },        
+        { 
+          fieldName: "residenceData.street", 
+        },
+        { 
+          fieldName: "residenceData.streetNumber", 
+        },
+        { 
+          fieldName: "residenceData.flatNumber", 
+        },
+      ],
+      component: ResidenceFieldsGroup
     },
     { 
-      fieldName: "residenceData.street", 
-      label: 'Street', 
-      required: false, 
-      type: 'text', 
-      imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }
-    },
-    { 
-      fieldName: "residenceData.streetNumber", 
-      label: 'Street number', 
-      required: false, 
-      type: 'text', 
-      imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
-    },
-    { 
-      fieldName: "residenceData.flatNumber", 
-      label: 'Flat number', 
-      required: false, 
-      type: 'text', 
-      imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
-    },
-    { 
-      fieldName: "residenceData.zipCode", 
+      fieldName: "residenceData.zipCode",
       label: 'Zip code',
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^.{0,10}$/, overwrite: true, lazy: false }
-    },    
+    },
   ],
   contactFieldsConfig: [
     { 
@@ -114,7 +98,7 @@ export const clientFormConfig = {
           fieldName: "contactData.areaCode" 
         },
         { 
-          fieldName: "contactData.phone" 
+          fieldName: "contactData.phoneNumber" 
         }
       ], 
       component: PhoneFieldsGroup 

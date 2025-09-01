@@ -17,8 +17,6 @@ export const itemFormConfig = {
             return ("Can't be empty");
           } else if (length > 0 && length < 13) {
             return ("Must have at least 13 characters");
-          } else {
-            return undefined;
           }
         },
       }
@@ -28,13 +26,11 @@ export const itemFormConfig = {
       label: "Subcategory", 
       required: true,
       type: 'text',
-      imaskProps: {},
+      imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false },
       validators: {
         onChange: ({ value }) => {
           if (!value) {
             return ("Can't be empty");
-          } else {
-            return undefined;
           }
         },
       }
@@ -44,13 +40,11 @@ export const itemFormConfig = {
       label: "Name", 
       required: true,
       type: 'text',
-      imaskProps: {},
+      imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false },
       validators: {
         onChange: ({ value }) => {
           if (!value) {
             return ("Can't be empty");
-          } else {
-            return undefined;
           }
         },
       }
@@ -60,13 +54,11 @@ export const itemFormConfig = {
       label: "Short name", 
       required: true,
       type: 'text',
-      imaskProps: {},
+      imaskProps: { mask: /^.{1,128}$/u , overwrite: true, lazy: false },
       validators: {
         onChange: ({ value }) => {
           if (!value) {
             return ("Can't be empty");
-          } else {
-            return undefined;
           }
         },
       }
@@ -84,9 +76,15 @@ export const itemFormConfig = {
     { 
       fieldName: "saleData.forSale", 
       label: "For sale", 
-      required: false, 
-      type: 'text', 
-      imaskProps: {},
+      required: true, 
+      type: 'text',
+      validators: {
+        onChange: ({ value }) => {
+          if (!value) {
+            return ("Can't be empty");
+          }
+        }
+      },
       componentName: "BoolAutocomplete"
     },
     { 

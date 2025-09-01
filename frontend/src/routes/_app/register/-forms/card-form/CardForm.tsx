@@ -28,10 +28,14 @@ export default function CardForm() {
     >
       <ChildForm form={form} title="Client card data" formConfig={cardFormConfig.cardFieldsConfig} />
       <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: 4}}>
-        <Button variant='outlined'>Save</Button>
+        <Button 
+          variant="outlined"
+          type="submit"
+          onClick={() => form.handleSubmit()}
+        >
+          Save
+        </Button>
       </Box> 
-
-    </form>
-            
+    </form>    
   );
 }

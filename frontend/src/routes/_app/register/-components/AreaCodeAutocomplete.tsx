@@ -20,7 +20,7 @@ export default function AreaCodeAutocomplete({ label }) {
 
 
 
-  console.log("Area code autocomplete")
+  console.log("Area code autocomplete", field.state.value)
   
   return (
     <Autocomplete 
@@ -28,7 +28,6 @@ export default function AreaCodeAutocomplete({ label }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      defaultValue={options[177]}
       onChange={(e, value) => field.handleChange(value?.phone)}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => {

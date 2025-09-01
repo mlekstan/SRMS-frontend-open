@@ -17,7 +17,7 @@ export default function BoolAutocomplete({ props }) {
     })
   }, [field.state.meta.isValid])
 
-  const { label, ...others } = props
+  const { label, required, ...others } = props
 
   console.log("Bool autocomplete", field.state.value)
 
@@ -35,6 +35,7 @@ export default function BoolAutocomplete({ props }) {
           label={label}
           helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}
           error={!field.state.meta.isValid}
+          required={required}
           slotProps={{
             htmlInput: {
               ...params.inputProps,

@@ -51,11 +51,19 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
             <ChildFormAccordion title={title} valid={isValid} >
               {
                 formConfig.map((fieldConfig, idx) => {
-                  const { fieldName, group: Group, component: Component, componentName, validators, ...others } = fieldConfig;
+                  const { fieldName, group, component: Component, componentName, validators, ...others } = fieldConfig;
 
-                  if (Group) {
+                  if (group) {
+                    const fields = group.reduce(
+                      (dict, fieldConfig) => {
+                        dict[fieldConfig.fieldName.split('.').at(-1)] = fieldConfig.fieldName;
+                        return dict;
+                      }, 
+                      {}
+                    )
+
                     return (
-                      <Component key={idx} form={form} fields={{areaCode: Group[0].fieldName, phoneNumber: Group[1].fieldName}} />
+                      <Component key={idx} form={form} fields={fields} />
                     );
                   }
 
@@ -72,7 +80,8 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
                             return (
                               <Component props={others} />
                             );
-                          }}
+                          }
+                        }
                       </form.AppField>                
                     );
                   }
