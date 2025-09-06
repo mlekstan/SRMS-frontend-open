@@ -9,5 +9,3 @@ export const cardFormOpts = formOptions({
     },
   },
 })
-
-type x = ReturnType<typeof formOptions>

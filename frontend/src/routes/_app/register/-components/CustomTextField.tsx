@@ -5,7 +5,6 @@ import { useFieldContext } from "../-forms/hooks/form-context";
 import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
 
 
-
 const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props, ref) {
   const { component: Component, imaskProps, onChange, ...other } = props;
 
@@ -27,8 +26,7 @@ function CustomTextField({ props }) {
 
   const { label, required, disabled, type, imaskProps, ...other } = props;
   const value = disabled ? "" : field.state.value ?? "";
-  
-  console.log("Custom text field", field);
+
 
   useEffect(() => {
     setAccordionValidState((prev) => {
@@ -39,6 +37,8 @@ function CustomTextField({ props }) {
   }, [field.state.meta.isValid])
 
   
+  console.log("Custom text field", field.name, field.state.value);
+
   return (
     <TextField 
       helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}

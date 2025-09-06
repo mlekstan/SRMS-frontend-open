@@ -1,4 +1,8 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+const queryClient = new QueryClient();
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -6,6 +10,9 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <Outlet />
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+    </QueryClientProvider>
+
   );
 }

@@ -25,7 +25,7 @@ function RouteComponent() {
       
       <FormPaper square elevation={5}>
         <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new client</Typography>
-        <ClientForm />   
+        <ClientForm />  
       </FormPaper>
     </FormPaperContainer>
   );

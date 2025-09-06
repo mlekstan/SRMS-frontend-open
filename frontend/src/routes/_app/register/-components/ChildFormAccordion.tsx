@@ -2,11 +2,12 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { memo } from "react";
 
 
 
 
-export default function ChildFormAccordion({ children, title, valid }) {
+export default memo(function ChildFormAccordion({ children, title, valid }) {
   
   console.log("Accordion")
 
@@ -32,4 +33,4 @@ export default function ChildFormAccordion({ children, title, valid }) {
       </AccordionDetails>
     </Accordion>
   );
-}
+})

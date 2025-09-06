@@ -14,6 +14,7 @@ export default function CardForm() {
     ...cardFormOpts,
     onSubmit: ({ value }) => {
       console.log(value);
+      
     }
   })
 
@@ -28,13 +29,20 @@ export default function CardForm() {
     >
       <ChildForm form={form} title="Client card data" formConfig={cardFormConfig.cardFieldsConfig} />
       <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: 4}}>
-        <Button 
-          variant="outlined"
-          type="submit"
-          onClick={() => form.handleSubmit()}
-        >
-          Save
-        </Button>
+        <form.Subscribe selector={(state) => state.isSubmitting}>
+          {
+            (isSubmitting) => (
+              <Button 
+                variant="outlined"
+                type="submit"
+                onClick={() => form.handleSubmit()}
+                disabled={isSubmitting}
+              >
+                Save
+              </Button>
+            )
+          }
+        </form.Subscribe>
       </Box> 
     </form>    
   );

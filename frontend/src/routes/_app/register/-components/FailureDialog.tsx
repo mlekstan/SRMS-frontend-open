@@ -1,0 +1,36 @@
+import { useEffect, useState } from "react";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from "@mui/material";
+import ErrorOutlineSharpIcon from '@mui/icons-material/ErrorOutlineSharp';
+import { useFormContext } from "../-forms/hooks/form-context";
+import { useStore } from "@tanstack/react-form";
+
+export function FailureDialog({ open, closeFn, duration, message }) {
+  console.log("Renedering failure")
+  
+  useEffect(() => {
+    if (duration) {
+      setTimeout(closeFn, duration);
+    }
+  })
+
+
+  return (
+    <Dialog
+      open={open}
+    >
+      <DialogTitle>
+        <Box sx={{display: 'flex', alignItems: 'center'}}>
+          <ErrorOutlineSharpIcon sx={{marginRight: 2, color: "error.main"}}/>
+          <span>Failure</span>
+        </Box>
+      </DialogTitle>
+      <DialogContent>
+        <span style={{display: "block", marginBottom: "0.5rem"}}>Error occured during form submission.</span>
+        <span>Message: {message}</span>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={closeFn}>Close</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}

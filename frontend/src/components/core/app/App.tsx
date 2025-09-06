@@ -12,10 +12,6 @@ export default function App() {
   const [profileMenuVisible, setProfileMenuVisible] = useState(false);
   
 
-  // function handleBurgerClick() {
-  //   setMenuVisible(!menuVisible);
-  // }
-
   const handleBurgerClick = useCallback(() => {
     setMenuVisible(v => !v);
   }, []);
@@ -24,9 +20,6 @@ export default function App() {
     setProfileMenuVisible(v => !v)
   }, [])
 
-  // function handleProfileClick() {
-  //   setProfileMenuVisible(!profileMenuVisible);
-  // }
   
   return (
     <div className='app-container'>
