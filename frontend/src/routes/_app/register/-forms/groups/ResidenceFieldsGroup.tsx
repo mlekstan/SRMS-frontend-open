@@ -45,7 +45,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
           }}
           children={
             (field) => {
-              return (<CustomTextField props={{label: "City", required: false, type: 'text', imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }}} />)
+              return (<CustomTextField props={{label: "City", required: false, type: 'text', imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }}} />)
             }
           }
         />
@@ -62,7 +62,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
           }}
           children={
             (field) => {
-              return (<CustomTextField props={{label: 'Street', required: false, type: 'text', imaskProps: { mask: /^\p{L}{0,100}$/u , overwrite: true, lazy: false }}} />)
+              return (<CustomTextField props={{label: 'Street', required: false, type: 'text', imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }}} />)
             }
           }
         />

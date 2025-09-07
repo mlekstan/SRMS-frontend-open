@@ -28,7 +28,7 @@ export default function CountriesAutocomplete({ props }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      onChange={(e, value) => field.handleChange(value)}
+      onChange={(e, value) => field.handleChange(value?.label)}
       getOptionLabel={(option) => option.label}
       renderInput={(params) => (
         <TextField

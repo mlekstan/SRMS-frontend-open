@@ -26,9 +26,9 @@ export const clientFormConfig = {
     { 
       fieldName: "personalData.firstName", 
       label: 'Frist name', 
-      required: true, 
+      required: true,
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{1,40}$/u , overwrite: true, lazy: false },
+      imaskProps: { mask: /^\p{L}{1,40}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
           return (value.length === 0 ? "Can't be empty" : undefined);
@@ -40,14 +40,14 @@ export const clientFormConfig = {
       label: 'Second name', 
       required: false, 
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{0,40}$/u , overwrite: true, lazy: false }
+      imaskProps: { mask: /^\p{L}{0,40}$/u , overwrite: false, lazy: false }
     },
     { 
       fieldName: "personalData.lastName", 
       label: 'Last name', 
       required: true,
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{1,80}$/u , overwrite: true, lazy: false },
+      imaskProps: { mask: /^[\p{L}-]{1,80}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
           return (value.length === 0 ? "Can't be empty" : undefined);
@@ -59,7 +59,7 @@ export const clientFormConfig = {
       label: 'Identity card number', 
       required: false, 
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{0,15}$/u , overwrite: true, lazy: false }
+      imaskProps: { mask: /^.{0,15}$/u , overwrite: false, lazy: false }
     },    
   ],
   residenceFieldsConfig: [
@@ -88,7 +88,7 @@ export const clientFormConfig = {
       label: 'Zip code',
       required: false, 
       type: 'text', 
-      imaskProps: { mask: /^.{0,10}$/, overwrite: true, lazy: false }
+      imaskProps: { mask: /^.{0,10}$/, overwrite: false, lazy: false }
     },
   ],
   contactFieldsConfig: [
@@ -108,7 +108,7 @@ export const clientFormConfig = {
       label: 'E-mail', 
       required: false, 
       type: 'email', 
-      imaskProps: { mask: /^\S*@?\S*$/, overwrite: true, lazy: false }
+      imaskProps: { mask: /^[a-z0-9._%+-@]*$/i, overwrite: false, lazy: false }
     }
   ],
 }

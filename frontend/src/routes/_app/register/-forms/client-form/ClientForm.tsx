@@ -8,6 +8,8 @@ import { SuccessDialog } from "../../-components/SuccessDialog";
 import { FailureDialog } from "../../-components/FailureDialog";
 import { useMutation } from "@tanstack/react-query"
 import { memo, useState } from "react";
+import * as z from "zod"
+import { schema } from "./clientForm-schema";
 
 
 const ChildForm = memo(createChildForm(clientFormOpts));
@@ -19,10 +21,10 @@ export default function ClientForm() {
   const [errorMessage, setErrorMessage] = useState("");
   
   const mutation = useMutation({
-    mutationFn: async (value: Record<string, Record<string, string | number>>) => {
+    mutationFn: async (value: Record<string, Record<string, any>>) => {
 
       try {
-        const response = await fetch("http://localhost:3000/clients/create", {
+        const response = await fetch("http://localhost:3000/clients/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -31,7 +33,7 @@ export default function ClientForm() {
         });
 
         if (!response.ok) {
-          throw Error(`Error: ${response.status}. ${response.statusText}`)
+          throw Error(`${response.status}. ${response.statusText}`)
         }
         
         const result = await response.json();
@@ -41,17 +43,28 @@ export default function ClientForm() {
         throw error;
       }
     },
-    onSuccess: () => setShowSuccess(() => true),
+    onSuccess: () => {
+      setShowSuccess(() => true);
+      form.reset();
+    },
     onError: (error) => {
-      setShowError(() => true)
-      setErrorMessage(() => error.message)
+      setShowError(() => true);
+      setErrorMessage(() => error.message);
     }
   })
     
   const form = useAppForm({
     ...clientFormOpts,
-    onSubmit: async ({ value }) => { 
-      await mutation.mutateAsync(value)
+    onSubmit: async ({ value }) => {
+      try {
+        const modifiedValue = schema.parse(value);
+        await mutation.mutateAsync(modifiedValue);
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          setShowError(() => true);
+          setErrorMessage(() => error.message);
+        }
+      }
     }
   })
 
