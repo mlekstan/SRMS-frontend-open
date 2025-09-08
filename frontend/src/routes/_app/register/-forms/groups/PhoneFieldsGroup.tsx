@@ -24,7 +24,7 @@ export const PhoneFieldsGroup = withFieldGroup({
             onChangeListenTo: ["contactData.areaCode"],
             onChange: ({value, fieldApi}) => {
               console.log("phone nuber", fieldApi.form.getFieldValue("contactData.areaCode"), value)
-              return ((fieldApi.form.getFieldValue("contactData.areaCode")) && (!(/^\+[1-9]\d{0,2}(-\d{1,4})? \d{1,13}$/).test(value))) ? "Can't be empty" : undefined;
+              return ((fieldApi.form.getFieldValue("contactData.areaCode")) && (!(/^\+[1-9]\d{0,2}(-\d{1,4})? \d{1,13}$/).test(value))) ? "Can't be empty." : undefined;
             }
           }}
           children={(field) => {
@@ -35,7 +35,7 @@ export const PhoneFieldsGroup = withFieldGroup({
               <field.CustomTextField 
                 props={
                   {
-                    label: "Numer telefonu", 
+                    label: "Phone number", 
                     required: false, 
                     disabled: !field.form.getFieldValue("contactData.areaCode"), 
                     type: "text", 

@@ -16,19 +16,31 @@ export default function CountriesAutocomplete({ props }) {
       copy[field.name] = field.state.meta.isValid;
       return (copy);
     })
-  }, [field.state.meta.isValid])
+  }, [field.state.meta.isValid]);
 
-  const { label, required, type, ...others } = props
+  const { label, required, type, ...others } = props;
 
-  console.log("Countries autocomplete")
+  // value prop in MUI Autocomplete must be one options provided in options props. 
+  // When the selected option is removed from Autocomplete value is changing to null.
+  const value = field.state.value ? options.find((option) => option.label === field.state.value) || null : null; 
+  
+  console.log("Countries autocomplete", field.state.value);
 
   return (
     <Autocomplete 
       id="country-select"
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
+      // It is necessary to provide in order to see changes done in TanStack's form obj in our Autocomplete e.g. form.reset().
+      value={value}
       autoHighlight
-      onChange={(e, value) => field.handleChange(value?.label)}
+      // When value is null - value?.label is undefined,
+      // field.handleChange() takes undefined as argument.
+      // After that component rerenders with 
+      // field.state.value === undefined, but next re-renders
+      // have field.state.value === "" - this happens automatically
+      // probably it is default action of TanStack Form Lib.
+      onChange={(e, value) => field.handleChange(value?.label)} 
       getOptionLabel={(option) => option.label}
       renderInput={(params) => (
         <TextField

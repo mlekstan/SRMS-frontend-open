@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import ClientForm from "./-forms/client-form/ClientForm";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
 import { FormPaperContainer, FormPaper } from "./-components/FormPaper";
+import { useState } from "react";
 
 
 
@@ -18,6 +19,7 @@ const breadcrumbsOptions = linkOptions([
 
 
 function RouteComponent() {
+  const [key, setKey] = useState(0);
 
   return (
     <FormPaperContainer>
@@ -25,7 +27,11 @@ function RouteComponent() {
       
       <FormPaper square elevation={5}>
         <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new client</Typography>
-        <ClientForm />  
+        <ClientForm 
+          key={key}
+          reset={() => {
+            setKey((prev) => (prev + 1) % 2); 
+          }}/>
       </FormPaper>
     </FormPaperContainer>
   );

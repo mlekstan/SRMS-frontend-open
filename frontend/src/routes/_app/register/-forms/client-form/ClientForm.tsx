@@ -15,7 +15,7 @@ import { schema } from "./clientForm-schema";
 const ChildForm = memo(createChildForm(clientFormOpts));
 
 
-export default function ClientForm() {
+export default function ClientForm({ reset }) {
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,7 +24,7 @@ export default function ClientForm() {
     mutationFn: async (value: Record<string, Record<string, any>>) => {
 
       try {
-        const response = await fetch("http://localhost:3000/clients/", {
+        const response = await fetch("http://localhost:3000/clients/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -45,7 +45,7 @@ export default function ClientForm() {
     },
     onSuccess: () => {
       setShowSuccess(() => true);
-      form.reset();
+      //form.reset();
     },
     onError: (error) => {
       setShowError(() => true);
@@ -90,7 +90,11 @@ export default function ClientForm() {
       
       <SuccessDialog 
         open={showSuccess}
-        closeFn={() => setShowSuccess(() => false)}
+        closeFn={() => {
+          setShowSuccess(() => false);
+          reset();
+        }
+        }
         duration={2000}
       />
 

@@ -3,29 +3,47 @@ import * as z from "zod";
 
 const regexpMessage = "Don't match regexp."
 
+const formatName = (val: string) => {
+  let newVal = "";
+  let prev;
+  
+  for (let i = 0; i < val.length; i++) {
+    let char = val.charAt(i);
+    if (i === 0 || prev === "-") {
+      char = char.toUpperCase();
+    }
+
+    newVal += char;
+    prev = char;
+  }
+  return newVal;
+}
+
 export const schema = z.object(
   {
     cardData: z.object({
       cardBarcode: z.preprocess(
         (val: string) => val.split("_").join(""), 
-        z.string().refine(
-          (val) => val.length !== 0, {error: `Can't be empty.`, abort: true}
-        ).refine(
-          (val) => val.length === 13, {error: "Must have at least 13 characters."}
+        z.string().regex(
+          /^\d{13}$/, {error: regexpMessage}
         )
       ),
     }),
     personalData: z.object({
       firstName: z.string().regex(
-        /^\p{L}{1,40}$/u, {error: regexpMessage}
+        /^[\p{L}-]{1,40}$/u, {error: regexpMessage}
+      ).transform(
+        (val) => formatName(val)
       ),
       secondName: z.string().regex(
-        /^\p{L}{0,40}$/u, {error: regexpMessage}
+        /^[\p{L}-]{0,40}$/u, {error: regexpMessage}
       ).transform(
-        (val) => !val ? null : val
+        (val) => !val ? null : formatName(val)
       ),
       lastName: z.string().regex(
-        /^[\p{L}-]{1,80}$/u, {error: regexpMessage}
+        /^[\p{L}\s-]{1,80}$/u, {error: regexpMessage}
+      ).transform(
+        (val) => formatName(val)
       ),
       identityCardNumber: z.string().regex(
         /^.{0,15}$/u, {error: regexpMessage}
@@ -69,7 +87,7 @@ export const schema = z.object(
     }),
     contactData: z.object({
       areaCode: z.string().regex(
-        /^(?:\[1-9]\d{0,2}(-\d{1,4})?)?$/, {error: regexpMessage}
+        /^([1-9]\d{0,2}(-\d{1,4})?)?$/, {error: regexpMessage}
       ).transform(
         (val) => {
           if (!val) {
@@ -80,7 +98,7 @@ export const schema = z.object(
         }
       ),
       phoneNumber: z.string().regex(
-        /^(?:[1-9]\d{0,2}(-\d{1,4})? \d{1,13})?$/, {error: regexpMessage}
+        /^(\+[1-9]\d{0,2}(-\d{1,4})? \d{1,13})?$/, {error: regexpMessage}
       ).transform(
         (val) => {
           if (!val) {

@@ -21,7 +21,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
             onChangeListenTo: ["residenceData.city", "residenceData.street"],
             onChange: ({ value, fieldApi }) => {
               if (fieldApi.form.getFieldValue("residenceData.city") && !value) {
-                return "Can't be empty";
+                return "Can't be empty.";
               }
             }
           }}
@@ -39,13 +39,20 @@ export const ResidenceFieldsGroup = withFieldGroup({
             onChangeListenTo: ["residenceData.street", "residenceData.streetNumber", "residenceData.flatNumber"],
             onChange: ({ value, fieldApi }) => {
               if (fieldApi.form.getFieldValue("residenceData.street") && !value) {
-                return "Can't be empty";
+                return "Can't be empty.";
               }
             } 
           }}
           children={
             (field) => {
-              return (<CustomTextField props={{label: "City", required: false, type: 'text', imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }}} />)
+              return (<CustomTextField props={
+                {
+                  label: "City", 
+                  required: false, 
+                  type: 'text', 
+                  imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }
+                }
+              } />)
             }
           }
         />
@@ -56,13 +63,22 @@ export const ResidenceFieldsGroup = withFieldGroup({
             onChangeListenTo: ["residenceData.streetNumber", "residenceData.flatNumber"],
             onChange: ({ value, fieldApi }) => {
               if (fieldApi.form.getFieldValue("residenceData.streetNumber") && !value) {
-                return "Can't be empty";
+                return "Can't be empty.";
               }
             }
           }}
           children={
             (field) => {
-              return (<CustomTextField props={{label: 'Street', required: false, type: 'text', imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }}} />)
+              return (<CustomTextField 
+                props={
+                  {
+                    label: 'Street',
+                    required: false, 
+                    type: 'text', 
+                    imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u, overwrite: false, lazy: false }
+                  }
+                } 
+              />)
             }
           }
         />
@@ -79,7 +95,14 @@ export const ResidenceFieldsGroup = withFieldGroup({
           }}
           children={
             (field) => {
-              return (<CustomTextField props={{label: 'Street number', required: false, type: 'text', imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }}} />)
+              return (<CustomTextField props={
+                {
+                  label: 'Street number', 
+                  required: false, 
+                  type: 'text', 
+                  imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
+                }
+              } />)
             }
           }
         />
@@ -88,7 +111,14 @@ export const ResidenceFieldsGroup = withFieldGroup({
           name="flatNumber"
           children={
             (field) => {
-              return (<CustomTextField props={{label: 'Flat number', required: false, type: 'text', imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }}} />)
+              return (<CustomTextField props={
+                {
+                  label: 'Flat number', 
+                  required: false, 
+                  type: 'text', 
+                  imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
+                }
+              } />)
             }
           }
         />

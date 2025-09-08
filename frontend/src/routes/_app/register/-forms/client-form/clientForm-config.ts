@@ -1,6 +1,6 @@
 import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
 import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
-
+import * as z from "zod";
 
 export const clientFormConfig = {
   cardFieldsConfig: [
@@ -14,9 +14,9 @@ export const clientFormConfig = {
         onChange: ({ value }) => {
           const length = value.split("_").join("").length
           if (length === 0) {
-            return ("Can't be empty");
+            return ("Can't be empty.");
           } else if (length > 0 && length < 13) {
-            return ("Must have at least 13 characters");
+            return ("Must have at least 13 characters.");
           }
         },
       }
@@ -28,10 +28,10 @@ export const clientFormConfig = {
       label: 'Frist name', 
       required: true,
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{1,40}$/u , overwrite: false, lazy: false },
+      imaskProps: { mask: /^[\p{L}-]{1,40}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
-          return (value.length === 0 ? "Can't be empty" : undefined);
+          return (value.length === 0 ? "Can't be empty." : undefined);
         }
       }
     },
@@ -40,7 +40,7 @@ export const clientFormConfig = {
       label: 'Second name', 
       required: false, 
       type: 'text', 
-      imaskProps: { mask: /^\p{L}{0,40}$/u , overwrite: false, lazy: false }
+      imaskProps: { mask: /^[\p{L}-]{0,40}$/u , overwrite: false, lazy: false }
     },
     { 
       fieldName: "personalData.lastName", 
@@ -50,7 +50,7 @@ export const clientFormConfig = {
       imaskProps: { mask: /^[\p{L}-]{1,80}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
-          return (value.length === 0 ? "Can't be empty" : undefined);
+          return (value.length === 0 ? "Can't be empty." : undefined);
         }
       }
     },
@@ -105,10 +105,18 @@ export const clientFormConfig = {
     }, 
     { 
       fieldName: "contactData.email", 
-      label: 'E-mail', 
-      required: false, 
-      type: 'email', 
-      imaskProps: { mask: /^[a-z0-9._%+-@]*$/i, overwrite: false, lazy: false }
+      label: 'E-mail',
+      required: false,
+      type: 'email',
+      imaskProps: { mask: /^[a-z0-9._%+-@]*$/i, overwrite: false, lazy: false },
+      validators: {
+        onChange: ({ value }) => {
+          const regex = /^((?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,})?$/i
+          if (!regex.test(value)) {
+            return "Not valid email."
+          }
+        }
+      }
     }
   ],
 }

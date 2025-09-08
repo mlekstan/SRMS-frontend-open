@@ -19,6 +19,9 @@ export default function AreaCodeAutocomplete({ label }) {
   }, [field.state.meta.isValid])
 
 
+  // value prop in MUI Autocomplete must be one options provided in options props. 
+  // When the selected option is removed from Autocomplete value is changing to null.
+  const value = field.state.value ? options.find((option) => option.phone === field.state.value) || null : null; 
 
   console.log("Area code autocomplete", field.state.value)
   
@@ -27,7 +30,15 @@ export default function AreaCodeAutocomplete({ label }) {
       id="country-areacode-select"
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
+      // It is necessary to provide in order to see changes done in TanStack's form obj in our Autocomplete e.g. form.reset().
+      value={value}
       autoHighlight
+      // When value is null - value?.phone is undefined,
+      // field.handleChange() takes undefined as argument.
+      // After that component rerenders with 
+      // field.state.value === undefined, but next re-renders
+      // have field.state.value === "" - this happens automatically
+      // probably it is default action of TanStack Form Lib.
       onChange={(e, value) => field.handleChange(value?.phone)}
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => {
