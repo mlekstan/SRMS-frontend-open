@@ -1,9 +1,13 @@
 import { createFileRoute, linkOptions } from "@tanstack/react-router";
 import Typography from "@mui/material/Typography";
-import ClientForm from "./-forms/client-form/ClientForm";
+import { clientFormConfig } from "./-forms/client-form/clientForm-config";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
 import { FormPaperContainer, FormPaper } from "./-components/FormPaper";
-import { useState } from "react";
+import { memo, useState } from "react";
+import Form from "./-forms/Form";
+import { clientFormOpts } from "./-forms/client-form/clientForm-options";
+import { schema } from "./-forms/client-form/clientForm-schema";
+import { createChildForm } from "./-forms/createChildForm";
 
 
 
@@ -18,6 +22,32 @@ const breadcrumbsOptions = linkOptions([
 ]);
 
 
+const createClient = async (value: Record<string, Record<string, any>>) => {
+  try {
+    const response = await fetch("http://localhost:3000/clients/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(value),
+    });
+
+    if (!response.ok) {
+      throw Error(`${response.status}. ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    console.log("Success:", result);
+
+  } catch (error) {
+    throw error;
+  }
+}
+
+
+
+const ChildForm = memo(createChildForm(clientFormOpts));
+
 function RouteComponent() {
   const [key, setKey] = useState(0);
 
@@ -27,11 +57,30 @@ function RouteComponent() {
       
       <FormPaper square elevation={5}>
         <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new client</Typography>
-        <ClientForm 
-          key={key}
+        <Form 
+          key={key} 
           reset={() => {
-            setKey((prev) => (prev + 1) % 2); 
-          }}/>
+            setKey((prev) => (prev + 1) % 2)
+          }} 
+          requestFn={createClient}
+          formOptions={clientFormOpts}
+          validationSchema={schema}
+          childFormComponent={ChildForm}
+          childFormsProps={[
+            {
+              title: "Client card data", formConfig: clientFormConfig.cardFieldsConfig
+            },
+            {
+              title: "Personal data", formConfig: clientFormConfig.personalFieldsConfig
+            },
+            {
+              title: "Residence data", formConfig: clientFormConfig.residenceFieldsConfig
+            },
+            {
+              title: "Contact data", formConfig: clientFormConfig.contactFieldsConfig
+            }
+          ]}
+        />
       </FormPaper>
     </FormPaperContainer>
   );
