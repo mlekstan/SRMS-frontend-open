@@ -22,9 +22,9 @@ const breadcrumbsOptions = linkOptions([
 ]);
 
 
-const createClient = async (value: Record<string, Record<string, any>>) => {
+const addClient = async (value: Record<string, Record<string, any>>) => {
   try {
-    const response = await fetch("http://localhost:3000/clients/create", {
+    const response = await fetch("http://localhost:3000/clients/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -60,9 +60,9 @@ function RouteComponent() {
         <Form 
           key={key} 
           reset={() => {
-            setKey((prev) => (prev + 1) % 2)
+            setKey(prev => prev + 1)
           }} 
-          requestFn={createClient}
+          requestFn={addClient}
           formOptions={clientFormOpts}
           validationSchema={schema}
           childFormComponent={ChildForm}

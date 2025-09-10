@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from "@mui/material";
 import ErrorOutlineSharpIcon from '@mui/icons-material/ErrorOutlineSharp';
-import { useFormContext } from "../-forms/hooks/form-context";
-import { useStore } from "@tanstack/react-form";
 
 export function FailureDialog({ open, closeFn, duration, message }) {
   console.log("Renedering failure")
   
   useEffect(() => {
-    if (duration) {
-      setTimeout(closeFn, duration);
+    if (open && typeof duration === "number" && duration > 0) {
+      const id = setTimeout(() => closeFn(), duration);
+
+      return () => {
+        clearTimeout(id)
+      }
     }
-  })
+  }, [open]);
 
 
   return (

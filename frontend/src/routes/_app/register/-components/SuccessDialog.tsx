@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from "@mui/material";
 import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
-import { useFormContext } from "../-forms/hooks/form-context";
-import { useStore } from "@tanstack/react-form";
+
 
 export function SuccessDialog({ open, duration, closeFn }) {
   console.log("Renedering")
   
   useEffect(() => {
-    if (duration) {
-      setTimeout(closeFn, duration);
+    if (open && typeof duration === "number" && duration > 0) {
+      const id = setTimeout(() => closeFn(), duration);
+
+      return () => {
+        clearTimeout(id)
+      }
     }
-  })
+  }, [open]);
 
   return (
     <Dialog
