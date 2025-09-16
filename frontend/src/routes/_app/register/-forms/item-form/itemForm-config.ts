@@ -68,7 +68,7 @@ export const itemFormConfig = {
       label: "Market value", 
       required: false,
       type: 'text',
-      imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: ' ' },
+      imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " },
     },
     
   ],
@@ -88,11 +88,11 @@ export const itemFormConfig = {
       componentName: "BoolAutocomplete"
     },
     { 
-      fieldName: "saleData.sellPrice", 
-      label: "Sell price", 
-      required: false, 
-      type: 'text', 
-      imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99 }
+      fieldName: "saleData.sellPrice",
+      label: "Sell price",
+      required: false,
+      type: 'text',
+      imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " }
     },
   ],
 }
