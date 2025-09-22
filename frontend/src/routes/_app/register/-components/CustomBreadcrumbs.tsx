@@ -1,27 +1,26 @@
-import { useLocation } from "@tanstack/react-router";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import LinkRouter from "@/routes/_app/register/-components/LinkRouter";
+import { useTranslationContext } from "@/providers/TranslationContext";
+import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
+import type { SxProps, Theme } from "@mui/material";
 
 
 
-export default function CustomBreadcrumbs({ breadcrumbsOptions }) {
-  
-  const pathname = useLocation({
-    select: (location) => location.pathname,
-  });
-  const pathParts = pathname.split('/').slice(1);
+export default function CustomBreadcrumbs({ breadcrumbsOptions }: { breadcrumbsOptions: ExtendedLinkOptions[] }) {
+  const {t} = useTranslationContext();
   
   return (
-    <Breadcrumbs separator='>' >
-      {pathParts.map((value, index) => {
-        const path = '/' + pathParts.slice(0, index + 1).join('/');
-        const breadcrumbsOption = breadcrumbsOptions.find((value) => value.to === path);
-        
-        const style = (index === pathParts.length - 1) ? {color: 'primary.light', } : {};
-        return (
-          <LinkRouter {...breadcrumbsOption} sx={style}>{breadcrumbsOption?.label}</LinkRouter>
-        );
-      })}
+    <Breadcrumbs separator=">" >
+      {
+        breadcrumbsOptions.map((option, idx) => {
+          const style: SxProps<Theme> = 
+            (idx === breadcrumbsOptions.length - 1) ? (theme) => ({color: theme.palette.primary.light}) : {};
+
+          return (
+            <LinkRouter {...option} sx={style}>{t(option?.label!)}</LinkRouter>
+          )
+        })
+      }
     </Breadcrumbs>
   );
 }
