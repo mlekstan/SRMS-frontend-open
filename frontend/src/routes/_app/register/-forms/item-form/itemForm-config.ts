@@ -1,12 +1,12 @@
-import { itemFormOpts } from "./itemForm-options"
+import type { FormConfig } from "../types/types";
 
 
 
-export const itemFormConfig = {
+export const itemFormConfig: FormConfig = {
   basicFieldsConfig: [
     { 
       fieldName: "basicData.barcode",
-      label: "Barcode", 
+      label: "registration.item.form.base.barcode", 
       required: true, 
       type: 'text', 
       imaskProps: { mask: "0".repeat(13) , overwrite: true, lazy: false, placeholderChar: '_' },
@@ -23,7 +23,7 @@ export const itemFormConfig = {
     },
     { 
       fieldName: "basicData.itemSubcategory",
-      label: "Subcategory", 
+      label: "registration.item.form.base.subcategory", 
       required: true,
       type: 'text',
       imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false },
@@ -37,7 +37,7 @@ export const itemFormConfig = {
     },
     { 
       fieldName: "basicData.name",
-      label: "Name", 
+      label: "registration.item.form.base.name", 
       required: true,
       type: 'text',
       imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false },
@@ -51,7 +51,7 @@ export const itemFormConfig = {
     },
     { 
       fieldName: "basicData.shortName",
-      label: "Short name", 
+      label: "registration.item.form.base.shortName", 
       required: true,
       type: 'text',
       imaskProps: { mask: /^.{1,128}$/u , overwrite: true, lazy: false },
@@ -65,7 +65,7 @@ export const itemFormConfig = {
     },
     { 
       fieldName: "basicData.marketValue",
-      label: "Market value", 
+      label: "registration.item.form.base.marketValue", 
       required: false,
       type: 'text',
       imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " },
@@ -75,8 +75,8 @@ export const itemFormConfig = {
   saleFieldsConfig: [
     { 
       fieldName: "saleData.forSale", 
-      label: "For sale", 
-      required: true, 
+      label: "registration.item.form.sale.forSale", 
+      required: true,
       type: 'text',
       validators: {
         onChange: ({ value }) => {
@@ -89,7 +89,7 @@ export const itemFormConfig = {
     },
     { 
       fieldName: "saleData.sellPrice",
-      label: "Sell price",
+      label: "registration.item.form.sale.sellPrice",
       required: false,
       type: 'text',
       imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " }

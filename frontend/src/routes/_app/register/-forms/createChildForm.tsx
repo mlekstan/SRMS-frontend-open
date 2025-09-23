@@ -3,6 +3,7 @@ import ChildFormAccordion from "../-components/ChildFormAccordion";
 import { withForm } from "./hooks/form";
 import { AccordionValidUpdateContext } from "./hooks/child-context";
 import type { formOptions } from "@tanstack/react-form";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 
@@ -34,6 +35,8 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
     render: function Render(props) {
       const { form, title, formConfig } = props;
       
+      const {t} = useTranslationContext();
+
       const [valid, setValid] = useState(
         Object.fromEntries(
           getFieldNames(formConfig).map(
@@ -48,10 +51,10 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
       
       return (
         <AccordionValidUpdateContext.Provider value={setValid}>
-          <ChildFormAccordion title={title} valid={isValid} >
+          <ChildFormAccordion title={t(title)} valid={isValid} >
             {
               formConfig.map((fieldConfig, idx) => {
-                const { fieldName, group, component: Component, componentName, validators, ...others } = fieldConfig;
+                const { fieldName, label, group, component: Component, componentName, validators, ...others } = fieldConfig;
 
                 if (group) {
                   const fields = group.reduce(
@@ -76,9 +79,10 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
                       {
                         (field) => {
                           const Component = field[componentName] ?? field["CustomTextField"];
+                          const fieldProps = { label: t(label), ...others }
 
                           return (
-                            <Component props={others} />
+                            <Component props={fieldProps} />
                           );
                         }
                       }

@@ -1,29 +1,22 @@
 import styles from '@/components/shared/TilesContainer.module.css';
+import { useTranslationContext } from '@/providers/TranslationContext';
+import type { ExtendedLinkOptions } from '@/routes/_app/register';
 import { Link } from '@tanstack/react-router';
 
-
-
-interface TileProps {
-  imgSrc: string;
-  label: string;
-  path: string;
-}
-
-type TilesConatainerProps = {
-  tiles: TileProps[];
-}
   
 
-function Tile({ imgSrc, label, path }: TileProps) {
+function Tile({ to, label, imgSrc }: ExtendedLinkOptions) {
+  const {t} = useTranslationContext();
+  
   return (
     <div className={styles['tile-wrapper']}>
-      <Link to={path} >
+      <Link to={to} >
         <div className={styles['tile']}>
           <div className={styles['img-container']}>
             <img src={imgSrc}></img>
           </div>
           <div className={styles['text-container']}>
-            <span>{label}</span>
+            <span>{t(label!)}</span>
           </div>
         </div>
       </Link>
@@ -32,12 +25,12 @@ function Tile({ imgSrc, label, path }: TileProps) {
 }
 
 
-export default function TilesContainer({ tiles }: TilesConatainerProps) {
+export default function TilesContainer({ tiles }: { tiles: ExtendedLinkOptions[] }) {
   return (
     <div className={styles['tiles-container-wrapper']}>
       <div className={styles['tiles-container']}>
         {
-          tiles.map((tile, idx) => (<Tile key={idx} imgSrc={tile.imgSrc} label={tile.label} path={tile.path} />))
+          tiles.map((tile, idx) => (<Tile key={idx} to={tile.to} label={tile.label} imgSrc={tile.imgSrc} />))
         }
       </div>
     </div>

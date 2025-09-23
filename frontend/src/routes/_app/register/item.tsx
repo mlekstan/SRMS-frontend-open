@@ -1,4 +1,4 @@
-import { createFileRoute, linkOptions } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Typography from "@mui/material/Typography";
 import ItemForm from "./-forms/item-form/ItemForm";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
@@ -9,6 +9,8 @@ import { itemFormOpts } from "./-forms/item-form/itemForm-options";
 import { createChildForm } from "./-forms/createChildForm";
 import { itemFormConfig } from "./-forms/item-form/itemForm-config";
 import { itemFormSchema } from "./-forms/item-form/itemForm-schema";
+import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 
@@ -17,10 +19,10 @@ export const Route = createFileRoute('/_app/register/item')({
 })
 
 
-const breadcrumbsOptions = linkOptions([
-  {to: '/register', label: "Registration", icon: ''},
-  {to: '/register/item', label: "Register item", icon: ''},
-]);
+const breadcrumbsOptions: ExtendedLinkOptions[] = [
+  { to: "/register", label: "menu.registration" },
+  { to: "/register/item", label: "registration.item" },
+];
 
 const addItem = async (value) => {
   try {
@@ -46,13 +48,14 @@ const ChildForm = memo(createChildForm(itemFormOpts))
 
 function RouteComponent() {
   const [key, setKey] = useState(0);
+  const {t} = useTranslationContext();
 
   return (
     <FormPaperContainer>
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new item</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.item")}</Typography>
           <Form 
             key={key} 
             reset={() => {
@@ -64,10 +67,10 @@ function RouteComponent() {
             childFormComponent={ChildForm}
             childFormsProps={[
               {
-                title: "Base data", formConfig: itemFormConfig.basicFieldsConfig
+                title: "registration.item.form.base.title", formConfig: itemFormConfig.basicFieldsConfig
               },
               {
-                title: "Sale data", formConfig: itemFormConfig.saleFieldsConfig
+                title: "registration.item.form.sale.title", formConfig: itemFormConfig.saleFieldsConfig
               }
             ]}
           />         

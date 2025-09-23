@@ -1,9 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from "@mui/material";
 import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
+import { useTranslationContext } from "@/providers/TranslationContext";
 
+type SuccessDialogProps = {
+  open: boolean;
+  duration: number | null;
+  closeFn: () => void;
+}
 
-export function SuccessDialog({ open, duration, closeFn }) {
+export function SuccessDialog({ open, duration, closeFn }: SuccessDialogProps) {
+  const {t} = useTranslationContext();
+
   console.log("Renedering")
   
   useEffect(() => {
@@ -23,12 +31,12 @@ export function SuccessDialog({ open, duration, closeFn }) {
       <DialogTitle>
         <Box sx={{display: 'flex', alignItems: 'center'}}>
           <CheckCircleOutlineSharpIcon sx={{marginRight: 2, color: "success.main"}}/>
-          <span>Success</span>
+          <span>{t("successDialog.title")}</span>
         </Box>
       </DialogTitle>
-      <DialogContent>Form submitted succesfully.</DialogContent>
+      <DialogContent>{t("successDialog.info")}</DialogContent>
       <DialogActions>
-        <Button onClick={closeFn}>Close</Button>
+        <Button onClick={closeFn}>{t("successDialog.button")}</Button>
       </DialogActions>
     </Dialog>
   );

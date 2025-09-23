@@ -1,12 +1,13 @@
 import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
 import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
-import * as z from "zod";
+import type { FormConfig } from "../types/types";
 
-export const clientFormConfig = {
+
+export const clientFormConfig: FormConfig = {
   cardFieldsConfig: [
     { 
       fieldName: "cardData.cardBarcode",
-      label: 'Barcode', 
+      label: "registration.client.form.card.barcode", 
       required: true, 
       type: 'text', 
       imaskProps: { mask: "0".repeat(13) , overwrite: true, lazy: false, placeholderChar: '_' },
@@ -25,7 +26,7 @@ export const clientFormConfig = {
   personalFieldsConfig: [
     { 
       fieldName: "personalData.firstName", 
-      label: 'Frist name', 
+      label: "registration.client.form.personal.firstName", 
       required: true,
       type: 'text', 
       imaskProps: { mask: /^[\p{L}-]{1,40}$/u , overwrite: false, lazy: false },
@@ -37,14 +38,14 @@ export const clientFormConfig = {
     },
     { 
       fieldName: "personalData.secondName", 
-      label: 'Second name', 
+      label: "registration.client.form.personal.secondName", 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^[\p{L}-]{0,40}$/u , overwrite: false, lazy: false }
     },
     { 
       fieldName: "personalData.lastName", 
-      label: 'Last name', 
+      label: "registration.client.form.personal.lastName", 
       required: true,
       type: 'text', 
       imaskProps: { mask: /^[\p{L}-]{1,80}$/u , overwrite: false, lazy: false },
@@ -56,7 +57,7 @@ export const clientFormConfig = {
     },
     { 
       fieldName: "personalData.identityCardNumber", 
-      label: 'Identity card number', 
+      label: "registration.client.form.personal.identityCardNumber", 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^.{0,15}$/u , overwrite: false, lazy: false }
@@ -85,7 +86,7 @@ export const clientFormConfig = {
     },
     { 
       fieldName: "residenceData.zipCode",
-      label: 'Zip code',
+      label:  "registration.client.form.residence.zipCode",
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^.{0,10}$/, overwrite: false, lazy: false }
@@ -105,7 +106,7 @@ export const clientFormConfig = {
     }, 
     { 
       fieldName: "contactData.email", 
-      label: 'E-mail',
+      label: "registration.client.form.contact.email",
       required: false,
       type: 'email',
       imaskProps: { mask: /^[a-z0-9._%+-@]*$/i, overwrite: false, lazy: false },

@@ -1,4 +1,4 @@
-import { createFileRoute, linkOptions } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Typography from "@mui/material/Typography";
 import { cardFormSchema } from "./-forms/card-form/cardForm-schema";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
@@ -8,6 +8,8 @@ import { memo, useState } from "react";
 import { createChildForm } from "./-forms/createChildForm";
 import { cardFormOpts } from "./-forms/card-form/cardForm-options";
 import { cardFormConfig } from "./-forms/card-form/cardForm-config";
+import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 
@@ -16,10 +18,11 @@ export const Route = createFileRoute("/_app/register/card")({
 })
 
 
-const breadcrumbsOptions = linkOptions([
-  {to: "/register", label: "Registration", icon: ''},
-  {to: "/register/card", label: "Register card", icon: ''},
-]);
+const breadcrumbsOptions: ExtendedLinkOptions[] = [
+  { to: "/register", label: "menu.registration" },
+  { to: "/register/card", label: "registration.client" }
+]
+
 
 const addCard = async (value: Record<string, Record<string, any>>) => {
   try {
@@ -44,13 +47,14 @@ const ChildForm = memo(createChildForm(cardFormOpts));
 
 function RouteComponent() {
   const [key, setKey] = useState(0);
+  const {t} = useTranslationContext();
 
   return (
     <FormPaperContainer>
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new card</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.card")}</Typography>
           <Form 
             key={key} 
             reset={() => {
@@ -62,7 +66,7 @@ function RouteComponent() {
             childFormComponent={ChildForm}
             childFormsProps={[
               {
-                title: "Client card data", formConfig: cardFormConfig.cardFieldsConfig
+                title: "registration.card.form.card.title", formConfig: cardFormConfig.cardFieldsConfig
               },
             ]}
           />  

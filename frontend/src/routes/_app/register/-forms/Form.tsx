@@ -6,10 +6,28 @@ import { FailureDialog } from "../-components/FailureDialog";
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react";
 import * as z from "zod"
+import type { LangKeys } from "@/providers/TranslationProvider";
 
+type FormProps = {
+  reset: () => void;
+  requestFn: (value: Record<string, Record<string, any>>) => Promise<void>;
+  formOptions: any;
+  validationSchema: z.ZodObject;
+  childFormComponent: any;
+  childFormsProps: {
+    title: LangKeys,
+    formConfig: object
+  }[]
+}
 
-
-export default function Form({ reset, requestFn, formOptions, validationSchema, childFormComponent: ChildForm, childFormsProps }) {
+export default function Form({
+  reset, 
+  requestFn, 
+  formOptions, 
+  validationSchema, 
+  childFormComponent: ChildForm, 
+  childFormsProps 
+}: FormProps) {
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

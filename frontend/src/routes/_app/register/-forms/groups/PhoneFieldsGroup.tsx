@@ -1,3 +1,4 @@
+import { useTranslationContext } from "@/providers/TranslationContext";
 import { withFieldGroup } from "../hooks/form";
 
 
@@ -7,15 +8,16 @@ export const PhoneFieldsGroup = withFieldGroup({
     phoneNumber: ''
   },
   render: function Render({ group }) {
+    const {t} = useTranslationContext();
     //const areaCode = useStore(group.store, (state) => state.values.areaCode)
 
-    console.log("Group")
+    console.log("Group");
 
     return (
       <>
         <group.AppField 
           name="areaCode"
-          children={(field) => <field.AreaCodeAutocomplete label="Area code" />}
+          children={(field) => <field.AreaCodeAutocomplete label={t("registration.client.form.contact.areaCode")} />}
         />
 
         <group.AppField 
@@ -35,7 +37,7 @@ export const PhoneFieldsGroup = withFieldGroup({
               <field.CustomTextField 
                 props={
                   {
-                    label: "Phone number", 
+                    label: t("registration.client.form.contact.phoneNumber"), 
                     required: false, 
                     disabled: !field.form.getFieldValue("contactData.areaCode"), 
                     type: "text", 

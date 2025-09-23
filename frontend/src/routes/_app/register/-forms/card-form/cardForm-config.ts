@@ -1,11 +1,12 @@
+import type { FormConfig } from "../types/types";
 
 
 
-export const cardFormConfig = {
+export const cardFormConfig: FormConfig = {
   cardFieldsConfig: [
     { 
       fieldName: "cardData.cardBarcode",
-      label: "Barcode", 
+      label: "registration.card.form.card.barcode", 
       required: true, 
       type: 'text', 
       imaskProps: { mask: "0".repeat(13) , overwrite: true, lazy: false, placeholderChar: '_' },
@@ -22,7 +23,7 @@ export const cardFormConfig = {
     },
     { 
       fieldName: "cardData.isTemp",
-      label: "Temporary",
+      label: "registration.card.form.card.isTemp",
       required: true, 
       type: 'text', 
       imaskProps: {},

@@ -1,0 +1,73 @@
+{ 
+  "title": "System Obsługi Sprzedaży i Wypożyczeń",
+  "menu": {
+    "rentalService": "Usługa wypożyczenia",
+    "salesService": "Usługa sprzedaży",
+    "registration": "Rejestracja",
+    "settings": "Ustawienia"
+  },
+  "languages": {
+    "pl": "Polski",
+    "en": "Angielski"
+  },
+  "rentalService": {
+    "sale": "Sprzedaż usługi wypożyczenia",
+    "status": "Status sprzętu"
+  },
+  "salesService": {
+
+  },
+  "registration": {
+    "client": "Dodaj klienta",
+    "client.form.card.title": "Dane karty klienta",
+    "client.form.card.barcode": "Kod kreskowy",
+    "client.form.personal.title": "Dane osobowe",
+    "client.form.personal.firstName": "Imię",
+    "client.form.personal.secondName": "Drugie imię",
+    "client.form.personal.lastName": "Nazwisko",
+    "client.form.personal.identityCardNumber": "Numer dokumentu",
+    "client.form.residence.title": "Dane miejsca zamieszkania",
+    "client.form.residence.country": "Kraj",
+    "client.form.residence.city": "Miasto",
+    "client.form.residence.street": "Ulica",
+    "client.form.residence.streetNumber": "Numer ulicy",
+    "client.form.residence.flatNumber": "Numer mieszkania",
+    "client.form.residence.zipCode": "Kod pocztowy",
+    "client.form.contact.title": "Dane kontaktowe",
+    "client.form.contact.areaCode": "Numer kierunkowy",
+    "client.form.contact.phoneNumber": "Numer telefonu",
+    "client.form.contact.email": "E-mail",
+    "item": "Dodaj sprzęt",
+    "item.form.base.title": "Podstawowe dane",
+    "item.form.base.barcode": "Kod kreskowy",
+    "item.form.base.subcategory": "Podkategoria",
+    "item.form.base.name": "Nazwa",
+    "item.form.base.shortName": "Krótka nazwa",
+    "item.form.base.marketValue": "Cena rynkowa",
+    "item.form.sale.title": "Dane dotyczące sprzedaży",
+    "item.form.sale.forSale": "Na sprzedaż",
+    "item.form.sale.sellPrice": "Cena sprzedaży",
+    "card": "Dodaj kartę",
+    "card.form.card.title": "Dodaj nową kartę",
+    "card.form.card.barcode": "Kod kreskowy",
+    "card.form.card.isTemp": "Tymczasowa"
+  },  
+  "settings": {
+    "lang": "Język"
+  },
+  "bool": {
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "successDialog": {
+    "title": "Sukces",
+    "info": "Formularz został pomyślnie złożony.",
+    "button": "Zamknij"
+  },
+  "failureDialog": {
+    "title": "Niepowodzenie",
+    "info": "Wystąpił błąd podczas składania formularza",
+    "message": "Wiadomość: {{message}}",
+    "button": "Zamknij"
+  }
+}

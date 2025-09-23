@@ -1,3 +1,4 @@
+import { useTranslationContext } from "@/providers/TranslationContext";
 import CountriesAutocomplete from "../../-components/CountriesAutocomplete";
 import CustomTextField from "../../-components/CustomTextField";
 import { withFieldGroup } from "../hooks/form";
@@ -12,6 +13,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
     flatNumber: '',
   },
   render: function Render({ group }) {
+    const {t} = useTranslationContext();
 
     return (
       <>
@@ -27,7 +29,13 @@ export const ResidenceFieldsGroup = withFieldGroup({
           }}
           children={
             (field) => {
-              return (<CountriesAutocomplete props={{label: "Country", required: false, type: "text"}} />)
+              return (<CountriesAutocomplete props={
+                {
+                  label: t("registration.client.form.residence.country"), 
+                  required: false, 
+                  type: "text"
+                }
+              } />)
             }
           }
             
@@ -47,7 +55,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
             (field) => {
               return (<CustomTextField props={
                 {
-                  label: "City", 
+                  label: t("registration.client.form.residence.city"), 
                   required: false, 
                   type: 'text', 
                   imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }
@@ -72,7 +80,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
               return (<CustomTextField 
                 props={
                   {
-                    label: 'Street',
+                    label: t("registration.client.form.residence.street"),
                     required: false, 
                     type: 'text', 
                     imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u, overwrite: false, lazy: false }
@@ -97,7 +105,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
             (field) => {
               return (<CustomTextField props={
                 {
-                  label: 'Street number', 
+                  label: t("registration.client.form.residence.streetNumber"), 
                   required: false, 
                   type: 'text', 
                   imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
@@ -113,12 +121,12 @@ export const ResidenceFieldsGroup = withFieldGroup({
             (field) => {
               return (<CustomTextField props={
                 {
-                  label: 'Flat number', 
+                  label: t("registration.client.form.residence.flatNumber"), 
                   required: false, 
                   type: 'text', 
                   imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
                 }
-              } />)
+               } />)
             }
           }
         />

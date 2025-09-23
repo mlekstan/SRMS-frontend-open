@@ -1,0 +1,75 @@
+{
+  "title": "Sales and Rental Management System",
+  "menu": {
+    "rentalService": "Rental service",
+    "salesService": "Sales service",
+    "registration": "Registration",
+    "settings": "Settings"
+  },
+  "languages": {
+    "pl": "Polish",
+    "en": "English"
+  },
+  "rentalService": {
+    "sale": "Sale of rental service",
+    "status": "Equipment status"
+  },
+  "salesService": {
+
+  },
+  "registration": {
+    "client": "Add client",
+    "client.form.card.title": "Client card data",
+    "client.form.card.barcode": "Barcode",
+    "client.form.personal.title": "Personal data",
+    "client.form.personal.firstName": "First name",
+    "client.form.personal.secondName": "Second name",
+    "client.form.personal.lastName": "Last name",
+    "client.form.personal.identityCardNumber": "Identity card number",
+    "client.form.residence.title": "Residence data",
+    "client.form.residence.country": "Country",
+    "client.form.residence.city": "City",
+    "client.form.residence.street": "Street",
+    "client.form.residence.streetNumber": "Street number",
+    "client.form.residence.flatNumber": "Flat number",
+    "client.form.residence.zipCode": "Zip code",
+    "client.form.contact.title": "Contact data",
+    "client.form.contact.areaCode": "Area code",
+    "client.form.contact.phoneNumber": "Phone number",
+    "client.form.contact.email": "E-mail",
+    "item": "Add item",
+    "item.form.base.title": "Base data",
+    "item.form.base.barcode": "Barcode",
+    "item.form.base.subcategory": "Subcategory",
+    "item.form.base.name": "Name",
+    "item.form.base.shortName": "Short name",
+    "item.form.base.marketValue": "Market value",
+    "item.form.sale.title": "Sale data",
+    "item.form.sale.forSale": "For sale",
+    "item.form.sale.sellPrice": "Sell price",
+    "card": "Add card",
+    "card.form.card.title": "Register new card",
+    "card.form.card.barcode": "Barcode",
+    "card.form.card.isTemp": "Temporary"
+  },
+  "settings": {
+    "lang": "Language"
+  },
+  "bool": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "successDialog": {
+    "title": "Success",
+    "info": "Form submitted successfully.",
+    "button": "Close"
+  },
+  "failureDialog": {
+    "title": "Failure",
+    "info": "Error occured during form submission.",
+    "message": "Message: {{message}}",
+    "button": "Close"
+  }
+  
+
+}

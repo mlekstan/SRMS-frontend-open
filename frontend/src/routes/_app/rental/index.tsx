@@ -2,15 +2,17 @@ import { createFileRoute } from '@tanstack/react-router'
 import TilesContainer from '@/components/shared/TilesContainer'
 import startRentalImg from '@/assets/rental/scooter.png';
 import checkScheduleImg from '@/assets/rental/pay-day.png';
+import type { ExtendedLinkOptions } from '../register';
 
 
 export const Route = createFileRoute('/_app/rental/')({
   component: Index,
 })
 
-const tiles = [
-  {imgSrc: startRentalImg, label: 'Sprzedaż usługi wypożyczenia', path: '/rental/rental-sale'},
-  {imgSrc: checkScheduleImg, label: 'Status sprzętu', path: '/rental/equip-status'},
+
+const tiles: ExtendedLinkOptions[] = [
+  { to: "/rental/rental-sale", label: "rentalService.sale", imgSrc: startRentalImg },
+  { to: "/rental/equip-status", label: "rentalService.status", imgSrc: checkScheduleImg }
 ];
 
 function Index() {

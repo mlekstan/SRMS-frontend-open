@@ -1,37 +1,35 @@
 import { memo } from 'react'
 import { clsx } from 'clsx';
-import type { FC, SVGProps } from 'react';
-import { useLocation, Link, linkOptions } from '@tanstack/react-router'
+import { useLocation, Link } from '@tanstack/react-router';
 import RentSignalIcon from '@/assets/menu/rent-signal.svg?react';
 import SellIcon from '@/assets/menu/sell.svg?react';
 import SettingsIcon from '@/assets/menu/settings.svg?react';
 import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
 import styles from '@/components/core/side_bar/SideBar.module.css';
+import { useTranslationContext } from '@/providers/TranslationContext';
+import type { ExtendedLinkOptions } from '@/routes/_app/register';
 
 
 
 interface SideBarOptionProps {
   visible: boolean;
-  option: MenuOption; 
-};
-
-export interface MenuOption {
-  to: string;
-  label: string;
-  icon: FC<SVGProps<SVGSVGElement>>; 
+  option: ExtendedLinkOptions; 
 };
 
 
-export const menuOptions = linkOptions([
-  { to: '/rental', label: 'Usługa wypożyczenia', icon: RentSignalIcon },
-  { to: '/sale', label: 'Usługa sprzedaży', icon: SellIcon },
-  { to: '/register', label: 'Rejestracja', icon: SquarePlusIcon },
-  { to: '/settings', label: 'Ustawienia', icon: SettingsIcon },
-]);
+
+export const menuOptions: ExtendedLinkOptions[] = [
+  { to: "/rental", label: "menu.rentalService", icon: RentSignalIcon },
+  { to: "/sale", label: "menu.salesService", icon: SellIcon },
+  { to: "/register", label: "menu.registration", icon: SquarePlusIcon },
+  { to: "/settings", label: "menu.settings", icon: SettingsIcon }
+]
 
 
 function SideBarOption({ visible, option }: SideBarOptionProps) {
-  
+  const {t} = useTranslationContext()
+
+
   const pathname = useLocation({
     select: (location) => location.pathname,
   });
@@ -45,10 +43,10 @@ function SideBarOption({ visible, option }: SideBarOptionProps) {
     <Link to={to} style={{textDecoration: 'none', color: 'inherit'}}>
       <li className={clsx(styles['side-bar-option'], cssClassName)}>
         <div className={clsx(styles['side-bar-option-icon'], cssClassName)}>
-          <Icon width='35px' height='35px' fill=''/>
+          { Icon && <Icon width='35px' height='35px' fill=''/> }
         </div>
         <div className={clsx(styles['side-bar-option-title'], cssClassName)}>
-          <span>{label}</span>
+          <span>{t(label!)}</span>
         </div>
       </li>
     </Link>

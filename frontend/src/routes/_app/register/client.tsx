@@ -1,4 +1,4 @@
-import { createFileRoute, linkOptions } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Typography from "@mui/material/Typography";
 import { clientFormConfig } from "./-forms/client-form/clientForm-config";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
@@ -8,6 +8,8 @@ import Form from "./-forms/Form";
 import { clientFormOpts } from "./-forms/client-form/clientForm-options";
 import { schema } from "./-forms/client-form/clientForm-schema";
 import { createChildForm } from "./-forms/createChildForm";
+import { useTranslationContext } from "@/providers/TranslationContext";
+import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 
 
 
@@ -16,10 +18,10 @@ export const Route = createFileRoute('/_app/register/client')({
 })
 
 
-const breadcrumbsOptions = linkOptions([
-  {to: '/register', label: "Registration", icon: ''},
-  {to: '/register/client', label: "Register client", icon: ''},
-]);
+const breadcrumbsOptions: ExtendedLinkOptions[] = [
+  { to: "/register", label: "menu.registration" },
+  { to: "/register/client", label: "registration.client" }
+]
 
 
 const addClient = async (value: Record<string, Record<string, any>>) => {
@@ -50,13 +52,14 @@ const ChildForm = memo(createChildForm(clientFormOpts));
 
 function RouteComponent() {
   const [key, setKey] = useState(0);
-
+  const {t} = useTranslationContext();
+  
   return (
     <FormPaperContainer>
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>Register new client</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.client")}</Typography>
         <Form 
           key={key} 
           reset={() => {
@@ -68,16 +71,16 @@ function RouteComponent() {
           childFormComponent={ChildForm}
           childFormsProps={[
             {
-              title: "Client card data", formConfig: clientFormConfig.cardFieldsConfig
+              title: "registration.client.form.card.title", formConfig: clientFormConfig.cardFieldsConfig
             },
             {
-              title: "Personal data", formConfig: clientFormConfig.personalFieldsConfig
+              title: "registration.client.form.personal.title", formConfig: clientFormConfig.personalFieldsConfig
             },
             {
-              title: "Residence data", formConfig: clientFormConfig.residenceFieldsConfig
+              title: "registration.client.form.residence.title", formConfig: clientFormConfig.residenceFieldsConfig
             },
             {
-              title: "Contact data", formConfig: clientFormConfig.contactFieldsConfig
+              title: "registration.client.form.contact.title", formConfig: clientFormConfig.contactFieldsConfig
             }
           ]}
         />
