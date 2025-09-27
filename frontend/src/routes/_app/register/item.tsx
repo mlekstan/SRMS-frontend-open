@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Typography from "@mui/material/Typography";
-import ItemForm from "./-forms/item-form/ItemForm";
 import CustomBreadcrumbs from "./-components/CustomBreadcrumbs";
 import { FormPaperContainer, FormPaper } from "./-components/FormPaper";
 import Form from "./-forms/Form";
@@ -24,9 +23,9 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/register/item", label: "registration.item" },
 ];
 
-const addItem = async (value) => {
+const addItem = async (value: Record<string, Record<string, any>>) => {
   try {
-    const response = await fetch("http://localhost:3000/items/add", {
+    const response = await fetch("https://localhost:3000/items/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

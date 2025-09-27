@@ -26,7 +26,7 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
 
 const addCard = async (value: Record<string, Record<string, any>>) => {
   try {
-    const response = await fetch("http://localhost:3000/cards/add", {
+    const response = await fetch("https://localhost:3000/cards/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

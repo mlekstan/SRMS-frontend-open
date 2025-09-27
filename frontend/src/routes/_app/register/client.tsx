@@ -26,7 +26,7 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
 
 const addClient = async (value: Record<string, Record<string, any>>) => {
   try {
-    const response = await fetch("http://localhost:3000/clients/add", {
+    const response = await fetch("https://localhost:3000/clients/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
