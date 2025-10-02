@@ -37,8 +37,8 @@ export const clientFormConfig: FormConfig = {
       }
     },
     { 
-      fieldName: "personalData.secondName", 
-      label: "registration.client.form.personal.secondName", 
+      fieldName: "personalData.middleName", 
+      label: "registration.client.form.personal.middleName", 
       required: false, 
       type: 'text', 
       imaskProps: { mask: /^[\p{L}-]{0,40}$/u , overwrite: false, lazy: false }

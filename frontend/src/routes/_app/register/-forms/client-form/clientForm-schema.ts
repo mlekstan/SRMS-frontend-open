@@ -35,7 +35,7 @@ export const schema = z.object(
       ).transform(
         (val) => formatName(val)
       ),
-      secondName: z.string().regex(
+      middleName: z.string().regex(
         /^[\p{L}-]{0,40}$/u, {error: regexpMessage}
       ).transform(
         (val) => !val ? null : formatName(val)
@@ -93,7 +93,7 @@ export const schema = z.object(
           if (!val) {
             return null;
           } else {
-            return val.replace(/[\s-]+/g, "");
+            return val.replace(/[\s]+/g, "");
           }
         }
       ),
@@ -104,7 +104,7 @@ export const schema = z.object(
           if (!val) {
             return null
           } else {
-            return val.replace(/[\s-]+/g, "");
+            return val.replace(/\+[1-9]\d{0,2}(-\d{1,4})? /g, "");
           }
         }
       ),

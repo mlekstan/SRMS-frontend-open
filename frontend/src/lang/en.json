@@ -23,7 +23,7 @@
     "client.form.card.barcode": "Barcode",
     "client.form.personal.title": "Personal data",
     "client.form.personal.firstName": "First name",
-    "client.form.personal.secondName": "Second name",
+    "client.form.personal.middleName": "Middle name",
     "client.form.personal.lastName": "Last name",
     "client.form.personal.identityCardNumber": "Identity card number",
     "client.form.residence.title": "Residence data",

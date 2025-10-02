@@ -8,7 +8,7 @@ export const clientFormOpts = formOptions({
     },
     personalData: {
       firstName: '',
-      secondName: '',
+      middleName: '',
       lastName: '',
       identityCardNumber: '',
     },

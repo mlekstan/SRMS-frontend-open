@@ -23,7 +23,7 @@
     "client.form.card.barcode": "Kod kreskowy",
     "client.form.personal.title": "Dane osobowe",
     "client.form.personal.firstName": "Imię",
-    "client.form.personal.secondName": "Drugie imię",
+    "client.form.personal.middleName": "Drugie imię",
     "client.form.personal.lastName": "Nazwisko",
     "client.form.personal.identityCardNumber": "Numer dokumentu",
     "client.form.residence.title": "Dane miejsca zamieszkania",
