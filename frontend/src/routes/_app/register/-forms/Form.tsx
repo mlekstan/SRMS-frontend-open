@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useState } from "react";
 import * as z from "zod"
 import type { LangKeys } from "@/providers/TranslationProvider";
+import { Loader } from "@/routes/-components/Loader";
 
 type FormProps = {
   reset: () => void;
@@ -67,12 +68,7 @@ export default function Form({
         {
           (isSubmitting) => {
             return (
-              <Backdrop
-                sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} 
-                open={isSubmitting} 
-              >
-                <CircularProgress color="inherit" />
-              </Backdrop>
+              <Loader open={isSubmitting} />
             )
           }    
         }
