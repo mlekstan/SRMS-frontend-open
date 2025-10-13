@@ -1,22 +1,16 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import TranslationProvider from '@/providers/TranslationProvider';
+import type { RouterContext } from '@/main';
 
-
-const queryClient = new QueryClient();
-
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
 })
 
 function RootComponent() {
   
   return (
-    <QueryClientProvider client={queryClient}>
-      <TranslationProvider>
-        <Outlet />
-      </TranslationProvider>
-    </QueryClientProvider>
-
+    <TranslationProvider>
+      <Outlet />
+    </TranslationProvider>
   );
 }
