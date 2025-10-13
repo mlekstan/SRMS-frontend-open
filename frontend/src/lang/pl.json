@@ -21,6 +21,7 @@
     "client": "Dodaj klienta",
     "client.form.card.title": "Dane karty klienta",
     "client.form.card.barcode": "Kod kreskowy",
+    "client.form.card.isTemp": "Tymaczasowa",
     "client.form.personal.title": "Dane osobowe",
     "client.form.personal.firstName": "Imię",
     "client.form.personal.middleName": "Drugie imię",
@@ -49,8 +50,7 @@
     "item.form.sale.sellPrice": "Cena sprzedaży",
     "card": "Dodaj kartę",
     "card.form.card.title": "Dodaj nową kartę",
-    "card.form.card.barcode": "Kod kreskowy",
-    "card.form.card.isTemp": "Tymczasowa"
+    "card.form.card.barcode": "Kod kreskowy"
   },  
   "settings": {
     "lang": "Język"
@@ -69,5 +69,6 @@
     "info": "Wystąpił błąd podczas składania formularza",
     "message": "Wiadomość: {{message}}",
     "button": "Zamknij"
-  }
+  },
+  "save": "Zapisz"
 }

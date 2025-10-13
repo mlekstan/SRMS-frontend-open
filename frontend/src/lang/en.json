@@ -21,6 +21,7 @@
     "client": "Add client",
     "client.form.card.title": "Client card data",
     "client.form.card.barcode": "Barcode",
+    "client.form.card.isTemp": "Temporary",
     "client.form.personal.title": "Personal data",
     "client.form.personal.firstName": "First name",
     "client.form.personal.middleName": "Middle name",
@@ -49,8 +50,7 @@
     "item.form.sale.sellPrice": "Sell price",
     "card": "Add card",
     "card.form.card.title": "Register new card",
-    "card.form.card.barcode": "Barcode",
-    "card.form.card.isTemp": "Temporary"
+    "card.form.card.barcode": "Barcode"
   },
   "settings": {
     "lang": "Language"
@@ -69,7 +69,6 @@
     "info": "Error occured during form submission.",
     "message": "Message: {{message}}",
     "button": "Close"
-  }
-  
-
+  },
+  "save": "Save"
 }

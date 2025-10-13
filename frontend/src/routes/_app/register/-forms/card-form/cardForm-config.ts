@@ -20,22 +20,7 @@ export const cardFormConfig: FormConfig = {
           }
         },
       }
-    },
-    { 
-      fieldName: "cardData.isTemp",
-      label: "registration.card.form.card.isTemp",
-      required: true, 
-      type: 'text', 
-      imaskProps: {},
-      validators: {
-        onChange: ({ value }) => {
-          if (!value) {
-            return ("Can't be empty");
-          }
-        },
-      },
-      componentName: "BoolAutocomplete"
-    },
+    }
   ],
   
 }

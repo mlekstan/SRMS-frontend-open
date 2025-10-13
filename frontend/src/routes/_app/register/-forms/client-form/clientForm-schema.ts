@@ -28,6 +28,10 @@ export const schema = z.object(
           /^\d{13}$/, {error: regexpMessage}
         )
       ),
+      isTemp: z.string().refine(
+        (val) => (val === "True" || val === "False") ? true : false,
+        {error: "Must be 'True' or 'False'"}
+      ).transform((val) => (val === "True") ? true : false) 
     }),
     personalData: z.object({
       firstName: z.string().regex(

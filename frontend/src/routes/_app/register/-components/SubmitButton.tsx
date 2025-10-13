@@ -1,9 +1,11 @@
 import { Button } from "@mui/material";
 import { useFormContext } from "../-forms/hooks/form-context";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 export function SubmitButton() {
   const form = useFormContext();
+  const {t} = useTranslationContext();
   
   return (
     <form.Subscribe selector={(state) => state.isSubmitting}>
@@ -15,7 +17,7 @@ export function SubmitButton() {
             onClick={() => form.handleSubmit()}
             disabled={isSubmitting}
           >
-            Save
+            {t("save")}
           </Button>
         )
       }

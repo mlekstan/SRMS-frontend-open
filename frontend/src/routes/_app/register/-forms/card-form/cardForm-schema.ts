@@ -11,9 +11,5 @@ export const cardFormSchema = z.object({
     }, z.string().regex(
       /^\d{13}$/, {error: regexpMessage}
     )),
-    isTemp: z.string().refine(
-      (val) => (val === "True" || val === "False") ? true : false,
-      {error: "Must be 'True' or 'False'"}
-    ).transform((val) => (val === "True") ? true : false) 
   })
 })

@@ -3,10 +3,11 @@ import { Autocomplete, TextField } from "@mui/material";
 import { useFieldContext } from "../-forms/hooks/form-context";
 import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
 import { useTranslationContext } from "@/providers/TranslationContext";
-import type { LangKeys } from "@/providers/TranslationProvider";
+
 
 type Option = {
   label: string;
+  value: "True" | "False";
 }
 
 
@@ -16,8 +17,8 @@ export default function BoolAutocomplete({ props }) {
   const {t} = useTranslationContext();
 
   const options: Option[] = [
-    { label: t("bool.yes") },
-    { label: t("bool.no") }
+    { label: t("bool.yes"), value: "True" },
+    { label: t("bool.no"), value: "False" }
   ]
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function BoolAutocomplete({ props }) {
       sx={{ width: "fit-content", display: "inline-flex" }}
       options={options}
       autoHighlight
-      onChange={(e, value) => field.handleChange(value?.label)}
+      onChange={(e, value) => field.handleChange(value?.value)}
       getOptionLabel={(option) => option.label}
       renderInput={(params) => (
         <TextField

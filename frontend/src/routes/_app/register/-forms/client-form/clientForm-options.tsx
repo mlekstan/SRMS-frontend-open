@@ -5,6 +5,7 @@ export const clientFormOpts = formOptions({
   defaultValues: {
     cardData: {
       cardBarcode: '',
+      isTemp: '',
     },
     personalData: {
       firstName: '',

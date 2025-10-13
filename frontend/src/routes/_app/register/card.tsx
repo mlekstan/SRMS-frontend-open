@@ -35,7 +35,8 @@ const addCard = async (value: Record<string, Record<string, any>>) => {
     })
 
     if (!response.ok) {
-      throw Error(`${response.status}. ${response.statusText}`)
+      const { message } = await response.json()
+      throw Error(`${response.status}. ${response.statusText}. ${message}.`);
     }
   } catch (error) {
     throw error;
