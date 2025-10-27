@@ -71,8 +71,16 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
                     {}
                   )
 
+                  const requiredMap = group.reduce(
+                    (dict, fieldConfig) => {
+                      dict[fieldConfig.fieldName.split('.').at(-1)] = fieldConfig.required;
+                      return dict;
+                    },
+                    {}
+                  )
+
                   return (
-                    <Component key={idx} form={form} fields={fields} />
+                    <Component key={idx} form={form} fields={fields} requiredMap={requiredMap} />
                   );
                 }
 

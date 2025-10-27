@@ -13,27 +13,48 @@ export const ResidenceFieldsGroup = withFieldGroup({
     streetNumber: '',
     flatNumber: '',
   },
-  render: function Render({ group }) {
+  props: {
+    fields: {
+      country: '',
+      city: '',
+      street: '',
+      streetNumber: '',
+      flatNumber: ''
+    },
+    requiredMap: {
+      country: false,
+      city: false,
+      street: false,
+      streetNumber: false,
+      flatNumber: false     
+    }
+  },
+  render: function Render({ group, fields, requiredMap }) {
+    console.log("japierdole", requiredMap)
+
 
     return (
       <>
         <group.AppField 
           name="country"
           validators={{
-            onChangeListenTo: ["residenceData.city", "residenceData.street"],
+            onChangeListenTo: [fields["city"], fields["street"]],
             onChange: ({ value, fieldApi }) => {
-              if (fieldApi.form.getFieldValue("residenceData.city") && !value) {
+              if (
+                (fieldApi.form.getFieldValue(fields["city"]) && !value) || 
+                (requiredMap["country"] && !value)
+              ) {
                 return "validation.empty" as LangKeys;
               }
             }
           }}
           children={
-            (field) => {
+            () => {
               return (
                 <FormAutocomplete 
                   props={{
                     label: "registration.client.form.residence.country",
-                    required: false,
+                    required: requiredMap["country"],
                     type: "text",
                     options: countries,
                     optionLabel: "label",
@@ -49,23 +70,28 @@ export const ResidenceFieldsGroup = withFieldGroup({
         <group.AppField 
           name="city"
           validators={{
-            onChangeListenTo: ["residenceData.street", "residenceData.streetNumber", "residenceData.flatNumber"],
+            onChangeListenTo: [fields["street"], fields["streetNumber"], fields["flatNumber"]],
             onChange: ({ value, fieldApi }) => {
-              if (fieldApi.form.getFieldValue("residenceData.street") && !value) {
+              if (
+                (fieldApi.form.getFieldValue(fields["street"]) && !value) || 
+                (requiredMap["city"] && !value )
+              ) {
                 return "validation.empty" as LangKeys;
               }
             } 
           }}
           children={
-            (field) => {
-              return (<FormTextField props={
-                {
-                  label: "registration.client.form.residence.city", 
-                  required: false, 
-                  type: 'text', 
-                  imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }
-                }
-              } />)
+            () => {
+              return (
+                <FormTextField 
+                  props={{
+                    label: "registration.client.form.residence.city", 
+                    required: requiredMap["city"], 
+                    type: 'text', 
+                    imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u , overwrite: false, lazy: false }
+                  }} 
+                />
+              )
             }
           }
         />
@@ -73,25 +99,28 @@ export const ResidenceFieldsGroup = withFieldGroup({
         <group.AppField 
           name="street"
           validators={{
-            onChangeListenTo: ["residenceData.streetNumber", "residenceData.flatNumber"],
+            onChangeListenTo: [fields["streetNumber"], fields["flatNumber"]],
             onChange: ({ value, fieldApi }) => {
-              if (fieldApi.form.getFieldValue("residenceData.streetNumber") && !value) {
+              if (
+                (fieldApi.form.getFieldValue(fields["streetNumber"]) && !value) || 
+                (requiredMap["street"] && !value)
+              ) {
                 return "validation.empty" as LangKeys;
               }
             }
           }}
           children={
-            (field) => {
-              return (<FormTextField 
-                props={
-                  {
+            () => {
+              return (
+                <FormTextField 
+                  props={{
                     label: "registration.client.form.residence.street",
-                    required: false, 
+                    required: requiredMap["street"], 
                     type: 'text', 
                     imaskProps: { mask: /^[\p{L}\s-]{0,100}$/u, overwrite: false, lazy: false }
-                  }
-                } 
-              />)
+                  }} 
+                />
+              )
             }
           }
         />
@@ -99,39 +128,52 @@ export const ResidenceFieldsGroup = withFieldGroup({
         <group.AppField 
           name="streetNumber"
           validators={{
-            onChangeListenTo: ["residenceData.flatNumber"],
+            onChangeListenTo: [fields["flatNumber"]],
             onChange: ({ value, fieldApi }) => {
-              if (fieldApi.form.getFieldValue("residenceData.flatNumber") && !value) {
+              if (
+                (fieldApi.form.getFieldValue(fields["flatNumber"]) && !value) ||
+                (requiredMap["streetNumber"] && !value)
+               ) {
                 return "validation.empty" as LangKeys;
               }
             }
           }}
           children={
-            (field) => {
-              return (<FormTextField props={
-                {
+            () => {
+              return (
+                <FormTextField props={{
                   label: "registration.client.form.residence.streetNumber", 
-                  required: false, 
+                  required: requiredMap["streetNumber"], 
                   type: 'text', 
                   imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
-                }
-              } />)
+                }} 
+                />
+              )
             }
           }
         />
         
         <group.AppField 
           name="flatNumber"
+          validators={{
+            onChange: ({ value }) => {
+              if (requiredMap["flatNumber"] && !value) {
+                return "validation.empty" as LangKeys;
+              }
+            }
+          }}
           children={
-            (field) => {
-              return (<FormTextField props={
-                {
-                  label: "registration.client.form.residence.flatNumber", 
-                  required: false, 
-                  type: 'text', 
-                  imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
-                }
-               } />)
+            () => {
+              return (
+                <FormTextField 
+                  props={{
+                    label: "registration.client.form.residence.flatNumber", 
+                    required: requiredMap["flatNumber"], 
+                    type: 'text', 
+                    imaskProps: { mask: Number, scale: 0, min: 1, max: 32767 }
+                  }} 
+                />
+              )
             }
           }
         />

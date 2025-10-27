@@ -21,6 +21,7 @@ import { Route as AppRegisterSubcategoryRouteImport } from './routes/_app/regist
 import { Route as AppRegisterItemRouteImport } from './routes/_app/register/item'
 import { Route as AppRegisterClientRouteImport } from './routes/_app/register/client'
 import { Route as AppRegisterCardRouteImport } from './routes/_app/register/card'
+import { Route as AppRegisterBranchRouteImport } from './routes/_app/register/branch'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
@@ -81,10 +82,16 @@ const AppRegisterCardRoute = AppRegisterCardRouteImport.update({
   path: '/register/card',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRegisterBranchRoute = AppRegisterBranchRouteImport.update({
+  id: '/register/branch',
+  path: '/register/branch',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
+  '/register/branch': typeof AppRegisterBranchRoute
   '/register/card': typeof AppRegisterCardRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/item': typeof AppRegisterItemRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
+  '/register/branch': typeof AppRegisterBranchRoute
   '/register/card': typeof AppRegisterCardRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/item': typeof AppRegisterItemRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRouteRoute
   '/_app/settings': typeof AppSettingsRouteRoute
+  '/_app/register/branch': typeof AppRegisterBranchRoute
   '/_app/register/card': typeof AppRegisterCardRoute
   '/_app/register/client': typeof AppRegisterClientRoute
   '/_app/register/item': typeof AppRegisterItemRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/login'
     | '/settings'
+    | '/register/branch'
     | '/register/card'
     | '/register/client'
     | '/register/item'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/settings'
+    | '/register/branch'
     | '/register/card'
     | '/register/client'
     | '/register/item'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/settings'
+    | '/_app/register/branch'
     | '/_app/register/card'
     | '/_app/register/client'
     | '/_app/register/item'
@@ -257,11 +269,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRegisterCardRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/branch': {
+      id: '/_app/register/branch'
+      path: '/register/branch'
+      fullPath: '/register/branch'
+      preLoaderRoute: typeof AppRegisterBranchRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppSettingsRouteRoute: typeof AppSettingsRouteRoute
+  AppRegisterBranchRoute: typeof AppRegisterBranchRoute
   AppRegisterCardRoute: typeof AppRegisterCardRoute
   AppRegisterClientRoute: typeof AppRegisterClientRoute
   AppRegisterItemRoute: typeof AppRegisterItemRoute
@@ -275,6 +295,7 @@ interface AppRouteRouteChildren {
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSettingsRouteRoute: AppSettingsRouteRoute,
+  AppRegisterBranchRoute: AppRegisterBranchRoute,
   AppRegisterCardRoute: AppRegisterCardRoute,
   AppRegisterClientRoute: AppRegisterClientRoute,
   AppRegisterItemRoute: AppRegisterItemRoute,

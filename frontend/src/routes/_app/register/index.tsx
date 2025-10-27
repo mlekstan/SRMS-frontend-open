@@ -4,6 +4,7 @@ import addFriendImg from '@/assets/register/add-friend.png'
 import addImg from '@/assets/register/add.png'
 import drivingLicenseImg from '@/assets/register/driving-license.png'
 import subcategoriesImg from '@/assets/register/categories.png'
+import branchesImg from '@/assets/register/franchise.png'
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions'
 
 
@@ -17,7 +18,8 @@ const tiles: ExtendedLinkOptions[] = [
   { to: "/register/client", label: "registration.client", imgSrc: addFriendImg },
   { to: "/register/item", label: "registration.item", imgSrc: addImg },
   { to: "/register/card", label: "registration.card", imgSrc: drivingLicenseImg },
-  { to: "/register/subcategory", label: "registration.subcategory", imgSrc: subcategoriesImg }
+  { to: "/register/subcategory", label: "registration.subcategory", imgSrc: subcategoriesImg },
+  { to: "/register/branch", label: "registration.branch", imgSrc: branchesImg },
 ]
 
 

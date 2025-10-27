@@ -78,7 +78,17 @@
     "subcategory.form.electricVehicle.title": "Dane pojazdu elektrycznego",
     "subcategory.form.electricVehicle.enginePower": "Moc silnika",
     "subcategory.form.electricVehicle.batteryVoltage": "Napięcie baterii",
-    "subcategory.form.electricVehicle.batteryCapacity": "Pojemność baterii"
+    "subcategory.form.electricVehicle.batteryCapacity": "Pojemność baterii",
+
+
+    "branch": "Dodaj oddział",
+    "branch.form.branch.title": "Dane oddziału",
+    "branch.form.branch.name": "Nazwa",
+    "branch.form.branch.country": "Kraj",
+    "branch.form.branch.city": "Miasto",
+    "branch.form.branch.street": "Ulica",
+    "branch.form.branch.streetNumber": "Numer ulicy",
+    "branch.form.branch.zipCode": "Kod pocztowy"
 
   },  
   "settings": {

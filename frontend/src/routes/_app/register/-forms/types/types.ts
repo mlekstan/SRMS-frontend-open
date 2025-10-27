@@ -36,7 +36,10 @@ type DynamicFieldConfig = BaseFieldConfig & {
 export type FieldConfig = StaticFieldConfig | DynamicFieldConfig;
 
 export type GroupConfig = {
-  group: { fieldName: string }[];
+  group: { 
+    fieldName: string;
+    required?: boolean; 
+  }[];
   component: any;
 }
 

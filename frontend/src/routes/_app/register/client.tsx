@@ -6,7 +6,6 @@ import { FormPaperContainer, FormPaper } from "./-components/FormPaper";
 import { memo, useState } from "react";
 import Form from "./-forms/Form";
 import { clientFormOpts } from "./-forms/client-form/clientForm-options";
-import { schema } from "./-forms/client-form/clientForm-schema";
 import { createChildForm } from "./-forms/createChildForm";
 import { useTranslationContext } from "@/providers/TranslationContext";
 import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
@@ -16,6 +15,7 @@ import { Loader } from "@/routes/-components/Loader";
 import { getActiveCards } from "../../../api/cards/getActiveCards";
 import { addClient } from "../../../api/clients/addClient";
 import { goBack } from "./-forms/goBack";
+import { clientFormSchema } from "./-forms/client-form/clientForm-schema";
 
 
 
@@ -93,7 +93,7 @@ function RouteComponent() {
               }} 
               requestFn={addClient}
               formOptions={clientFormOpts}
-              validationSchema={schema}
+              validationSchema={clientFormSchema}
               childFormComponent={ChildForm}
               childFormsProps={[
                 {

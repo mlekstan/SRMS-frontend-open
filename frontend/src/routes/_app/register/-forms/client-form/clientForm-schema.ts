@@ -19,7 +19,7 @@ const formatName = (val: string) => {
   return newVal;
 }
 
-export const schema = z.object(
+export const clientFormSchema = z.object(
   {
     cardData: z.object({
       barcode: z.string().regex(

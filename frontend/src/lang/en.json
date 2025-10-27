@@ -59,12 +59,12 @@
     
 
     "card": "Add card",
-    "card.form.card.title": "Register new card",
+    "card.form.card.title": "Card data",
     "card.form.card.barcode": "Barcode",
     
 
     "subcategory": "Add subcategory",
-    "subcategory.form.subcategory.title": "Register new subcategory",
+    "subcategory.form.subcategory.title": "Base subcategory data",
     "subcategory.form.subcategory.categoryName": "Category",
     "subcategory.form.subcategory.name": "Subcategory",
     
@@ -78,7 +78,17 @@
     "subcategory.form.electricVehicle.title": "Electric vehicle data",
     "subcategory.form.electricVehicle.enginePower": "Engine power",
     "subcategory.form.electricVehicle.batteryVoltage": "Battery voltage",
-    "subcategory.form.electricVehicle.batteryCapacity": "Battery capacity"
+    "subcategory.form.electricVehicle.batteryCapacity": "Battery capacity",
+
+
+    "branch": "Add branch",
+    "branch.form.branch.title": "Branch data",
+    "branch.form.branch.name": "Name",
+    "branch.form.branch.country": "Country",
+    "branch.form.branch.city": "City",
+    "branch.form.branch.street": "Street",
+    "branch.form.branch.streetNumber": "Street number",
+    "branch.form.branch.zipCode": "Zip code"
 
   },
   "settings": {
