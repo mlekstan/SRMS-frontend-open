@@ -1,4 +1,4 @@
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { useAppForm } from "./hooks/form";
 import { SubmitButton } from "../-components/SubmitButton";
 import { SuccessDialog } from "../-components/SuccessDialog";
@@ -8,16 +8,19 @@ import { useState } from "react";
 import * as z from "zod"
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { Loader } from "@/routes/-components/Loader";
+import { ConditionalRenderProvider } from "@/providers/ConditionalRenderProvider";
+import { ConditionalRender } from "../-components/ConditionalRender";
 
 type FormProps = {
   reset: () => void;
-  requestFn: (value: Record<string, Record<string, any>>) => Promise<void>;
+  requestFn: (value: Record<string, unknown>) => Promise<void>;
   formOptions: any;
   validationSchema: z.ZodObject;
   childFormComponent: any;
   childFormsProps: {
     title: LangKeys,
-    formConfig: object
+    formConfig: object,
+    render?: boolean
   }[]
 }
 
@@ -34,7 +37,7 @@ export default function Form({
   const [errorMessage, setErrorMessage] = useState("");
   
   const mutation = useMutation({
-    mutationFn: async (value) => await requestFn(value),
+    mutationFn: async (value: Record<string, unknown>) => await requestFn(value),
     onSuccess: () => {
       setShowSuccess(() => true);
       //form.reset();
@@ -60,7 +63,16 @@ export default function Form({
     }
   })
 
-  console.log("Main form");
+  const renderingComponentsIdMap = childFormsProps.reduce<Record<string, boolean>>(
+    (accumulator, prop) => {
+      accumulator[prop.title] = prop.render ?? true;
+
+      return accumulator;
+    },
+    {}
+  );
+
+  console.log("Main form", form);
 
   return(
     <>
@@ -70,7 +82,7 @@ export default function Form({
             return (
               <Loader open={isSubmitting} />
             )
-          }    
+          }
         }
       </form.Subscribe>
 
@@ -92,28 +104,31 @@ export default function Form({
         message={errorMessage}
       />
       
+      <ConditionalRenderProvider renderingComponentsIdMap={renderingComponentsIdMap}>
+        <form.AppForm>
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              form.handleSubmit();
+            }}
+          >
 
-      <form.AppForm>
-        <form 
-          onSubmit={(e) => {
-            e.preventDefault();
-            form.handleSubmit();
-          }}
-        >
+            {
+              childFormsProps.map((props, idx) => {
+                return (
+                  <ConditionalRender key={idx} renderedComponentId={props.title} >
+                    <ChildForm key={idx} form={form} title={props.title} formConfig={props.formConfig} />  
+                  </ConditionalRender>            
+                );
+              })
+            }
 
-          {
-            childFormsProps.map((props, idx) => {
-              return (
-                <ChildForm key={idx} form={form} title={props.title} formConfig={props.formConfig} />
-              );
-            })
-          }
-
-          <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: 4}}>
-            <SubmitButton />
-          </Box> 
-        </form>      
-      </form.AppForm>
+            <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: 4}}>
+              <SubmitButton />
+            </Box> 
+          </form>      
+        </form.AppForm>
+      </ConditionalRenderProvider>
     </>
   );
 }

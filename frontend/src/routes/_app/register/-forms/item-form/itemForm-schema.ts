@@ -11,8 +11,17 @@ export const itemFormSchema = z.object({
     }, z.string().regex(
       /^\d{13}$/, {error: regexpMessage}
     )),
-    itemSubcategory: z.string().regex(
-      /^.{1,255}$/u, {error: regexpMessage}
+    subcategoryId: z.union([z.string(), z.number()]).transform(
+      (val) => {
+        if (!val) {
+          return null;
+        }
+        if (typeof val === "string") {
+          return Number(val);
+        }
+
+        return val;
+      }
     ),
     name: z.string().regex(
       /^.{1,255}$/u, {error: regexpMessage}

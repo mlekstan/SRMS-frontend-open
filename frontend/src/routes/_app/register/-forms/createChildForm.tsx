@@ -4,8 +4,14 @@ import { withForm } from "./hooks/form";
 import { AccordionValidUpdateContext } from "./hooks/child-context";
 import type { formOptions } from "@tanstack/react-form";
 import { useTranslationContext } from "@/providers/TranslationContext";
+import type { LangKeys } from "@/providers/TranslationProvider";
 
 
+type ChildFormProps = {
+  form: any,
+  title: LangKeys,
+  formConfig: any,
+}
 
 function getFieldNames(formConfig: Array<any>): Array<string> {
   const fieldsNames = formConfig.flatMap((fieldConfig) => {
@@ -32,7 +38,7 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
       title: "Child form",
       formConfig: Array()
     },
-    render: function Render(props) {
+    render: function Render(props: ChildFormProps) {
       const { form, title, formConfig } = props;
       
       const {t} = useTranslationContext();
@@ -78,8 +84,8 @@ export function createChildForm(formOpts: ReturnType<typeof formOptions>) {
                     >
                       {
                         (field) => {
-                          const Component = field[componentName] ?? field["CustomTextField"];
-                          const fieldProps = { label: t(label), ...others }
+                          const Component = field[componentName] ?? field["FormTextField"];
+                          const fieldProps = { label: label, ...others }
 
                           return (
                             <Component props={fieldProps} />

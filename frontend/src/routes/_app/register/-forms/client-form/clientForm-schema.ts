@@ -22,11 +22,8 @@ const formatName = (val: string) => {
 export const schema = z.object(
   {
     cardData: z.object({
-      cardBarcode: z.preprocess(
-        (val: string) => val.split("_").join(""), 
-        z.string().regex(
-          /^\d{13}$/, {error: regexpMessage}
-        )
+      barcode: z.string().regex(
+        /^\d{13}$/, {error: regexpMessage}
       ),
       isTemp: z.string().refine(
         (val) => (val === "True" || val === "False") ? true : false,

@@ -1,12 +1,16 @@
 import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
 import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
 import type { FormConfig } from "../types/types";
+import { getActiveCards } from "../../../../../api/cards/getActiveCards";
+import boolOptions from "@/assets/data/bool.json";
 
 
-export const clientFormConfig: FormConfig = {
+type keys = "cardFieldsConfig" | "personalFieldsConfig" | "residenceFieldsConfig" | "contactFieldsConfig";
+
+export const clientFormConfig: FormConfig<keys> = {
   cardFieldsConfig: [
     { 
-      fieldName: "cardData.cardBarcode",
+      fieldName: "cardData.barcode",
       label: "registration.client.form.card.barcode", 
       required: true, 
       type: 'text', 
@@ -15,13 +19,17 @@ export const clientFormConfig: FormConfig = {
         onChange: ({ value }) => {
           const length = value.length
           if (length === 0) {
-            return ("Can't be empty.");
+            return ("validation.empty");
           } else if (length > 0 && length < 13) {
-            return ("Must have at least 13 characters.");
+            return ("validation.tooShort");
           }
         },
       },
-      componentName: "CardBarcodeAutocomplete"
+      componentName: "FormAutocomplete",
+      optionLabel: "barcode",
+      optionValue: "barcode",
+      queryFn: getActiveCards,
+      queryKey: "activeCards",
     },
     { 
       fieldName: "cardData.isTemp",
@@ -32,11 +40,14 @@ export const clientFormConfig: FormConfig = {
       validators: {
         onChange: ({ value }) => {
           if (!value) {
-            return ("Can't be empty");
+            return ("validation.empty");
           }
         },
       },
-      componentName: "BoolAutocomplete"
+      componentName: "FormAutocomplete",
+      options: boolOptions,
+      optionLabel: "label",
+      optionValue: "value"
     },
   ],
   personalFieldsConfig: [
@@ -48,7 +59,7 @@ export const clientFormConfig: FormConfig = {
       imaskProps: { mask: /^[\p{L}-]{1,40}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
-          return (value.length === 0 ? "Can't be empty." : undefined);
+          return (value.length === 0 ? "validation.empty" : undefined);
         }
       }
     },
@@ -67,7 +78,7 @@ export const clientFormConfig: FormConfig = {
       imaskProps: { mask: /^[\p{L}-]{1,80}$/u , overwrite: false, lazy: false },
       validators: {
         onChange: ({ value }) => {
-          return (value.length === 0 ? "Can't be empty." : undefined);
+          return (value.length === 0 ? "validation.empty" : undefined);
         }
       }
     },
@@ -130,7 +141,7 @@ export const clientFormConfig: FormConfig = {
         onChange: ({ value }) => {
           const regex = /^((?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,})?$/i
           if (!regex.test(value)) {
-            return "Not valid email."
+            return "validation.email";
           }
         }
       }

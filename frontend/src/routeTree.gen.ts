@@ -17,6 +17,7 @@ import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
 import { Route as AppRegisterIndexRouteImport } from './routes/_app/register/index'
 import { Route as AppRentalRentalSaleRouteImport } from './routes/_app/rental/rental-sale'
 import { Route as AppRentalEquipStatusRouteImport } from './routes/_app/rental/equip-status'
+import { Route as AppRegisterSubcategoryRouteImport } from './routes/_app/register/subcategory'
 import { Route as AppRegisterItemRouteImport } from './routes/_app/register/item'
 import { Route as AppRegisterClientRouteImport } from './routes/_app/register/client'
 import { Route as AppRegisterCardRouteImport } from './routes/_app/register/card'
@@ -60,6 +61,11 @@ const AppRentalEquipStatusRoute = AppRentalEquipStatusRouteImport.update({
   path: '/rental/equip-status',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRegisterSubcategoryRoute = AppRegisterSubcategoryRouteImport.update({
+  id: '/register/subcategory',
+  path: '/register/subcategory',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppRegisterItemRoute = AppRegisterItemRouteImport.update({
   id: '/register/item',
   path: '/register/item',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/register/card': typeof AppRegisterCardRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/item': typeof AppRegisterItemRoute
+  '/register/subcategory': typeof AppRegisterSubcategoryRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/register': typeof AppRegisterIndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/register/card': typeof AppRegisterCardRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/item': typeof AppRegisterItemRoute
+  '/register/subcategory': typeof AppRegisterSubcategoryRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/register': typeof AppRegisterIndexRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/_app/register/card': typeof AppRegisterCardRoute
   '/_app/register/client': typeof AppRegisterClientRoute
   '/_app/register/item': typeof AppRegisterItemRoute
+  '/_app/register/subcategory': typeof AppRegisterSubcategoryRoute
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/_app/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/_app/register/': typeof AppRegisterIndexRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/register/card'
     | '/register/client'
     | '/register/item'
+    | '/register/subcategory'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/register'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/register/card'
     | '/register/client'
     | '/register/item'
+    | '/register/subcategory'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/register'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/_app/register/card'
     | '/_app/register/client'
     | '/_app/register/item'
+    | '/_app/register/subcategory'
     | '/_app/rental/equip-status'
     | '/_app/rental/rental-sale'
     | '/_app/register/'
@@ -217,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRentalEquipStatusRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/subcategory': {
+      id: '/_app/register/subcategory'
+      path: '/register/subcategory'
+      fullPath: '/register/subcategory'
+      preLoaderRoute: typeof AppRegisterSubcategoryRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/register/item': {
       id: '/_app/register/item'
       path: '/register/item'
@@ -246,6 +265,7 @@ interface AppRouteRouteChildren {
   AppRegisterCardRoute: typeof AppRegisterCardRoute
   AppRegisterClientRoute: typeof AppRegisterClientRoute
   AppRegisterItemRoute: typeof AppRegisterItemRoute
+  AppRegisterSubcategoryRoute: typeof AppRegisterSubcategoryRoute
   AppRentalEquipStatusRoute: typeof AppRentalEquipStatusRoute
   AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
   AppRegisterIndexRoute: typeof AppRegisterIndexRoute
@@ -258,6 +278,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppRegisterCardRoute: AppRegisterCardRoute,
   AppRegisterClientRoute: AppRegisterClientRoute,
   AppRegisterItemRoute: AppRegisterItemRoute,
+  AppRegisterSubcategoryRoute: AppRegisterSubcategoryRoute,
   AppRentalEquipStatusRoute: AppRentalEquipStatusRoute,
   AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
   AppRegisterIndexRoute: AppRegisterIndexRoute,

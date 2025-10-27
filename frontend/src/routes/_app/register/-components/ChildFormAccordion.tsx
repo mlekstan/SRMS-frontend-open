@@ -2,12 +2,12 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { memo } from "react";
+import { memo, type ReactNode } from "react";
 
 
 
 
-export default memo(function ChildFormAccordion({ children, title, valid }) {
+export default memo(function ChildFormAccordion({ children, title, valid }: { children: ReactNode, title: string, valid: boolean }) {
   
   console.log("Accordion")
 

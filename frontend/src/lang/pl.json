@@ -18,15 +18,18 @@
 
   },
   "registration": {
+    
     "client": "Dodaj klienta",
     "client.form.card.title": "Dane karty klienta",
     "client.form.card.barcode": "Kod kreskowy",
     "client.form.card.isTemp": "Tymaczasowa",
+    
     "client.form.personal.title": "Dane osobowe",
     "client.form.personal.firstName": "Imię",
     "client.form.personal.middleName": "Drugie imię",
     "client.form.personal.lastName": "Nazwisko",
     "client.form.personal.identityCardNumber": "Numer dokumentu",
+    
     "client.form.residence.title": "Dane miejsca zamieszkania",
     "client.form.residence.country": "Kraj",
     "client.form.residence.city": "Miasto",
@@ -34,10 +37,13 @@
     "client.form.residence.streetNumber": "Numer ulicy",
     "client.form.residence.flatNumber": "Numer mieszkania",
     "client.form.residence.zipCode": "Kod pocztowy",
+    
     "client.form.contact.title": "Dane kontaktowe",
     "client.form.contact.areaCode": "Numer kierunkowy",
     "client.form.contact.phoneNumber": "Numer telefonu",
     "client.form.contact.email": "E-mail",
+    
+    
     "item": "Dodaj sprzęt",
     "item.form.base.title": "Podstawowe dane",
     "item.form.base.barcode": "Kod kreskowy",
@@ -45,12 +51,34 @@
     "item.form.base.name": "Nazwa",
     "item.form.base.shortName": "Krótka nazwa",
     "item.form.base.marketValue": "Cena rynkowa",
+    
     "item.form.sale.title": "Dane dotyczące sprzedaży",
     "item.form.sale.forSale": "Na sprzedaż",
     "item.form.sale.sellPrice": "Cena sprzedaży",
+    
+    
     "card": "Dodaj kartę",
     "card.form.card.title": "Dodaj nową kartę",
-    "card.form.card.barcode": "Kod kreskowy"
+    "card.form.card.barcode": "Kod kreskowy",
+    
+    
+    "subcategory": "Dodaj podkategorię",
+    "subcategory.form.subcategory.title": "Podstawowe dane podkategorii",
+    "subcategory.form.subcategory.categoryName": "Kategoria",
+    "subcategory.form.subcategory.name": "Podkategoria",
+
+    "subcategory.form.vehicle.title": "Dane pojazdu",
+    "subcategory.form.vehicle.driveType": "Rodzaj napędu",
+    "subcategory.form.vehicle.curbWeight": "Masa własna",
+    "subcategory.form.vehicle.maxLoad": "Maks. udźwig",
+    "subcategory.form.vehicle.minAge": "Min. wiek",
+    "subcategory.form.vehicle.maxAge": "Maks. wiek",
+
+    "subcategory.form.electricVehicle.title": "Dane pojazdu elektrycznego",
+    "subcategory.form.electricVehicle.enginePower": "Moc silnika",
+    "subcategory.form.electricVehicle.batteryVoltage": "Napięcie baterii",
+    "subcategory.form.electricVehicle.batteryCapacity": "Pojemność baterii"
+
   },  
   "settings": {
     "lang": "Język"
@@ -70,5 +98,10 @@
     "message": "Wiadomość: {{message}}",
     "button": "Zamknij"
   },
-  "save": "Zapisz"
+  "save": "Zapisz",
+  "validation": {
+    "empty": "Nie może być puste.",
+    "tooShort": "Ma za mało znaków.",
+    "email": "Nieprawidłowy e-mail."
+  }
 }

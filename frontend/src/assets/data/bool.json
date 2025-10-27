@@ -1,0 +1,4 @@
+[
+  { "label": "bool.yes", "value": "True" },
+  { "label": "bool.no", "value": "False" }
+]

@@ -13,59 +13,26 @@ import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 import { useQuery } from "@tanstack/react-query";
 import { FailureDialog } from "./-components/FailureDialog";
 import { Loader } from "@/routes/-components/Loader";
+import { getActiveCards } from "../../../api/cards/getActiveCards";
+import { addClient } from "../../../api/clients/addClient";
+import { goBack } from "./-forms/goBack";
 
-
-export async function getActiveCards() {
-  try {
-    
-    const response = await fetch(
-      "https://localhost:3000/cards?" + new URLSearchParams({
-        active: "true"
-      }).toString(), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-    });
-
-    if (!response.ok) {
-      const { message } = await response.json()
-      throw new Error(`${response.status}. ${response.statusText}. ${message}.`);
-    }
-
-    const result = await response.json();
-    console.log("Fetch", result)
-    return result;
-
-  } catch(error) {
-    throw error;
-  }
-}
-
-
-function goBack(router: ReturnType<typeof useRouter>, canGoBack: ReturnType<typeof useCanGoBack>) {
-  if (canGoBack) {
-    router.history.back();
-  } else {
-    router.navigate({to: "/register"});
-  }
-}
 
 
 export const Route = createFileRoute('/_app/register/client')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     
-    console.log("I'm in loader", "query:", context.queryClient.getQueryCache().find({queryKey: ["cards"]}), "router:", route);
+    // console.log("I'm in loader", "query:", context.queryClient.getQueryCache().find({queryKey: ["activeCards"]}), "router:", route);
 
     const x = await context.queryClient.fetchQuery({
-      queryKey: ["cards"],
+      queryKey: ["activeCards"],
       queryFn: getActiveCards,
       staleTime: 10000,
     })
 
     console.log("x", x)
-    console.log("I'm in loader 2", "query:", context.queryClient.getQueryCache().find({queryKey: ["cards"]}), "route:", route);
+    // console.log("I'm in loader 2", "query:", context.queryClient.getQueryCache().find({queryKey: ["activeCards"]}), "route:", route);
 
     return x;
   },
@@ -81,7 +48,7 @@ export const Route = createFileRoute('/_app/register/client')({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack);
+          goBack(router, canGoBack, "/register");
         }}
         duration={null}
         message={error.message}
@@ -91,43 +58,21 @@ export const Route = createFileRoute('/_app/register/client')({
 })
 
 
+
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/register", label: "menu.registration" },
   { to: "/register/client", label: "registration.client" }
 ]
 
-
-const addClient = async (value: Record<string, Record<string, any>>) => {
-  try {
-    const response = await fetch("https://localhost:3000/clients/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(value),
-    });
-
-    if (!response.ok) {
-      throw new Error(`${response.status}. ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    console.log("Success:", result);
-
-  } catch (error) {
-    throw error;
-  }
-}
-
-
-
 const ChildForm = memo(createChildForm(clientFormOpts));
+
+
 
 function RouteComponent() {
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["cards"], queryFn: getActiveCards, retry: 0, refetchInterval: 10000 });
+  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["activeCards"], queryFn: getActiveCards, retry: 0, refetchInterval: 10000 });
   const {t} = useTranslationContext();
   
   console.log("rpi", data)
@@ -170,17 +115,18 @@ function RouteComponent() {
       }
 
       
-      { isPending && <Loader open={true} />}
+      { isPending && <Loader open={true} /> }
       
       { 
         (isError && error) && 
         <FailureDialog 
           open={true} 
           closeFn={() => {
-            goBack(router, canGoBack);
+            goBack(router, canGoBack, "/register");
           }} 
           duration={null} 
-          message={error.message} />
+          message={error.message} 
+        />
       }
     </>
   );

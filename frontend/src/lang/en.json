@@ -18,15 +18,18 @@
 
   },
   "registration": {
+    
     "client": "Add client",
     "client.form.card.title": "Client card data",
     "client.form.card.barcode": "Barcode",
     "client.form.card.isTemp": "Temporary",
+    
     "client.form.personal.title": "Personal data",
     "client.form.personal.firstName": "First name",
     "client.form.personal.middleName": "Middle name",
     "client.form.personal.lastName": "Last name",
     "client.form.personal.identityCardNumber": "Identity card number",
+    
     "client.form.residence.title": "Residence data",
     "client.form.residence.country": "Country",
     "client.form.residence.city": "City",
@@ -34,10 +37,13 @@
     "client.form.residence.streetNumber": "Street number",
     "client.form.residence.flatNumber": "Flat number",
     "client.form.residence.zipCode": "Zip code",
+    
     "client.form.contact.title": "Contact data",
     "client.form.contact.areaCode": "Area code",
     "client.form.contact.phoneNumber": "Phone number",
     "client.form.contact.email": "E-mail",
+    
+    
     "item": "Add item",
     "item.form.base.title": "Base data",
     "item.form.base.barcode": "Barcode",
@@ -45,12 +51,34 @@
     "item.form.base.name": "Name",
     "item.form.base.shortName": "Short name",
     "item.form.base.marketValue": "Market value",
+    
     "item.form.sale.title": "Sale data",
     "item.form.sale.forSale": "For sale",
     "item.form.sale.sellPrice": "Sell price",
+    
+
     "card": "Add card",
     "card.form.card.title": "Register new card",
-    "card.form.card.barcode": "Barcode"
+    "card.form.card.barcode": "Barcode",
+    
+
+    "subcategory": "Add subcategory",
+    "subcategory.form.subcategory.title": "Register new subcategory",
+    "subcategory.form.subcategory.categoryName": "Category",
+    "subcategory.form.subcategory.name": "Subcategory",
+    
+    "subcategory.form.vehicle.title": "Vehicle data",
+    "subcategory.form.vehicle.driveType": "Drive type",
+    "subcategory.form.vehicle.curbWeight": "Curb weight",
+    "subcategory.form.vehicle.maxLoad": "Max. load",
+    "subcategory.form.vehicle.minAge": "Min. age",
+    "subcategory.form.vehicle.maxAge": "Max. age",
+
+    "subcategory.form.electricVehicle.title": "Electric vehicle data",
+    "subcategory.form.electricVehicle.enginePower": "Engine power",
+    "subcategory.form.electricVehicle.batteryVoltage": "Battery voltage",
+    "subcategory.form.electricVehicle.batteryCapacity": "Battery capacity"
+
   },
   "settings": {
     "lang": "Language"
@@ -70,5 +98,10 @@
     "message": "Message: {{message}}",
     "button": "Close"
   },
-  "save": "Save"
+  "save": "Save",
+  "validation": {
+    "empty": "Can't be empty.",
+    "tooShort": "Has too few characters.",
+    "email": "Not valid e-mail."
+  }
 }

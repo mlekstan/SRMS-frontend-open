@@ -1,5 +1,6 @@
 import { useTranslationContext } from "@/providers/TranslationContext";
 import { withFieldGroup } from "../hooks/form";
+import type { LangCodes, LangKeys } from "@/providers/TranslationProvider";
 
 
 export const PhoneFieldsGroup = withFieldGroup({
@@ -26,7 +27,7 @@ export const PhoneFieldsGroup = withFieldGroup({
             onChangeListenTo: ["contactData.areaCode"],
             onChange: ({value, fieldApi}) => {
               console.log("phone nuber", fieldApi.form.getFieldValue("contactData.areaCode"), value)
-              return ((fieldApi.form.getFieldValue("contactData.areaCode")) && (!(/^\+[1-9]\d{0,2}(-\d{1,4})? \d{1,13}$/).test(value))) ? "Can't be empty." : undefined;
+              return ((fieldApi.form.getFieldValue("contactData.areaCode")) && (!(/^\+[1-9]\d{0,2}(-\d{1,4})? \d{1,13}$/).test(value))) ? "validation.empty" as LangKeys : undefined;
             }
           }}
           children={(field) => {
@@ -34,10 +35,10 @@ export const PhoneFieldsGroup = withFieldGroup({
             console.log("phoneNumber", field.form.getFieldValue("contactData.areaCode"))
 
             return (
-              <field.CustomTextField 
+              <field.FormTextField 
                 props={
                   {
-                    label: t("registration.client.form.contact.phoneNumber"), 
+                    label: "registration.client.form.contact.phoneNumber", 
                     required: false, 
                     disabled: !field.form.getFieldValue("contactData.areaCode"), 
                     type: "text", 

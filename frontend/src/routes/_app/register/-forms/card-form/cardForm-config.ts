@@ -1,8 +1,8 @@
 import type { FormConfig } from "../types/types";
 
+type keys = "cardFieldsConfig";
 
-
-export const cardFormConfig: FormConfig = {
+export const cardFormConfig: FormConfig<keys> = {
   cardFieldsConfig: [
     { 
       fieldName: "cardData.cardBarcode",
@@ -14,9 +14,9 @@ export const cardFormConfig: FormConfig = {
         onChange: ({ value }) => {
           const length = value.split("_").join("").length
           if (length === 0) {
-            return ("Can't be empty");
+            return ("validation.empty");
           } else if (length > 0 && length < 13) {
-            return ("Must have at least 13 characters");
+            return ("validation.tooShort");
           }
         },
       }

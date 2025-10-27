@@ -10,6 +10,7 @@ import { cardFormOpts } from "./-forms/card-form/cardForm-options";
 import { cardFormConfig } from "./-forms/card-form/cardForm-config";
 import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 import { useTranslationContext } from "@/providers/TranslationContext";
+import { addCard } from "@/api/cards/addCard";
 
 
 
@@ -22,26 +23,6 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/register", label: "menu.registration" },
   { to: "/register/card", label: "registration.client" }
 ]
-
-
-const addCard = async (value: Record<string, Record<string, any>>) => {
-  try {
-    const response = await fetch("https://localhost:3000/cards/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(value)
-    })
-
-    if (!response.ok) {
-      const { message } = await response.json()
-      throw Error(`${response.status}. ${response.statusText}. ${message}.`);
-    }
-  } catch (error) {
-    throw error;
-  }
-}
 
 
 const ChildForm = memo(createChildForm(cardFormOpts));

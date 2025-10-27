@@ -1,8 +1,10 @@
+import { getSubcategories } from "@/api/subcategories/getSubcategories";
 import type { FormConfig } from "../types/types";
+import boolOptions from "@/assets/data/bool.json";
 
+type keys = "basicFieldsConfig" | "saleFieldsConfig"
 
-
-export const itemFormConfig: FormConfig = {
+export const itemFormConfig: FormConfig<keys> = {
   basicFieldsConfig: [
     { 
       fieldName: "basicData.barcode",
@@ -14,26 +16,30 @@ export const itemFormConfig: FormConfig = {
         onChange: ({ value }) => {
           const length = value.split("_").join("").length
           if (length === 0) {
-            return ("Can't be empty");
+            return ("validation.empty");
           } else if (length > 0 && length < 13) {
-            return ("Must have at least 13 characters");
+            return ("validation.tooShort");
           }
         },
       }
     },
     { 
-      fieldName: "basicData.itemSubcategory",
+      fieldName: "basicData.subcategoryId",
       label: "registration.item.form.base.subcategory", 
       required: true,
       type: 'text',
-      imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false },
       validators: {
         onChange: ({ value }) => {
           if (!value) {
-            return ("Can't be empty");
+            return ("validation.empty");
           }
         },
-      }
+      },
+      componentName: "FormAutocomplete",
+      optionLabel: "name",
+      optionValue: "id",
+      queryFn: getSubcategories,
+      queryKey: "subcategories",
     },
     { 
       fieldName: "basicData.name",
@@ -44,7 +50,7 @@ export const itemFormConfig: FormConfig = {
       validators: {
         onChange: ({ value }) => {
           if (!value) {
-            return ("Can't be empty");
+            return ("validation.empty");
           }
         },
       }
@@ -58,14 +64,15 @@ export const itemFormConfig: FormConfig = {
       validators: {
         onChange: ({ value }) => {
           if (!value) {
-            return ("Can't be empty");
+            return ("validation.empty");
           }
         },
       }
     },
     { 
       fieldName: "basicData.marketValue",
-      label: "registration.item.form.base.marketValue", 
+      label: "registration.item.form.base.marketValue",
+      endAdornment: "PLN",
       required: false,
       type: 'text',
       imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " },
@@ -81,15 +88,19 @@ export const itemFormConfig: FormConfig = {
       validators: {
         onChange: ({ value }) => {
           if (!value) {
-            return ("Can't be empty");
+            return ("validation.empty");
           }
         }
       },
-      componentName: "BoolAutocomplete"
+      componentName: "FormAutocomplete",
+      options: boolOptions,
+      optionLabel: "label",
+      optionValue: "value"
     },
     { 
       fieldName: "saleData.sellPrice",
       label: "registration.item.form.sale.sellPrice",
+      endAdornment: "PLN",
       required: false,
       type: 'text',
       imaskProps: { mask: Number, scale: 2, radix: '.', mapToRadix: [','], min: 0, max: 9999999.99, autofix: true, thousandsSeparator: " " }

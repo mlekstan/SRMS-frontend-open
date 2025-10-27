@@ -1,8 +1,9 @@
 import { forwardRef, useEffect, useContext } from "react";
 import { IMaskInput } from "react-imask";
-import { TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { useFieldContext } from "../-forms/hooks/form-context";
 import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props, ref) {
@@ -11,7 +12,7 @@ const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props
   return (
     <Component 
       {...other} 
-      {...imaskProps} 
+      {...imaskProps}
       inputRef={ref} 
       onAccept={(value: any) => onChange({ target: {value} })} 
     />
@@ -19,12 +20,13 @@ const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props
 });
 
 
-function CustomTextField({ props }) {
+function FormTextField({ props }) {
 
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
+  const {t} = useTranslationContext();
 
-  const { label, required, disabled, type, imaskProps, ...other } = props;
+  const { label, endAdornment, required, disabled, type, imaskProps } = props;
   const value = disabled ? "" : field.state.value ?? "";
 
 
@@ -37,13 +39,13 @@ function CustomTextField({ props }) {
   }, [field.state.meta.isValid])
 
   
-  console.log("Custom text field", field.name, field.state.value);
+  console.log("Custom text field", field, field.name, field.state.value, field.state.meta.errors);
 
   return (
     <TextField 
-      helperText={!field.state.meta.isValid && (field.state.meta.errors.join(', '))}
+      helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
       error={!field.state.meta.isValid}
-      label={label}
+      label={t(label)}
       required={required}
       value={value}
       type={type}
@@ -54,6 +56,7 @@ function CustomTextField({ props }) {
       }}
       slotProps={{
         input: {
+          endAdornment: <InputAdornment position="end">{endAdornment}</InputAdornment>,
           inputComponent: CustomInput,
           inputProps: {
             component: IMaskInput,
@@ -66,4 +69,4 @@ function CustomTextField({ props }) {
 }
 
 
-export default CustomTextField;
+export default FormTextField;
