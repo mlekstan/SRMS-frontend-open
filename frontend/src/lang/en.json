@@ -48,6 +48,7 @@
     "item.form.base.title": "Base data",
     "item.form.base.barcode": "Barcode",
     "item.form.base.subcategory": "Subcategory",
+    "item.form.base.branch": "Branch",
     "item.form.base.name": "Name",
     "item.form.base.shortName": "Short name",
     "item.form.base.marketValue": "Market value",

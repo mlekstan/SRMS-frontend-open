@@ -6,6 +6,7 @@ export const itemFormOpts = formOptions({
     basicData: {
       barcode: '',
       subcategoryId: '',
+      branchId: '',
       name: '',
       shortName: '',
       marketValue: '',

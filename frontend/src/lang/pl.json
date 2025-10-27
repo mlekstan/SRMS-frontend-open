@@ -48,6 +48,7 @@
     "item.form.base.title": "Podstawowe dane",
     "item.form.base.barcode": "Kod kreskowy",
     "item.form.base.subcategory": "Podkategoria",
+    "item.form.base.branch": "Oddział",
     "item.form.base.name": "Nazwa",
     "item.form.base.shortName": "Krótka nazwa",
     "item.form.base.marketValue": "Cena rynkowa",

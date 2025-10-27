@@ -1,6 +1,7 @@
 import { getSubcategories } from "@/api/subcategories/getSubcategories";
 import type { FormConfig } from "../types/types";
 import boolOptions from "@/assets/data/bool.json";
+import { getBranches } from "@/api/branches/branches.get";
 
 type keys = "basicFieldsConfig" | "saleFieldsConfig"
 
@@ -40,6 +41,24 @@ export const itemFormConfig: FormConfig<keys> = {
       optionValue: "id",
       queryFn: getSubcategories,
       queryKey: "subcategories",
+    },
+    {
+      fieldName: "basicData.branchId",
+      label: "registration.item.form.base.branch",
+      required: true,
+      type: 'text',
+      validators: {
+        onChange: ({ value }) => {
+          if (!value) {
+            return ("validation.empty");
+          }
+        },
+      },
+      componentName: "FormAutocomplete",
+      optionLabel: "name",
+      optionValue: "id",
+      queryFn: getBranches,
+      queryKey: "branches"
     },
     { 
       fieldName: "basicData.name",

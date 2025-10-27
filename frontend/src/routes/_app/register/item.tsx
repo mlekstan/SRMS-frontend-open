@@ -16,17 +16,26 @@ import { Loader } from "@/routes/-components/Loader";
 import { FailureDialog } from "./-components/FailureDialog";
 import { goBack } from "./-forms/goBack";
 import { useQuery } from "@tanstack/react-query";
+import { getBranches } from "@/api/branches/branches.get";
 
 
 
 export const Route = createFileRoute('/_app/register/item')({
   component: RouteComponent,
   loader: async ({ context }) => {
+    
     await context.queryClient.fetchQuery({
       queryKey: ["subcategories"],
       queryFn: getSubcategories,
       staleTime: 10000,
     });
+
+    await context.queryClient.fetchQuery({
+      queryKey: ["branches"],
+      queryFn: getBranches,
+      staleTime: 10000,
+    });
+
   },
   gcTime: 0,
   shouldReload: false,
@@ -66,13 +75,27 @@ function RouteComponent() {
   const router = useRouter();
   const canGoBack = useCanGoBack();
   const {t} = useTranslationContext();
-  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["subcategories"], queryFn: getSubcategories, retry: 0, refetchInterval: 10000 });
+  const { 
+    data: sData, 
+    error: sError, 
+    isSuccess: sIsSuccess, 
+    isPending: sIsPending, 
+    isError: sIsError 
+  } = useQuery({ queryKey: ["subcategories"], queryFn: getSubcategories, retry: 0, refetchInterval: 10000 });
   
+  const {
+    data: bData,
+    error: bError,
+    isSuccess: bIsSuccess,
+    isPending: bIsPending,
+    isError: bIsError
+  } = useQuery({ queryKey: ["branches"], queryFn: getBranches, retry: 0, refetchInterval: 10000 });
+
 
   return (
     <>
       {
-        (isSuccess || data) &&
+        ((sIsSuccess && bIsSuccess) || (sData && bData)) &&
         <FormPaperContainer>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
@@ -101,12 +124,12 @@ function RouteComponent() {
       }  
 
       {
-        isPending &&
+        (sIsPending || bIsPending) &&
         <Loader open={true} />
       }
 
       {
-        (isError || error) &&
+        (sIsError || bIsError) &&
           <FailureDialog 
             open={true} 
             closeFn={() => {
@@ -114,7 +137,7 @@ function RouteComponent() {
             }} 
             duration={null} 
             message={
-              error ? error.message : ""
+              (sError && bError) ? `${sError.message}. ${bError.message}.` : sError?.message ?? bError?.message ?? ""
             } 
           />
       }
