@@ -88,8 +88,12 @@
     "branch.form.branch.city": "Miasto",
     "branch.form.branch.street": "Ulica",
     "branch.form.branch.streetNumber": "Numer ulicy",
-    "branch.form.branch.zipCode": "Kod pocztowy"
+    "branch.form.branch.zipCode": "Kod pocztowy",
 
+
+    "driveType": "Dodaj rodzaj napędu",
+    "driveType.form.driveType.title": "Dane rodzaju napędu",
+    "driveType.form.driveType.name": "Nazwa"
   },  
   "settings": {
     "lang": "Język"

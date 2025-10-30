@@ -1,6 +1,6 @@
 import type { FormConfig } from "../types/types";
-import { getCategories } from "@/api/categories/getCategories";
-import { getDriveTypes } from "../../../../../api/driveTypes/getDriveTypes";
+import { getCategories } from "@/api/categories/categories.get";
+import { getDriveTypes } from "../../../../../api/driveTypes/driveTypes.get";
 
 type keys = "subcategoryFieldsConfig" | "vehicleFieldsConfig" | "electricVehicleFieldsConfig";
 

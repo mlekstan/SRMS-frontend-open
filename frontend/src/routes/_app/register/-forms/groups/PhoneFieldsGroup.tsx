@@ -18,7 +18,8 @@ export const PhoneFieldsGroup = withFieldGroup({
       <>
         <group.AppField 
           name="areaCode"
-          children={(field) => <field.AreaCodeAutocomplete label={t("registration.client.form.contact.areaCode")} />}
+          children={
+            (field) => <field.AreaCodeAutocomplete label={t("registration.client.form.contact.areaCode")} />}
         />
 
         <group.AppField 

@@ -10,7 +10,7 @@ import { cardFormOpts } from "./-forms/card-form/cardForm-options";
 import { cardFormConfig } from "./-forms/card-form/cardForm-config";
 import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 import { useTranslationContext } from "@/providers/TranslationContext";
-import { addCard } from "@/api/cards/addCard";
+import { addCard } from "@/api/cards/cards.post";
 
 
 

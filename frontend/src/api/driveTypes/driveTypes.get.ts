@@ -2,7 +2,7 @@ import { appApiClient } from "@/api/ApiClient";
 
 export async function getDriveTypes() {
   try {
-    const response = await appApiClient.makeRequest("/driveTypes", {
+    const response = await appApiClient.makeRequest("/drive-types", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

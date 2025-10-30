@@ -1,4 +1,4 @@
-import { getSubcategories } from "@/api/subcategories/getSubcategories";
+import { getSubcategories } from "@/api/subcategories/subcategories.get";
 import type { FormConfig } from "../types/types";
 import boolOptions from "@/assets/data/bool.json";
 import { getBranches } from "@/api/branches/branches.get";

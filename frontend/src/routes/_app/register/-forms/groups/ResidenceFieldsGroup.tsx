@@ -30,9 +30,7 @@ export const ResidenceFieldsGroup = withFieldGroup({
     }
   },
   render: function Render({ group, fields, requiredMap }) {
-    console.log("japierdole", requiredMap)
-
-
+    
     return (
       <>
         <group.AppField 

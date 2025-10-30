@@ -88,8 +88,12 @@
     "branch.form.branch.city": "City",
     "branch.form.branch.street": "Street",
     "branch.form.branch.streetNumber": "Street number",
-    "branch.form.branch.zipCode": "Zip code"
+    "branch.form.branch.zipCode": "Zip code",
 
+
+    "driveType": "Add drive type",
+    "driveType.form.driveType.title": "Drive type data",
+    "driveType.form.driveType.name": "Name"
   },
   "settings": {
     "lang": "Language"

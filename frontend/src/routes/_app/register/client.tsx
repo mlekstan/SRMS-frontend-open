@@ -12,8 +12,8 @@ import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 import { useQuery } from "@tanstack/react-query";
 import { FailureDialog } from "./-components/FailureDialog";
 import { Loader } from "@/routes/-components/Loader";
-import { getActiveCards } from "../../../api/cards/getActiveCards";
-import { addClient } from "../../../api/clients/addClient";
+import { getActiveCards } from "../../../api/cards/cards.get";
+import { addClient } from "../../../api/clients/clients.post";
 import { goBack } from "./-forms/goBack";
 import { clientFormSchema } from "./-forms/client-form/clientForm-schema";
 

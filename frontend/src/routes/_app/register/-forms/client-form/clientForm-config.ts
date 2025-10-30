@@ -1,7 +1,7 @@
 import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
 import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
 import type { FormConfig } from "../types/types";
-import { getActiveCards } from "../../../../../api/cards/getActiveCards";
+import { getActiveCards } from "../../../../../api/cards/cards.get";
 import boolOptions from "@/assets/data/bool.json";
 
 
