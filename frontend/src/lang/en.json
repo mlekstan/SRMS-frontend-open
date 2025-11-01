@@ -61,6 +61,11 @@
     "card": "Add card",
     "card.form.card.title": "Card data",
     "card.form.card.barcode": "Barcode",
+
+
+    "category": "Add category",
+    "category.form.category.title": "Category data",
+    "category.form.category.name": "Name",
     
 
     "subcategory": "Add subcategory",

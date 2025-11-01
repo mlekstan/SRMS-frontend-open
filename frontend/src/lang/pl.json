@@ -61,6 +61,11 @@
     "card": "Dodaj kartę",
     "card.form.card.title": "Dodaj nową kartę",
     "card.form.card.barcode": "Kod kreskowy",
+
+
+    "category": "Dodaj kategorię",
+    "category.form.category.title": "Dane kategorii",
+    "category.form.category.name": "Nazwa",
     
     
     "subcategory": "Dodaj podkategorię",

@@ -21,6 +21,7 @@ import { Route as AppRegisterSubcategoryRouteImport } from './routes/_app/regist
 import { Route as AppRegisterItemRouteImport } from './routes/_app/register/item'
 import { Route as AppRegisterDriveTypeRouteImport } from './routes/_app/register/drive-type'
 import { Route as AppRegisterClientRouteImport } from './routes/_app/register/client'
+import { Route as AppRegisterCategoryRouteImport } from './routes/_app/register/category'
 import { Route as AppRegisterCardRouteImport } from './routes/_app/register/card'
 import { Route as AppRegisterBranchRouteImport } from './routes/_app/register/branch'
 
@@ -83,6 +84,11 @@ const AppRegisterClientRoute = AppRegisterClientRouteImport.update({
   path: '/register/client',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRegisterCategoryRoute = AppRegisterCategoryRouteImport.update({
+  id: '/register/category',
+  path: '/register/category',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppRegisterCardRoute = AppRegisterCardRouteImport.update({
   id: '/register/card',
   path: '/register/card',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AppSettingsRouteRoute
   '/register/branch': typeof AppRegisterBranchRoute
   '/register/card': typeof AppRegisterCardRoute
+  '/register/category': typeof AppRegisterCategoryRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/register/item': typeof AppRegisterItemRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AppSettingsRouteRoute
   '/register/branch': typeof AppRegisterBranchRoute
   '/register/card': typeof AppRegisterCardRoute
+  '/register/category': typeof AppRegisterCategoryRoute
   '/register/client': typeof AppRegisterClientRoute
   '/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/register/item': typeof AppRegisterItemRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRouteRoute
   '/_app/register/branch': typeof AppRegisterBranchRoute
   '/_app/register/card': typeof AppRegisterCardRoute
+  '/_app/register/category': typeof AppRegisterCategoryRoute
   '/_app/register/client': typeof AppRegisterClientRoute
   '/_app/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/_app/register/item': typeof AppRegisterItemRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/register/branch'
     | '/register/card'
+    | '/register/category'
     | '/register/client'
     | '/register/drive-type'
     | '/register/item'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/register/branch'
     | '/register/card'
+    | '/register/category'
     | '/register/client'
     | '/register/drive-type'
     | '/register/item'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/register/branch'
     | '/_app/register/card'
+    | '/_app/register/category'
     | '/_app/register/client'
     | '/_app/register/drive-type'
     | '/_app/register/item'
@@ -281,6 +293,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRegisterClientRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/category': {
+      id: '/_app/register/category'
+      path: '/register/category'
+      fullPath: '/register/category'
+      preLoaderRoute: typeof AppRegisterCategoryRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/register/card': {
       id: '/_app/register/card'
       path: '/register/card'
@@ -302,6 +321,7 @@ interface AppRouteRouteChildren {
   AppSettingsRouteRoute: typeof AppSettingsRouteRoute
   AppRegisterBranchRoute: typeof AppRegisterBranchRoute
   AppRegisterCardRoute: typeof AppRegisterCardRoute
+  AppRegisterCategoryRoute: typeof AppRegisterCategoryRoute
   AppRegisterClientRoute: typeof AppRegisterClientRoute
   AppRegisterDriveTypeRoute: typeof AppRegisterDriveTypeRoute
   AppRegisterItemRoute: typeof AppRegisterItemRoute
@@ -317,6 +337,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSettingsRouteRoute: AppSettingsRouteRoute,
   AppRegisterBranchRoute: AppRegisterBranchRoute,
   AppRegisterCardRoute: AppRegisterCardRoute,
+  AppRegisterCategoryRoute: AppRegisterCategoryRoute,
   AppRegisterClientRoute: AppRegisterClientRoute,
   AppRegisterDriveTypeRoute: AppRegisterDriveTypeRoute,
   AppRegisterItemRoute: AppRegisterItemRoute,
