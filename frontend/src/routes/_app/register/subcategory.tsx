@@ -54,14 +54,14 @@ export const Route = createFileRoute('/_app/register/subcategory')({
       />
     );
   }
-})
+});
 
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/register", label: "menu.registration" },
   { to: "/register/subcategory", label: "registration.subcategory" }
-]
+];
 
 
 const ChildForm = memo(createChildForm(subcategoryFormOpts));

@@ -3,11 +3,13 @@ import { Autocomplete, TextField, Box } from "@mui/material";
 import options from "@/assets/data/countries.json";
 import { useFieldContext } from "../-forms/hooks/form-context";
 import { AccordionValidUpdateContext } from "../-forms/hooks/child-context";
+import { useTranslationContext } from "@/providers/TranslationContext";
 
 
-export default function AreaCodeAutocomplete({ label }) {
+export default function AreaCodeAutocomplete({ label, required }) {
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
+  const {t} = useTranslationContext();
 
   useEffect(() => {
     setAccordionValidState((prev) => {
@@ -64,6 +66,9 @@ export default function AreaCodeAutocomplete({ label }) {
         <TextField
           {...params}
           label={label}
+          helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
+          error={!field.state.meta.isValid}
+          required={required}
           slotProps={{
             htmlInput: {
               ...params.inputProps,

@@ -7,6 +7,7 @@ import subcategoriesImg from '@/assets/register/subcategories.png'
 import categories from '@/assets/register/categories.png'
 import branchesImg from '@/assets/register/franchise.png'
 import driveType from '@/assets/register/engineering.png'
+import addUser from '@/assets/register/add-user.png'
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions'
 
 
@@ -24,6 +25,7 @@ const tiles: ExtendedLinkOptions[] = [
   { to: "/register/subcategory", label: "registration.subcategory", imgSrc: subcategoriesImg },
   { to: "/register/branch", label: "registration.branch", imgSrc: branchesImg },
   { to: "/register/drive-type", label: "registration.driveType", imgSrc: driveType },
+  { to: "/register/user", label: "registration.user", imgSrc: addUser },
 ]
 
 

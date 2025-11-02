@@ -98,7 +98,17 @@
 
     "driveType": "Add drive type",
     "driveType.form.driveType.title": "Drive type data",
-    "driveType.form.driveType.name": "Name"
+    "driveType.form.driveType.name": "Name",
+
+
+    "user": "Add user",
+    "user.form.user.title": "User data",
+    "user.form.user.firstName": "First name",
+    "user.form.user.middleName": "Middle name",
+    "user.form.user.lastName": "Last name",
+    "user.form.user.email": "E-mail",
+    "user.form.user.branch": "Branch",
+    "user.form.user.password": "Password"
   },
   "settings": {
     "lang": "Language"

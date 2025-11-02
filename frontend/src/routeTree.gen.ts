@@ -17,6 +17,7 @@ import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
 import { Route as AppRegisterIndexRouteImport } from './routes/_app/register/index'
 import { Route as AppRentalRentalSaleRouteImport } from './routes/_app/rental/rental-sale'
 import { Route as AppRentalEquipStatusRouteImport } from './routes/_app/rental/equip-status'
+import { Route as AppRegisterUserRouteImport } from './routes/_app/register/user'
 import { Route as AppRegisterSubcategoryRouteImport } from './routes/_app/register/subcategory'
 import { Route as AppRegisterItemRouteImport } from './routes/_app/register/item'
 import { Route as AppRegisterDriveTypeRouteImport } from './routes/_app/register/drive-type'
@@ -62,6 +63,11 @@ const AppRentalRentalSaleRoute = AppRentalRentalSaleRouteImport.update({
 const AppRentalEquipStatusRoute = AppRentalEquipStatusRouteImport.update({
   id: '/rental/equip-status',
   path: '/rental/equip-status',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppRegisterUserRoute = AppRegisterUserRouteImport.update({
+  id: '/register/user',
+  path: '/register/user',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppRegisterSubcategoryRoute = AppRegisterSubcategoryRouteImport.update({
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/register/item': typeof AppRegisterItemRoute
   '/register/subcategory': typeof AppRegisterSubcategoryRoute
+  '/register/user': typeof AppRegisterUserRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/register': typeof AppRegisterIndexRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/register/item': typeof AppRegisterItemRoute
   '/register/subcategory': typeof AppRegisterSubcategoryRoute
+  '/register/user': typeof AppRegisterUserRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/register': typeof AppRegisterIndexRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/_app/register/drive-type': typeof AppRegisterDriveTypeRoute
   '/_app/register/item': typeof AppRegisterItemRoute
   '/_app/register/subcategory': typeof AppRegisterSubcategoryRoute
+  '/_app/register/user': typeof AppRegisterUserRoute
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/_app/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/_app/register/': typeof AppRegisterIndexRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/register/drive-type'
     | '/register/item'
     | '/register/subcategory'
+    | '/register/user'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/register'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/register/drive-type'
     | '/register/item'
     | '/register/subcategory'
+    | '/register/user'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/register'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/_app/register/drive-type'
     | '/_app/register/item'
     | '/_app/register/subcategory'
+    | '/_app/register/user'
     | '/_app/rental/equip-status'
     | '/_app/rental/rental-sale'
     | '/_app/register/'
@@ -265,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRentalEquipStatusRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/register/user': {
+      id: '/_app/register/user'
+      path: '/register/user'
+      fullPath: '/register/user'
+      preLoaderRoute: typeof AppRegisterUserRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/register/subcategory': {
       id: '/_app/register/subcategory'
       path: '/register/subcategory'
@@ -326,6 +345,7 @@ interface AppRouteRouteChildren {
   AppRegisterDriveTypeRoute: typeof AppRegisterDriveTypeRoute
   AppRegisterItemRoute: typeof AppRegisterItemRoute
   AppRegisterSubcategoryRoute: typeof AppRegisterSubcategoryRoute
+  AppRegisterUserRoute: typeof AppRegisterUserRoute
   AppRentalEquipStatusRoute: typeof AppRentalEquipStatusRoute
   AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
   AppRegisterIndexRoute: typeof AppRegisterIndexRoute
@@ -342,6 +362,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppRegisterDriveTypeRoute: AppRegisterDriveTypeRoute,
   AppRegisterItemRoute: AppRegisterItemRoute,
   AppRegisterSubcategoryRoute: AppRegisterSubcategoryRoute,
+  AppRegisterUserRoute: AppRegisterUserRoute,
   AppRentalEquipStatusRoute: AppRentalEquipStatusRoute,
   AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
   AppRegisterIndexRoute: AppRegisterIndexRoute,

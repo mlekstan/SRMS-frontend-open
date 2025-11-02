@@ -98,7 +98,17 @@
 
     "driveType": "Dodaj rodzaj napędu",
     "driveType.form.driveType.title": "Dane rodzaju napędu",
-    "driveType.form.driveType.name": "Nazwa"
+    "driveType.form.driveType.name": "Nazwa",
+
+
+    "user": "Dodaj użytkownika",
+    "user.form.user.title": "Dane użytkownika",
+    "user.form.user.firstName": "Imię",
+    "user.form.user.middleName": "Drugie imię",
+    "user.form.user.lastName": "Nazwisko",
+    "user.form.user.email": "E-mail",
+    "user.form.user.branch": "Oddział",
+    "user.form.user.password": "Hasło"
   },  
   "settings": {
     "lang": "Język"

@@ -3,7 +3,7 @@ import * as z from "zod";
 
 const regexpMessage = "Don't match regexp."
 
-const formatName = (val: string) => {
+export const formatName = (val: string) => {
   let newVal = "";
   let prev;
   
