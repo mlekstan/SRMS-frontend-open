@@ -12,14 +12,14 @@ import { driveTypeFormConfig } from './-forms/driveType-form/driveTypeForm-confi
 import { addDriveType } from '@/api/driveTypes/driveTypes.post';
 import { driveTypeFormSchema } from './-forms/driveType-form/driveTypeForm-schema';
 
-export const Route = createFileRoute('/_app/register/drive-type')({
+export const Route = createFileRoute('/_app/manage/drive-type')({
   component: RouteComponent,
 })
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/drive-type", label: "registration.driveType" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/drive-type", label: "registration.driveType" }
 ]
 
 const ChildForm = memo(createChildForm(driveTypeFormOpts));
@@ -33,7 +33,7 @@ function RouteComponent() {
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.driveType")}</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.driveType')}</Typography>
           <Form 
             key={key} 
             reset={() => {

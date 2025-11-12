@@ -4,7 +4,7 @@ import { SubmitButton } from "../-components/SubmitButton";
 import { SuccessDialog } from "../-components/SuccessDialog";
 import { FailureDialog } from "../-components/FailureDialog";
 import { useMutation } from "@tanstack/react-query"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as z from "zod"
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { Loader } from "@/routes/-components/Loader";
@@ -13,6 +13,7 @@ import { ConditionalRender } from "../-components/ConditionalRender";
 
 type FormProps = {
   reset: () => void;
+  initialFieldsValuesMap?: any;
   requestFn: (value: Record<string, unknown>) => Promise<void>;
   formOptions: any;
   validationSchema: z.ZodObject;
@@ -25,7 +26,8 @@ type FormProps = {
 }
 
 export default function Form({
-  reset, 
+  reset,
+  initialFieldsValuesMap,
   requestFn, 
   formOptions, 
   validationSchema, 
@@ -46,7 +48,7 @@ export default function Form({
       setShowError(() => true);
       setErrorMessage(() => error.message);
     }
-  })
+  });
     
   const form = useAppForm({
     ...formOptions,
@@ -61,7 +63,17 @@ export default function Form({
         }
       }
     }
+  });
+
+  useEffect(() => {
+    if (initialFieldsValuesMap) {
+      Object.keys(initialFieldsValuesMap).forEach((fieldName) => {
+        form.setFieldValue(fieldName, initialFieldsValuesMap[fieldName]);
+      });
+    }
   })
+
+  console.log("Meta:", form.baseStore.state.values)
 
   const renderingComponentsIdMap = childFormsProps.reduce<Record<string, boolean>>(
     (accumulator, prop) => {
@@ -92,21 +104,22 @@ export default function Form({
         closeFn={() => {
           setShowSuccess(() => false);
           reset();
-        }
-        }
+        }}
         duration={2000}
+        info={"successDialog.info.submit"}
       />
 
       <FailureDialog 
         open={showError} 
         closeFn={() => setShowError(() => false)}
         duration={null}
+        info={"failureDialog.info.submit"}
         message={errorMessage}
       />
       
       <ConditionalRenderProvider renderingComponentsIdMap={renderingComponentsIdMap}>
         <form.AppForm>
-          <form 
+          <form
             onSubmit={(e) => {
               e.preventDefault();
               form.handleSubmit();
@@ -132,4 +145,3 @@ export default function Form({
     </>
   );
 }
-

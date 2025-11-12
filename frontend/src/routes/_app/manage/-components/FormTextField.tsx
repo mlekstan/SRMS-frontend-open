@@ -31,15 +31,20 @@ function FormTextField({ props }) {
 
 
   useEffect(() => {
+    if (field.state.value === null) {
+      field.setValue("");
+    }
+
     setAccordionValidState((prev) => {
       const copy = {...prev};
       copy[field.name] = field.state.meta.isValid;
       return (copy);
-    })
-  }, [field.state.meta.isValid])
+    });
+  }, [field.state.meta.isValid]);
 
-  
-  console.log("Custom text field", field, field.name, field.state.value, field.state.meta.errors);
+
+
+  console.log("Text field", field.name, field.state.value, value);
 
   return (
     <TextField 

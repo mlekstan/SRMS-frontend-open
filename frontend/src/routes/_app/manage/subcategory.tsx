@@ -18,7 +18,7 @@ import { FailureDialog } from './-components/FailureDialog'
 import { goBack } from './-forms/goBack'
 import { useQuery } from '@tanstack/react-query'
 
-export const Route = createFileRoute('/_app/register/subcategory')({
+export const Route = createFileRoute('/_app/manage/subcategory')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     
@@ -47,7 +47,7 @@ export const Route = createFileRoute('/_app/register/subcategory')({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/register");
+          goBack(router, canGoBack, "/manage");
         }}
         duration={null}
         message={error.message}
@@ -59,8 +59,8 @@ export const Route = createFileRoute('/_app/register/subcategory')({
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/subcategory", label: "registration.subcategory" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/subcategory", label: "registration.subcategory" }
 ];
 
 
@@ -134,7 +134,7 @@ function RouteComponent() {
         <FailureDialog 
           open={true}
           closeFn={() => {
-            goBack(router, canGoBack, "/register")
+            goBack(router, canGoBack, "/manage")
           }}
           duration={null}
           message={

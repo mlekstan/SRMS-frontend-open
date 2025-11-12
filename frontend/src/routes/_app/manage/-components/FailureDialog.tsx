@@ -2,15 +2,17 @@ import { useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from "@mui/material";
 import ErrorOutlineSharpIcon from '@mui/icons-material/ErrorOutlineSharp';
 import { useTranslationContext } from "@/providers/TranslationContext";
+import type { LangKeys } from "@/providers/TranslationProvider";
 
 type FailureDialogProps = {
   open: boolean;
   closeFn: () => void;
   duration: number | null;
+  info: LangKeys;
   message: string;
 }
 
-export function FailureDialog({ open, closeFn, duration, message }: FailureDialogProps) {
+export function FailureDialog({ open, closeFn, duration, info, message }: FailureDialogProps) {
   const {t} = useTranslationContext();
 
   console.log("Renedering failure")
@@ -37,7 +39,7 @@ export function FailureDialog({ open, closeFn, duration, message }: FailureDialo
         </Box>
       </DialogTitle>
       <DialogContent>
-        <span style={{display: "block", marginBottom: "0.5rem"}}>{t("failureDialog.info")}</span>
+        <span style={{display: "block", marginBottom: "0.5rem"}}>{t(info)}</span>
         <span>{ t("failureDialog.message", { "message": message }) }</span>
       </DialogContent>
       <DialogActions>

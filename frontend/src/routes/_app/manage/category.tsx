@@ -12,13 +12,13 @@ import { addCategory } from '@/api/categories/categories.post';
 import { categoryFormSchema } from './-forms/category-form/categoryForm-schema';
 import { categoryFormConfig } from './-forms/category-form/categoryForm-config';
 
-export const Route = createFileRoute('/_app/register/category')({
+export const Route = createFileRoute('/_app/manage/category')({
   component: RouteComponent,
 })
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/category", label: "registration.category" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/category", label: "registration.category" }
 ]
 
 const ChildForm = memo(createChildForm(categoryFormOpts));
@@ -32,7 +32,7 @@ function RouteComponent() {
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.category")}</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.category')}</Typography>
           <Form 
             key={key} 
             reset={() => {

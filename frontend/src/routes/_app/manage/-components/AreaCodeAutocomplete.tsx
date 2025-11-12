@@ -12,6 +12,10 @@ export default function AreaCodeAutocomplete({ label, required }) {
   const {t} = useTranslationContext();
 
   useEffect(() => {
+    if (field.state.value === null) {
+      field.setValue("");
+    }
+
     setAccordionValidState((prev) => {
       const copy = {...prev};
       copy[field.name] = field.state.meta.isValid;

@@ -8,7 +8,6 @@ import { type PaperProps, type BoxProps } from "@mui/material";
 const FormPaper = styled(Paper)<PaperProps>(({ theme }) => ({
   '&': {
     padding: theme.spacing(12),
-    marginTop: theme.spacing(8),
     backgroundColor: theme.palette.secondary.light,
   }
 }));

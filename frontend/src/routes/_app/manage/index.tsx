@@ -12,20 +12,20 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions'
 
 
 
-export const Route = createFileRoute('/_app/register/')({
+export const Route = createFileRoute('/_app/manage/')({
   component: RouteComponent,
 })
 
 
 const tiles: ExtendedLinkOptions[] = [
-  { to: "/register/client", label: "registration.client", imgSrc: addFriendImg },
-  { to: "/register/item", label: "registration.item", imgSrc: addImg },
-  { to: "/register/card", label: "registration.card", imgSrc: drivingLicenseImg },
-  { to: "/register/category", label: "registration.category", imgSrc: categories },
-  { to: "/register/subcategory", label: "registration.subcategory", imgSrc: subcategoriesImg },
-  { to: "/register/branch", label: "registration.branch", imgSrc: branchesImg },
-  { to: "/register/drive-type", label: "registration.driveType", imgSrc: driveType },
-  { to: "/register/user", label: "registration.user", imgSrc: addUser },
+  { to: "/manage/client", label: "manage.clients", imgSrc: addFriendImg },
+  { to: "/manage/item", label: "manage.items", imgSrc: addImg },
+  { to: "/manage/card", label: "manage.cards", imgSrc: drivingLicenseImg },
+  { to: "/manage/category", label: "manage.categories", imgSrc: categories },
+  { to: "/manage/subcategory", label: "manage.subcategories", imgSrc: subcategoriesImg },
+  { to: "/manage/branch", label: "manage.branches", imgSrc: branchesImg },
+  { to: "/manage/drive-type", label: "manage.driveTypes", imgSrc: driveType },
+  { to: "/manage/users", label: "manage.users", imgSrc: addUser },
 ]
 
 

@@ -18,7 +18,7 @@ import { userFormConfig } from './-forms/user-form/userForm-config';
 import { addUser } from '@/api/users/users.post';
 
 
-export const Route = createFileRoute('/_app/register/user')({
+export const Route = createFileRoute('/_app/manage/user')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     
@@ -41,7 +41,7 @@ export const Route = createFileRoute('/_app/register/user')({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/register");
+          goBack(router, canGoBack, "/manage");
         }}
         duration={null}
         message={error.message}
@@ -53,8 +53,8 @@ export const Route = createFileRoute('/_app/register/user')({
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/user", label: "registration.user" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/user", label: "registration.user" }
 ];
 
 
@@ -78,7 +78,7 @@ function RouteComponent() {
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.user")}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.user')}</Typography>
             <Form 
               key={key} 
               reset={() => {
@@ -106,7 +106,7 @@ function RouteComponent() {
         <FailureDialog 
           open={true} 
           closeFn={() => {
-            goBack(router, canGoBack, "/register");
+            goBack(router, canGoBack, "/manage");
           }} 
           duration={null} 
           message={error.message}

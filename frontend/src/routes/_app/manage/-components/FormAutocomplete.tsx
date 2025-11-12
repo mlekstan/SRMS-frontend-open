@@ -67,20 +67,24 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
   console.log("query", query)
   
   useEffect(() => {
+    if (field.state.value === null) {
+      field.setValue("");
+    }
+
     setAccordionValidState((prev) => {
       const copy = {...prev};
       copy[field.name] = field.state.meta.isValid;
       return (copy);
-    })
+    });
   }, [field.state.meta.isValid]);
 
   const options = staticOptions ?? query?.data ?? [];
-  console.log("opt", options)
+
   // value prop in MUI Autocomplete must be one options provided in options props. 
   // When the selected option is removed from Autocomplete value is changing to null.
   const value = field.state.value ? options.find((option: any) => option[optionValue] === field.state.value) || null : null; 
 
-  console.log(`DXXXXXXXX ${label}`, value, field.state.value)
+  console.log("Autocomplete", field.name, field.state.value, value);
 
   return (
     <Autocomplete 

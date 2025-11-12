@@ -3,7 +3,7 @@
   "menu": {
     "rentalService": "Usługa wypożyczenia",
     "salesService": "Usługa sprzedaży",
-    "registration": "Rejestracja",
+    "manage": "Zarządzaj",
     "settings": "Ustawienia"
   },
   "languages": {
@@ -17,6 +17,18 @@
   "salesService": {
 
   },
+
+  "manage": {
+    "clients": "Klienci",
+    "items": "Sprzęt",
+    "cards": "Karty",
+    "categories": "Kategorie",
+    "subcategories": "Podkategorie",
+    "branches": "Oddziały",
+    "driveTypes": "Rodzaje napędu",
+    "users": "Użytkownicy"
+  },
+
   "registration": {
     
     "client": "Dodaj klienta",
@@ -110,6 +122,36 @@
     "user.form.user.branch": "Oddział",
     "user.form.user.password": "Hasło"
   },  
+
+  "view": {
+    "clients": "Wyświetl klientów",
+    "items": "Wyświetl sprzęty",
+    "cards": "Wyświetl karty",
+    "categories": "Wyświetl kategorie",
+    "subcategories": "Wyswietl podkategorie",
+    "branches": "Wyświetl oddziały",
+    "driveTypes": "Wyświetl rodzaje napędu",
+    "users": "Wyświetl użytkowników",
+    "users.table.search": "Szukaj użytkownika",
+    "users.table.column.id": "ID",
+    "users.table.column.firstName": "Imię",
+    "users.table.column.middleName": "Drugie imię",
+    "users.table.column.lastName": "Nazwisko",
+    "users.table.column.email": "E-mail",
+    "users.table.column.areaCode": "Numer kierunkowy",
+    "users.table.column.phoneNumber": "Numer telefonu",
+    "users.table.column.dateJoined": "Data dołączenia",
+    "users.table.column.branchName": "Oddział"
+  },
+
+  "edit": {
+    "user": "Edytuj użytkownika"
+  },
+
+  "table": {
+    "rowsPerPage": "Liczba wierszy na stronie:"
+  },
+
   "settings": {
     "lang": "Język"
   },
@@ -119,12 +161,18 @@
   },
   "successDialog": {
     "title": "Sukces",
-    "info": "Formularz został pomyślnie złożony.",
+    "info": {
+      "submit": "Formularz został pomyślnie złożony."
+    },
     "button": "Zamknij"
   },
   "failureDialog": {
     "title": "Niepowodzenie",
-    "info": "Wystąpił błąd podczas składania formularza",
+    "info": {
+      "submit": "Wystąpił błąd podczas składania formularza.",
+      "loader": "Wystąpił błąd podczas ładowania strony.",
+      "data": "Nie można uzyskać niezbędnych danych."
+    },
     "message": "Wiadomość: {{message}}",
     "button": "Zamknij"
   },

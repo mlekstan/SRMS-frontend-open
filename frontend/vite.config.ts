@@ -13,6 +13,9 @@ export default defineConfig({
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
+      experimental: {
+        nonNestedRoutes: true,
+      },
     }),
     react(), 
     svgr(), 

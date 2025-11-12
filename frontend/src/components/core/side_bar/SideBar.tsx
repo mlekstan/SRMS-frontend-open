@@ -7,7 +7,7 @@ import SettingsIcon from '@/assets/menu/settings.svg?react';
 import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
 import styles from '@/components/core/side_bar/SideBar.module.css';
 import { useTranslationContext } from '@/providers/TranslationContext';
-import type { ExtendedLinkOptions } from '@/routes/_app/register';
+import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 
 
 
@@ -21,7 +21,7 @@ interface SideBarOptionProps {
 export const menuOptions: ExtendedLinkOptions[] = [
   { to: "/rental", label: "menu.rentalService", icon: RentSignalIcon },
   { to: "/sale", label: "menu.salesService", icon: SellIcon },
-  { to: "/register", label: "menu.registration", icon: SquarePlusIcon },
+  { to: "/manage", label: "menu.manage", icon: SquarePlusIcon },
   { to: "/settings", label: "menu.settings", icon: SettingsIcon }
 ]
 

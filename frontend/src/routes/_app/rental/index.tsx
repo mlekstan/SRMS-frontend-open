@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import TilesContainer from '@/components/shared/TilesContainer'
 import startRentalImg from '@/assets/rental/scooter.png';
 import checkScheduleImg from '@/assets/rental/pay-day.png';
-import type { ExtendedLinkOptions } from '../register';
+import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 
 
 export const Route = createFileRoute('/_app/rental/')({

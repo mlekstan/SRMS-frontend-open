@@ -6,6 +6,7 @@ import { createTheme } from "@mui/material";
     primary: {
       main: '#0a2117',
       light: '#399a6e',
+      dark: '#3B4D45',
     },
     secondary: {
       main: '#d9d9d9',

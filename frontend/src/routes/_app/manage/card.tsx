@@ -14,14 +14,14 @@ import { addCard } from "@/api/cards/cards.post";
 
 
 
-export const Route = createFileRoute("/_app/register/card")({
+export const Route = createFileRoute("/_app/manage/card")({
   component: RouteComponent,
 })
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/card", label: "registration.client" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/card", label: "registration.client" }
 ]
 
 

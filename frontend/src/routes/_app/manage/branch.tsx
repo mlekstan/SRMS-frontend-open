@@ -12,13 +12,13 @@ import { branchFormConfig } from './-forms/branch-form/branchForm-config';
 import { addBranch } from '@/api/branches/branches.post';
 import { branchFormSchema } from './-forms/branch-form/branchForm-schema';
 
-export const Route = createFileRoute('/_app/register/branch')({
+export const Route = createFileRoute('/_app/manage/branch')({
   component: RouteComponent,
 })
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/branch", label: "registration.branch" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/branch", label: "registration.branch" }
 ]
 
 
@@ -33,7 +33,7 @@ function RouteComponent() {
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
       
       <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.branch")}</Typography>
+        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.branch')}</Typography>
           <Form 
             key={key} 
             reset={() => {

@@ -1,5 +1,5 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import LinkRouter from "@/routes/_app/register/-components/LinkRouter";
+import LinkRouter from "./LinkRouter";
 import { useTranslationContext } from "@/providers/TranslationContext";
 import type { ExtendedLinkOptions } from "@/types/ExtendedLinkOptions";
 import type { SxProps, Theme } from "@mui/material";
@@ -10,7 +10,7 @@ export default function CustomBreadcrumbs({ breadcrumbsOptions }: { breadcrumbsO
   const {t} = useTranslationContext();
   
   return (
-    <Breadcrumbs separator=">" >
+    <Breadcrumbs separator=">" sx={{ marginBottom: 8 }}>
       {
         breadcrumbsOptions.map((option, idx) => {
           const style: SxProps<Theme> = 

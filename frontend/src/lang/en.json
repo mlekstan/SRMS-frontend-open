@@ -3,7 +3,7 @@
   "menu": {
     "rentalService": "Rental service",
     "salesService": "Sales service",
-    "registration": "Registration",
+    "manage": "Manage",
     "settings": "Settings"
   },
   "languages": {
@@ -17,6 +17,18 @@
   "salesService": {
 
   },
+
+  "manage": {
+    "clients": "Clients",
+    "items": "Items",
+    "cards": "Cards",
+    "categories": "Categories",
+    "subcategories": "Subcategories",
+    "branches": "Branches",
+    "driveTypes": "Drive types",
+    "users": "Users"
+  },
+
   "registration": {
     
     "client": "Add client",
@@ -110,6 +122,36 @@
     "user.form.user.branch": "Branch",
     "user.form.user.password": "Password"
   },
+
+  "view": {
+    "clients": "Dispaly clients",
+    "items": "Display items",
+    "cards": "Dispaly cards",
+    "categories": "Display categories",
+    "subcategories": "Display subcategories",
+    "branches": "Dispaly branches",
+    "driveTypes": "Dispaly drive types",
+    "users": "Display users",
+    "users.table.search": "Search user",
+    "users.table.column.id": "ID",
+    "users.table.column.firstName": "First name",
+    "users.table.column.middleName": "Middle name",
+    "users.table.column.lastName": "Last name",
+    "users.table.column.email": "E-mail",
+    "users.table.column.areaCode": "Area code",
+    "users.table.column.phoneNumber": "Phone number",
+    "users.table.column.dateJoined": "Date joined",
+    "users.table.column.branchName": "Branch"
+  },
+
+  "edit": {
+    "user": "Edit user"
+  },
+
+  "table": {
+    "rowsPerPage": "Rows per page:"
+  },
+
   "settings": {
     "lang": "Language"
   },
@@ -119,12 +161,18 @@
   },
   "successDialog": {
     "title": "Success",
-    "info": "Form submitted successfully.",
+    "info": {
+      "submit": "Form submitted successfully."
+    },
     "button": "Close"
   },
   "failureDialog": {
     "title": "Failure",
-    "info": "Error occured during form submission.",
+    "info": {
+      "submit": "Error occured during form submission.",
+      "loader": "Error occured during page loading.",
+      "data": "Can't get necessary data"
+    },
     "message": "Message: {{message}}",
     "button": "Close"
   },

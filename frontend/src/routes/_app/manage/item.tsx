@@ -20,7 +20,7 @@ import { getBranches } from "@/api/branches/branches.get";
 
 
 
-export const Route = createFileRoute('/_app/register/item')({
+export const Route = createFileRoute('/_app/manage/item')({
   component: RouteComponent,
   loader: async ({ context }) => {
     
@@ -49,7 +49,7 @@ export const Route = createFileRoute('/_app/register/item')({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/register");
+          goBack(router, canGoBack, "/manage");
         }}
         duration={null}
         message={error.message}
@@ -61,8 +61,8 @@ export const Route = createFileRoute('/_app/register/item')({
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/item", label: "registration.item" },
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/item", label: "registration.item" },
 ];
 
 
@@ -133,7 +133,7 @@ function RouteComponent() {
           <FailureDialog 
             open={true} 
             closeFn={() => {
-              goBack(router, canGoBack, "/register");
+              goBack(router, canGoBack, "/manage");
             }} 
             duration={null} 
             message={

@@ -19,7 +19,7 @@ import { clientFormSchema } from "./-forms/client-form/clientForm-schema";
 
 
 
-export const Route = createFileRoute('/_app/register/client')({
+export const Route = createFileRoute('/_app/manage/client')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     
@@ -48,7 +48,7 @@ export const Route = createFileRoute('/_app/register/client')({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/register");
+          goBack(router, canGoBack, "/manage");
         }}
         duration={null}
         message={error.message}
@@ -60,8 +60,8 @@ export const Route = createFileRoute('/_app/register/client')({
 
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
-  { to: "/register", label: "menu.registration" },
-  { to: "/register/client", label: "registration.client" }
+  { to: "/manage", label: "menu.manage" },
+  { to: "/manage/client", label: "registration.client" }
 ]
 
 const ChildForm = memo(createChildForm(clientFormOpts));
@@ -122,7 +122,7 @@ function RouteComponent() {
         <FailureDialog 
           open={true} 
           closeFn={() => {
-            goBack(router, canGoBack, "/register");
+            goBack(router, canGoBack, "/manage");
           }} 
           duration={null} 
           message={error.message} 
