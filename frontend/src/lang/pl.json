@@ -47,7 +47,7 @@
     "client.form.residence.city": "Miasto",
     "client.form.residence.street": "Ulica",
     "client.form.residence.streetNumber": "Numer ulicy",
-    "client.form.residence.flatNumber": "Numer mieszkania",
+    "client.form.residence.flatNumber": "Numer lokalu",
     "client.form.residence.zipCode": "Kod pocztowy",
     
     "client.form.contact.title": "Dane kontaktowe",
@@ -125,12 +125,40 @@
 
   "view": {
     "clients": "Wyświetl klientów",
+    "clients.table.search": "Szukaj klienta",
+    "clients.table.column.id": "ID",
+    "clients.table.column.firstName": "Imię",
+    "clients.table.column.middleName": "Drugie imię",
+    "clients.table.column.lastName": "Nazwisko",
+    "clients.table.column.country": "Kraj",
+    "clients.table.column.city": "Miasto",
+    "clients.table.column.street": "Ulica",
+    "clients.table.column.streetNumber": "Numer ulicy",
+    "clients.table.column.flatNumber": "Numer lokalu",
+    "clients.table.column.zipCode": "Kod pocztowy",
+    "clients.table.column.email": "E-mail",
+    "clients.table.column.areaCode": "Numer kierunkowy",
+    "clients.table.column.phoneNumber": "Numer telefonu",
+    "clients.table.column.identityCardNumber": "Numer dokumentu",
+
     "items": "Wyświetl sprzęty",
     "cards": "Wyświetl karty",
     "categories": "Wyświetl kategorie",
     "subcategories": "Wyswietl podkategorie",
+    
     "branches": "Wyświetl oddziały",
+    "branches.table.search": "Szukaj oddziału",
+    "branches.table.column.id": "ID",
+    "branches.table.column.name": "Nazwa",
+    "branches.table.column.country": "Kraj",
+    "branches.table.column.city": "Miasto",
+    "branches.table.column.street": "Ulica",
+    "branches.table.column.streetNumber": "Numer ulicy",
+    "branches.table.column.flatNumber": "Numer lokalu",
+    "branches.table.column.zipCode": "Kod pocztowy",
+
     "driveTypes": "Wyświetl rodzaje napędu",
+
     "users": "Wyświetl użytkowników",
     "users.table.search": "Szukaj użytkownika",
     "users.table.column.id": "ID",
@@ -145,6 +173,13 @@
   },
 
   "edit": {
+    "client": "Edytuj klienta",
+    "item": "Edytuj sprzęt",
+    "card": "Edytuj kartę",
+    "category": "Edytuj kategorię",
+    "subcategory": "Edytuj podkategorię",
+    "branch": "Edytuj oddział",
+    "driveType": "Edytuj rodzaj napędu",
     "user": "Edytuj użytkownika"
   },
 

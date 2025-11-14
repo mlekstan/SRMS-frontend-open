@@ -23,9 +23,9 @@ const tiles: ExtendedLinkOptions[] = [
   { to: "/manage/card", label: "manage.cards", imgSrc: drivingLicenseImg },
   { to: "/manage/category", label: "manage.categories", imgSrc: categories },
   { to: "/manage/subcategory", label: "manage.subcategories", imgSrc: subcategoriesImg },
-  { to: "/manage/branch", label: "manage.branches", imgSrc: branchesImg },
+  { to: "/manage/branches/create", label: "manage.branches", imgSrc: branchesImg },
   { to: "/manage/drive-type", label: "manage.driveTypes", imgSrc: driveType },
-  { to: "/manage/users", label: "manage.users", imgSrc: addUser },
+  { to: "/manage/users/create", label: "manage.users", imgSrc: addUser },
 ]
 
 

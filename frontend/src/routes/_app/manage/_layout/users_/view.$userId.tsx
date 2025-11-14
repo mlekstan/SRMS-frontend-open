@@ -1,42 +1,42 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { userFormOpts } from '../-forms/user-form/userForm-options';
-import { getBranches } from '@/api/branches/branches.get';
+import { userFormOpts } from '../../-forms/user-form/userForm-options';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../-components/FailureDialog';
-import { goBack } from '../-forms/goBack';
-import { getUsers } from '@/api/users/users.get';
+import { FailureDialog } from '../../-components/FailureDialog';
+import { goBack } from '../../-forms/goBack';
 import { memo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../-components/FormPaper';
+import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
 import { Typography } from '@mui/material';
-import Form from '../-forms/Form';
-import { userFormConfig } from '../-forms/user-form/userForm-config';
-import { userFormSchema } from '../-forms/user-form/userForm-schema';
-import { createChildForm } from '../-forms/createChildForm';
+import Form from '../../-forms/Form';
+import { userFormConfig } from '../../-forms/user-form/userForm-config';
+import { userFormSchema } from '../../-forms/user-form/userForm-schema';
+import { createChildForm } from '../../-forms/createChildForm';
 import type { Leaves } from '@/types/Leaves';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../-components/CustomBreadcrumbs';
-import { putUsers } from '@/api/users/users.put';
+import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { apiGet } from '@/api/apiGet';
+import type { Branch, User } from '@/api/types';
+import { apiPut } from '@/api/apiPut';
 
 type FormFields = Leaves<typeof userFormOpts.defaultValues>;
 type FieldsValuesMap = Record<FormFields, string | number>;
 
 export const Route = createFileRoute(
-  "/_app/manage/users/view/$userId",
+  "/_app/manage/_layout/users/view/$userId",
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
     
     await context.queryClient.fetchQuery({
       queryKey: ["braches"],
-      queryFn: () => getBranches(),
+      queryFn: () => apiGet<Branch>("/branches"),
       staleTime: 10000,
     });
     
     await context.queryClient.fetchQuery({
-      queryKey: ["user", params],
-      queryFn: () => getUsers(params.userId),
+      queryKey: ["user", params.userId],
+      queryFn: () => apiGet<User>("/users", params.userId),
       staleTime: 10000,
     });
 
@@ -66,7 +66,7 @@ export const Route = createFileRoute(
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/manage", label: "menu.manage" },
-  { to: "/manage/users", label: "registration.user" },
+  { to: "/manage/users/create", label: "registration.user" },
   { to: "/manage/users/view", label: "view.users" },
   { to: "/manage/users/view/$userId", label: "edit.user" }
 ];
@@ -79,8 +79,8 @@ function RouteComponent() {
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const branchesQuery = useQuery({ queryKey: ["branches"], queryFn: () => getBranches(), retry: 0, refetchInterval: 10000 });
-  const userQuery = useQuery({ queryKey: ["user", params.userId], queryFn: () => getUsers(params.userId), retry: 0, refetchInterval: 10000 });
+  const branchesQuery = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>("/branches"), retry: 0, refetchInterval: 10000 });
+  const userQuery = useQuery({ queryKey: ["user", params.userId], queryFn: () => apiGet<User>("/users", params.userId), retry: 0, refetchInterval: 10000 });
   const {t} = useTranslationContext();
 
   let initialFieldsValuesMap: FieldsValuesMap | undefined;
@@ -96,7 +96,6 @@ function RouteComponent() {
       "userData.password": "",
     };
   }
-
 
   return (
     <>
@@ -117,7 +116,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => putUsers(params.userId, value)}
+              requestFn={(value) => apiPut("/users", params.userId, value)}
               formOptions={userFormOpts}
               validationSchema={userFormSchema}
               childFormComponent={ChildForm}
@@ -158,4 +157,3 @@ function RouteComponent() {
     </>
   );
 }
-

@@ -1,4 +1,3 @@
-import { getBranches } from '@/api/branches/branches.get';
 import { Loader } from '@/routes/-components/Loader';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { memo, useState } from 'react';
@@ -6,24 +5,26 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
 import { Typography } from '@mui/material';
-import { addUser } from '@/api/users/users.post';
-import { FailureDialog } from '../-components/FailureDialog';
-import { goBack } from '../-forms/goBack';
-import { createChildForm } from '../-forms/createChildForm';
-import { userFormOpts } from '../-forms/user-form/userForm-options';
-import { FormPaper, FormPaperContainer } from '../-components/FormPaper';
-import Form from '../-forms/Form';
-import { userFormSchema } from '../-forms/user-form/userForm-schema';
-import { userFormConfig } from '../-forms/user-form/userForm-config';
-import CustomBreadcrumbs from '../-components/CustomBreadcrumbs';
+import { FailureDialog } from '../../-components/FailureDialog';
+import { goBack } from '../../-forms/goBack';
+import { createChildForm } from '../../-forms/createChildForm';
+import { userFormOpts } from '../../-forms/user-form/userForm-options';
+import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
+import Form from '../../-forms/Form';
+import { userFormSchema } from '../../-forms/user-form/userForm-schema';
+import { userFormConfig } from '../../-forms/user-form/userForm-config';
+import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { apiGet } from '@/api/apiGet';
+import type { Branch } from '@/api/types';
+import { apiPost } from '@/api/apiPost';
 
-export const Route = createFileRoute('/_app/manage/users/create')({
+export const Route = createFileRoute('/_app/manage/_layout/users/create')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
-      queryFn: getBranches,
+      queryFn: () => apiGet<Branch>("/branches"),
       staleTime: 10000,
     })
 
@@ -66,7 +67,7 @@ function RouteComponent() {
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["branches"], queryFn: getBranches, retry: 0, refetchInterval: 10000 });
+  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>("/branches"), retry: 0, refetchInterval: 10000 });
   const {t} = useTranslationContext();
   
   console.log(Object.keys(userFormOpts.defaultValues.userData))
@@ -86,7 +87,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={addUser}
+              requestFn={(value) => apiPost("/users", value)}
               formOptions={userFormOpts}
               validationSchema={userFormSchema}
               childFormComponent={ChildForm}
@@ -109,7 +110,7 @@ function RouteComponent() {
           open={true} 
           closeFn={() => {
             goBack(router, canGoBack, "/manage");
-          }} 
+          }}
           duration={null}
           info={"failureDialog.info.data"}
           message={error.message}
@@ -118,5 +119,3 @@ function RouteComponent() {
     </>
   );
 }
-
-

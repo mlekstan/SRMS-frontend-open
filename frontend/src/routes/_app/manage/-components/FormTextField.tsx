@@ -27,7 +27,7 @@ function FormTextField({ props }) {
   const {t} = useTranslationContext();
 
   const { label, endAdornment, required, disabled, type, imaskProps } = props;
-  const value = disabled ? "" : field.state.value ?? "";
+  const value = disabled ? "" : String(field.state.value) ?? "";
 
 
   useEffect(() => {

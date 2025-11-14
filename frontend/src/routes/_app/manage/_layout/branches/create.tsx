@@ -1,24 +1,24 @@
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { createFileRoute } from '@tanstack/react-router'
-import { branchFormOpts } from './-forms/branch-form/branchForm-options';
-import { createChildForm } from './-forms/createChildForm';
 import { memo, useState } from 'react';
+import { createChildForm } from '../../-forms/createChildForm';
+import { branchFormOpts } from '../../-forms/branch-form/branchForm-options';
 import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from './-components/FormPaper';
-import CustomBreadcrumbs from './-components/CustomBreadcrumbs';
+import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
+import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
-import Form from './-forms/Form';
-import { branchFormConfig } from './-forms/branch-form/branchForm-config';
-import { addBranch } from '@/api/branches/branches.post';
-import { branchFormSchema } from './-forms/branch-form/branchForm-schema';
+import Form from '../../-forms/Form';
+import { branchFormSchema } from '../../-forms/branch-form/branchForm-schema';
+import { branchFormConfig } from '../../-forms/branch-form/branchForm-config';
+import { apiPost } from '@/api/apiPost';
 
-export const Route = createFileRoute('/_app/manage/branch')({
+export const Route = createFileRoute('/_app/manage/_layout/branches/create')({
   component: RouteComponent,
 })
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/manage", label: "menu.manage" },
-  { to: "/manage/branch", label: "registration.branch" }
+  { to: "/manage/branches/create", label: "registration.branch" }
 ]
 
 
@@ -39,7 +39,7 @@ function RouteComponent() {
             reset={() => {
               setKey(prev => prev + 1)
             }} 
-            requestFn={addBranch}
+            requestFn={(value) => apiPost("/branches", value)}
             formOptions={branchFormOpts}
             validationSchema={branchFormSchema}
             childFormComponent={ChildForm}

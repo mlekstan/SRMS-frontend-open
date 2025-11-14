@@ -1,6 +1,18 @@
 import { appApiClient } from "@/api/ApiClient";
 
-export async function getBranches() {
+
+export type Branch = {
+  id: number;
+  name: string;
+  country: string;
+  city: string;
+  street: string;
+  streetNumber: number;
+  flatNumber: number;
+  zipCode: string;
+}
+
+export async function getBranches(): Promise<Branch[]> {
   try {
     const response = await appApiClient.makeRequest("/branches", {
       method: "GET",

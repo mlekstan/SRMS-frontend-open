@@ -1,22 +1,5 @@
 import { appApiClient } from "@/api/ApiClient";
 
-type Branch = {
-  id: number,
-  name: string
-}
-
-export type User = {
-  id: number,
-  firstName: string,
-  middleName: string,
-  lastName: string,
-  email: string,
-  areaCode: string,
-  phoneNumber: string,
-  dateJoined: Date,
-  branch: Branch,
-}
-
 export async function getUsers(): Promise<User[]>; 
 export async function getUsers(id: string): Promise<User>;
 export async function getUsers(id?: string) {

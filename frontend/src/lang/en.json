@@ -125,12 +125,40 @@
 
   "view": {
     "clients": "Dispaly clients",
+    "clients.table.search": "Search client",
+    "clients.table.column.id": "ID",
+    "clients.table.column.firstName": "First name",
+    "clients.table.column.middleName": "Middle name",
+    "clients.table.column.lastName": "Last name",
+    "clients.table.column.country": "Country",
+    "clients.table.column.city": "City",
+    "clients.table.column.street": "Street",
+    "clients.table.column.streetNumber": "Street number",
+    "clients.table.column.flatNumber": "Flat number",
+    "clients.table.column.zipCode": "Zip code",
+    "clients.table.column.email": "E-mail",
+    "clients.table.column.areaCode": "Area code",
+    "clients.table.column.phoneNumber": "Phone number",
+    "clients.table.column.identityCardNumber": "Identity card number",
+
     "items": "Display items",
     "cards": "Dispaly cards",
     "categories": "Display categories",
     "subcategories": "Display subcategories",
+    
     "branches": "Dispaly branches",
+    "branches.table.search": "Search branch",
+    "branches.table.column.id": "ID",
+    "branches.table.column.name": "Name",
+    "branches.table.column.country": "Country",
+    "branches.table.column.city": "City",
+    "branches.table.column.street": "Street",
+    "branches.table.column.streetNumber": "Street number",
+    "branches.table.column.flatNumber": "Flat number",
+    "branches.table.column.zipCode": "Zip code",
+
     "driveTypes": "Dispaly drive types",
+    
     "users": "Display users",
     "users.table.search": "Search user",
     "users.table.column.id": "ID",
@@ -145,6 +173,13 @@
   },
 
   "edit": {
+    "client": "Edit client",
+    "item": "Edit item",
+    "card": "Edit card",
+    "category": "Edit category",
+    "subcategory": "Edit subcategory",
+    "branch": "Edit branch",
+    "driveType": "Edit drive type",
     "user": "Edit user"
   },
 

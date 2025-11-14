@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export type CustomTabProps = {
   to: LinkOptions["to"],
-  tabName: LangKeys,
+  name: LangKeys,
 }
 
 
@@ -56,7 +56,7 @@ export function CustomTabs({ props }: { props: CustomTabProps[] }) {
         props.map((tab, idx) => (
           <Tab
             key={idx}
-            label={t(tab.tabName)}
+            label={t(tab.name)}
           />
         ))
       }
