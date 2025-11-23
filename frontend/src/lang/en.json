@@ -140,6 +140,7 @@
     "clients.table.column.areaCode": "Area code",
     "clients.table.column.phoneNumber": "Phone number",
     "clients.table.column.identityCardNumber": "Identity card number",
+    "clients.table.column.dateJoined": "Date joined",  
 
     "items": "Display items",
     "cards": "Dispaly cards",
@@ -174,6 +175,10 @@
 
   "edit": {
     "client": "Edit client",
+    "client.table.column.barcode": "Barcode",
+    "client.table.column.isTemp": "Temporary",
+    "client.table.column.isReturned": "Returned",
+     
     "item": "Edit item",
     "card": "Edit card",
     "category": "Edit category",

@@ -140,6 +140,7 @@
     "clients.table.column.areaCode": "Numer kierunkowy",
     "clients.table.column.phoneNumber": "Numer telefonu",
     "clients.table.column.identityCardNumber": "Numer dokumentu",
+    "clients.table.column.dateJoined": "Data dołączenia", 
 
     "items": "Wyświetl sprzęty",
     "cards": "Wyświetl karty",
@@ -174,6 +175,10 @@
 
   "edit": {
     "client": "Edytuj klienta",
+    "client.table.column.barcode": "Kod kreskowy",
+    "client.table.column.isTemp": "Tymczasowa",
+    "client.table.column.isReturned": "Zwrócona",
+
     "item": "Edytuj sprzęt",
     "card": "Edytuj kartę",
     "category": "Edytuj kategorię",
