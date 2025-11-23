@@ -18,7 +18,7 @@ export const Route = createFileRoute('/_app/manage/_layout/branches/view/')({
 
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
-      queryFn: () => apiGet<Branch>("/branches"),
+      queryFn: () => apiGet<Branch>({ url: "/branches" }),
       staleTime: 10000,
     });
 
@@ -59,7 +59,7 @@ function RouteComponent() {
   const navigate = useNavigate();
   const { data, error, isSuccess, isPending, isError } = useQuery({ 
     queryKey: ["branches"], 
-    queryFn: () => apiGet<Branch>("/branches"), 
+    queryFn: () => apiGet<Branch>({ url: "/branches" }), 
     retry: 0, 
     refetchInterval: 10000 
   });

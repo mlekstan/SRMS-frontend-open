@@ -32,7 +32,7 @@ export const Route = createFileRoute(
 
     await context.queryClient.fetchQuery({
       queryKey: ["branch", params.branchId],
-      queryFn: () => apiGet<Branch>("/branches", params.branchId),
+      queryFn: () => apiGet<Branch>({ url: "/branches", id: params.branchId }),
       staleTime: 10000,
     });
 
@@ -77,7 +77,7 @@ function RouteComponent() {
   const params = Route.useParams();
   const { data, error, isSuccess, isPending, isError } = useQuery({
     queryKey: ["branch", params.branchId], 
-    queryFn: () => apiGet<Branch>("/branches", params.branchId), 
+    queryFn: () => apiGet<Branch>({ url: "/branches", id: params.branchId }), 
     retry: 0, 
     refetchInterval: 10000 
   });
@@ -104,7 +104,7 @@ function RouteComponent() {
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.branch')}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.branch')}</Typography>
               <Form 
                 key={key}
                 initialFieldsValuesMap={initialFieldsValuesMap}
