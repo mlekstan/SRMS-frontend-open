@@ -6,10 +6,10 @@ type Option = {
 
 type BaseFieldConfig = {
   fieldName: string;
-  label: LangKeys;
+  label?: LangKeys;
   endAdornment?: string;
-  required: boolean;
-  type: string;
+  required?: boolean;
+  type?: string;
   imaskProps?: object;
   validators?: Record<string, ({ value }: { value: string }) => LangKeys | undefined>;
   componentName?: string;
