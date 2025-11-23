@@ -65,11 +65,13 @@ export default function Form({
     }
   });
 
+
   useEffect(() => {
     if (initialFieldsValuesMap) {
       Object.keys(initialFieldsValuesMap).forEach((fieldName) => {
-        form.setFieldValue(fieldName, initialFieldsValuesMap[fieldName]);
+        form.setFieldValue(fieldName, (initialFieldsValuesMap[fieldName] === null) ? null : String(initialFieldsValuesMap[fieldName]));
       });
+      console.log("Form values", form.store.state.values)
     }
   })
 

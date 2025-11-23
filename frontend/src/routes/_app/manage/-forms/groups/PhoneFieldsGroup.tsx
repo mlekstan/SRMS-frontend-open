@@ -72,9 +72,9 @@ export const PhoneFieldsGroup = withFieldGroup({
                     disabled: !field.form.getFieldValue(fields["areaCode"]), 
                     type: "text", 
                     imaskProps: { 
-                      mask: `+${field.form.getFieldValue(fields["areaCode"])}} ${"0".repeat(13)}`, 
+                      mask: `+${field.form.getFieldValue(fields["areaCode"])} ${"0".repeat(13)}`, 
                       overwrite: false, 
-                      lazy: true 
+                      lazy: true,
                     }
                   }
                 } 
