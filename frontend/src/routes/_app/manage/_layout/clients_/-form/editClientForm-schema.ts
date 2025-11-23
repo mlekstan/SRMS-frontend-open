@@ -19,25 +19,10 @@ export const formatName = (val: string) => {
   return newVal;
 }
 
-export const clientFormSchema = z.object(
+export const editClientFormSchema = z.object(
   {
     cardData: z.object({
-      cardId: z.union([z.string(), z.number()]).transform(
-        (val) => {
-          if (!val) {
-            return null;
-          }
-          if (typeof val === "string") {
-            return Number(val);
-          }
-  
-          return val;
-        }
-      ),
-      isTemp: z.string().refine(
-        (val) => (val === "True" || val === "False") ? true : false,
-        {error: "Must be 'True' or 'False'"}
-      ).transform((val) => (val === "True") ? true : false) 
+      cards: z.any()
     }),
     personalData: z.object({
       firstName: z.string().regex(

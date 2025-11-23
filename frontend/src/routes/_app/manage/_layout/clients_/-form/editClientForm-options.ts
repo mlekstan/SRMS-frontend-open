@@ -1,11 +1,9 @@
 import { formOptions } from "@tanstack/react-form";
 
-
-export const clientFormOpts = formOptions({
+export const editClientFormOpts = formOptions({
   defaultValues: {
     cardData: {
-      cardId: '',
-      isTemp: '',
+      cards: Array<object>(),
     },
     personalData: {
       firstName: '',

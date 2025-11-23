@@ -1,51 +1,15 @@
-import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup"
-import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
-import type { FormConfig } from "../types/types";
-import boolOptions from "@/assets/data/bool.json";
-import { apiGet } from "@/api/apiGet";
+import { PhoneFieldsGroup } from "../../../-forms/groups/PhoneFieldsGroup";
+import { ResidenceFieldsGroup } from "../../../-forms/groups/ResidenceFieldsGroup";
+import type { FormConfig } from "../../../-forms/types/types";
 
 
 type keys = "cardFieldsConfig" | "personalFieldsConfig" | "residenceFieldsConfig" | "contactFieldsConfig";
 
-export const clientFormConfig: FormConfig<keys> = {
+export const editClientFormConfig: FormConfig<keys> = {
   cardFieldsConfig: [
     { 
-      fieldName: "cardData.cardId",
-      label: "registration.client.form.card.barcode", 
-      required: true, 
-      type: 'text', 
-      // imaskProps: { mask: "0".repeat(13) , overwrite: true, lazy: false, placeholderChar: '_' },
-      validators: {
-        onChange: ({ value }) => {
-          const length = value.length
-          if (length === 0) {
-            return ("validation.empty");
-          }
-        },
-      },
-      componentName: "FormAutocomplete",
-      optionLabel: "barcode",
-      optionValue: "id",
-      queryFn: () => apiGet({ url: "/cards", searchParams: { active: "true" } }),
-      queryKey: "activeCards",
-    },
-    { 
-      fieldName: "cardData.isTemp",
-      label: "registration.client.form.card.isTemp",
-      required: true, 
-      type: 'text', 
-      imaskProps: {},
-      validators: {
-        onChange: ({ value }) => {
-          if (!value) {
-            return ("validation.empty");
-          }
-        },
-      },
-      componentName: "FormAutocomplete",
-      options: boolOptions,
-      optionLabel: "label",
-      optionValue: "value"
+      fieldName: "cardData.cards",
+      componentName: "EditClientCardsTable",
     },
   ],
   personalFieldsConfig: [

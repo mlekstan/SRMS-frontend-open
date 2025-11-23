@@ -18,7 +18,7 @@ export const Route = createFileRoute('/_app/manage/')({
 
 
 const tiles: ExtendedLinkOptions[] = [
-  { to: "/manage/client", label: "manage.clients", imgSrc: addFriendImg },
+  { to: "/manage/clients/create", label: "manage.clients", imgSrc: addFriendImg },
   { to: "/manage/item", label: "manage.items", imgSrc: addImg },
   { to: "/manage/card", label: "manage.cards", imgSrc: drivingLicenseImg },
   { to: "/manage/category", label: "manage.categories", imgSrc: categories },
