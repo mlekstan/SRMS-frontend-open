@@ -30,13 +30,13 @@ export const Route = createFileRoute(
     
     await context.queryClient.fetchQuery({
       queryKey: ["braches"],
-      queryFn: () => apiGet<Branch>("/branches"),
+      queryFn: () => apiGet<Branch>({ url: "branches" }),
       staleTime: 10000,
     });
     
     await context.queryClient.fetchQuery({
       queryKey: ["user", params.userId],
-      queryFn: () => apiGet<User>("/users", params.userId),
+      queryFn: () => apiGet<User>({ url: "/users", id: params.userId }),
       staleTime: 10000,
     });
 
@@ -79,8 +79,18 @@ function RouteComponent() {
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const branchesQuery = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>("/branches"), retry: 0, refetchInterval: 10000 });
-  const userQuery = useQuery({ queryKey: ["user", params.userId], queryFn: () => apiGet<User>("/users", params.userId), retry: 0, refetchInterval: 10000 });
+  const branchesQuery = useQuery({ 
+    queryKey: ["branches"], 
+    queryFn: () => apiGet<Branch>({ url: "/branches" }), 
+    retry: 0, 
+    refetchInterval: 10000 
+  });
+  const userQuery = useQuery({ 
+    queryKey: ["user", params.userId], 
+    queryFn: () => apiGet<User>({ url: "/users", id: params.userId }), 
+    retry: 0, 
+    refetchInterval: 10000 
+  });
   const {t} = useTranslationContext();
 
   let initialFieldsValuesMap: FieldsValuesMap | undefined;

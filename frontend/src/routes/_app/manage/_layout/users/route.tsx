@@ -1,4 +1,4 @@
-import { Box, Paper, Tab, Tabs } from '@mui/material';
+import { Box } from '@mui/material';
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 import { CustomTabs, type CustomTabProps } from '../../-components/CustomTabs';
 

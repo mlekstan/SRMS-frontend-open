@@ -1,4 +1,4 @@
-import type { User } from "@/api/users/users.get";
+import type { User } from "@/api/types";
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { createColumnHelper } from "@tanstack/react-table";
 

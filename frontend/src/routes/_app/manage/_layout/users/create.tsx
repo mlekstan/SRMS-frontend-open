@@ -24,7 +24,7 @@ export const Route = createFileRoute('/_app/manage/_layout/users/create')({
     
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
-      queryFn: () => apiGet<Branch>("/branches"),
+      queryFn: () => apiGet<Branch>({ url: "/branches" }),
       staleTime: 10000,
     })
 
@@ -67,7 +67,12 @@ function RouteComponent() {
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const { data, error, isSuccess, isPending, isError } = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>("/branches"), retry: 0, refetchInterval: 10000 });
+  const { data, error, isSuccess, isPending, isError } = useQuery({ 
+    queryKey: ["branches"], 
+    queryFn: () => apiGet<Branch>({ url: "/branches" }), 
+    retry: 0, 
+    refetchInterval: 10000 
+  });
   const {t} = useTranslationContext();
   
   console.log(Object.keys(userFormOpts.defaultValues.userData))
