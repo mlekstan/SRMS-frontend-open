@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useContext } from "react";
+import { forwardRef, useEffect, useContext, useRef } from "react";
 import { IMaskInput } from "react-imask";
 import { InputAdornment, TextField } from "@mui/material";
 import { useFieldContext } from "../-forms/hooks/form-context";
@@ -7,13 +7,26 @@ import { useTranslationContext } from "@/providers/TranslationContext";
 
 
 const CustomInput = forwardRef<HTMLInputElement, any>(function CustomInput(props, ref) {
-  const { component: Component, imaskProps, onChange, ...other } = props;
+  const { component: Component, imaskProps, value, onChange, ...other } = props;
+  const field = useFieldContext();
+  const maskRef = useRef<any>(null);
+
+  console.log("CustomInput", field.name, value, field.state.value)
+
+  useEffect(() => {
+    if (maskRef.current.maskRef && value != maskRef.current.maskRef.value) {
+      console.log("MaskRef", field.name, maskRef)
+      field.setValue(maskRef.current.maskRef.value);
+    }
+  });
 
   return (
     <Component 
       {...other} 
       {...imaskProps}
-      inputRef={ref} 
+      value={value}
+      inputRef={ref}
+      ref={maskRef}
       onAccept={(value: any) => onChange({ target: {value} })} 
     />
   );
@@ -27,14 +40,15 @@ function FormTextField({ props }) {
   const {t} = useTranslationContext();
 
   const { label, endAdornment, required, disabled, type, imaskProps } = props;
-  const value = disabled ? "" : String(field.state.value) ?? "";
-
+  const value = disabled ? "" : String(field.state.value ?? "");
 
   useEffect(() => {
     if (field.state.value === null) {
       field.setValue("");
     }
+  });
 
+  useEffect(() => {
     setAccordionValidState((prev) => {
       const copy = {...prev};
       copy[field.name] = field.state.meta.isValid;
@@ -42,10 +56,9 @@ function FormTextField({ props }) {
     });
   }, [field.state.meta.isValid]);
 
-
-
   console.log("Text field", field.name, field.state.value, value);
 
+  
   return (
     <TextField 
       helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
@@ -55,8 +68,7 @@ function FormTextField({ props }) {
       value={value}
       type={type}
       disabled={disabled}
-      onChange={(e) => {  
-        console.log(e.target.value)
+      onChange={(e) => {
         field.handleChange(e.target.value)
       }}
       slotProps={{
@@ -66,6 +78,7 @@ function FormTextField({ props }) {
           inputProps: {
             component: IMaskInput,
             imaskProps: imaskProps,
+            value: value,
           },
         },
       }}
