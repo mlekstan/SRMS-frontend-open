@@ -143,6 +143,17 @@
     "clients.table.column.dateJoined": "Data dołączenia", 
 
     "items": "Wyświetl sprzęty",
+    "items.table.search": "Szukaj sprzętu",
+    "items.table.column.id": "ID",
+    "items.table.column.name": "Nazwa",
+    "items.table.column.shortName": "Krótka nazwa",
+    "items.table.column.barcode": "Kod kreskowy",
+    "items.table.column.marketValue": "Wartość rynkowa",
+    "items.table.column.forSale": "Na sprzedaż",
+    "items.table.column.sellPrice": "Cena sprzedaży",
+    "items.table.column.subcategory": "Podkategoria",
+    "items.table.column.branch": "Oddział",
+
     "cards": "Wyświetl karty",
     "categories": "Wyświetl kategorie",
     "subcategories": "Wyswietl podkategorie",

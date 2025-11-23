@@ -1,7 +1,7 @@
-import { getSubcategories } from "@/api/subcategories/subcategories.get";
 import type { FormConfig } from "../types/types";
 import boolOptions from "@/assets/data/bool.json";
-import { getBranches } from "@/api/branches/branches.get";
+import { apiGet } from "@/api/apiGet";
+import type { Branch, Subcategory } from "@/api/types";
 
 type keys = "basicFieldsConfig" | "saleFieldsConfig"
 
@@ -39,7 +39,7 @@ export const itemFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "name",
       optionValue: "id",
-      queryFn: getSubcategories,
+      queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
       queryKey: "subcategories",
     },
     {
@@ -57,10 +57,10 @@ export const itemFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "name",
       optionValue: "id",
-      queryFn: getBranches,
+      queryFn: () => apiGet<Branch>({ url: "/branches" }),
       queryKey: "branches"
     },
-    { 
+    {
       fieldName: "basicData.name",
       label: "registration.item.form.base.name", 
       required: true,
@@ -106,7 +106,7 @@ export const itemFormConfig: FormConfig<keys> = {
       type: 'text',
       validators: {
         onChange: ({ value }) => {
-          if (!value) {
+          if (value === "") {
             return ("validation.empty");
           }
         }

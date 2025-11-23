@@ -143,6 +143,17 @@
     "clients.table.column.dateJoined": "Date joined",  
 
     "items": "Display items",
+    "items.table.search": "Search item",
+    "items.table.column.id": "ID",
+    "items.table.column.name": "Name",
+    "items.table.column.shortName": "Short name",
+    "items.table.column.barcode": "Barcode",
+    "items.table.column.marketValue": "Market value",
+    "items.table.column.forSale": "For sale",
+    "items.table.column.sellPrice": "Sell price",
+    "items.table.column.subcategory": "Subcategory",
+    "items.table.column.branch": "Branch",
+
     "cards": "Dispaly cards",
     "categories": "Display categories",
     "subcategories": "Display subcategories",

@@ -1,4 +1,4 @@
-import type { Branch } from "@/api/branches/branches.get";
+import type { Branch } from "@/api/types";
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { createColumnHelper } from "@tanstack/react-table";
 

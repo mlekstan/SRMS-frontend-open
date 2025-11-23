@@ -12,6 +12,7 @@ import { useFieldContext } from "../../../../-forms/hooks/form-context";
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { TableTextField } from "./TableTextField";
 import { useTranslationContext } from "@/providers/TranslationContext";
+import boolOptions from "@/assets/data/bool.json";
 
 
 type RowDataType = {
@@ -23,18 +24,6 @@ type RowDataType = {
     isTemp: boolean;
   };
 }
-
-
-type BoolOption = {
-  label: LangKeys;
-  value: boolean;
-}
-
-
-const boolOptions: BoolOption[] = [
-  { label: "bool.yes", value: true },
-  { label: "bool.no", value: false },
-];
 
 const columnsTitles: LangKeys[] = [
   "edit.client.table.column.barcode",

@@ -1,4 +1,4 @@
 [
-  { "label": "bool.yes", "value": "True" },
-  { "label": "bool.no", "value": "False" }
+  { "label": "bool.yes", "value": true },
+  { "label": "bool.no", "value": false }
 ]

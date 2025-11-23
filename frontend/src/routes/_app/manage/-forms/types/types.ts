@@ -1,7 +1,7 @@
 import type { LangKeys } from "@/providers/TranslationProvider"
 
 type Option = {
-  [key: string]: string
+  [key: string]: string | boolean;
 }
 
 type BaseFieldConfig = {

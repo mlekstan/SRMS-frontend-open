@@ -51,12 +51,7 @@ export const itemFormSchema = z.object({
     )
   }),
   saleData: z.object({
-    forSale: z.string().refine(
-      (val) => (val === "True" || val === "False") ? true : false,
-      {error: "Must be 'True' or 'False'."}
-    ).transform(
-      (val) => (val === "True") ? true : false
-    ),
+    forSale: z.boolean(),
     sellPrice: z.string().refine(
       (val) => {
         const regexp = /^([\d ]+([.,]\d+)?)?$/;

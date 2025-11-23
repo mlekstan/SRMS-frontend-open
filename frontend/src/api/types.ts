@@ -55,3 +55,26 @@ export type Client = {
   dateJoined: Date;
   clientCards: CardClient[];
 }
+
+export type Subcategory = {
+  id: number;
+  name: string;
+}
+
+export type Item = {
+  id: number;
+  subcategory: {
+    id: number;
+    name: string;
+  };
+  branch: {
+    id: number;
+    name: string;
+  };
+  name: string;
+  shortName: string;
+  barcode: string;
+  marketValue: number;
+  forSale: boolean;
+  sellPrice: number;
+}

@@ -82,7 +82,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
 
   // value prop in MUI Autocomplete must be one options provided in options props. 
   // When the selected option is removed from Autocomplete value is changing to null.
-  const value = field.state.value ? options.find((option: any) => option[optionValue] === field.state.value) || null : null; 
+  const value = (field.state.value !== "") ? options.find((option: any) => option[optionValue] === field.state.value) || null : null; 
 
   console.log("Autocomplete", field.name, field.state.value, value);
 
