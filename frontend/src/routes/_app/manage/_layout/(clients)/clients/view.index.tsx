@@ -1,24 +1,24 @@
 import { Loader } from '@/routes/-components/Loader';
 import { createFileRoute, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
-import { FormPaperContainer } from '../../-components/FormPaper';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
+import { FormPaperContainer } from '../../../-components/FormPaper';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
-import { CustomTable } from '../../-components/tables/CustomTable';
-import { usersTableColumns } from '../../-components/tables/users-table-columns';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { CustomTable } from '../../../-components/tables/CustomTable';
 import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
-import type { User } from '@/api/types';
+import type { Client } from '@/api/types';
+import { clientsTableColumns } from '../../../-components/tables/clients-table-columns';
 
 
-export const Route = createFileRoute("/_app/manage/_layout/users/view/")({
+export const Route = createFileRoute("/_app/manage/_layout/(clients)/clients/view/")({
   component: RouteComponent,
   loader: async ({ context }) => {
     
     await context.queryClient.fetchQuery({
-      queryKey: ["users"],
-      queryFn: () => apiGet<User>({ url: "/users" }),
+      queryKey: ["clients"],
+      queryFn: () => apiGet<Client>({ url: "/clients" }),
       staleTime: 10000,
     });
   },
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/_app/manage/_layout/users/view/")({
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/manage/users/create");
+          goBack(router, canGoBack, "/manage/clients/create");
         }}
         duration={null}
         info={"failureDialog.info.loader"}
@@ -47,8 +47,8 @@ export const Route = createFileRoute("/_app/manage/_layout/users/view/")({
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/manage", label: "menu.manage" },
-  { to: "/manage/users/create", label: "registration.user" },
-  { to: "/manage/users/view", label: "view.users" }
+  { to: "/manage/clients/create", label: "registration.client" },
+  { to: "/manage/clients/view", label: "view.clients" }
 ];
 
 
@@ -57,11 +57,13 @@ function RouteComponent() {
   const canGoBack = useCanGoBack();
   const navigate = useNavigate();
   const { data, error, isSuccess, isPending, isError } = useQuery({ 
-    queryKey: ["users"], 
-    queryFn: () => apiGet<User>({ url: "/users" }), 
+    queryKey: ["clients"], 
+    queryFn: () => apiGet<Client>({ url: "/clients" }), 
     retry: 0, 
     refetchInterval: 10000 
   });
+
+  console.log(data)
 
   return (
     <>
@@ -70,10 +72,10 @@ function RouteComponent() {
         <FormPaperContainer>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
-            columns={usersTableColumns} 
+            columns={clientsTableColumns} 
             data={data} 
             rowsPerPageOptions={[5, 10, 15]}
-            onRowClick={(row) => navigate({ to: "/manage/users/view/$userId", params: { userId: row.id } })}
+            onRowClick={(row) => navigate({ to: "/manage/clients/view/$clientId", params: { clientId: row.id } })}
             />
         </FormPaperContainer>
       }
@@ -88,7 +90,7 @@ function RouteComponent() {
         <FailureDialog 
           open={true}
           closeFn={() => {
-            goBack(router, canGoBack, "/manage/users/create");
+            goBack(router, canGoBack, "/manage/clients/create");
           }}
           duration={null}
           info={"failureDialog.info.data"}

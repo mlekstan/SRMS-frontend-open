@@ -1,20 +1,20 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { userFormOpts } from '../../-forms/user-form/userForm-options';
+import { userFormOpts } from '../../../-forms/user-form/userForm-options';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
 import { memo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
+import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
 import { Typography } from '@mui/material';
-import Form from '../../-forms/Form';
-import { userFormConfig } from '../../-forms/user-form/userForm-config';
-import { userFormSchema } from '../../-forms/user-form/userForm-schema';
-import { createChildForm } from '../../-forms/createChildForm';
+import Form from '../../../-forms/Form';
+import { userFormConfig } from '../../../-forms/user-form/userForm-config';
+import { userFormSchema } from '../../../-forms/user-form/userForm-schema';
+import { createChildForm } from '../../../-forms/createChildForm';
 import type { Leaves } from '@/types/Leaves';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { apiGet } from '@/api/apiGet';
 import type { Branch, User } from '@/api/types';
 import { apiPut } from '@/api/apiPut';
@@ -23,7 +23,7 @@ type FormFields = Leaves<typeof userFormOpts.defaultValues>;
 type FieldsValuesMap = Record<FormFields, string | number>;
 
 export const Route = createFileRoute(
-  "/_app/manage/_layout/users/view/$userId",
+  "/_app/manage/_layout/(users)/users/view/$userId",
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {

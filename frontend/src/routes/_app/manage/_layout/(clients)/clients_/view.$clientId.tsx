@@ -1,30 +1,30 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useTranslationContext } from '@/providers/TranslationContext';
 import { apiGet } from '@/api/apiGet';
 import { useQuery } from '@tanstack/react-query';
-import type { Card, Client, User } from '@/api/types';
-import Form from '../../-forms/Form';
+import type { Card, Client } from '@/api/types';
+import Form from '../../../-forms/Form';
 import { memo, useState } from 'react';
 import { editClientFormOpts } from './-form/editClientForm-options';
-import { createChildForm } from '../../-forms/createChildForm';
+import { createChildForm } from '../../../-forms/createChildForm';
 import { editClientFormConfig } from './-form/editClientForm-config';
 import type { Leaves } from '@/types/Leaves';
 import { apiPut } from '@/api/apiPut';
 import { editClientFormSchema } from './-form/editClientForm-schema';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
 
 
 type FormFields = Leaves<typeof editClientFormOpts.defaultValues>;
 type FieldsValuesMap = Record<FormFields, any>;
 
 export const Route = createFileRoute(
-  '/_app/manage/_layout/clients/view/$clientId',
+  '/_app/manage/_layout/(clients)/clients/view/$clientId',
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
@@ -128,7 +128,7 @@ function RouteComponent() {
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("edit.client")}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.client')}</Typography>
             <Form 
               key={key}
               initialFieldsValuesMap={initialFiledsValueMap}

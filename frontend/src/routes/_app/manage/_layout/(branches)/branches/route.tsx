@@ -1,19 +1,19 @@
-import { Box } from '@mui/material';
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { CustomTabs, type CustomTabProps } from '../../-components/CustomTabs';
+import { CustomTabs, type CustomTabProps } from '../../../-components/CustomTabs';
+import { Box } from '@mui/material';
 
-export const Route = createFileRoute('/_app/manage/_layout/clients')({
+export const Route = createFileRoute('/_app/manage/_layout/(branches)/branches')({
   component: RouteComponent,
 })
 
 const tabs: CustomTabProps[] = [
   {
-    to: "/manage/clients/create",
-    name: "registration.client"
+    to: "/manage/branches/create",
+    name: "registration.branch"
   },
   {
-    to: "/manage/clients/view",
-    name: "view.clients"
+    to: '/manage/branches/view',
+    name: "view.branches"
   }
 ];
 

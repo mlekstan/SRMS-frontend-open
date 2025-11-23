@@ -1,24 +1,24 @@
 import { apiGet } from '@/api/apiGet';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
 import { Loader } from '@/routes/-components/Loader';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { memo, useState } from 'react';
-import { createChildForm } from '../../-forms/createChildForm';
-import { clientFormOpts } from '../../-forms/client-form/clientForm-options';
+import { createChildForm } from '../../../-forms/createChildForm';
+import { clientFormOpts } from '../../../-forms/client-form/clientForm-options';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
-import Form from '../../-forms/Form';
+import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
-import { clientFormSchema } from '../../-forms/client-form/clientForm-schema';
-import { clientFormConfig } from '../../-forms/client-form/clientForm-config';
+import { clientFormSchema } from '../../../-forms/client-form/clientForm-schema';
+import { clientFormConfig } from '../../../-forms/client-form/clientForm-config';
 import type { Card } from '@/api/types';
 
-export const Route = createFileRoute('/_app/manage/_layout/clients/create')({
+export const Route = createFileRoute('/_app/manage/_layout/(clients)/clients/create')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
 
@@ -81,7 +81,7 @@ function RouteComponent() {
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t("registration.client")}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.client')}</Typography>
             <Form 
               key={key} 
               reset={() => {

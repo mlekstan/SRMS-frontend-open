@@ -3,18 +3,18 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import type { Leaves } from '@/types/Leaves';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { memo, useState } from 'react';
-import { branchFormOpts } from '../../-forms/branch-form/branchForm-options';
+import { branchFormOpts } from '../../../-forms/branch-form/branchForm-options';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
-import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
+import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
-import Form from '../../-forms/Form';
-import { branchFormConfig } from '../../-forms/branch-form/branchForm-config';
-import { branchFormSchema } from '../../-forms/branch-form/branchForm-schema';
+import Form from '../../../-forms/Form';
+import { branchFormConfig } from '../../../-forms/branch-form/branchForm-config';
+import { branchFormSchema } from '../../../-forms/branch-form/branchForm-schema';
 import { useQuery } from '@tanstack/react-query';
-import { createChildForm } from '../../-forms/createChildForm';
+import { createChildForm } from '../../../-forms/createChildForm';
 import { apiPut } from '@/api/apiPut';
 import { apiGet } from '@/api/apiGet';
 import type { Branch } from '@/api/types';
@@ -25,7 +25,7 @@ type FieldsValuesMap = Record<FormFields, string | number>;
 
 
 export const Route = createFileRoute(
-  '/_app/manage/_layout/branches/view/$branchId',
+  '/_app/manage/_layout/(branches)/branches/view/$branchId',
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {

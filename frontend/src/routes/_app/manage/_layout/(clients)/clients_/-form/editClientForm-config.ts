@@ -1,6 +1,6 @@
-import { PhoneFieldsGroup } from "../../../-forms/groups/PhoneFieldsGroup";
-import { ResidenceFieldsGroup } from "../../../-forms/groups/ResidenceFieldsGroup";
-import type { FormConfig } from "../../../-forms/types/types";
+import { PhoneFieldsGroup } from "../../../../-forms/groups/PhoneFieldsGroup";
+import { ResidenceFieldsGroup } from "../../../../-forms/groups/ResidenceFieldsGroup";
+import type { FormConfig } from "../../../../-forms/types/types";
 
 
 type keys = "cardFieldsConfig" | "personalFieldsConfig" | "residenceFieldsConfig" | "contactFieldsConfig";

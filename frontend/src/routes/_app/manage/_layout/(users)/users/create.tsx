@@ -5,20 +5,20 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
 import { Typography } from '@mui/material';
-import { FailureDialog } from '../../-components/FailureDialog';
-import { goBack } from '../../-forms/goBack';
-import { createChildForm } from '../../-forms/createChildForm';
-import { userFormOpts } from '../../-forms/user-form/userForm-options';
-import { FormPaper, FormPaperContainer } from '../../-components/FormPaper';
-import Form from '../../-forms/Form';
-import { userFormSchema } from '../../-forms/user-form/userForm-schema';
-import { userFormConfig } from '../../-forms/user-form/userForm-config';
-import CustomBreadcrumbs from '../../-components/CustomBreadcrumbs';
+import { FailureDialog } from '../../../-components/FailureDialog';
+import { goBack } from '../../../-forms/goBack';
+import { createChildForm } from '../../../-forms/createChildForm';
+import { userFormOpts } from '../../../-forms/user-form/userForm-options';
+import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
+import Form from '../../../-forms/Form';
+import { userFormSchema } from '../../../-forms/user-form/userForm-schema';
+import { userFormConfig } from '../../../-forms/user-form/userForm-config';
+import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { apiGet } from '@/api/apiGet';
 import type { Branch } from '@/api/types';
 import { apiPost } from '@/api/apiPost';
 
-export const Route = createFileRoute('/_app/manage/_layout/users/create')({
+export const Route = createFileRoute('/_app/manage/_layout/(users)/users/create')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
     

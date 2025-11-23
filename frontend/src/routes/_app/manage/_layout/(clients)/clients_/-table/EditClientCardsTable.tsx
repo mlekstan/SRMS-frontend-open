@@ -8,7 +8,7 @@ import ReturnedIcon from '@mui/icons-material/CreditScore';
 import RemoveIcon from '@mui/icons-material/Remove';
 import TableAutocomplete from "./TableAutocomplete";
 import { useEffect, useState } from "react";
-import { useFieldContext } from "../../../-forms/hooks/form-context";
+import { useFieldContext } from "../../../../-forms/hooks/form-context";
 import type { LangKeys } from "@/providers/TranslationProvider";
 import { TableTextField } from "./TableTextField";
 import { useTranslationContext } from "@/providers/TranslationContext";
@@ -44,7 +44,7 @@ const columnsTitles: LangKeys[] = [
 
 
 export function EditClientCardsTable() {
-  const params = useParams({ from: "/_app/manage/_layout/clients/view/$clientId" });
+  const params = useParams({ from: "/_app/manage/_layout/(clients)/clients/view/$clientId" });
   const field = useFieldContext();
   const { t } = useTranslationContext();
   const [rows, setRows] = useState<Array<RowDataType>>(Array());
