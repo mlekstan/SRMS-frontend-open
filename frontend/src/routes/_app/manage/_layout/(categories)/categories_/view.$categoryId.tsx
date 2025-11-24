@@ -14,25 +14,25 @@ import { useQuery } from '@tanstack/react-query';
 import { createChildForm } from '../../../-forms/createChildForm';
 import { apiPut } from '@/api/apiPut';
 import { apiGet } from '@/api/apiGet';
-import type { Card } from '@/api/types';
-import { cardFormOpts } from '../../../-forms/card-form/cardForm-options';
-import { cardFormSchema } from '../../../-forms/card-form/cardForm-schema';
-import { cardFormConfig } from '../../../-forms/card-form/cardForm-config';
+import type { Category } from '@/api/types';
+import { categoryFormOpts } from '../../../-forms/category-form/categoryForm-options';
+import { categoryFormConfig } from '../../../-forms/category-form/categoryForm-config';
+import { categoryFormSchema } from '../../../-forms/category-form/categoryForm-schema';
 
 
-type FormFields = Leaves<typeof cardFormOpts.defaultValues>;
+type FormFields = Leaves<typeof categoryFormOpts.defaultValues>;
 type FieldsValuesMap = Record<FormFields, string | number>;
 
 
 export const Route = createFileRoute(
-  '/_app/manage/_layout/(cards)/cards/view/$cardId',
+  '/_app/manage/_layout/(categories)/categories/view/$categoryId',
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
 
     await context.queryClient.fetchQuery({
-      queryKey: ["card", params.cardId],
-      queryFn: () => apiGet<Card>({ url: "/cards", id: params.cardId }),
+      queryKey: ["category", params.categoryId],
+      queryFn: () => apiGet<Category>({ url: "/categories", id: params.categoryId }),
       staleTime: 10000,
     });
 
@@ -47,7 +47,7 @@ export const Route = createFileRoute(
         open={true}
         closeFn={() => {
           reset();
-          goBack(router, canGoBack, "/manage/cards/view");
+          goBack(router, canGoBack, "/manage/categories/view");
         }}
         duration={null}
         info={"failureDialog.info.loader"}
@@ -60,13 +60,13 @@ export const Route = createFileRoute(
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/manage", label: "menu.manage" },
-  { to: "/manage/cards/create", label: "registration.card" },
-  { to: "/manage/cards/view", label: "view.cards" },
-  { to: "/manage/cards/view/$cardId", label: "edit.card" }
+  { to: "/manage/categories/create", label: "registration.category" },
+  { to: "/manage/categories/view", label: "view.categories" },
+  { to: "/manage/categories/view/$categoryId", label: "edit.category" }
 ];
 
 
-const ChildForm = memo(createChildForm(cardFormOpts));
+const ChildForm = memo(createChildForm(categoryFormOpts));
 
 
 function RouteComponent() {
@@ -76,8 +76,8 @@ function RouteComponent() {
   const {t} = useTranslationContext();
   const params = Route.useParams();
   const { data, error, isSuccess, isPending, isError } = useQuery({
-    queryKey: ["card", params.cardId], 
-    queryFn: () => apiGet<Card>({ url: "/cards", id: params.cardId }), 
+    queryKey: ["category", params.categoryId], 
+    queryFn: () => apiGet<Category>({ url: "/categories", id: params.categoryId }), 
     retry: 0, 
     refetchInterval: 10000 
   });
@@ -85,7 +85,7 @@ function RouteComponent() {
   let initialFieldsValuesMap: FieldsValuesMap | undefined;
   if (data) {
     initialFieldsValuesMap = {
-      "cardData.barcode": data.barcode,
+      "categoryData.name": data.name
     };
   }
 
@@ -97,20 +97,20 @@ function RouteComponent() {
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.card')}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.category')}</Typography>
               <Form 
                 key={key}
                 initialFieldsValuesMap={initialFieldsValuesMap}
                 reset={() => {
                   setKey(prev => prev + 1);
                 }} 
-                requestFn={(value) => apiPut("/cards", params.cardId, value)}
-                formOptions={cardFormOpts}
-                validationSchema={cardFormSchema}
+                requestFn={(value) => apiPut("/categories", params.categoryId, value)}
+                formOptions={categoryFormOpts}
+                validationSchema={categoryFormSchema}
                 childFormComponent={ChildForm}
                 childFormsProps={[
                   {
-                    title: "registration.card.form.card.title", formConfig: cardFormConfig.cardFieldsConfig
+                    title: "registration.category.form.category.title", formConfig: categoryFormConfig.categoryFieldsConfig
                   },
                 ]}
               />  
@@ -128,7 +128,7 @@ function RouteComponent() {
         <FailureDialog 
           open={true} 
           closeFn={() => {
-            goBack(router, canGoBack, "/manage/cards/view");
+            goBack(router, canGoBack, "/manage/categories/view");
           }}
           duration={null}
           info={"failureDialog.info.data"}

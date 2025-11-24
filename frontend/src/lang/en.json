@@ -161,6 +161,10 @@
     "cards.table.column.isTemp": "Temporary",
 
     "categories": "Display categories",
+    "categories.table.search": "Search category",
+    "categories.table.column.id": "ID",
+    "categories.table.column.name": "Name",
+
     "subcategories": "Display subcategories",
     
     "branches": "Dispaly branches",

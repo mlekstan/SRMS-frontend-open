@@ -31,26 +31,31 @@ import { Route as AppManageLayoutRouteRouteImport } from './routes/_app/manage/_
 import { Route as AppManageLayoutusersUsersRouteRouteImport } from './routes/_app/manage/_layout/(users)/users/route'
 import { Route as AppManageLayoutitemsItemsRouteRouteImport } from './routes/_app/manage/_layout/(items)/items/route'
 import { Route as AppManageLayoutclientsClientsRouteRouteImport } from './routes/_app/manage/_layout/(clients)/clients/route'
+import { Route as AppManageLayoutcategoriesCategoriesRouteRouteImport } from './routes/_app/manage/_layout/(categories)/categories/route'
 import { Route as AppManageLayoutcardsCardsRouteRouteImport } from './routes/_app/manage/_layout/(cards)/cards/route'
 import { Route as AppManageLayoutbranchesBranchesRouteRouteImport } from './routes/_app/manage/_layout/(branches)/branches/route'
 import { Route as AppManageLayoutusersUsersIndexRouteImport } from './routes/_app/manage/_layout/(users)/users/index'
 import { Route as AppManageLayoutitemsItemsIndexRouteImport } from './routes/_app/manage/_layout/(items)/items/index'
 import { Route as AppManageLayoutclientsClientsIndexRouteImport } from './routes/_app/manage/_layout/(clients)/clients/index'
+import { Route as AppManageLayoutcategoriesCategoriesIndexRouteImport } from './routes/_app/manage/_layout/(categories)/categories/index'
 import { Route as AppManageLayoutcardsCardsIndexRouteImport } from './routes/_app/manage/_layout/(cards)/cards/index'
 import { Route as AppManageLayoutbranchesBranchesIndexRouteImport } from './routes/_app/manage/_layout/(branches)/branches/index'
 import { Route as AppManageLayoutusersUsersCreateRouteImport } from './routes/_app/manage/_layout/(users)/users/create'
 import { Route as AppManageLayoutitemsItemsCreateRouteImport } from './routes/_app/manage/_layout/(items)/items/create'
 import { Route as AppManageLayoutclientsClientsCreateRouteImport } from './routes/_app/manage/_layout/(clients)/clients/create'
+import { Route as AppManageLayoutcategoriesCategoriesCreateRouteImport } from './routes/_app/manage/_layout/(categories)/categories/create'
 import { Route as AppManageLayoutcardsCardsCreateRouteImport } from './routes/_app/manage/_layout/(cards)/cards/create'
 import { Route as AppManageLayoutbranchesBranchesCreateRouteImport } from './routes/_app/manage/_layout/(branches)/branches/create'
 import { Route as AppManageLayoutusersUsersViewIndexRouteImport } from './routes/_app/manage/_layout/(users)/users/view.index'
 import { Route as AppManageLayoutitemsItemsViewIndexRouteImport } from './routes/_app/manage/_layout/(items)/items/view.index'
 import { Route as AppManageLayoutclientsClientsViewIndexRouteImport } from './routes/_app/manage/_layout/(clients)/clients/view.index'
+import { Route as AppManageLayoutcategoriesCategoriesViewIndexRouteImport } from './routes/_app/manage/_layout/(categories)/categories/view.index'
 import { Route as AppManageLayoutcardsCardsViewIndexRouteImport } from './routes/_app/manage/_layout/(cards)/cards/view.index'
 import { Route as AppManageLayoutbranchesBranchesViewIndexRouteImport } from './routes/_app/manage/_layout/(branches)/branches/view.index'
 import { Route as AppManageLayoutusersUsersViewUserIdRouteImport } from './routes/_app/manage/_layout/(users)/users_/view.$userId'
 import { Route as AppManageLayoutitemsItemsViewItemIdRouteImport } from './routes/_app/manage/_layout/(items)/items_/view.$itemId'
 import { Route as AppManageLayoutclientsClientsViewClientIdRouteImport } from './routes/_app/manage/_layout/(clients)/clients_/view.$clientId'
+import { Route as AppManageLayoutcategoriesCategoriesViewCategoryIdRouteImport } from './routes/_app/manage/_layout/(categories)/categories_/view.$categoryId'
 import { Route as AppManageLayoutcardsCardsViewCardIdRouteImport } from './routes/_app/manage/_layout/(cards)/cards_/view.$cardId'
 import { Route as AppManageLayoutbranchesBranchesViewBranchIdRouteImport } from './routes/_app/manage/_layout/(branches)/branches_/view.$branchId'
 
@@ -162,6 +167,12 @@ const AppManageLayoutclientsClientsRouteRoute =
     path: '/clients',
     getParentRoute: () => AppManageLayoutRouteRoute,
   } as any)
+const AppManageLayoutcategoriesCategoriesRouteRoute =
+  AppManageLayoutcategoriesCategoriesRouteRouteImport.update({
+    id: '/(categories)/categories',
+    path: '/categories',
+    getParentRoute: () => AppManageLayoutRouteRoute,
+  } as any)
 const AppManageLayoutcardsCardsRouteRoute =
   AppManageLayoutcardsCardsRouteRouteImport.update({
     id: '/(cards)/cards',
@@ -191,6 +202,12 @@ const AppManageLayoutclientsClientsIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AppManageLayoutclientsClientsRouteRoute,
+  } as any)
+const AppManageLayoutcategoriesCategoriesIndexRoute =
+  AppManageLayoutcategoriesCategoriesIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AppManageLayoutcategoriesCategoriesRouteRoute,
   } as any)
 const AppManageLayoutcardsCardsIndexRoute =
   AppManageLayoutcardsCardsIndexRouteImport.update({
@@ -222,6 +239,12 @@ const AppManageLayoutclientsClientsCreateRoute =
     path: '/create',
     getParentRoute: () => AppManageLayoutclientsClientsRouteRoute,
   } as any)
+const AppManageLayoutcategoriesCategoriesCreateRoute =
+  AppManageLayoutcategoriesCategoriesCreateRouteImport.update({
+    id: '/create',
+    path: '/create',
+    getParentRoute: () => AppManageLayoutcategoriesCategoriesRouteRoute,
+  } as any)
 const AppManageLayoutcardsCardsCreateRoute =
   AppManageLayoutcardsCardsCreateRouteImport.update({
     id: '/create',
@@ -252,6 +275,12 @@ const AppManageLayoutclientsClientsViewIndexRoute =
     path: '/view/',
     getParentRoute: () => AppManageLayoutclientsClientsRouteRoute,
   } as any)
+const AppManageLayoutcategoriesCategoriesViewIndexRoute =
+  AppManageLayoutcategoriesCategoriesViewIndexRouteImport.update({
+    id: '/view/',
+    path: '/view/',
+    getParentRoute: () => AppManageLayoutcategoriesCategoriesRouteRoute,
+  } as any)
 const AppManageLayoutcardsCardsViewIndexRoute =
   AppManageLayoutcardsCardsViewIndexRouteImport.update({
     id: '/view/',
@@ -280,6 +309,12 @@ const AppManageLayoutclientsClientsViewClientIdRoute =
   AppManageLayoutclientsClientsViewClientIdRouteImport.update({
     id: '/(clients)/clients/view/$clientId',
     path: '/clients/view/$clientId',
+    getParentRoute: () => AppManageLayoutRouteRoute,
+  } as any)
+const AppManageLayoutcategoriesCategoriesViewCategoryIdRoute =
+  AppManageLayoutcategoriesCategoriesViewCategoryIdRouteImport.update({
+    id: '/(categories)/categories/view/$categoryId',
+    path: '/categories/view/$categoryId',
     getParentRoute: () => AppManageLayoutRouteRoute,
   } as any)
 const AppManageLayoutcardsCardsViewCardIdRoute =
@@ -314,26 +349,31 @@ export interface FileRoutesByFullPath {
   '/sale': typeof AppSaleIndexRoute
   '/manage/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/manage/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
+  '/manage/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   '/manage/clients': typeof AppManageLayoutclientsClientsRouteRouteWithChildren
   '/manage/items': typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   '/manage/users': typeof AppManageLayoutusersUsersRouteRouteWithChildren
   '/manage/branches/create': typeof AppManageLayoutbranchesBranchesCreateRoute
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
+  '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/manage/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
   '/manage/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/manage/users/create': typeof AppManageLayoutusersUsersCreateRoute
   '/manage/branches/': typeof AppManageLayoutbranchesBranchesIndexRoute
   '/manage/cards/': typeof AppManageLayoutcardsCardsIndexRoute
+  '/manage/categories/': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/manage/clients/': typeof AppManageLayoutclientsClientsIndexRoute
   '/manage/items/': typeof AppManageLayoutitemsItemsIndexRoute
   '/manage/users/': typeof AppManageLayoutusersUsersIndexRoute
   '/manage/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
   '/manage/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
+  '/manage/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/manage/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
   '/manage/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/manage/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
   '/manage/branches/view': typeof AppManageLayoutbranchesBranchesViewIndexRoute
   '/manage/cards/view': typeof AppManageLayoutcardsCardsViewIndexRoute
+  '/manage/categories/view': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/manage/clients/view': typeof AppManageLayoutclientsClientsViewIndexRoute
   '/manage/items/view': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -356,21 +396,25 @@ export interface FileRoutesByTo {
   '/sale': typeof AppSaleIndexRoute
   '/manage/branches/create': typeof AppManageLayoutbranchesBranchesCreateRoute
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
+  '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/manage/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
   '/manage/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/manage/users/create': typeof AppManageLayoutusersUsersCreateRoute
   '/manage/branches': typeof AppManageLayoutbranchesBranchesIndexRoute
   '/manage/cards': typeof AppManageLayoutcardsCardsIndexRoute
+  '/manage/categories': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/manage/clients': typeof AppManageLayoutclientsClientsIndexRoute
   '/manage/items': typeof AppManageLayoutitemsItemsIndexRoute
   '/manage/users': typeof AppManageLayoutusersUsersIndexRoute
   '/manage/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
   '/manage/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
+  '/manage/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/manage/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
   '/manage/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/manage/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
   '/manage/branches/view': typeof AppManageLayoutbranchesBranchesViewIndexRoute
   '/manage/cards/view': typeof AppManageLayoutcardsCardsViewIndexRoute
+  '/manage/categories/view': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/manage/clients/view': typeof AppManageLayoutclientsClientsViewIndexRoute
   '/manage/items/view': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -397,26 +441,31 @@ export interface FileRoutesById {
   '/_app/sale/': typeof AppSaleIndexRoute
   '/_app/manage/_layout/(branches)/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/_app/manage/_layout/(cards)/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
+  '/_app/manage/_layout/(categories)/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   '/_app/manage/_layout/(clients)/clients': typeof AppManageLayoutclientsClientsRouteRouteWithChildren
   '/_app/manage/_layout/(items)/items': typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   '/_app/manage/_layout/(users)/users': typeof AppManageLayoutusersUsersRouteRouteWithChildren
   '/_app/manage/_layout/(branches)/branches/create': typeof AppManageLayoutbranchesBranchesCreateRoute
   '/_app/manage/_layout/(cards)/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
+  '/_app/manage/_layout/(categories)/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/_app/manage/_layout/(clients)/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
   '/_app/manage/_layout/(items)/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/_app/manage/_layout/(users)/users/create': typeof AppManageLayoutusersUsersCreateRoute
   '/_app/manage/_layout/(branches)/branches/': typeof AppManageLayoutbranchesBranchesIndexRoute
   '/_app/manage/_layout/(cards)/cards/': typeof AppManageLayoutcardsCardsIndexRoute
+  '/_app/manage/_layout/(categories)/categories/': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/_app/manage/_layout/(clients)/clients/': typeof AppManageLayoutclientsClientsIndexRoute
   '/_app/manage/_layout/(items)/items/': typeof AppManageLayoutitemsItemsIndexRoute
   '/_app/manage/_layout/(users)/users/': typeof AppManageLayoutusersUsersIndexRoute
   '/_app/manage/_layout/(branches)/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
   '/_app/manage/_layout/(cards)/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
+  '/_app/manage/_layout/(categories)/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/_app/manage/_layout/(clients)/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
   '/_app/manage/_layout/(items)/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/_app/manage/_layout/(users)/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
   '/_app/manage/_layout/(branches)/branches/view/': typeof AppManageLayoutbranchesBranchesViewIndexRoute
   '/_app/manage/_layout/(cards)/cards/view/': typeof AppManageLayoutcardsCardsViewIndexRoute
+  '/_app/manage/_layout/(categories)/categories/view/': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/_app/manage/_layout/(clients)/clients/view/': typeof AppManageLayoutclientsClientsViewIndexRoute
   '/_app/manage/_layout/(items)/items/view/': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/_app/manage/_layout/(users)/users/view/': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -442,26 +491,31 @@ export interface FileRouteTypes {
     | '/sale'
     | '/manage/branches'
     | '/manage/cards'
+    | '/manage/categories'
     | '/manage/clients'
     | '/manage/items'
     | '/manage/users'
     | '/manage/branches/create'
     | '/manage/cards/create'
+    | '/manage/categories/create'
     | '/manage/clients/create'
     | '/manage/items/create'
     | '/manage/users/create'
     | '/manage/branches/'
     | '/manage/cards/'
+    | '/manage/categories/'
     | '/manage/clients/'
     | '/manage/items/'
     | '/manage/users/'
     | '/manage/branches/view/$branchId'
     | '/manage/cards/view/$cardId'
+    | '/manage/categories/view/$categoryId'
     | '/manage/clients/view/$clientId'
     | '/manage/items/view/$itemId'
     | '/manage/users/view/$userId'
     | '/manage/branches/view'
     | '/manage/cards/view'
+    | '/manage/categories/view'
     | '/manage/clients/view'
     | '/manage/items/view'
     | '/manage/users/view'
@@ -484,21 +538,25 @@ export interface FileRouteTypes {
     | '/sale'
     | '/manage/branches/create'
     | '/manage/cards/create'
+    | '/manage/categories/create'
     | '/manage/clients/create'
     | '/manage/items/create'
     | '/manage/users/create'
     | '/manage/branches'
     | '/manage/cards'
+    | '/manage/categories'
     | '/manage/clients'
     | '/manage/items'
     | '/manage/users'
     | '/manage/branches/view/$branchId'
     | '/manage/cards/view/$cardId'
+    | '/manage/categories/view/$categoryId'
     | '/manage/clients/view/$clientId'
     | '/manage/items/view/$itemId'
     | '/manage/users/view/$userId'
     | '/manage/branches/view'
     | '/manage/cards/view'
+    | '/manage/categories/view'
     | '/manage/clients/view'
     | '/manage/items/view'
     | '/manage/users/view'
@@ -524,26 +582,31 @@ export interface FileRouteTypes {
     | '/_app/sale/'
     | '/_app/manage/_layout/(branches)/branches'
     | '/_app/manage/_layout/(cards)/cards'
+    | '/_app/manage/_layout/(categories)/categories'
     | '/_app/manage/_layout/(clients)/clients'
     | '/_app/manage/_layout/(items)/items'
     | '/_app/manage/_layout/(users)/users'
     | '/_app/manage/_layout/(branches)/branches/create'
     | '/_app/manage/_layout/(cards)/cards/create'
+    | '/_app/manage/_layout/(categories)/categories/create'
     | '/_app/manage/_layout/(clients)/clients/create'
     | '/_app/manage/_layout/(items)/items/create'
     | '/_app/manage/_layout/(users)/users/create'
     | '/_app/manage/_layout/(branches)/branches/'
     | '/_app/manage/_layout/(cards)/cards/'
+    | '/_app/manage/_layout/(categories)/categories/'
     | '/_app/manage/_layout/(clients)/clients/'
     | '/_app/manage/_layout/(items)/items/'
     | '/_app/manage/_layout/(users)/users/'
     | '/_app/manage/_layout/(branches)/branches/view/$branchId'
     | '/_app/manage/_layout/(cards)/cards/view/$cardId'
+    | '/_app/manage/_layout/(categories)/categories/view/$categoryId'
     | '/_app/manage/_layout/(clients)/clients/view/$clientId'
     | '/_app/manage/_layout/(items)/items/view/$itemId'
     | '/_app/manage/_layout/(users)/users/view/$userId'
     | '/_app/manage/_layout/(branches)/branches/view/'
     | '/_app/manage/_layout/(cards)/cards/view/'
+    | '/_app/manage/_layout/(categories)/categories/view/'
     | '/_app/manage/_layout/(clients)/clients/view/'
     | '/_app/manage/_layout/(items)/items/view/'
     | '/_app/manage/_layout/(users)/users/view/'
@@ -703,6 +766,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutclientsClientsRouteRouteImport
       parentRoute: typeof AppManageLayoutRouteRoute
     }
+    '/_app/manage/_layout/(categories)/categories': {
+      id: '/_app/manage/_layout/(categories)/categories'
+      path: '/categories'
+      fullPath: '/manage/categories'
+      preLoaderRoute: typeof AppManageLayoutcategoriesCategoriesRouteRouteImport
+      parentRoute: typeof AppManageLayoutRouteRoute
+    }
     '/_app/manage/_layout/(cards)/cards': {
       id: '/_app/manage/_layout/(cards)/cards'
       path: '/cards'
@@ -737,6 +807,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/manage/clients/'
       preLoaderRoute: typeof AppManageLayoutclientsClientsIndexRouteImport
       parentRoute: typeof AppManageLayoutclientsClientsRouteRoute
+    }
+    '/_app/manage/_layout/(categories)/categories/': {
+      id: '/_app/manage/_layout/(categories)/categories/'
+      path: '/'
+      fullPath: '/manage/categories/'
+      preLoaderRoute: typeof AppManageLayoutcategoriesCategoriesIndexRouteImport
+      parentRoute: typeof AppManageLayoutcategoriesCategoriesRouteRoute
     }
     '/_app/manage/_layout/(cards)/cards/': {
       id: '/_app/manage/_layout/(cards)/cards/'
@@ -773,6 +850,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutclientsClientsCreateRouteImport
       parentRoute: typeof AppManageLayoutclientsClientsRouteRoute
     }
+    '/_app/manage/_layout/(categories)/categories/create': {
+      id: '/_app/manage/_layout/(categories)/categories/create'
+      path: '/create'
+      fullPath: '/manage/categories/create'
+      preLoaderRoute: typeof AppManageLayoutcategoriesCategoriesCreateRouteImport
+      parentRoute: typeof AppManageLayoutcategoriesCategoriesRouteRoute
+    }
     '/_app/manage/_layout/(cards)/cards/create': {
       id: '/_app/manage/_layout/(cards)/cards/create'
       path: '/create'
@@ -808,6 +892,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutclientsClientsViewIndexRouteImport
       parentRoute: typeof AppManageLayoutclientsClientsRouteRoute
     }
+    '/_app/manage/_layout/(categories)/categories/view/': {
+      id: '/_app/manage/_layout/(categories)/categories/view/'
+      path: '/view'
+      fullPath: '/manage/categories/view'
+      preLoaderRoute: typeof AppManageLayoutcategoriesCategoriesViewIndexRouteImport
+      parentRoute: typeof AppManageLayoutcategoriesCategoriesRouteRoute
+    }
     '/_app/manage/_layout/(cards)/cards/view/': {
       id: '/_app/manage/_layout/(cards)/cards/view/'
       path: '/view'
@@ -841,6 +932,13 @@ declare module '@tanstack/react-router' {
       path: '/clients/view/$clientId'
       fullPath: '/manage/clients/view/$clientId'
       preLoaderRoute: typeof AppManageLayoutclientsClientsViewClientIdRouteImport
+      parentRoute: typeof AppManageLayoutRouteRoute
+    }
+    '/_app/manage/_layout/(categories)/categories/view/$categoryId': {
+      id: '/_app/manage/_layout/(categories)/categories/view/$categoryId'
+      path: '/categories/view/$categoryId'
+      fullPath: '/manage/categories/view/$categoryId'
+      preLoaderRoute: typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRouteImport
       parentRoute: typeof AppManageLayoutRouteRoute
     }
     '/_app/manage/_layout/(cards)/cards/view/$cardId': {
@@ -898,6 +996,27 @@ const AppManageLayoutcardsCardsRouteRouteChildren: AppManageLayoutcardsCardsRout
 const AppManageLayoutcardsCardsRouteRouteWithChildren =
   AppManageLayoutcardsCardsRouteRoute._addFileChildren(
     AppManageLayoutcardsCardsRouteRouteChildren,
+  )
+
+interface AppManageLayoutcategoriesCategoriesRouteRouteChildren {
+  AppManageLayoutcategoriesCategoriesCreateRoute: typeof AppManageLayoutcategoriesCategoriesCreateRoute
+  AppManageLayoutcategoriesCategoriesIndexRoute: typeof AppManageLayoutcategoriesCategoriesIndexRoute
+  AppManageLayoutcategoriesCategoriesViewIndexRoute: typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
+}
+
+const AppManageLayoutcategoriesCategoriesRouteRouteChildren: AppManageLayoutcategoriesCategoriesRouteRouteChildren =
+  {
+    AppManageLayoutcategoriesCategoriesCreateRoute:
+      AppManageLayoutcategoriesCategoriesCreateRoute,
+    AppManageLayoutcategoriesCategoriesIndexRoute:
+      AppManageLayoutcategoriesCategoriesIndexRoute,
+    AppManageLayoutcategoriesCategoriesViewIndexRoute:
+      AppManageLayoutcategoriesCategoriesViewIndexRoute,
+  }
+
+const AppManageLayoutcategoriesCategoriesRouteRouteWithChildren =
+  AppManageLayoutcategoriesCategoriesRouteRoute._addFileChildren(
+    AppManageLayoutcategoriesCategoriesRouteRouteChildren,
   )
 
 interface AppManageLayoutclientsClientsRouteRouteChildren {
@@ -962,11 +1081,13 @@ const AppManageLayoutusersUsersRouteRouteWithChildren =
 interface AppManageLayoutRouteRouteChildren {
   AppManageLayoutbranchesBranchesRouteRoute: typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   AppManageLayoutcardsCardsRouteRoute: typeof AppManageLayoutcardsCardsRouteRouteWithChildren
+  AppManageLayoutcategoriesCategoriesRouteRoute: typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   AppManageLayoutclientsClientsRouteRoute: typeof AppManageLayoutclientsClientsRouteRouteWithChildren
   AppManageLayoutitemsItemsRouteRoute: typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   AppManageLayoutusersUsersRouteRoute: typeof AppManageLayoutusersUsersRouteRouteWithChildren
   AppManageLayoutbranchesBranchesViewBranchIdRoute: typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
   AppManageLayoutcardsCardsViewCardIdRoute: typeof AppManageLayoutcardsCardsViewCardIdRoute
+  AppManageLayoutcategoriesCategoriesViewCategoryIdRoute: typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   AppManageLayoutclientsClientsViewClientIdRoute: typeof AppManageLayoutclientsClientsViewClientIdRoute
   AppManageLayoutitemsItemsViewItemIdRoute: typeof AppManageLayoutitemsItemsViewItemIdRoute
   AppManageLayoutusersUsersViewUserIdRoute: typeof AppManageLayoutusersUsersViewUserIdRoute
@@ -977,6 +1098,8 @@ const AppManageLayoutRouteRouteChildren: AppManageLayoutRouteRouteChildren = {
     AppManageLayoutbranchesBranchesRouteRouteWithChildren,
   AppManageLayoutcardsCardsRouteRoute:
     AppManageLayoutcardsCardsRouteRouteWithChildren,
+  AppManageLayoutcategoriesCategoriesRouteRoute:
+    AppManageLayoutcategoriesCategoriesRouteRouteWithChildren,
   AppManageLayoutclientsClientsRouteRoute:
     AppManageLayoutclientsClientsRouteRouteWithChildren,
   AppManageLayoutitemsItemsRouteRoute:
@@ -987,6 +1110,8 @@ const AppManageLayoutRouteRouteChildren: AppManageLayoutRouteRouteChildren = {
     AppManageLayoutbranchesBranchesViewBranchIdRoute,
   AppManageLayoutcardsCardsViewCardIdRoute:
     AppManageLayoutcardsCardsViewCardIdRoute,
+  AppManageLayoutcategoriesCategoriesViewCategoryIdRoute:
+    AppManageLayoutcategoriesCategoriesViewCategoryIdRoute,
   AppManageLayoutclientsClientsViewClientIdRoute:
     AppManageLayoutclientsClientsViewClientIdRoute,
   AppManageLayoutitemsItemsViewItemIdRoute:

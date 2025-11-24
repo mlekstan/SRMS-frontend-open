@@ -78,3 +78,8 @@ export type Item = {
   forSale: boolean;
   sellPrice: number;
 }
+
+export type Category = {
+  id: number;
+  name: string;
+}

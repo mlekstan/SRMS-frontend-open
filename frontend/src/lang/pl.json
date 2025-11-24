@@ -161,6 +161,10 @@
     "cards.table.column.isTemp": "Tymczasowa",
 
     "categories": "Wyświetl kategorie",
+    "categories.table.search": "Szukaj kategorii",
+    "categories.table.column.id": "ID",
+    "categories.table.column.name": "Nazwa",
+
     "subcategories": "Wyswietl podkategorie",
     
     "branches": "Wyświetl oddziały",
