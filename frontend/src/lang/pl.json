@@ -155,6 +155,11 @@
     "items.table.column.branch": "Oddział",
 
     "cards": "Wyświetl karty",
+    "cards.table.search": "Szukaj karty",
+    "cards.table.column.id": "ID",
+    "cards.table.column.barcode": "Kod kreskowy",
+    "cards.table.column.isTemp": "Tymczasowa",
+
     "categories": "Wyświetl kategorie",
     "subcategories": "Wyswietl podkategorie",
     

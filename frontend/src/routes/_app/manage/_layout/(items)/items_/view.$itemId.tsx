@@ -163,10 +163,10 @@ function RouteComponent() {
               childFormComponent={ChildForm}
               childFormsProps={[
                 {
-                  title: "registration.client.form.card.title", formConfig: itemFormConfig.basicFieldsConfig
+                  title: "registration.item.form.base.title", formConfig: itemFormConfig.basicFieldsConfig
                 },
                 {
-                  title: "registration.client.form.personal.title", formConfig: itemFormConfig.saleFieldsConfig
+                  title: "registration.item.form.sale.title", formConfig: itemFormConfig.saleFieldsConfig
                 },
               ]}
             />

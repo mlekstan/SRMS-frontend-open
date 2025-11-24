@@ -155,6 +155,11 @@
     "items.table.column.branch": "Branch",
 
     "cards": "Dispaly cards",
+    "cards.table.search": "Search card",
+    "cards.table.column.id": "ID",
+    "cards.table.column.barcode": "Barcode",
+    "cards.table.column.isTemp": "Temporary",
+
     "categories": "Display categories",
     "subcategories": "Display subcategories",
     

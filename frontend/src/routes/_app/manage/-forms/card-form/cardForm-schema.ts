@@ -4,7 +4,7 @@ const regexpMessage = "Don't match regexp."
 
 export const cardFormSchema = z.object({
   cardData: z.object({
-    cardBarcode: z.preprocess((val) => {
+    barcode: z.preprocess((val) => {
       if (typeof val === "string") {
         return val.split("_").join("");
       }

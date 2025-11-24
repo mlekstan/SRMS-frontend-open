@@ -5,7 +5,7 @@ type keys = "cardFieldsConfig";
 export const cardFormConfig: FormConfig<keys> = {
   cardFieldsConfig: [
     { 
-      fieldName: "cardData.cardBarcode",
+      fieldName: "cardData.barcode",
       label: "registration.card.form.card.barcode", 
       required: true, 
       type: 'text', 
