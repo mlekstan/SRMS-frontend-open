@@ -37,6 +37,7 @@ export function EditClientCardsTable() {
   const field = useFieldContext();
   const { t } = useTranslationContext();
   const [rows, setRows] = useState<Array<RowDataType>>(Array());
+  const [addedRows, setAddedRows] = useState(Array());
   
   const clientQuery = useQuery({ 
     queryKey: ["client", params.clientId], 
@@ -74,6 +75,7 @@ export function EditClientCardsTable() {
   }, [clientQuery.data]);
 
   useEffect(() => {
+    setAddedRows(rows.filter(row => row.type === "added"));
     field.setValue(rows);
   }, [rows]);
   
@@ -238,7 +240,7 @@ export function EditClientCardsTable() {
               </IconButton>
 
               {
-                (rows.length !== 0) &&
+                (addedRows.length > 0) &&
                 <IconButton
                   size="large"
                   onClick={
