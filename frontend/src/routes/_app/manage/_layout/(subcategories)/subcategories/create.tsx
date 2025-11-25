@@ -6,7 +6,6 @@ import { Loader } from '@/routes/-components/Loader';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import { clientFormOpts } from '../../../-forms/client-form/clientForm-options';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/providers/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
@@ -14,24 +13,24 @@ import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
-import { itemFormOpts } from '../../../-forms/item-form/itemForm-options';
-import { itemFormSchema } from '../../../-forms/item-form/itemForm-schema';
-import { itemFormConfig } from '../../../-forms/item-form/itemForm-config';
-import type { Branch, Subcategory } from '@/api/types';
+import type { Category, DriveType } from '@/api/types';
+import { subcategoryFormOpts } from '../../../-forms/subcategory-form/subcategoryForm-options';
+import { subcategoryFormSchema } from '../../../-forms/subcategory-form/subcategoryForm-schema';
+import { subcategoryFormConfig } from '../../../-forms/subcategory-form/subcategoryForm-config';
 
-export const Route = createFileRoute('/_app/manage/_layout/(items)/items/create')({
+export const Route = createFileRoute('/_app/manage/_layout/(subcategories)/subcategories/create')({
   component: RouteComponent,
   loader: async ({ context }) => {
 
     await context.queryClient.fetchQuery({
-      queryKey: ["subcategories"],
-      queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
+      queryKey: ["categories"],
+      queryFn: () => apiGet<Category>({ url: "/categories" }),
       staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
-      queryKey: ["branches"],
-      queryFn: () => apiGet<Branch>({ url: "/branches" }),
+      queryKey: ["driveTypes"],
+      queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
       staleTime: 10000,
     });
 
@@ -61,10 +60,10 @@ export const Route = createFileRoute('/_app/manage/_layout/(items)/items/create'
 
 const breadcrumbsOptions: ExtendedLinkOptions[] = [
   { to: "/manage", label: "menu.manage" },
-  { to: "/manage/items/create", label: "registration.item" }
+  { to: "/manage/subcategories/create", label: "registration.subcategory" }
 ]
 
-const ChildForm = memo(createChildForm(clientFormOpts));
+const ChildForm = memo(createChildForm(subcategoryFormOpts));
 
 
 
@@ -75,47 +74,48 @@ function RouteComponent() {
   const {t} = useTranslationContext();
 
   const { 
-    data: sData, 
-    error: sError, 
-    isSuccess: sIsSuccess, 
-    isPending: sIsPending, 
-    isError: sIsError 
-  } = useQuery({ queryKey: ["subcategories"], queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }), retry: 0, refetchInterval: 10000 });
+    data: cData, 
+    error: cError, 
+    isSuccess: cIsSuccess, 
+    isPending: cIsPending, 
+    isError: cIsError 
+  } = useQuery({ queryKey: ["categories"], queryFn: () => apiGet<Category>({ url: "/categories" }), retry: 0, refetchInterval: 10000 });
   
   const {
-    data: bData,
-    error: bError,
-    isSuccess: bIsSuccess,
-    isPending: bIsPending,
-    isError: bIsError
-  } = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>({ url: "/branches" }), retry: 0, refetchInterval: 10000 });
-
-  console.log("Subcategories:", sData);
+    data: dData,
+    error: dError,
+    isSuccess: dIsSuccess,
+    isPending: dIsPending,
+    isError: dIsError
+  } = useQuery({ queryKey: ["driveTypes"], queryFn: () => apiGet<DriveType>({ url: "/drive-types" }), retry: 0, refetchInterval: 10000 });
 
   return (
     <>
       {
-        ((sIsSuccess && bIsSuccess) || (sData && bData)) &&
+        ((cIsSuccess && dIsSuccess) || (cData && dData)) &&
         <FormPaperContainer>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
-            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.item')}</Typography>
+            <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.subcategory')}</Typography>
             <Form 
               key={key} 
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPost("/items", value)}
-              formOptions={itemFormOpts}
-              validationSchema={itemFormSchema}
+              requestFn={(value) => apiPost("/subcategories", value)}
+              formOptions={subcategoryFormOpts}
+              validationSchema={subcategoryFormSchema}
               childFormComponent={ChildForm}
               childFormsProps={[
                 {
-                  title: "registration.item.form.base.title", formConfig: itemFormConfig.basicFieldsConfig
+                  title: "registration.subcategory.form.subcategory.title", formConfig: subcategoryFormConfig.subcategoryFieldsConfig
                 },
                 {
-                  title: "registration.item.form.sale.title", formConfig: itemFormConfig.saleFieldsConfig
+                  title: "registration.subcategory.form.vehicle.title", formConfig: subcategoryFormConfig.vehicleFieldsConfig
+                },
+                {
+                  title: "registration.subcategory.form.electricVehicle.title", formConfig: subcategoryFormConfig.electricVehicleFieldsConfig
                 }
               ]}
             />
@@ -125,12 +125,12 @@ function RouteComponent() {
 
       
       {
-        (sIsPending || bIsPending) &&
+        (cIsPending || dIsPending) &&
         <Loader open={true} />
       }
       
       {
-        (sIsError || bIsError) &&
+        (cIsError || dIsError) &&
         <FailureDialog 
           open={true} 
           closeFn={() => {
@@ -138,7 +138,7 @@ function RouteComponent() {
           }} 
           duration={null} 
           message={
-            (sError && bError) ? `${sError.message}. ${bError.message}.` : sError?.message ?? bError?.message ?? ""
+            (cError && dError) ? `${cError.message}. ${dError.message}.` : cError?.message ?? dError?.message ?? ``
           }
           info="failureDialog.info.data"
         />

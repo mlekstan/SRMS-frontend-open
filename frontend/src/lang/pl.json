@@ -165,7 +165,11 @@
     "categories.table.column.id": "ID",
     "categories.table.column.name": "Nazwa",
 
-    "subcategories": "Wyswietl podkategorie",
+    "subcategories": "Wyświetl podkategorie",
+    "subcategories.table.search": "Szukaj podkategorii",
+    "subcategories.table.column.id": "ID",
+    "subcategories.table.column.name": "Nazwa",
+    "subcategories.table.column.category": "Kategoria",
     
     "branches": "Wyświetl oddziały",
     "branches.table.search": "Szukaj oddziału",

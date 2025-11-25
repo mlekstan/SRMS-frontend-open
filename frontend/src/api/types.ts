@@ -59,6 +59,27 @@ export type Client = {
 export type Subcategory = {
   id: number;
   name: string;
+  category: {
+    id: number;
+    name: string;
+  };
+  vehicle: {
+    id: number;
+    curbWeight: number;
+    maxLoad: number;
+    minAge: number;
+    maxAge: number;
+    driveType: {
+      id: number;
+      name: string;
+    };
+    electricVehicle: {
+      id: number;
+      enginePower: number;
+      batteryVoltage: number;
+      batteryCapacity: number;
+    };
+  };
 }
 
 export type Item = {
@@ -80,6 +101,11 @@ export type Item = {
 }
 
 export type Category = {
+  id: number;
+  name: string;
+}
+
+export type DriveType = {
   id: number;
   name: string;
 }

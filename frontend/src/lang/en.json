@@ -166,6 +166,10 @@
     "categories.table.column.name": "Name",
 
     "subcategories": "Display subcategories",
+    "subcategories.table.search": "Search subcategory",
+    "subcategories.table.column.id": "ID",
+    "subcategories.table.column.name": "Name",
+    "subcategories.table.column.category": "Category",
     
     "branches": "Dispaly branches",
     "branches.table.search": "Search branch",

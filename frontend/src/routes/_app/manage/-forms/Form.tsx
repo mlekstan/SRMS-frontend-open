@@ -42,7 +42,6 @@ export default function Form({
     mutationFn: async (value: Record<string, unknown>) => await requestFn(value),
     onSuccess: () => {
       setShowSuccess(() => true);
-      //form.reset();
     },
     onError: (error) => {
       setShowError(() => true);
@@ -106,6 +105,7 @@ export default function Form({
         closeFn={() => {
           setShowSuccess(() => false);
           reset();
+          form.reset();
         }}
         duration={2000}
         info={"successDialog.info.submit"}

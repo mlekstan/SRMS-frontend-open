@@ -64,7 +64,28 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
   } = props;
 
   const query = useConditonalQuery<K>({enabled: !staticOptions, queryFn: queryFn, queryKey: queryKey});
-  console.log("query", query)
+
+
+  useEffect(() => {
+    const newRenderingMap = {...renderingMap};
+    
+    if (field.state.value === triggerRenderOnValue) {
+      
+      if (triggerChildFormRender) {
+        newRenderingMap[triggerChildFormRender] = true;
+      }
+      setRenderingMap(newRenderingMap);
+
+    } else {
+      
+      if (triggerChildFormRender) {
+        newRenderingMap[triggerChildFormRender] = false;
+      }
+      setRenderingMap(newRenderingMap);
+    
+    }
+  }, [field.state.value]);
+
   
   useEffect(() => {
     if (field.state.value === null) {
@@ -77,6 +98,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
       return (copy);
     });
   }, [field.state.meta.isValid]);
+
 
   const options = staticOptions ?? query?.data ?? [];
 
@@ -101,24 +123,6 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
       // probably it is default action of TanStack Form Lib.
       onChange={(_, value) => {
         field.handleChange(value?.[optionValue] ?? "");
-        
-        const newRenderingMap = {...renderingMap};
-        
-        if (field.state.value === triggerRenderOnValue) {
-          
-          if (triggerChildFormRender) {
-            newRenderingMap[triggerChildFormRender] = true;
-          }
-          setRenderingMap(newRenderingMap);
-
-        } else {
-          
-          if (triggerChildFormRender) {
-            newRenderingMap[triggerChildFormRender] = false;
-          }
-          setRenderingMap(newRenderingMap);
-        
-        }
       }}
       getOptionLabel={(option) => {
         try {
