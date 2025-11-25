@@ -1,6 +1,6 @@
 import type { FormConfig } from "../types/types";
-import { getCategories } from "@/api/categories/categories.get";
-import { getDriveTypes } from "../../../../../api/driveTypes/driveTypes.get";
+import { apiGet } from "@/api/apiGet";
+import type { Category, DriveType } from "@/api/types";
 
 type keys = "subcategoryFieldsConfig" | "vehicleFieldsConfig" | "electricVehicleFieldsConfig";
 
@@ -22,7 +22,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "name",
       optionValue: "id",
-      queryFn: getCategories,
+      queryFn: () => apiGet<Category>({ url: "/categories" }),
       queryKey: "categories",
       triggerChildFormRender: "registration.subcategory.form.vehicle.title",
       triggerRenderOnValue: 1 // 1-> "Pojazd"
@@ -52,7 +52,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "name",
       optionValue: "id",
-      queryFn: getDriveTypes,
+      queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
       queryKey: "driveTypes",
       triggerChildFormRender: "registration.subcategory.form.electricVehicle.title",
       triggerRenderOnValue: 2 // 2 -> "Elektryczny"

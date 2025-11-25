@@ -1,6 +1,7 @@
 import type { FormConfig } from "../types/types";
 import { PhoneFieldsGroup } from "../groups/PhoneFieldsGroup";
-import { getBranches } from "@/api/branches/branches.get";
+import { apiGet } from "@/api/apiGet";
+import type { Branch } from "@/api/types";
 
 type keys = "userFieldsConfig";
 
@@ -84,7 +85,7 @@ export const userFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "name",
       optionValue: "id",
-      queryFn: getBranches,
+      queryFn: () => apiGet<Branch>({ url: "/branches" }),
       queryKey: "branches"
     },
     {
