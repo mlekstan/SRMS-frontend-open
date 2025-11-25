@@ -19,14 +19,6 @@ import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
 import { Route as AppManageIndexRouteImport } from './routes/_app/manage/index'
 import { Route as AppRentalRentalSaleRouteImport } from './routes/_app/rental/rental-sale'
 import { Route as AppRentalEquipStatusRouteImport } from './routes/_app/rental/equip-status'
-import { Route as AppManageUserRouteImport } from './routes/_app/manage/user'
-import { Route as AppManageSubcategoryRouteImport } from './routes/_app/manage/subcategory'
-import { Route as AppManageItemRouteImport } from './routes/_app/manage/item'
-import { Route as AppManageDriveTypeRouteImport } from './routes/_app/manage/drive-type'
-import { Route as AppManageClientRouteImport } from './routes/_app/manage/client'
-import { Route as AppManageCategoryRouteImport } from './routes/_app/manage/category'
-import { Route as AppManageCardRouteImport } from './routes/_app/manage/card'
-import { Route as AppManageBranchRouteImport } from './routes/_app/manage/branch'
 import { Route as AppManageLayoutRouteRouteImport } from './routes/_app/manage/_layout/route'
 import { Route as AppManageLayoutusersUsersRouteRouteImport } from './routes/_app/manage/_layout/(users)/users/route'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesRouteRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/route'
@@ -114,46 +106,6 @@ const AppRentalEquipStatusRoute = AppRentalEquipStatusRouteImport.update({
   id: '/rental/equip-status',
   path: '/rental/equip-status',
   getParentRoute: () => AppRouteRoute,
-} as any)
-const AppManageUserRoute = AppManageUserRouteImport.update({
-  id: '/user',
-  path: '/user',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageSubcategoryRoute = AppManageSubcategoryRouteImport.update({
-  id: '/subcategory',
-  path: '/subcategory',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageItemRoute = AppManageItemRouteImport.update({
-  id: '/item',
-  path: '/item',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageDriveTypeRoute = AppManageDriveTypeRouteImport.update({
-  id: '/drive-type',
-  path: '/drive-type',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageClientRoute = AppManageClientRouteImport.update({
-  id: '/client',
-  path: '/client',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageCategoryRoute = AppManageCategoryRouteImport.update({
-  id: '/category',
-  path: '/category',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageCardRoute = AppManageCardRouteImport.update({
-  id: '/card',
-  path: '/card',
-  getParentRoute: () => AppManageRoute,
-} as any)
-const AppManageBranchRoute = AppManageBranchRouteImport.update({
-  id: '/branch',
-  path: '/branch',
-  getParentRoute: () => AppManageRoute,
 } as any)
 const AppManageLayoutRouteRoute = AppManageLayoutRouteRouteImport.update({
   id: '/_layout',
@@ -404,14 +356,6 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
   '/manage': typeof AppManageLayoutRouteRouteWithChildren
-  '/manage/branch': typeof AppManageBranchRoute
-  '/manage/card': typeof AppManageCardRoute
-  '/manage/category': typeof AppManageCategoryRoute
-  '/manage/client': typeof AppManageClientRoute
-  '/manage/drive-type': typeof AppManageDriveTypeRoute
-  '/manage/item': typeof AppManageItemRoute
-  '/manage/subcategory': typeof AppManageSubcategoryRoute
-  '/manage/user': typeof AppManageUserRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/manage/': typeof AppManageIndexRoute
@@ -462,14 +406,6 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
   '/manage': typeof AppManageIndexRoute
-  '/manage/branch': typeof AppManageBranchRoute
-  '/manage/card': typeof AppManageCardRoute
-  '/manage/category': typeof AppManageCategoryRoute
-  '/manage/client': typeof AppManageClientRoute
-  '/manage/drive-type': typeof AppManageDriveTypeRoute
-  '/manage/item': typeof AppManageItemRoute
-  '/manage/subcategory': typeof AppManageSubcategoryRoute
-  '/manage/user': typeof AppManageUserRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/rental': typeof AppRentalIndexRoute
@@ -514,14 +450,6 @@ export interface FileRoutesById {
   '/_app/settings': typeof AppSettingsRouteRoute
   '/_app/manage': typeof AppManageRouteWithChildren
   '/_app/manage/_layout': typeof AppManageLayoutRouteRouteWithChildren
-  '/_app/manage/branch': typeof AppManageBranchRoute
-  '/_app/manage/card': typeof AppManageCardRoute
-  '/_app/manage/category': typeof AppManageCategoryRoute
-  '/_app/manage/client': typeof AppManageClientRoute
-  '/_app/manage/drive-type': typeof AppManageDriveTypeRoute
-  '/_app/manage/item': typeof AppManageItemRoute
-  '/_app/manage/subcategory': typeof AppManageSubcategoryRoute
-  '/_app/manage/user': typeof AppManageUserRoute
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/_app/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/_app/manage/': typeof AppManageIndexRoute
@@ -574,14 +502,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/settings'
     | '/manage'
-    | '/manage/branch'
-    | '/manage/card'
-    | '/manage/category'
-    | '/manage/client'
-    | '/manage/drive-type'
-    | '/manage/item'
-    | '/manage/subcategory'
-    | '/manage/user'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/manage/'
@@ -632,14 +552,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/settings'
     | '/manage'
-    | '/manage/branch'
-    | '/manage/card'
-    | '/manage/category'
-    | '/manage/client'
-    | '/manage/drive-type'
-    | '/manage/item'
-    | '/manage/subcategory'
-    | '/manage/user'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/rental'
@@ -683,14 +595,6 @@ export interface FileRouteTypes {
     | '/_app/settings'
     | '/_app/manage'
     | '/_app/manage/_layout'
-    | '/_app/manage/branch'
-    | '/_app/manage/card'
-    | '/_app/manage/category'
-    | '/_app/manage/client'
-    | '/_app/manage/drive-type'
-    | '/_app/manage/item'
-    | '/_app/manage/subcategory'
-    | '/_app/manage/user'
     | '/_app/rental/equip-status'
     | '/_app/rental/rental-sale'
     | '/_app/manage/'
@@ -807,62 +711,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/rental/equip-status'
       preLoaderRoute: typeof AppRentalEquipStatusRouteImport
       parentRoute: typeof AppRouteRoute
-    }
-    '/_app/manage/user': {
-      id: '/_app/manage/user'
-      path: '/user'
-      fullPath: '/manage/user'
-      preLoaderRoute: typeof AppManageUserRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/subcategory': {
-      id: '/_app/manage/subcategory'
-      path: '/subcategory'
-      fullPath: '/manage/subcategory'
-      preLoaderRoute: typeof AppManageSubcategoryRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/item': {
-      id: '/_app/manage/item'
-      path: '/item'
-      fullPath: '/manage/item'
-      preLoaderRoute: typeof AppManageItemRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/drive-type': {
-      id: '/_app/manage/drive-type'
-      path: '/drive-type'
-      fullPath: '/manage/drive-type'
-      preLoaderRoute: typeof AppManageDriveTypeRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/client': {
-      id: '/_app/manage/client'
-      path: '/client'
-      fullPath: '/manage/client'
-      preLoaderRoute: typeof AppManageClientRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/category': {
-      id: '/_app/manage/category'
-      path: '/category'
-      fullPath: '/manage/category'
-      preLoaderRoute: typeof AppManageCategoryRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/card': {
-      id: '/_app/manage/card'
-      path: '/card'
-      fullPath: '/manage/card'
-      preLoaderRoute: typeof AppManageCardRouteImport
-      parentRoute: typeof AppManageRoute
-    }
-    '/_app/manage/branch': {
-      id: '/_app/manage/branch'
-      path: '/branch'
-      fullPath: '/manage/branch'
-      preLoaderRoute: typeof AppManageBranchRouteImport
-      parentRoute: typeof AppManageRoute
     }
     '/_app/manage/_layout': {
       id: '/_app/manage/_layout'
@@ -1375,27 +1223,11 @@ const AppManageLayoutRouteRouteWithChildren =
 
 interface AppManageRouteChildren {
   AppManageLayoutRouteRoute: typeof AppManageLayoutRouteRouteWithChildren
-  AppManageBranchRoute: typeof AppManageBranchRoute
-  AppManageCardRoute: typeof AppManageCardRoute
-  AppManageCategoryRoute: typeof AppManageCategoryRoute
-  AppManageClientRoute: typeof AppManageClientRoute
-  AppManageDriveTypeRoute: typeof AppManageDriveTypeRoute
-  AppManageItemRoute: typeof AppManageItemRoute
-  AppManageSubcategoryRoute: typeof AppManageSubcategoryRoute
-  AppManageUserRoute: typeof AppManageUserRoute
   AppManageIndexRoute: typeof AppManageIndexRoute
 }
 
 const AppManageRouteChildren: AppManageRouteChildren = {
   AppManageLayoutRouteRoute: AppManageLayoutRouteRouteWithChildren,
-  AppManageBranchRoute: AppManageBranchRoute,
-  AppManageCardRoute: AppManageCardRoute,
-  AppManageCategoryRoute: AppManageCategoryRoute,
-  AppManageClientRoute: AppManageClientRoute,
-  AppManageDriveTypeRoute: AppManageDriveTypeRoute,
-  AppManageItemRoute: AppManageItemRoute,
-  AppManageSubcategoryRoute: AppManageSubcategoryRoute,
-  AppManageUserRoute: AppManageUserRoute,
   AppManageIndexRoute: AppManageIndexRoute,
 }
 
