@@ -31,6 +31,7 @@ import { Route as AppManageLayoutRouteRouteImport } from './routes/_app/manage/_
 import { Route as AppManageLayoutusersUsersRouteRouteImport } from './routes/_app/manage/_layout/(users)/users/route'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesRouteRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/route'
 import { Route as AppManageLayoutitemsItemsRouteRouteImport } from './routes/_app/manage/_layout/(items)/items/route'
+import { Route as AppManageLayoutdriveTypesDriveTypesRouteRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types/route'
 import { Route as AppManageLayoutclientsClientsRouteRouteImport } from './routes/_app/manage/_layout/(clients)/clients/route'
 import { Route as AppManageLayoutcategoriesCategoriesRouteRouteImport } from './routes/_app/manage/_layout/(categories)/categories/route'
 import { Route as AppManageLayoutcardsCardsRouteRouteImport } from './routes/_app/manage/_layout/(cards)/cards/route'
@@ -38,6 +39,7 @@ import { Route as AppManageLayoutbranchesBranchesRouteRouteImport } from './rout
 import { Route as AppManageLayoutusersUsersIndexRouteImport } from './routes/_app/manage/_layout/(users)/users/index'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesIndexRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/index'
 import { Route as AppManageLayoutitemsItemsIndexRouteImport } from './routes/_app/manage/_layout/(items)/items/index'
+import { Route as AppManageLayoutdriveTypesDriveTypesIndexRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types/index'
 import { Route as AppManageLayoutclientsClientsIndexRouteImport } from './routes/_app/manage/_layout/(clients)/clients/index'
 import { Route as AppManageLayoutcategoriesCategoriesIndexRouteImport } from './routes/_app/manage/_layout/(categories)/categories/index'
 import { Route as AppManageLayoutcardsCardsIndexRouteImport } from './routes/_app/manage/_layout/(cards)/cards/index'
@@ -45,6 +47,7 @@ import { Route as AppManageLayoutbranchesBranchesIndexRouteImport } from './rout
 import { Route as AppManageLayoutusersUsersCreateRouteImport } from './routes/_app/manage/_layout/(users)/users/create'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesCreateRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/create'
 import { Route as AppManageLayoutitemsItemsCreateRouteImport } from './routes/_app/manage/_layout/(items)/items/create'
+import { Route as AppManageLayoutdriveTypesDriveTypesCreateRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types/create'
 import { Route as AppManageLayoutclientsClientsCreateRouteImport } from './routes/_app/manage/_layout/(clients)/clients/create'
 import { Route as AppManageLayoutcategoriesCategoriesCreateRouteImport } from './routes/_app/manage/_layout/(categories)/categories/create'
 import { Route as AppManageLayoutcardsCardsCreateRouteImport } from './routes/_app/manage/_layout/(cards)/cards/create'
@@ -52,6 +55,7 @@ import { Route as AppManageLayoutbranchesBranchesCreateRouteImport } from './rou
 import { Route as AppManageLayoutusersUsersViewIndexRouteImport } from './routes/_app/manage/_layout/(users)/users/view.index'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesViewIndexRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/view.index'
 import { Route as AppManageLayoutitemsItemsViewIndexRouteImport } from './routes/_app/manage/_layout/(items)/items/view.index'
+import { Route as AppManageLayoutdriveTypesDriveTypesViewIndexRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types/view.index'
 import { Route as AppManageLayoutclientsClientsViewIndexRouteImport } from './routes/_app/manage/_layout/(clients)/clients/view.index'
 import { Route as AppManageLayoutcategoriesCategoriesViewIndexRouteImport } from './routes/_app/manage/_layout/(categories)/categories/view.index'
 import { Route as AppManageLayoutcardsCardsViewIndexRouteImport } from './routes/_app/manage/_layout/(cards)/cards/view.index'
@@ -59,6 +63,7 @@ import { Route as AppManageLayoutbranchesBranchesViewIndexRouteImport } from './
 import { Route as AppManageLayoutusersUsersViewUserIdRouteImport } from './routes/_app/manage/_layout/(users)/users_/view.$userId'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories_/view.$subcategoryId'
 import { Route as AppManageLayoutitemsItemsViewItemIdRouteImport } from './routes/_app/manage/_layout/(items)/items_/view.$itemId'
+import { Route as AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types_/view.$driveTypeId'
 import { Route as AppManageLayoutclientsClientsViewClientIdRouteImport } from './routes/_app/manage/_layout/(clients)/clients_/view.$clientId'
 import { Route as AppManageLayoutcategoriesCategoriesViewCategoryIdRouteImport } from './routes/_app/manage/_layout/(categories)/categories_/view.$categoryId'
 import { Route as AppManageLayoutcardsCardsViewCardIdRouteImport } from './routes/_app/manage/_layout/(cards)/cards_/view.$cardId'
@@ -172,6 +177,12 @@ const AppManageLayoutitemsItemsRouteRoute =
     path: '/items',
     getParentRoute: () => AppManageLayoutRouteRoute,
   } as any)
+const AppManageLayoutdriveTypesDriveTypesRouteRoute =
+  AppManageLayoutdriveTypesDriveTypesRouteRouteImport.update({
+    id: '/(drive-types)/drive-types',
+    path: '/drive-types',
+    getParentRoute: () => AppManageLayoutRouteRoute,
+  } as any)
 const AppManageLayoutclientsClientsRouteRoute =
   AppManageLayoutclientsClientsRouteRouteImport.update({
     id: '/(clients)/clients',
@@ -213,6 +224,12 @@ const AppManageLayoutitemsItemsIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AppManageLayoutitemsItemsRouteRoute,
+  } as any)
+const AppManageLayoutdriveTypesDriveTypesIndexRoute =
+  AppManageLayoutdriveTypesDriveTypesIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AppManageLayoutdriveTypesDriveTypesRouteRoute,
   } as any)
 const AppManageLayoutclientsClientsIndexRoute =
   AppManageLayoutclientsClientsIndexRouteImport.update({
@@ -256,6 +273,12 @@ const AppManageLayoutitemsItemsCreateRoute =
     path: '/create',
     getParentRoute: () => AppManageLayoutitemsItemsRouteRoute,
   } as any)
+const AppManageLayoutdriveTypesDriveTypesCreateRoute =
+  AppManageLayoutdriveTypesDriveTypesCreateRouteImport.update({
+    id: '/create',
+    path: '/create',
+    getParentRoute: () => AppManageLayoutdriveTypesDriveTypesRouteRoute,
+  } as any)
 const AppManageLayoutclientsClientsCreateRoute =
   AppManageLayoutclientsClientsCreateRouteImport.update({
     id: '/create',
@@ -298,6 +321,12 @@ const AppManageLayoutitemsItemsViewIndexRoute =
     path: '/view/',
     getParentRoute: () => AppManageLayoutitemsItemsRouteRoute,
   } as any)
+const AppManageLayoutdriveTypesDriveTypesViewIndexRoute =
+  AppManageLayoutdriveTypesDriveTypesViewIndexRouteImport.update({
+    id: '/view/',
+    path: '/view/',
+    getParentRoute: () => AppManageLayoutdriveTypesDriveTypesRouteRoute,
+  } as any)
 const AppManageLayoutclientsClientsViewIndexRoute =
   AppManageLayoutclientsClientsViewIndexRouteImport.update({
     id: '/view/',
@@ -338,6 +367,12 @@ const AppManageLayoutitemsItemsViewItemIdRoute =
   AppManageLayoutitemsItemsViewItemIdRouteImport.update({
     id: '/(items)/items/view/$itemId',
     path: '/items/view/$itemId',
+    getParentRoute: () => AppManageLayoutRouteRoute,
+  } as any)
+const AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute =
+  AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRouteImport.update({
+    id: '/(drive-types)/drive-types/view/$driveTypeId',
+    path: '/drive-types/view/$driveTypeId',
     getParentRoute: () => AppManageLayoutRouteRoute,
   } as any)
 const AppManageLayoutclientsClientsViewClientIdRoute =
@@ -386,6 +421,7 @@ export interface FileRoutesByFullPath {
   '/manage/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/manage/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   '/manage/clients': typeof AppManageLayoutclientsClientsRouteRouteWithChildren
+  '/manage/drive-types': typeof AppManageLayoutdriveTypesDriveTypesRouteRouteWithChildren
   '/manage/items': typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   '/manage/subcategories': typeof AppManageLayoutsubcategoriesSubcategoriesRouteRouteWithChildren
   '/manage/users': typeof AppManageLayoutusersUsersRouteRouteWithChildren
@@ -393,6 +429,7 @@ export interface FileRoutesByFullPath {
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
   '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/manage/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
+  '/manage/drive-types/create': typeof AppManageLayoutdriveTypesDriveTypesCreateRoute
   '/manage/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/manage/subcategories/create': typeof AppManageLayoutsubcategoriesSubcategoriesCreateRoute
   '/manage/users/create': typeof AppManageLayoutusersUsersCreateRoute
@@ -400,6 +437,7 @@ export interface FileRoutesByFullPath {
   '/manage/cards/': typeof AppManageLayoutcardsCardsIndexRoute
   '/manage/categories/': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/manage/clients/': typeof AppManageLayoutclientsClientsIndexRoute
+  '/manage/drive-types/': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/manage/items/': typeof AppManageLayoutitemsItemsIndexRoute
   '/manage/subcategories/': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/manage/users/': typeof AppManageLayoutusersUsersIndexRoute
@@ -407,6 +445,7 @@ export interface FileRoutesByFullPath {
   '/manage/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
   '/manage/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/manage/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
+  '/manage/drive-types/view/$driveTypeId': typeof AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute
   '/manage/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/manage/subcategories/view/$subcategoryId': typeof AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute
   '/manage/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
@@ -414,6 +453,7 @@ export interface FileRoutesByFullPath {
   '/manage/cards/view': typeof AppManageLayoutcardsCardsViewIndexRoute
   '/manage/categories/view': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/manage/clients/view': typeof AppManageLayoutclientsClientsViewIndexRoute
+  '/manage/drive-types/view': typeof AppManageLayoutdriveTypesDriveTypesViewIndexRoute
   '/manage/items/view': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/manage/subcategories/view': typeof AppManageLayoutsubcategoriesSubcategoriesViewIndexRoute
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -438,6 +478,7 @@ export interface FileRoutesByTo {
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
   '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/manage/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
+  '/manage/drive-types/create': typeof AppManageLayoutdriveTypesDriveTypesCreateRoute
   '/manage/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/manage/subcategories/create': typeof AppManageLayoutsubcategoriesSubcategoriesCreateRoute
   '/manage/users/create': typeof AppManageLayoutusersUsersCreateRoute
@@ -445,6 +486,7 @@ export interface FileRoutesByTo {
   '/manage/cards': typeof AppManageLayoutcardsCardsIndexRoute
   '/manage/categories': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/manage/clients': typeof AppManageLayoutclientsClientsIndexRoute
+  '/manage/drive-types': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/manage/items': typeof AppManageLayoutitemsItemsIndexRoute
   '/manage/subcategories': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/manage/users': typeof AppManageLayoutusersUsersIndexRoute
@@ -452,6 +494,7 @@ export interface FileRoutesByTo {
   '/manage/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
   '/manage/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/manage/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
+  '/manage/drive-types/view/$driveTypeId': typeof AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute
   '/manage/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/manage/subcategories/view/$subcategoryId': typeof AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute
   '/manage/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
@@ -459,6 +502,7 @@ export interface FileRoutesByTo {
   '/manage/cards/view': typeof AppManageLayoutcardsCardsViewIndexRoute
   '/manage/categories/view': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/manage/clients/view': typeof AppManageLayoutclientsClientsViewIndexRoute
+  '/manage/drive-types/view': typeof AppManageLayoutdriveTypesDriveTypesViewIndexRoute
   '/manage/items/view': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/manage/subcategories/view': typeof AppManageLayoutsubcategoriesSubcategoriesViewIndexRoute
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -487,6 +531,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(cards)/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/_app/manage/_layout/(categories)/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   '/_app/manage/_layout/(clients)/clients': typeof AppManageLayoutclientsClientsRouteRouteWithChildren
+  '/_app/manage/_layout/(drive-types)/drive-types': typeof AppManageLayoutdriveTypesDriveTypesRouteRouteWithChildren
   '/_app/manage/_layout/(items)/items': typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   '/_app/manage/_layout/(subcategories)/subcategories': typeof AppManageLayoutsubcategoriesSubcategoriesRouteRouteWithChildren
   '/_app/manage/_layout/(users)/users': typeof AppManageLayoutusersUsersRouteRouteWithChildren
@@ -494,6 +539,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(cards)/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
   '/_app/manage/_layout/(categories)/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
   '/_app/manage/_layout/(clients)/clients/create': typeof AppManageLayoutclientsClientsCreateRoute
+  '/_app/manage/_layout/(drive-types)/drive-types/create': typeof AppManageLayoutdriveTypesDriveTypesCreateRoute
   '/_app/manage/_layout/(items)/items/create': typeof AppManageLayoutitemsItemsCreateRoute
   '/_app/manage/_layout/(subcategories)/subcategories/create': typeof AppManageLayoutsubcategoriesSubcategoriesCreateRoute
   '/_app/manage/_layout/(users)/users/create': typeof AppManageLayoutusersUsersCreateRoute
@@ -501,6 +547,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(cards)/cards/': typeof AppManageLayoutcardsCardsIndexRoute
   '/_app/manage/_layout/(categories)/categories/': typeof AppManageLayoutcategoriesCategoriesIndexRoute
   '/_app/manage/_layout/(clients)/clients/': typeof AppManageLayoutclientsClientsIndexRoute
+  '/_app/manage/_layout/(drive-types)/drive-types/': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/_app/manage/_layout/(items)/items/': typeof AppManageLayoutitemsItemsIndexRoute
   '/_app/manage/_layout/(subcategories)/subcategories/': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/_app/manage/_layout/(users)/users/': typeof AppManageLayoutusersUsersIndexRoute
@@ -508,6 +555,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(cards)/cards/view/$cardId': typeof AppManageLayoutcardsCardsViewCardIdRoute
   '/_app/manage/_layout/(categories)/categories/view/$categoryId': typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   '/_app/manage/_layout/(clients)/clients/view/$clientId': typeof AppManageLayoutclientsClientsViewClientIdRoute
+  '/_app/manage/_layout/(drive-types)/drive-types/view/$driveTypeId': typeof AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute
   '/_app/manage/_layout/(items)/items/view/$itemId': typeof AppManageLayoutitemsItemsViewItemIdRoute
   '/_app/manage/_layout/(subcategories)/subcategories/view/$subcategoryId': typeof AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute
   '/_app/manage/_layout/(users)/users/view/$userId': typeof AppManageLayoutusersUsersViewUserIdRoute
@@ -515,6 +563,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(cards)/cards/view/': typeof AppManageLayoutcardsCardsViewIndexRoute
   '/_app/manage/_layout/(categories)/categories/view/': typeof AppManageLayoutcategoriesCategoriesViewIndexRoute
   '/_app/manage/_layout/(clients)/clients/view/': typeof AppManageLayoutclientsClientsViewIndexRoute
+  '/_app/manage/_layout/(drive-types)/drive-types/view/': typeof AppManageLayoutdriveTypesDriveTypesViewIndexRoute
   '/_app/manage/_layout/(items)/items/view/': typeof AppManageLayoutitemsItemsViewIndexRoute
   '/_app/manage/_layout/(subcategories)/subcategories/view/': typeof AppManageLayoutsubcategoriesSubcategoriesViewIndexRoute
   '/_app/manage/_layout/(users)/users/view/': typeof AppManageLayoutusersUsersViewIndexRoute
@@ -542,6 +591,7 @@ export interface FileRouteTypes {
     | '/manage/cards'
     | '/manage/categories'
     | '/manage/clients'
+    | '/manage/drive-types'
     | '/manage/items'
     | '/manage/subcategories'
     | '/manage/users'
@@ -549,6 +599,7 @@ export interface FileRouteTypes {
     | '/manage/cards/create'
     | '/manage/categories/create'
     | '/manage/clients/create'
+    | '/manage/drive-types/create'
     | '/manage/items/create'
     | '/manage/subcategories/create'
     | '/manage/users/create'
@@ -556,6 +607,7 @@ export interface FileRouteTypes {
     | '/manage/cards/'
     | '/manage/categories/'
     | '/manage/clients/'
+    | '/manage/drive-types/'
     | '/manage/items/'
     | '/manage/subcategories/'
     | '/manage/users/'
@@ -563,6 +615,7 @@ export interface FileRouteTypes {
     | '/manage/cards/view/$cardId'
     | '/manage/categories/view/$categoryId'
     | '/manage/clients/view/$clientId'
+    | '/manage/drive-types/view/$driveTypeId'
     | '/manage/items/view/$itemId'
     | '/manage/subcategories/view/$subcategoryId'
     | '/manage/users/view/$userId'
@@ -570,6 +623,7 @@ export interface FileRouteTypes {
     | '/manage/cards/view'
     | '/manage/categories/view'
     | '/manage/clients/view'
+    | '/manage/drive-types/view'
     | '/manage/items/view'
     | '/manage/subcategories/view'
     | '/manage/users/view'
@@ -594,6 +648,7 @@ export interface FileRouteTypes {
     | '/manage/cards/create'
     | '/manage/categories/create'
     | '/manage/clients/create'
+    | '/manage/drive-types/create'
     | '/manage/items/create'
     | '/manage/subcategories/create'
     | '/manage/users/create'
@@ -601,6 +656,7 @@ export interface FileRouteTypes {
     | '/manage/cards'
     | '/manage/categories'
     | '/manage/clients'
+    | '/manage/drive-types'
     | '/manage/items'
     | '/manage/subcategories'
     | '/manage/users'
@@ -608,6 +664,7 @@ export interface FileRouteTypes {
     | '/manage/cards/view/$cardId'
     | '/manage/categories/view/$categoryId'
     | '/manage/clients/view/$clientId'
+    | '/manage/drive-types/view/$driveTypeId'
     | '/manage/items/view/$itemId'
     | '/manage/subcategories/view/$subcategoryId'
     | '/manage/users/view/$userId'
@@ -615,6 +672,7 @@ export interface FileRouteTypes {
     | '/manage/cards/view'
     | '/manage/categories/view'
     | '/manage/clients/view'
+    | '/manage/drive-types/view'
     | '/manage/items/view'
     | '/manage/subcategories/view'
     | '/manage/users/view'
@@ -642,6 +700,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(cards)/cards'
     | '/_app/manage/_layout/(categories)/categories'
     | '/_app/manage/_layout/(clients)/clients'
+    | '/_app/manage/_layout/(drive-types)/drive-types'
     | '/_app/manage/_layout/(items)/items'
     | '/_app/manage/_layout/(subcategories)/subcategories'
     | '/_app/manage/_layout/(users)/users'
@@ -649,6 +708,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(cards)/cards/create'
     | '/_app/manage/_layout/(categories)/categories/create'
     | '/_app/manage/_layout/(clients)/clients/create'
+    | '/_app/manage/_layout/(drive-types)/drive-types/create'
     | '/_app/manage/_layout/(items)/items/create'
     | '/_app/manage/_layout/(subcategories)/subcategories/create'
     | '/_app/manage/_layout/(users)/users/create'
@@ -656,6 +716,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(cards)/cards/'
     | '/_app/manage/_layout/(categories)/categories/'
     | '/_app/manage/_layout/(clients)/clients/'
+    | '/_app/manage/_layout/(drive-types)/drive-types/'
     | '/_app/manage/_layout/(items)/items/'
     | '/_app/manage/_layout/(subcategories)/subcategories/'
     | '/_app/manage/_layout/(users)/users/'
@@ -663,6 +724,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(cards)/cards/view/$cardId'
     | '/_app/manage/_layout/(categories)/categories/view/$categoryId'
     | '/_app/manage/_layout/(clients)/clients/view/$clientId'
+    | '/_app/manage/_layout/(drive-types)/drive-types/view/$driveTypeId'
     | '/_app/manage/_layout/(items)/items/view/$itemId'
     | '/_app/manage/_layout/(subcategories)/subcategories/view/$subcategoryId'
     | '/_app/manage/_layout/(users)/users/view/$userId'
@@ -670,6 +732,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(cards)/cards/view/'
     | '/_app/manage/_layout/(categories)/categories/view/'
     | '/_app/manage/_layout/(clients)/clients/view/'
+    | '/_app/manage/_layout/(drive-types)/drive-types/view/'
     | '/_app/manage/_layout/(items)/items/view/'
     | '/_app/manage/_layout/(subcategories)/subcategories/view/'
     | '/_app/manage/_layout/(users)/users/view/'
@@ -829,6 +892,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutitemsItemsRouteRouteImport
       parentRoute: typeof AppManageLayoutRouteRoute
     }
+    '/_app/manage/_layout/(drive-types)/drive-types': {
+      id: '/_app/manage/_layout/(drive-types)/drive-types'
+      path: '/drive-types'
+      fullPath: '/manage/drive-types'
+      preLoaderRoute: typeof AppManageLayoutdriveTypesDriveTypesRouteRouteImport
+      parentRoute: typeof AppManageLayoutRouteRoute
+    }
     '/_app/manage/_layout/(clients)/clients': {
       id: '/_app/manage/_layout/(clients)/clients'
       path: '/clients'
@@ -877,6 +947,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/manage/items/'
       preLoaderRoute: typeof AppManageLayoutitemsItemsIndexRouteImport
       parentRoute: typeof AppManageLayoutitemsItemsRouteRoute
+    }
+    '/_app/manage/_layout/(drive-types)/drive-types/': {
+      id: '/_app/manage/_layout/(drive-types)/drive-types/'
+      path: '/'
+      fullPath: '/manage/drive-types/'
+      preLoaderRoute: typeof AppManageLayoutdriveTypesDriveTypesIndexRouteImport
+      parentRoute: typeof AppManageLayoutdriveTypesDriveTypesRouteRoute
     }
     '/_app/manage/_layout/(clients)/clients/': {
       id: '/_app/manage/_layout/(clients)/clients/'
@@ -927,6 +1004,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutitemsItemsCreateRouteImport
       parentRoute: typeof AppManageLayoutitemsItemsRouteRoute
     }
+    '/_app/manage/_layout/(drive-types)/drive-types/create': {
+      id: '/_app/manage/_layout/(drive-types)/drive-types/create'
+      path: '/create'
+      fullPath: '/manage/drive-types/create'
+      preLoaderRoute: typeof AppManageLayoutdriveTypesDriveTypesCreateRouteImport
+      parentRoute: typeof AppManageLayoutdriveTypesDriveTypesRouteRoute
+    }
     '/_app/manage/_layout/(clients)/clients/create': {
       id: '/_app/manage/_layout/(clients)/clients/create'
       path: '/create'
@@ -976,6 +1060,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageLayoutitemsItemsViewIndexRouteImport
       parentRoute: typeof AppManageLayoutitemsItemsRouteRoute
     }
+    '/_app/manage/_layout/(drive-types)/drive-types/view/': {
+      id: '/_app/manage/_layout/(drive-types)/drive-types/view/'
+      path: '/view'
+      fullPath: '/manage/drive-types/view'
+      preLoaderRoute: typeof AppManageLayoutdriveTypesDriveTypesViewIndexRouteImport
+      parentRoute: typeof AppManageLayoutdriveTypesDriveTypesRouteRoute
+    }
     '/_app/manage/_layout/(clients)/clients/view/': {
       id: '/_app/manage/_layout/(clients)/clients/view/'
       path: '/view'
@@ -1023,6 +1114,13 @@ declare module '@tanstack/react-router' {
       path: '/items/view/$itemId'
       fullPath: '/manage/items/view/$itemId'
       preLoaderRoute: typeof AppManageLayoutitemsItemsViewItemIdRouteImport
+      parentRoute: typeof AppManageLayoutRouteRoute
+    }
+    '/_app/manage/_layout/(drive-types)/drive-types/view/$driveTypeId': {
+      id: '/_app/manage/_layout/(drive-types)/drive-types/view/$driveTypeId'
+      path: '/drive-types/view/$driveTypeId'
+      fullPath: '/manage/drive-types/view/$driveTypeId'
+      preLoaderRoute: typeof AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRouteImport
       parentRoute: typeof AppManageLayoutRouteRoute
     }
     '/_app/manage/_layout/(clients)/clients/view/$clientId': {
@@ -1138,6 +1236,27 @@ const AppManageLayoutclientsClientsRouteRouteWithChildren =
     AppManageLayoutclientsClientsRouteRouteChildren,
   )
 
+interface AppManageLayoutdriveTypesDriveTypesRouteRouteChildren {
+  AppManageLayoutdriveTypesDriveTypesCreateRoute: typeof AppManageLayoutdriveTypesDriveTypesCreateRoute
+  AppManageLayoutdriveTypesDriveTypesIndexRoute: typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
+  AppManageLayoutdriveTypesDriveTypesViewIndexRoute: typeof AppManageLayoutdriveTypesDriveTypesViewIndexRoute
+}
+
+const AppManageLayoutdriveTypesDriveTypesRouteRouteChildren: AppManageLayoutdriveTypesDriveTypesRouteRouteChildren =
+  {
+    AppManageLayoutdriveTypesDriveTypesCreateRoute:
+      AppManageLayoutdriveTypesDriveTypesCreateRoute,
+    AppManageLayoutdriveTypesDriveTypesIndexRoute:
+      AppManageLayoutdriveTypesDriveTypesIndexRoute,
+    AppManageLayoutdriveTypesDriveTypesViewIndexRoute:
+      AppManageLayoutdriveTypesDriveTypesViewIndexRoute,
+  }
+
+const AppManageLayoutdriveTypesDriveTypesRouteRouteWithChildren =
+  AppManageLayoutdriveTypesDriveTypesRouteRoute._addFileChildren(
+    AppManageLayoutdriveTypesDriveTypesRouteRouteChildren,
+  )
+
 interface AppManageLayoutitemsItemsRouteRouteChildren {
   AppManageLayoutitemsItemsCreateRoute: typeof AppManageLayoutitemsItemsCreateRoute
   AppManageLayoutitemsItemsIndexRoute: typeof AppManageLayoutitemsItemsIndexRoute
@@ -1202,6 +1321,7 @@ interface AppManageLayoutRouteRouteChildren {
   AppManageLayoutcardsCardsRouteRoute: typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   AppManageLayoutcategoriesCategoriesRouteRoute: typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
   AppManageLayoutclientsClientsRouteRoute: typeof AppManageLayoutclientsClientsRouteRouteWithChildren
+  AppManageLayoutdriveTypesDriveTypesRouteRoute: typeof AppManageLayoutdriveTypesDriveTypesRouteRouteWithChildren
   AppManageLayoutitemsItemsRouteRoute: typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   AppManageLayoutsubcategoriesSubcategoriesRouteRoute: typeof AppManageLayoutsubcategoriesSubcategoriesRouteRouteWithChildren
   AppManageLayoutusersUsersRouteRoute: typeof AppManageLayoutusersUsersRouteRouteWithChildren
@@ -1209,6 +1329,7 @@ interface AppManageLayoutRouteRouteChildren {
   AppManageLayoutcardsCardsViewCardIdRoute: typeof AppManageLayoutcardsCardsViewCardIdRoute
   AppManageLayoutcategoriesCategoriesViewCategoryIdRoute: typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
   AppManageLayoutclientsClientsViewClientIdRoute: typeof AppManageLayoutclientsClientsViewClientIdRoute
+  AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute: typeof AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute
   AppManageLayoutitemsItemsViewItemIdRoute: typeof AppManageLayoutitemsItemsViewItemIdRoute
   AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute: typeof AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute
   AppManageLayoutusersUsersViewUserIdRoute: typeof AppManageLayoutusersUsersViewUserIdRoute
@@ -1223,6 +1344,8 @@ const AppManageLayoutRouteRouteChildren: AppManageLayoutRouteRouteChildren = {
     AppManageLayoutcategoriesCategoriesRouteRouteWithChildren,
   AppManageLayoutclientsClientsRouteRoute:
     AppManageLayoutclientsClientsRouteRouteWithChildren,
+  AppManageLayoutdriveTypesDriveTypesRouteRoute:
+    AppManageLayoutdriveTypesDriveTypesRouteRouteWithChildren,
   AppManageLayoutitemsItemsRouteRoute:
     AppManageLayoutitemsItemsRouteRouteWithChildren,
   AppManageLayoutsubcategoriesSubcategoriesRouteRoute:
@@ -1237,6 +1360,8 @@ const AppManageLayoutRouteRouteChildren: AppManageLayoutRouteRouteChildren = {
     AppManageLayoutcategoriesCategoriesViewCategoryIdRoute,
   AppManageLayoutclientsClientsViewClientIdRoute:
     AppManageLayoutclientsClientsViewClientIdRoute,
+  AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute:
+    AppManageLayoutdriveTypesDriveTypesViewDriveTypeIdRoute,
   AppManageLayoutitemsItemsViewItemIdRoute:
     AppManageLayoutitemsItemsViewItemIdRoute,
   AppManageLayoutsubcategoriesSubcategoriesViewSubcategoryIdRoute:

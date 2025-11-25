@@ -183,6 +183,9 @@
     "branches.table.column.zipCode": "Zip code",
 
     "driveTypes": "Dispaly drive types",
+    "driveTypes.table.search": "Search drive type",
+    "driveTypes.table.column.id": "ID",
+    "driveTypes.table.column.name": "Name",
     
     "users": "Display users",
     "users.table.search": "Search user",

@@ -24,7 +24,7 @@ const tiles: ExtendedLinkOptions[] = [
   { to: "/manage/categories/create", label: "manage.categories", imgSrc: categories },
   { to: "/manage/subcategories/create", label: "manage.subcategories", imgSrc: subcategoriesImg },
   { to: "/manage/branches/create", label: "manage.branches", imgSrc: branchesImg },
-  { to: "/manage/drive-type", label: "manage.driveTypes", imgSrc: driveType },
+  { to: "/manage/drive-types/create", label: "manage.driveTypes", imgSrc: driveType },
   { to: "/manage/users/create", label: "manage.users", imgSrc: addUser },
 ]
 

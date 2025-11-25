@@ -183,6 +183,9 @@
     "branches.table.column.zipCode": "Kod pocztowy",
 
     "driveTypes": "Wyświetl rodzaje napędu",
+    "driveTypes.table.search": "Szukaj rodzaju napędu",
+    "driveTypes.table.column.id": "ID",
+    "driveTypes.table.column.name": "Nazwa",
 
     "users": "Wyświetl użytkowników",
     "users.table.search": "Szukaj użytkownika",
