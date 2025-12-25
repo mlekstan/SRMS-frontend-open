@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ChildFormAccordion from "../-components/ChildFormAccordion";
-import { withForm } from "./hooks/form";
-import { AccordionValidUpdateContext } from "./hooks/child-context";
+import ChildFormAccordion from "../-components/general/ChildFormAccordion";
+import { withForm } from "@/global-form/hooks/form";
+import { AccordionValidUpdateContext } from "./AccordionValidUpdateContext";
 import type { formOptions } from "@tanstack/react-form";
-import { useTranslationContext } from "@/providers/TranslationContext";
-import type { LangKeys } from "@/providers/TranslationProvider";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 
 type ChildFormProps = {

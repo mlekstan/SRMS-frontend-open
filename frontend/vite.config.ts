@@ -22,8 +22,8 @@ export default defineConfig({
   ],
   server: {
     https: {
-      key: fs.readFileSync("e:\\Studia_Teleinformatyka_2022_2023\\Praca_inżynierska\\Cert\\localhost-key.pem"),
-      cert: fs.readFileSync("e:\\Studia_Teleinformatyka_2022_2023\\Praca_inżynierska\\Cert\\localhost.pem")
+      key: fs.readFileSync("e:\\Studia_Teleinformatyka_2022_2023\\Praca_inzynierska\\Cert\\localhost-key.pem"),
+      cert: fs.readFileSync("e:\\Studia_Teleinformatyka_2022_2023\\Praca_inzynierska\\Cert\\localhost.pem")
     }
   },
   resolve: {

@@ -1,6 +1,6 @@
-import { useTranslationContext } from "@/providers/TranslationContext";
-import { withFieldGroup } from "../hooks/form";
-import type { LangCodes, LangKeys } from "@/providers/TranslationProvider";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
+import { withFieldGroup } from "@/global-form/hooks/form";
+import type { LangCodes, LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 
 export const PhoneFieldsGroup = withFieldGroup({

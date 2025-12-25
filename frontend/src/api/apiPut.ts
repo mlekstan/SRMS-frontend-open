@@ -13,7 +13,7 @@ export async function apiPut(url: string, id: string, value: Record<string, unkn
       body: value,
     });
 
-    const result = response.json();
+    const result = await response.json();
     return result;
 
   } catch (error) {

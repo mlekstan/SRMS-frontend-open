@@ -1,9 +1,9 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import { useTranslationContext } from '@/providers/TranslationContext';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { apiGet } from '@/api/apiGet';
 import { useQuery } from '@tanstack/react-query';
 import type { Category, DriveType, Subcategory } from '@/api/types';
@@ -13,11 +13,11 @@ import { createChildForm } from '../../../-forms/createChildForm';
 import type { Leaves } from '@/types/Leaves';
 import { apiPut } from '@/api/apiPut';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
-import { subcategoryFormOpts } from '../../../-forms/subcategory-form/subcategoryForm-options';
-import { subcategoryFormSchema } from '../../../-forms/subcategory-form/subcategoryForm-schema';
-import { subcategoryFormConfig } from '../../../-forms/subcategory-form/subcategoryForm-config';
+import { subcategoryFormOpts } from '../-form/subcategoryForm-options';
+import { subcategoryFormSchema } from '../-form/subcategoryForm-schema';
+import { subcategoryFormConfig } from '../-form/subcategoryForm-config';
 
 
 type FormFields = Leaves<typeof subcategoryFormOpts.defaultValues>;

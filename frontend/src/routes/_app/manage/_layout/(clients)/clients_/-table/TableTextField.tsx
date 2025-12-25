@@ -1,4 +1,4 @@
-import { useTranslationContext } from "@/providers/TranslationContext";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import { TextField } from "@mui/material";
 
 type TableTextFieldProps = {

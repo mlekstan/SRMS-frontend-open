@@ -1,4 +1,4 @@
-import type { LangKeys } from "@/providers/TranslationProvider";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 import type { LinkOptions } from "@tanstack/react-router";
 import type { FC, SVGProps } from "react";
 

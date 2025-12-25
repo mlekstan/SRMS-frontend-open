@@ -1,12 +1,12 @@
 import { Loader } from '@/routes/-components/Loader';
 import { createFileRoute, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
-import { FormPaperContainer } from '../../../-components/FormPaper';
+import { FormPaperContainer } from '../../../-components/general/FormPaper';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { CustomTable } from '../../../-components/tables/CustomTable';
-import { usersTableColumns } from '../../../-components/tables/users-table-columns';
+import { usersTableColumns } from '../-table/users-table-columns';
 import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { User } from '@/api/types';

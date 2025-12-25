@@ -4,6 +4,8 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import '@/index.css';
 import { routeTree } from '@/routeTree.gen';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AuthService } from './context-api/auth/AuthService';
+import { AuthProvider } from './context-api/auth/AuthProvider';
 
 
 declare module '@tanstack/react-router' {
@@ -13,19 +15,21 @@ declare module '@tanstack/react-router' {
 }
 
 export type RouterContext = {
-  queryClient: QueryClient
+  queryClient: QueryClient;
+  authService: AuthService;
 }
 
 
-const queryClient = new QueryClient()
-
+const queryClient = new QueryClient();
+const authService = new AuthService();
 export const router = createRouter({ 
   routeTree,
   context: {
-    queryClient
+    queryClient,
+    authService,
   }
 });
-
+authService.registerRouter(router);
 
 const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
@@ -33,7 +37,9 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <AuthProvider authService={authService}>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </QueryClientProvider>
     </StrictMode>
   )

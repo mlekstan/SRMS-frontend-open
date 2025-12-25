@@ -1,15 +1,15 @@
 import { Loader } from '@/routes/-components/Loader';
 import { createFileRoute, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
-import { FormPaperContainer } from '../../../-components/FormPaper';
+import { FormPaperContainer } from '../../../-components/general/FormPaper';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { CustomTable } from '../../../-components/tables/CustomTable';
 import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { Subcategory } from '@/api/types';
-import { subcategoriesTableColumns } from '../../../-components/tables/subcategories-table-columns';
+import { subcategoriesTableColumns } from '../-table/subcategories-table-columns';
 
 
 export const Route = createFileRoute("/_app/manage/_layout/(subcategories)/subcategories/view/")({

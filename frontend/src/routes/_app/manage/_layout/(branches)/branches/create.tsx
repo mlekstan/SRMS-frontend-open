@@ -2,14 +2,14 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { createFileRoute } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import { branchFormOpts } from '../../../-forms/branch-form/branchForm-options';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { branchFormOpts } from '../-form/branchForm-options';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
-import { branchFormSchema } from '../../../-forms/branch-form/branchForm-schema';
-import { branchFormConfig } from '../../../-forms/branch-form/branchForm-config';
+import { branchFormSchema } from '../-form/branchForm-schema';
+import { branchFormConfig } from '../-form/branchForm-config';
 import { apiPost } from '@/api/apiPost';
 
 export const Route = createFileRoute('/_app/manage/_layout/(branches)/branches/create')({

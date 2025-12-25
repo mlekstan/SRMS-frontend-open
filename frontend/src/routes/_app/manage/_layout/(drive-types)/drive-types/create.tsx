@@ -2,15 +2,15 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { createFileRoute } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
-import { driveTypeFormOpts } from '../../../-forms/driveType-form/driveTypeForm-options';
-import { driveTypeFormSchema } from '../../../-forms/driveType-form/driveTypeForm-schema';
-import { driveTypeFormConfig } from '../../../-forms/driveType-form/driveTypeForm-config';
+import { driveTypeFormOpts } from '../-form/driveTypeForm-options';
+import { driveTypeFormSchema } from '../-form/driveTypeForm-schema';
+import { driveTypeFormConfig } from '../-form/driveTypeForm-config';
 
 export const Route = createFileRoute('/_app/manage/_layout/(drive-types)/drive-types/create')({
   component: RouteComponent,

@@ -1,13 +1,13 @@
-import { useTranslationContext } from '@/providers/TranslationContext';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import type { Leaves } from '@/types/Leaves';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { useQuery } from '@tanstack/react-query';
@@ -15,9 +15,9 @@ import { createChildForm } from '../../../-forms/createChildForm';
 import { apiPut } from '@/api/apiPut';
 import { apiGet } from '@/api/apiGet';
 import type { Card } from '@/api/types';
-import { cardFormOpts } from '../../../-forms/card-form/cardForm-options';
-import { cardFormSchema } from '../../../-forms/card-form/cardForm-schema';
-import { cardFormConfig } from '../../../-forms/card-form/cardForm-config';
+import { cardFormOpts } from '../-form/cardForm-options';
+import { cardFormSchema } from '../-form/cardForm-schema';
+import { cardFormConfig } from '../-form/cardForm-config';
 
 
 type FormFields = Leaves<typeof cardFormOpts.defaultValues>;

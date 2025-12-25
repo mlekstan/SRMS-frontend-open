@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as AppSettingsRouteRouteImport } from './routes/_app/settings/route'
 import { Route as AppSaleIndexRouteImport } from './routes/_app/sale/index'
 import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
@@ -76,6 +77,11 @@ const AppManageRoute = AppManageRouteImport.update({
   id: '/manage',
   path: '/manage',
   getParentRoute: () => AppRouteRoute,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LoginRouteRoute,
 } as any)
 const AppSettingsRouteRoute = AppSettingsRouteRouteImport.update({
   id: '/settings',
@@ -353,8 +359,9 @@ const AppManageLayoutbranchesBranchesViewBranchIdRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/login': typeof LoginRouteRoute
+  '/login': typeof LoginRouteRouteWithChildren
   '/settings': typeof AppSettingsRouteRoute
+  '/login/': typeof LoginIndexRoute
   '/manage': typeof AppManageLayoutRouteRouteWithChildren
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
@@ -403,8 +410,8 @@ export interface FileRoutesByFullPath {
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof LoginRouteRoute
   '/settings': typeof AppSettingsRouteRoute
+  '/login': typeof LoginIndexRoute
   '/manage': typeof AppManageIndexRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
@@ -446,8 +453,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
-  '/login': typeof LoginRouteRoute
+  '/login': typeof LoginRouteRouteWithChildren
   '/_app/settings': typeof AppSettingsRouteRoute
+  '/login/': typeof LoginIndexRoute
   '/_app/manage': typeof AppManageRouteWithChildren
   '/_app/manage/_layout': typeof AppManageLayoutRouteRouteWithChildren
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
@@ -501,6 +509,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/login'
     | '/settings'
+    | '/login/'
     | '/manage'
     | '/rental/equip-status'
     | '/rental/rental-sale'
@@ -549,8 +558,8 @@ export interface FileRouteTypes {
     | '/manage/users/view'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/login'
     | '/settings'
+    | '/login'
     | '/manage'
     | '/rental/equip-status'
     | '/rental/rental-sale'
@@ -593,6 +602,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/settings'
+    | '/login/'
     | '/_app/manage'
     | '/_app/manage/_layout'
     | '/_app/rental/equip-status'
@@ -644,7 +654,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
-  LoginRouteRoute: typeof LoginRouteRoute
+  LoginRouteRoute: typeof LoginRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -669,6 +679,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/manage'
       preLoaderRoute: typeof AppManageRouteImport
       parentRoute: typeof AppRouteRoute
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof LoginRouteRoute
     }
     '/_app/settings': {
       id: '/_app/settings'
@@ -1257,9 +1274,21 @@ const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
   AppRouteRouteChildren,
 )
 
+interface LoginRouteRouteChildren {
+  LoginIndexRoute: typeof LoginIndexRoute
+}
+
+const LoginRouteRouteChildren: LoginRouteRouteChildren = {
+  LoginIndexRoute: LoginIndexRoute,
+}
+
+const LoginRouteRouteWithChildren = LoginRouteRoute._addFileChildren(
+  LoginRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
-  LoginRouteRoute: LoginRouteRoute,
+  LoginRouteRoute: LoginRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,19 +1,28 @@
 {
   "title": "Sales and Rental Management System",
+
   "menu": {
     "rentalService": "Rental service",
     "salesService": "Sales service",
     "manage": "Manage",
     "settings": "Settings"
   },
+  
   "languages": {
     "pl": "Polish",
     "en": "English"
   },
+
+  "login": {
+    "form.email": "E-mail",
+    "form.password": "Password"
+  },
+
   "rentalService": {
     "sale": "Sale of rental service",
     "status": "Equipment status"
   },
+
   "salesService": {
 
   },

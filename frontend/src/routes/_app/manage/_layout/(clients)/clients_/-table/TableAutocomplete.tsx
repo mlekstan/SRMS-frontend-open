@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { memo, useEffect } from "react";
-import type { LangKeys } from "@/providers/TranslationProvider";
-import { useTranslationContext } from "@/providers/TranslationContext";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 
 type TableAutocompleteProps<K> = {
   options: K[];

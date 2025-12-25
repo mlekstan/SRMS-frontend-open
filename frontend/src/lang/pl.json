@@ -1,19 +1,28 @@
 { 
   "title": "System Obsługi Sprzedaży i Wypożyczeń",
+
   "menu": {
     "rentalService": "Usługa wypożyczenia",
     "salesService": "Usługa sprzedaży",
     "manage": "Zarządzaj",
     "settings": "Ustawienia"
   },
+
   "languages": {
     "pl": "Polski",
     "en": "Angielski"
   },
+
+  "login": {
+    "form.email": "E-mail",
+    "form.password": "Hasło"
+  },
+
   "rentalService": {
     "sale": "Sprzedaż usługi wypożyczenia",
     "status": "Status sprzętu"
   },
+
   "salesService": {
 
   },

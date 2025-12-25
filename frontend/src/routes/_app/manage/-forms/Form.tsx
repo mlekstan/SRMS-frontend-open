@@ -1,15 +1,15 @@
 import { Box } from "@mui/material";
-import { useAppForm } from "./hooks/form";
-import { SubmitButton } from "../-components/SubmitButton";
-import { SuccessDialog } from "../-components/SuccessDialog";
-import { FailureDialog } from "../-components/FailureDialog";
+import { useAppForm } from "@/global-form/hooks/form";
+import { SubmitButton } from "../../../../global-form/SubmitButton";
+import { SuccessDialog } from "../-components/general/SuccessDialog";
+import { FailureDialog } from "../-components/general/FailureDialog";
 import { useMutation } from "@tanstack/react-query"
 import { useEffect, useState } from "react";
 import * as z from "zod"
-import type { LangKeys } from "@/providers/TranslationProvider";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 import { Loader } from "@/routes/-components/Loader";
-import { ConditionalRenderProvider } from "@/providers/ConditionalRenderProvider";
-import { ConditionalRender } from "../-components/ConditionalRender";
+import { ConditionalRenderProvider } from "@/routes/_app/manage/-forms/context-api/ConditionalRenderProvider";
+import { ConditionalRender } from "../-components/general/ConditionalRender";
 
 type FormProps = {
   reset: () => void;

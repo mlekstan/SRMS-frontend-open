@@ -1,15 +1,15 @@
 import { Loader } from '@/routes/-components/Loader';
 import { createFileRoute, useCanGoBack, useNavigate, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import { FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { CustomTable } from '../../../-components/tables/CustomTable';
 import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { Card } from '@/api/types';
-import { cardsTableColumns } from '../../../-components/tables/cards-table-columns';
+import { cardsTableColumns } from '../-table/cards-table-columns';
 
 export const Route = createFileRoute('/_app/manage/_layout/(cards)/cards/view/')({
   component: RouteComponent,

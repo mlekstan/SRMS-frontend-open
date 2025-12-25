@@ -6,7 +6,7 @@ import SellIcon from '@/assets/menu/sell.svg?react';
 import SettingsIcon from '@/assets/menu/settings.svg?react';
 import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
 import styles from '@/components/core/side_bar/SideBar.module.css';
-import { useTranslationContext } from '@/providers/TranslationContext';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 
 

@@ -1,20 +1,20 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { userFormOpts } from '../../../-forms/user-form/userForm-options';
+import { userFormOpts } from '../-form/userForm-options';
 import { Loader } from '@/routes/-components/Loader';
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import { memo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
-import { userFormConfig } from '../../../-forms/user-form/userForm-config';
-import { userFormSchema } from '../../../-forms/user-form/userForm-schema';
+import { userFormConfig } from '../-form/userForm-config';
+import { userFormSchema } from '../-form/userForm-schema';
 import { createChildForm } from '../../../-forms/createChildForm';
 import type { Leaves } from '@/types/Leaves';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { apiGet } from '@/api/apiGet';
 import type { Branch, User } from '@/api/types';
 import { apiPut } from '@/api/apiPut';

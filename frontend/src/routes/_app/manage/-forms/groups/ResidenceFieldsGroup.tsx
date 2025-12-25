@@ -1,8 +1,8 @@
-import FormTextField from "../../-components/FormTextField";
-import { withFieldGroup } from "../hooks/form";
-import FormAutocomplete from "../../-components/FormAutocomplete";
+import FormTextField from "../../../../../global-form/field-components/FormTextField";
+import { withFieldGroup } from "@/global-form/hooks/form";
+import FormAutocomplete from "../../../../../global-form/field-components/FormAutocomplete";
 import countries from "@/assets/data/countries.json";
-import type { LangKeys } from "@/providers/TranslationProvider";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 
 export const ResidenceFieldsGroup = withFieldGroup({

@@ -2,15 +2,15 @@ import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { createFileRoute } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
-import { cardFormOpts } from '../../../-forms/card-form/cardForm-options';
-import { cardFormSchema } from '../../../-forms/card-form/cardForm-schema';
-import { cardFormConfig } from '../../../-forms/card-form/cardForm-config';
+import { cardFormOpts } from '../-form/cardForm-options';
+import { cardFormSchema } from '../-form/cardForm-schema';
+import { cardFormConfig } from '../-form/cardForm-config';
 
 export const Route = createFileRoute('/_app/manage/_layout/(cards)/cards/create')({
   component: RouteComponent,

@@ -1,21 +1,21 @@
 import { apiGet } from '@/api/apiGet';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
-import { FailureDialog } from '../../../-components/FailureDialog';
+import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import { Loader } from '@/routes/-components/Loader';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import { clientFormOpts } from '../../../-forms/client-form/clientForm-options';
+import { clientFormOpts } from '../-form/clientForm-options';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import { FormPaper, FormPaperContainer } from '../../../-components/FormPaper';
-import CustomBreadcrumbs from '../../../-components/CustomBreadcrumbs';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
+import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
-import { clientFormSchema } from '../../../-forms/client-form/clientForm-schema';
-import { clientFormConfig } from '../../../-forms/client-form/clientForm-config';
+import { clientFormSchema } from '../-form/clientForm-schema';
+import { clientFormConfig } from '../-form/clientForm-config';
 import type { Card } from '@/api/types';
 
 export const Route = createFileRoute('/_app/manage/_layout/(clients)/clients/create')({

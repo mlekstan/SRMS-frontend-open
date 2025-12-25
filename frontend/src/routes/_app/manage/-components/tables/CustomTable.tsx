@@ -1,9 +1,9 @@
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable, type Row } from '@tanstack/react-table';
 import { useState } from 'react';
-import { SearchInput } from '../../-components/SearchInput';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import type { LangKeys } from '@/providers/TranslationProvider';
+import { SearchInput } from '../general/SearchInput';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import type { LangKeys } from '@/routes/-context-api/translation/TranslationProvider';
 
 
 type CustomTableProps<K> = {

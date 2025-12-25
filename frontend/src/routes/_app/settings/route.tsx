@@ -1,8 +1,8 @@
 import { Autocomplete, Box, Divider, List, ListItem, ListItemIcon, ListItemText, TextField } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import { createFileRoute } from '@tanstack/react-router';
-import { useTranslationContext } from '@/providers/TranslationContext';
-import type { LangCodes } from '@/providers/TranslationProvider';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
+import type { LangCodes } from '@/routes/-context-api/translation/TranslationProvider';
 
 
 type LangOption = {

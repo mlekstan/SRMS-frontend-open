@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { CustomTabs, type CustomTabProps } from '../../../-components/CustomTabs';
+import { CustomTabs, type CustomTabProps } from '../../../-components/general/CustomTabs';
 import { Box } from '@mui/material';
 
 export const Route = createFileRoute('/_app/manage/_layout/(drive-types)/drive-types')({

@@ -8,10 +8,10 @@ import ReturnedIcon from '@mui/icons-material/CreditScore';
 import RemoveIcon from '@mui/icons-material/Remove';
 import TableAutocomplete from "./TableAutocomplete";
 import { useEffect, useState } from "react";
-import { useFieldContext } from "../../../../-forms/hooks/form-context";
-import type { LangKeys } from "@/providers/TranslationProvider";
+import { useFieldContext } from "@/global-form/hooks/form-context";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 import { TableTextField } from "./TableTextField";
-import { useTranslationContext } from "@/providers/TranslationContext";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import boolOptions from "@/assets/data/bool.json";
 
 

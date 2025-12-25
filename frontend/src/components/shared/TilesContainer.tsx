@@ -1,5 +1,5 @@
 import styles from '@/components/shared/TilesContainer.module.css';
-import { useTranslationContext } from '@/providers/TranslationContext';
+import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { Link } from '@tanstack/react-router';
 
