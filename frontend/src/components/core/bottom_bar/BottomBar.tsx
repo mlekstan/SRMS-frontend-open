@@ -4,6 +4,8 @@ import { useLocation, Link } from '@tanstack/react-router';
 import { menuOptions } from '@/components/core/side_bar/SideBar';
 import type { MenuOption } from '@/components/core/side_bar/SideBar';
 import { default as styles } from '@/components/core/bottom_bar/BottomBar.module.css';
+import { useTheme } from '@mui/material';
+
 
 
 
@@ -26,6 +28,7 @@ function BottomBar({ visible }: {visible: boolean}) {
 
 
 function BottomBarOption({ option }: { option: MenuOption }) {
+  const theme = useTheme();
   const pathname = useLocation({
     select: (location) => location.pathname,
   });
@@ -36,7 +39,7 @@ function BottomBarOption({ option }: { option: MenuOption }) {
   return (
     <Link to={to} >
       <div className={ clsx(styles['bottom-bar-option'], pathname.match(linkToRegExp) && styles['selected']) }>
-        <Icon width='25px' height='25px' fill='' />
+        <Icon width='25px' height='25px' fill={theme.vars.palette.grey[300]} />
       </div>
     </Link>
   );
