@@ -1,17 +1,36 @@
 import { createTheme } from "@mui/material";
 
 
- const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a2117',
-      light: '#399a6e',
-      dark: '#3B4D45',
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: "class"
+  },
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#0a2117',
+          light: '#399a6e',
+          dark: '#3B4D45',
+        },
+        background: {
+          paper: '#e0e0e0'
+        }
+      },
     },
-    secondary: {
-      main: '#d9d9d9',
-      light: '#f3f3f3',
-    }
+    dark: {
+      palette: {
+        primary: {
+          main: '#0a2117',
+          light: '#399a6e',
+          dark: '#3B4D45',          
+        },
+        background: {
+          default: '#303030',
+          paper: '#424242'
+        }
+      },
+    },
   },
   typography: {
     fontFamily: [
@@ -21,10 +40,10 @@ import { createTheme } from "@mui/material";
       'Helvetica', 
       'Arial', 
       'sans-serif'
-    ].join(',')
+    ].join(',')    
   },
   spacing: (factor: number) => `${0.25 * factor}rem`
-})
+});
 
 
 export default theme;

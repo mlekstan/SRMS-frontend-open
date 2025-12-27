@@ -13,8 +13,9 @@ type BaseFieldConfig = {
   imaskProps?: object;
   validators?: Record<string, ({ value }: { value: string }) => LangKeys | undefined>;
   componentName?: string;
-  triggerChildFormRender?: string, // child form title property
-  triggerRenderOnValue?: string | number,
+  triggerChildFormRender?: string; // child form title property
+  triggerRenderOnValue?: string | number;
+  triggerChildFormClose?: string[];
 }
 
 type StaticFieldConfig = BaseFieldConfig & {

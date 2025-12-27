@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import HexalLogo from "@/assets/HEXAL_logo.svg?react";
 
@@ -13,12 +13,14 @@ export const Route = createFileRoute('/login')({
 });
 
 function RouteComponent() {
+  const theme = useTheme();
+
   return (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <Box
         sx={{ 
-          height: "120px", 
-          backgroundColor: "green", 
+          height: "120px",
+          backgroundColor: theme.palette.primary.main,
           display: "flex", 
           justifyContent: "center", 
           alignItems: "center",
@@ -29,7 +31,7 @@ function RouteComponent() {
       </Box>
 
       <Box
-        sx={{ flex: 1, overflow: "auto" }}
+        sx={{ flex: 1, overflow: "auto", backgroundColor: 'background.default' }}
       >
         <Box 
           sx={{
@@ -39,7 +41,7 @@ function RouteComponent() {
             display: "flex", 
             flexDirection: "column",
             padding: "3rem", 
-            boxSizing: "border-box" 
+            boxSizing: "border-box",
           }}
         >
           <Outlet />

@@ -1,4 +1,5 @@
 .main-board {
   grid-area: main-board;
   overflow: auto;
+  background-color: var(--mui-palette-background-default);
 }

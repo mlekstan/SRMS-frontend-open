@@ -3,9 +3,10 @@
   grid-area: sidebar;
   width: var(--sidebar-width);
   overflow-x: hidden;
-  background-color: var(--fourth-color);
-  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--mui-palette-primary-dark);
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease 0s;
+  z-index: 1
 }
 
 .side-bar ul {
@@ -28,7 +29,7 @@
 
 .side-bar-option.selected {
   border-left-style: solid;
-  border-color: var(--first-color);
+  border-color: var(--mui-palette-primary-main);
   border-left-width: 8px;
 }
 
@@ -44,6 +45,7 @@
   font-size: 1.3rem;
   text-wrap: nowrap;
   transition: all 0.1s ease 0s;
+  color: var(--mui-palette-grey-300);
 }
 
 .side-bar.hidden {
@@ -58,7 +60,7 @@
 }
 
 .side-bar-option:hover {
-  background-color: var(--third-color);
+  background-color: var(--mui-palette-action-hover);
   padding-left: 1.8em;
   transition: all 0.3s ease 0s;
 }

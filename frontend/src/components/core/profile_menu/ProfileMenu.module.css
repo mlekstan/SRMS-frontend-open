@@ -11,7 +11,8 @@
   outline-style: solid;
   outline-width: 1px;
   outline-color: transparent;
-  background-color: var(--fourth-color);
+  background-color: var(--mui-palette-primary-dark);
+  color: var(--mui-palette-grey-300);
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.12)) drop-shadow(0 8px 16px rgba(0,0,0,0.12));
 }
 
@@ -57,7 +58,7 @@
 }
 
 .user-img-container {
-  background-color: var(--second-color);
+  background-color: var(--mui-palette-primary-light);
   height: 4.375em;
   width: 4.375em;
   display: flex;
@@ -94,5 +95,5 @@
 
 
 .logout:hover {
-  color: red;
+  color: var(--mui-palette-error-main);
 }

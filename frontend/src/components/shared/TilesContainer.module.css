@@ -35,7 +35,7 @@
 }
 
 .img-container {
-  background-color: var(--third-color);
+  background-color: var(--mui-palette-background-paper);
   padding: 2rem;
   display: flex;
   justify-self: center;
@@ -47,8 +47,8 @@
 }
 
 .text-container {
-  color: white;
-  background-color: var(--first-color);
+  color: var(--mui-palette-grey-200);
+  background-color: var(--mui-palette-primary-dark);
   text-wrap: nowrap;
   padding: 1em;
   display: flex;
@@ -58,5 +58,5 @@
 }
 
 .tile:hover {
-  border-color: var(--first-color);
+  border-color: var(--mui-palette-primary-dark);
 }

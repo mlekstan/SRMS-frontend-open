@@ -13,9 +13,17 @@
     "en": "English"
   },
 
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+
   "login": {
+    "form.title": "Login",
     "form.email": "E-mail",
-    "form.password": "Password"
+    "form.password": "Password",
+    "form.button": "Log in"
   },
 
   "rentalService": {
@@ -229,8 +237,10 @@
   },
 
   "settings": {
-    "lang": "Language"
+    "lang": "Language",
+    "theme": "Theme"
   },
+
   "bool": {
     "yes": "Yes",
     "no": "No"

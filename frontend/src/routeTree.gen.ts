@@ -14,7 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
-import { Route as AppSettingsRouteRouteImport } from './routes/_app/settings/route'
+import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppSaleIndexRouteImport } from './routes/_app/sale/index'
 import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
 import { Route as AppManageIndexRouteImport } from './routes/_app/manage/index'
@@ -83,9 +83,9 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LoginRouteRoute,
 } as any)
-const AppSettingsRouteRoute = AppSettingsRouteRouteImport.update({
-  id: '/settings',
-  path: '/settings',
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppSaleIndexRoute = AppSaleIndexRouteImport.update({
@@ -360,7 +360,6 @@ const AppManageLayoutbranchesBranchesViewBranchIdRoute =
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRouteWithChildren
-  '/settings': typeof AppSettingsRouteRoute
   '/login/': typeof LoginIndexRoute
   '/manage': typeof AppManageLayoutRouteRouteWithChildren
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
@@ -368,6 +367,7 @@ export interface FileRoutesByFullPath {
   '/manage/': typeof AppManageIndexRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
+  '/settings': typeof AppSettingsIndexRoute
   '/manage/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/manage/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/manage/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
@@ -410,13 +410,13 @@ export interface FileRoutesByFullPath {
   '/manage/users/view': typeof AppManageLayoutusersUsersViewIndexRoute
 }
 export interface FileRoutesByTo {
-  '/settings': typeof AppSettingsRouteRoute
   '/login': typeof LoginIndexRoute
   '/manage': typeof AppManageIndexRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
   '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
+  '/settings': typeof AppSettingsIndexRoute
   '/manage/branches/create': typeof AppManageLayoutbranchesBranchesCreateRoute
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
   '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
@@ -454,7 +454,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRouteRouteWithChildren
-  '/_app/settings': typeof AppSettingsRouteRoute
   '/login/': typeof LoginIndexRoute
   '/_app/manage': typeof AppManageRouteWithChildren
   '/_app/manage/_layout': typeof AppManageLayoutRouteRouteWithChildren
@@ -463,6 +462,7 @@ export interface FileRoutesById {
   '/_app/manage/': typeof AppManageIndexRoute
   '/_app/rental/': typeof AppRentalIndexRoute
   '/_app/sale/': typeof AppSaleIndexRoute
+  '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/manage/_layout/(branches)/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/_app/manage/_layout/(cards)/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/_app/manage/_layout/(categories)/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
@@ -508,7 +508,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/login'
-    | '/settings'
     | '/login/'
     | '/manage'
     | '/rental/equip-status'
@@ -516,6 +515,7 @@ export interface FileRouteTypes {
     | '/manage/'
     | '/rental'
     | '/sale'
+    | '/settings'
     | '/manage/branches'
     | '/manage/cards'
     | '/manage/categories'
@@ -558,13 +558,13 @@ export interface FileRouteTypes {
     | '/manage/users/view'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/settings'
     | '/login'
     | '/manage'
     | '/rental/equip-status'
     | '/rental/rental-sale'
     | '/rental'
     | '/sale'
+    | '/settings'
     | '/manage/branches/create'
     | '/manage/cards/create'
     | '/manage/categories/create'
@@ -601,7 +601,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/login'
-    | '/_app/settings'
     | '/login/'
     | '/_app/manage'
     | '/_app/manage/_layout'
@@ -610,6 +609,7 @@ export interface FileRouteTypes {
     | '/_app/manage/'
     | '/_app/rental/'
     | '/_app/sale/'
+    | '/_app/settings/'
     | '/_app/manage/_layout/(branches)/branches'
     | '/_app/manage/_layout/(cards)/cards'
     | '/_app/manage/_layout/(categories)/categories'
@@ -687,11 +687,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof LoginRouteRoute
     }
-    '/_app/settings': {
-      id: '/_app/settings'
+    '/_app/settings/': {
+      id: '/_app/settings/'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof AppSettingsRouteRouteImport
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/sale/': {
@@ -1253,21 +1253,21 @@ const AppManageRouteWithChildren = AppManageRoute._addFileChildren(
 )
 
 interface AppRouteRouteChildren {
-  AppSettingsRouteRoute: typeof AppSettingsRouteRoute
   AppManageRoute: typeof AppManageRouteWithChildren
   AppRentalEquipStatusRoute: typeof AppRentalEquipStatusRoute
   AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
   AppRentalIndexRoute: typeof AppRentalIndexRoute
   AppSaleIndexRoute: typeof AppSaleIndexRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppSettingsRouteRoute: AppSettingsRouteRoute,
   AppManageRoute: AppManageRouteWithChildren,
   AppRentalEquipStatusRoute: AppRentalEquipStatusRoute,
   AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
   AppRentalIndexRoute: AppRentalIndexRoute,
   AppSaleIndexRoute: AppSaleIndexRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

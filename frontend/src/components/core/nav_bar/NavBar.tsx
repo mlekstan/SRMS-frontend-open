@@ -3,6 +3,7 @@ import BurgerMenuIcon from '@/assets/navbar/burger-menu.svg?react';
 import UserIcon from '@/assets/navbar/user.svg?react';
 import '@/components/core/app/App.css';
 import styles from '@/components/core/nav_bar/NavBar.module.css';
+import logo from '@/assets/HEXAL_logo.svg';
 
 
 function BurgerMenu({ onClick }) {
@@ -40,7 +41,7 @@ function NavBar({ onBurgerClick, onProfileClick }) {
         <BurgerMenu onClick={onBurgerClick} />
       </div>
       <div className={styles['logo-section']}>
-        <img className={styles['logo']} src='https://hexal.com.pl/wp-content/uploads/2025/05/HEXAL-logo.svg'></img>
+        <img className={styles['logo']} src={logo}></img>
       </div>
       <div className={styles['nav-section']}>
         <UserProfile onClick={onProfileClick} />

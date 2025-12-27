@@ -8,6 +8,7 @@ import SquarePlusIcon from '@/assets/menu/square-plus.svg?react';
 import styles from '@/components/core/side_bar/SideBar.module.css';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
+import { useTheme } from '@mui/material';
 
 
 
@@ -28,6 +29,7 @@ export const menuOptions: ExtendedLinkOptions[] = [
 
 function SideBarOption({ visible, option }: SideBarOptionProps) {
   const {t} = useTranslationContext()
+  const theme = useTheme();
 
 
   const pathname = useLocation({
@@ -43,7 +45,7 @@ function SideBarOption({ visible, option }: SideBarOptionProps) {
     <Link to={to} style={{textDecoration: 'none', color: 'inherit'}}>
       <li className={clsx(styles['side-bar-option'], cssClassName)}>
         <div className={clsx(styles['side-bar-option-icon'], cssClassName)}>
-          { Icon && <Icon width='35px' height='35px' fill=''/> }
+          { Icon && <Icon width='35px' height='35px' fill={theme.palette.grey[300]} /> }
         </div>
         <div className={clsx(styles['side-bar-option-title'], cssClassName)}>
           <span>{t(label!)}</span>

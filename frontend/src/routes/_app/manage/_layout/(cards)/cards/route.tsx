@@ -20,11 +20,9 @@ const tabs: CustomTabProps[] = [
 function RouteComponent() {
 
   return (
-    <>
-      <Box sx={{ borderBottom: 1, borderColor: "divider", backgroundColor: "secondary.main" }}>
-        <CustomTabs props={tabs} />
-      </Box>
+    <Box>
+      <CustomTabs props={tabs} />
       <Outlet />
-    </>
+    </Box>
   );
 }

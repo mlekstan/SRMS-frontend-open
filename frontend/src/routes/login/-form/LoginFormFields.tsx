@@ -1,4 +1,5 @@
 import { SubmitButton } from "@/global-form/SubmitButton";
+import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 import { Box } from "@mui/material";
 
@@ -71,7 +72,7 @@ export function LoginFormFields({ form }: any) {
         </form.AppField>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <SubmitButton />
+        <SubmitButton title={"login.form.button"} />
       </Box>
     </form.AppForm>
   );

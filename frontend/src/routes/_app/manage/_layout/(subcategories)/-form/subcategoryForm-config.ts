@@ -25,7 +25,11 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       queryFn: () => apiGet<Category>({ url: "/categories" }),
       queryKey: "categories",
       triggerChildFormRender: "registration.subcategory.form.vehicle.title",
-      triggerRenderOnValue: 1 // 1-> "Pojazd"
+      triggerRenderOnValue: 1, // 1 -> "Pojazd"
+      triggerChildFormClose: [
+        "registration.subcategory.form.vehicle.title",
+        "registration.subcategory.form.electricVehicle.title",
+      ]
     },
     { 
       fieldName: "subcategoryData.name",
@@ -55,7 +59,10 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
       queryKey: "driveTypes",
       triggerChildFormRender: "registration.subcategory.form.electricVehicle.title",
-      triggerRenderOnValue: 2 // 2 -> "Elektryczny"
+      triggerRenderOnValue: 2, // 2 -> "Elektryczny"
+      triggerChildFormClose: [
+        "registration.subcategory.form.electricVehicle.title",
+      ]
     },
     {
       fieldName: "vehicleData.curbWeight",

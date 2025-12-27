@@ -6,6 +6,7 @@ import { routeTree } from '@/routeTree.gen';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthService } from './context-api/auth/AuthService';
 import { AuthProvider } from './context-api/auth/AuthProvider';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 
 declare module '@tanstack/react-router' {
@@ -14,7 +15,7 @@ declare module '@tanstack/react-router' {
   }
 }
 
-export type RouterContext = {
+type RouterContext = {
   queryClient: QueryClient;
   authService: AuthService;
 }
@@ -22,7 +23,7 @@ export type RouterContext = {
 
 const queryClient = new QueryClient();
 const authService = new AuthService();
-export const router = createRouter({ 
+const router = createRouter({ 
   routeTree,
   context: {
     queryClient,
@@ -44,3 +45,5 @@ if (!rootElement.innerHTML) {
     </StrictMode>
   )
 }
+
+export { type RouterContext, router, authService };

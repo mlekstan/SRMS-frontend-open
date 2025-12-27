@@ -1,8 +1,9 @@
 import { appApiClient } from "@/api/ApiClient";
+import { authService } from "@/main";
 
 
 export async function apiGet<T>(
-  { url, id }: { url: string, id: string }
+  { url, id }: { url: string, id?: string }
 ): Promise<T>;
 export async function apiGet<T>(
   { url, searchParams }: { url: string, searchParams?: string | string[][] | Record<string, string> | URLSearchParams }
@@ -16,7 +17,8 @@ export async function apiGet(
     const response = await appApiClient.makeRequest(path, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${authService.getState().accessToken}`,
       },
       searchParams: searchParams
     });

@@ -13,9 +13,17 @@
     "en": "Angielski"
   },
 
+  "theme": {
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy"
+  },
+
   "login": {
+    "form.title": "Logowanie",
     "form.email": "E-mail",
-    "form.password": "Hasło"
+    "form.password": "Hasło",
+    "form.button": "Zaloguj się"
   },
 
   "rentalService": {
@@ -229,12 +237,15 @@
   },
 
   "settings": {
-    "lang": "Język"
+    "lang": "Język",
+    "theme": "Motyw"
   },
+
   "bool": {
     "yes": "Tak",
     "no": "Nie"
   },
+
   "successDialog": {
     "title": "Sukces",
     "info": {
@@ -242,6 +253,7 @@
     },
     "button": "Zamknij"
   },
+
   "failureDialog": {
     "title": "Niepowodzenie",
     "info": {
@@ -252,7 +264,9 @@
     "message": "Wiadomość: {{message}}",
     "button": "Zamknij"
   },
+
   "save": "Zapisz",
+
   "validation": {
     "empty": "Nie może być puste.",
     "tooShort": "Ma za mało znaków.",

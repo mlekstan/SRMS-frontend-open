@@ -10,24 +10,25 @@ import { useConditionalRenderContext } from "@/routes/_app/manage/-forms/context
 
 type FormAutcompleteProps<T> = {
   props: {
-    label: LangKeys,
-    required: boolean,
-    type: string,
-    options?: T[],
-    optionLabel: keyof T,
-    optionValue: keyof T,
-    queryFn?: () => Promise<T[]>,
-    queryKey?: string, 
-    triggerChildFormRender?: string,
-    triggerRenderOnValue?: string | number,    
-  }
-}
+    label: LangKeys;
+    required: boolean;
+    type: string;
+    options?: T[];
+    optionLabel: keyof T;
+    optionValue: keyof T;
+    queryFn?: () => Promise<T[]>;
+    queryKey?: string;
+    triggerChildFormRender?: string;
+    triggerRenderOnValue?: string | number;
+    triggerChildFormClose?: string[];    
+  };
+};
 
 type ConditionalQueryParams<P> = {
   enabled: boolean;
   queryFn: (() => Promise<P[]>) | undefined;
   queryKey: string | undefined;
-}
+};
 
 
 function useConditonalQuery<S>({
@@ -39,7 +40,7 @@ function useConditonalQuery<S>({
     return null;
   }
 
-  const query = useQuery({queryKey: [queryKey], queryFn: queryFn, enabled: false});
+  const query = useQuery({ queryKey: [queryKey], queryFn: queryFn, enabled: false });
   return query;
 }
 
@@ -47,7 +48,7 @@ function useConditonalQuery<S>({
 export default function FormAutocomplete<K extends Record<string, string>>({ props }: FormAutcompleteProps<K>) {
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
-  const { renderingMap, setRenderingMap } = useConditionalRenderContext();
+  const { setRenderingMap } = useConditionalRenderContext();
   const {t} = useTranslationContext();
 
   const { 
@@ -60,6 +61,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
     queryFn, 
     queryKey,
     triggerChildFormRender,
+    triggerChildFormClose,
     triggerRenderOnValue
   } = props;
 
@@ -72,26 +74,15 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
   });
 
   useEffect(() => {
-    const newRenderingMap = {...renderingMap};
-    
-    if (field.state.value === triggerRenderOnValue) {
-      
-      if (triggerChildFormRender) {
-        newRenderingMap[triggerChildFormRender] = true;
-      }
-      setRenderingMap(newRenderingMap);
-
-    } else {
-      
-      if (triggerChildFormRender) {
-        newRenderingMap[triggerChildFormRender] = false;
-      }
-      setRenderingMap(newRenderingMap);
-    
-    }
+    if (triggerChildFormRender && triggerRenderOnValue && triggerChildFormClose)
+      setRenderingMap({ 
+        triggerChildFormRender,
+        triggerChildFormClose, 
+        triggerRenderOnValue,
+        fieldValue: field.state.value
+      });
   }, [field.state.value]);
 
-  
   useEffect(() => {
     if (setAccordionValidState) {
       setAccordionValidState((prev) => {

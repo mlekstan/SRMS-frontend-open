@@ -1,5 +1,5 @@
-import { useState, type ReactNode } from "react";
-import { ConditionalRenderContext } from "./ConditionalRenderContext";
+import { useReducer, type ReactNode } from "react";
+import { ConditionalRenderContext, type ActionType } from "./ConditionalRenderContext";
 
 type ConditionalRenderProviderProps = {
   children: ReactNode;
@@ -7,13 +7,31 @@ type ConditionalRenderProviderProps = {
 }
 
 
+function reducer(state: Record<string, boolean>, action: ActionType) {
+  const { 
+    triggerChildFormRender, 
+    triggerChildFormClose, 
+    triggerRenderOnValue, 
+    fieldValue 
+  } = action;
+  const newState = {...state};
+
+  if (fieldValue === triggerRenderOnValue) {
+    newState[triggerChildFormRender] = true;
+  } else {
+    triggerChildFormClose.forEach(cf => newState[cf] = false)
+  }
+
+  return newState;
+}
+
 export function ConditionalRenderProvider({ children, renderingComponentsIdMap }: ConditionalRenderProviderProps) {
-  const [renderingMap, setRenderingMap] = useState(renderingComponentsIdMap);
+  const [renderingMap, setRenderingMap] = useReducer(reducer, renderingComponentsIdMap);
 
   return (
     <ConditionalRenderContext.Provider value={{ 
       renderingMap, 
-      setRenderingMap: (updatedRenderingMap: typeof renderingMap) => setRenderingMap(updatedRenderingMap)
+      setRenderingMap: (action: ActionType) => setRenderingMap(action)
     }}
     >
       {children}

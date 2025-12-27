@@ -1,10 +1,17 @@
 import { createContext, useContext } from "react";
 
+export type ActionType = {
+  triggerChildFormRender: string;
+  triggerChildFormClose: string[];
+  triggerRenderOnValue: string | number;
+  fieldValue: any;
+}
 
 type ContextValueType = {
   renderingMap: Record<string, boolean>;
-  setRenderingMap: (updatedRenderingMap: Record<string, boolean>) => void
+  setRenderingMap: (action: ActionType) => void;
 }
+
 
 export const ConditionalRenderContext = createContext<ContextValueType | null>(null);
 

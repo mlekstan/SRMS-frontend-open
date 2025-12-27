@@ -1,6 +1,7 @@
 import { Paper, Typography } from '@mui/material';
 import { createFileRoute } from '@tanstack/react-router'
 import { LoginForm } from './-form/LoginForm';
+import { useTranslationContext } from '../-context-api/translation/TranslationContext';
 
 
 export const Route = createFileRoute('/login/')({
@@ -8,7 +9,8 @@ export const Route = createFileRoute('/login/')({
 })
 
 function RouteComponent() {
-  
+  const { t } = useTranslationContext();
+
   return (
     <Paper
       elevation={4} 
@@ -19,7 +21,7 @@ function RouteComponent() {
         boxSizing: "border-box",
       }}
     >
-      <Typography variant="h3">Login</Typography>
+      <Typography variant="h3">{ t("login.form.title") }</Typography>
       <LoginForm />
     </Paper>
   );
