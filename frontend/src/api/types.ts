@@ -109,3 +109,7 @@ export type DriveType = {
   id: number;
   name: string;
 }
+
+export type AccessToken = {
+  accessToken: string;
+};

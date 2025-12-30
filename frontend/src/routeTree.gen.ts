@@ -18,9 +18,10 @@ import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/ind
 import { Route as AppSaleIndexRouteImport } from './routes/_app/sale/index'
 import { Route as AppRentalIndexRouteImport } from './routes/_app/rental/index'
 import { Route as AppManageIndexRouteImport } from './routes/_app/manage/index'
-import { Route as AppRentalRentalSaleRouteImport } from './routes/_app/rental/rental-sale'
 import { Route as AppRentalEquipStatusRouteImport } from './routes/_app/rental/equip-status'
+import { Route as AppRentalRentalSaleRouteRouteImport } from './routes/_app/rental/rental-sale/route'
 import { Route as AppManageLayoutRouteRouteImport } from './routes/_app/manage/_layout/route'
+import { Route as AppRentalRentalSaleIndexRouteImport } from './routes/_app/rental/rental-sale/index'
 import { Route as AppManageLayoutusersUsersRouteRouteImport } from './routes/_app/manage/_layout/(users)/users/route'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesRouteRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/route'
 import { Route as AppManageLayoutitemsItemsRouteRouteImport } from './routes/_app/manage/_layout/(items)/items/route'
@@ -103,20 +104,27 @@ const AppManageIndexRoute = AppManageIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppManageRoute,
 } as any)
-const AppRentalRentalSaleRoute = AppRentalRentalSaleRouteImport.update({
-  id: '/rental/rental-sale',
-  path: '/rental/rental-sale',
-  getParentRoute: () => AppRouteRoute,
-} as any)
 const AppRentalEquipStatusRoute = AppRentalEquipStatusRouteImport.update({
   id: '/rental/equip-status',
   path: '/rental/equip-status',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRentalRentalSaleRouteRoute =
+  AppRentalRentalSaleRouteRouteImport.update({
+    id: '/rental/rental-sale',
+    path: '/rental/rental-sale',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AppManageLayoutRouteRoute = AppManageLayoutRouteRouteImport.update({
   id: '/_layout',
   getParentRoute: () => AppManageRoute,
 } as any)
+const AppRentalRentalSaleIndexRoute =
+  AppRentalRentalSaleIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AppRentalRentalSaleRouteRoute,
+  } as any)
 const AppManageLayoutusersUsersRouteRoute =
   AppManageLayoutusersUsersRouteRouteImport.update({
     id: '/(users)/users',
@@ -362,12 +370,13 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRouteWithChildren
   '/login/': typeof LoginIndexRoute
   '/manage': typeof AppManageLayoutRouteRouteWithChildren
+  '/rental/rental-sale': typeof AppRentalRentalSaleRouteRouteWithChildren
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
-  '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/manage/': typeof AppManageIndexRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
   '/settings': typeof AppSettingsIndexRoute
+  '/rental/rental-sale/': typeof AppRentalRentalSaleIndexRoute
   '/manage/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/manage/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/manage/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
@@ -413,10 +422,10 @@ export interface FileRoutesByTo {
   '/login': typeof LoginIndexRoute
   '/manage': typeof AppManageIndexRoute
   '/rental/equip-status': typeof AppRentalEquipStatusRoute
-  '/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/rental': typeof AppRentalIndexRoute
   '/sale': typeof AppSaleIndexRoute
   '/settings': typeof AppSettingsIndexRoute
+  '/rental/rental-sale': typeof AppRentalRentalSaleIndexRoute
   '/manage/branches/create': typeof AppManageLayoutbranchesBranchesCreateRoute
   '/manage/cards/create': typeof AppManageLayoutcardsCardsCreateRoute
   '/manage/categories/create': typeof AppManageLayoutcategoriesCategoriesCreateRoute
@@ -457,12 +466,13 @@ export interface FileRoutesById {
   '/login/': typeof LoginIndexRoute
   '/_app/manage': typeof AppManageRouteWithChildren
   '/_app/manage/_layout': typeof AppManageLayoutRouteRouteWithChildren
+  '/_app/rental/rental-sale': typeof AppRentalRentalSaleRouteRouteWithChildren
   '/_app/rental/equip-status': typeof AppRentalEquipStatusRoute
-  '/_app/rental/rental-sale': typeof AppRentalRentalSaleRoute
   '/_app/manage/': typeof AppManageIndexRoute
   '/_app/rental/': typeof AppRentalIndexRoute
   '/_app/sale/': typeof AppSaleIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
+  '/_app/rental/rental-sale/': typeof AppRentalRentalSaleIndexRoute
   '/_app/manage/_layout/(branches)/branches': typeof AppManageLayoutbranchesBranchesRouteRouteWithChildren
   '/_app/manage/_layout/(cards)/cards': typeof AppManageLayoutcardsCardsRouteRouteWithChildren
   '/_app/manage/_layout/(categories)/categories': typeof AppManageLayoutcategoriesCategoriesRouteRouteWithChildren
@@ -510,12 +520,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/login/'
     | '/manage'
-    | '/rental/equip-status'
     | '/rental/rental-sale'
+    | '/rental/equip-status'
     | '/manage/'
     | '/rental'
     | '/sale'
     | '/settings'
+    | '/rental/rental-sale/'
     | '/manage/branches'
     | '/manage/cards'
     | '/manage/categories'
@@ -561,10 +572,10 @@ export interface FileRouteTypes {
     | '/login'
     | '/manage'
     | '/rental/equip-status'
-    | '/rental/rental-sale'
     | '/rental'
     | '/sale'
     | '/settings'
+    | '/rental/rental-sale'
     | '/manage/branches/create'
     | '/manage/cards/create'
     | '/manage/categories/create'
@@ -604,12 +615,13 @@ export interface FileRouteTypes {
     | '/login/'
     | '/_app/manage'
     | '/_app/manage/_layout'
-    | '/_app/rental/equip-status'
     | '/_app/rental/rental-sale'
+    | '/_app/rental/equip-status'
     | '/_app/manage/'
     | '/_app/rental/'
     | '/_app/sale/'
     | '/_app/settings/'
+    | '/_app/rental/rental-sale/'
     | '/_app/manage/_layout/(branches)/branches'
     | '/_app/manage/_layout/(cards)/cards'
     | '/_app/manage/_layout/(categories)/categories'
@@ -715,18 +727,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppManageIndexRouteImport
       parentRoute: typeof AppManageRoute
     }
-    '/_app/rental/rental-sale': {
-      id: '/_app/rental/rental-sale'
-      path: '/rental/rental-sale'
-      fullPath: '/rental/rental-sale'
-      preLoaderRoute: typeof AppRentalRentalSaleRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
     '/_app/rental/equip-status': {
       id: '/_app/rental/equip-status'
       path: '/rental/equip-status'
       fullPath: '/rental/equip-status'
       preLoaderRoute: typeof AppRentalEquipStatusRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/rental/rental-sale': {
+      id: '/_app/rental/rental-sale'
+      path: '/rental/rental-sale'
+      fullPath: '/rental/rental-sale'
+      preLoaderRoute: typeof AppRentalRentalSaleRouteRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/manage/_layout': {
@@ -735,6 +747,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/manage'
       preLoaderRoute: typeof AppManageLayoutRouteRouteImport
       parentRoute: typeof AppManageRoute
+    }
+    '/_app/rental/rental-sale/': {
+      id: '/_app/rental/rental-sale/'
+      path: '/'
+      fullPath: '/rental/rental-sale/'
+      preLoaderRoute: typeof AppRentalRentalSaleIndexRouteImport
+      parentRoute: typeof AppRentalRentalSaleRouteRoute
     }
     '/_app/manage/_layout/(users)/users': {
       id: '/_app/manage/_layout/(users)/users'
@@ -1252,10 +1271,24 @@ const AppManageRouteWithChildren = AppManageRoute._addFileChildren(
   AppManageRouteChildren,
 )
 
+interface AppRentalRentalSaleRouteRouteChildren {
+  AppRentalRentalSaleIndexRoute: typeof AppRentalRentalSaleIndexRoute
+}
+
+const AppRentalRentalSaleRouteRouteChildren: AppRentalRentalSaleRouteRouteChildren =
+  {
+    AppRentalRentalSaleIndexRoute: AppRentalRentalSaleIndexRoute,
+  }
+
+const AppRentalRentalSaleRouteRouteWithChildren =
+  AppRentalRentalSaleRouteRoute._addFileChildren(
+    AppRentalRentalSaleRouteRouteChildren,
+  )
+
 interface AppRouteRouteChildren {
   AppManageRoute: typeof AppManageRouteWithChildren
+  AppRentalRentalSaleRouteRoute: typeof AppRentalRentalSaleRouteRouteWithChildren
   AppRentalEquipStatusRoute: typeof AppRentalEquipStatusRoute
-  AppRentalRentalSaleRoute: typeof AppRentalRentalSaleRoute
   AppRentalIndexRoute: typeof AppRentalIndexRoute
   AppSaleIndexRoute: typeof AppSaleIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
@@ -1263,8 +1296,8 @@ interface AppRouteRouteChildren {
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppManageRoute: AppManageRouteWithChildren,
+  AppRentalRentalSaleRouteRoute: AppRentalRentalSaleRouteRouteWithChildren,
   AppRentalEquipStatusRoute: AppRentalEquipStatusRoute,
-  AppRentalRentalSaleRoute: AppRentalRentalSaleRoute,
   AppRentalIndexRoute: AppRentalIndexRoute,
   AppSaleIndexRoute: AppSaleIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,

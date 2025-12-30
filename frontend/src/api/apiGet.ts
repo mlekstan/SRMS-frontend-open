@@ -1,12 +1,14 @@
 import { appApiClient } from "@/api/ApiClient";
 import { authService } from "@/main";
 
-
 export async function apiGet<T>(
-  { url, id }: { url: string, id?: string }
+  { url }: { url: string }
+): Promise<T[]>;
+export async function apiGet<T>(
+  { url, id }: { url: string, id: string }
 ): Promise<T>;
 export async function apiGet<T>(
-  { url, searchParams }: { url: string, searchParams?: string | string[][] | Record<string, string> | URLSearchParams }
+  { url, searchParams }: { url: string, searchParams: string | string[][] | Record<string, string> | URLSearchParams }
 ): Promise<T[]>;
 export async function apiGet(
   { url, id, searchParams }: { url: string, id?: string, searchParams?: string | string[][] | Record<string, string> | URLSearchParams }
