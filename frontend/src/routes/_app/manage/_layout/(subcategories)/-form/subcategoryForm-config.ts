@@ -19,7 +19,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
           }
         },
       },
-      componentName: "FormAutocomplete",
+      componentName: "FormAutocompleteWrapper",
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<Category>({ url: "/categories" }),
@@ -53,7 +53,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       label: "registration.subcategory.form.vehicle.driveType",
       required: false,
       type: "text",
-      componentName: "FormAutocomplete",
+      componentName: "FormAutocompleteWrapper",
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),

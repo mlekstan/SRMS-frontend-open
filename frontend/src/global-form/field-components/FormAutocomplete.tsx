@@ -1,16 +1,16 @@
 import { useContext, useEffect } from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, TextField, type SxProps, type Theme } from "@mui/material";
 import { useFieldContext } from "../hooks/form-context";
 import { AccordionValidUpdateContext } from "../../routes/_app/manage/-forms/AccordionValidUpdateContext";
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
-import { useConditionalRenderContext } from "@/routes/_app/manage/-forms/context-api/ConditionalRenderContext";
 
 
-type FormAutcompleteProps<T> = {
+export type FormAutcompleteProps<T> = {
   props: {
-    label: LangKeys;
+    sx?: SxProps<Theme>;
+    label?: LangKeys;
     required: boolean;
     type: string;
     options?: T[];
@@ -18,9 +18,6 @@ type FormAutcompleteProps<T> = {
     optionValue: keyof T;
     queryFn?: () => Promise<T[]>;
     queryKey?: string;
-    triggerChildFormRender?: string;
-    triggerRenderOnValue?: string | number;
-    triggerChildFormClose?: string[];    
   };
 };
 
@@ -45,13 +42,13 @@ function useConditonalQuery<S>({
 }
 
 
-export default function FormAutocomplete<K extends Record<string, string>>({ props }: FormAutcompleteProps<K>) {
+export default function FormAutocomplete<K extends Record<string, any>>({ props }: FormAutcompleteProps<K>) {
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
-  const { setRenderingMap } = useConditionalRenderContext();
   const {t} = useTranslationContext();
 
   const { 
+    sx,
     label, 
     required, 
     type, 
@@ -59,10 +56,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
     optionLabel, 
     optionValue, 
     queryFn, 
-    queryKey,
-    triggerChildFormRender,
-    triggerChildFormClose,
-    triggerRenderOnValue
+    queryKey
   } = props;
 
   const query = useConditonalQuery<K>({enabled: !staticOptions, queryFn: queryFn, queryKey: queryKey});
@@ -72,16 +66,6 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
       field.setValue("");
     }
   });
-
-  useEffect(() => {
-    if (triggerChildFormRender && triggerRenderOnValue && triggerChildFormClose)
-      setRenderingMap({ 
-        triggerChildFormRender,
-        triggerChildFormClose, 
-        triggerRenderOnValue,
-        fieldValue: field.state.value
-      });
-  }, [field.state.value]);
 
   useEffect(() => {
     if (setAccordionValidState) {
@@ -104,7 +88,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
 
   return (
     <Autocomplete 
-      sx={{ width: "fit-content", display: "inline-flex" }}
+      sx={sx ?? { width: "fit-content", display: "inline-flex" }}
       options={options}
       // It is necessary to provide in order to see changes done in TanStack's form obj in our Autocomplete e.g. form.reset().
       value={value}
@@ -132,7 +116,7 @@ export default function FormAutocomplete<K extends Record<string, string>>({ pro
           helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
           error={!field.state.meta.isValid}
           required={required}
-          label={t(label)}
+          label={label ? t(label) : undefined}
           slotProps={{
             htmlInput: {
               ...params.inputProps,
