@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
 import { clientFormSchema } from '../-form/clientForm-schema';
@@ -74,13 +74,12 @@ function RouteComponent() {
   const {t} = useTranslationContext();
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-          
-          <FormPaper square elevation={5}>
+          <FormPaper square elevation={5} sx={{ boxSizing: "border-box", overflow: "auto" }}>
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.client')}</Typography>
             <Form 
               key={key} 
@@ -125,6 +124,6 @@ function RouteComponent() {
           message={error.message} 
         />
       }
-    </>
+    </Box>
   );
 }

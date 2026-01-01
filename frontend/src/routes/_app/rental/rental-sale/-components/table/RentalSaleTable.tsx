@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { flexRender } from "@tanstack/react-table";
 import { useFormContext } from "@/global-form/hooks/form-context";
 import { useRentalSaleTable } from "./useRentalSaleTable";
-import { initialPositionsData } from "../forms/RentalSaleForm";
+import { initialPositionsData } from "../form/RentalSaleForm";
 
 
 export function RentalSaleTable() {

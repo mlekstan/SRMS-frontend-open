@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 import { SafeArea } from '../-components/general/SafeArea';
-import { Paper } from '@mui/material';
+
 
 export const Route = createFileRoute('/_app/manage/_layout')({
   component: RouteComponent,
@@ -8,10 +8,8 @@ export const Route = createFileRoute('/_app/manage/_layout')({
 
 function RouteComponent() {
   return (
-    <SafeArea>
-      <Paper sx={{overflow: "hidden", backgroundColor: "secondary.light"}}>
-        <Outlet />
-      </Paper>
+    <SafeArea sx={{ height: "100%", boxSizing: "border-box" }}>
+      <Outlet />
     </SafeArea>
   );
 }

@@ -29,10 +29,9 @@ function RouteComponent() {
   const {t} = useTranslationContext();
 
   return (
-    <FormPaperContainer>
+    <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
       <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-      
-      <FormPaper square elevation={5}>
+      <FormPaper square elevation={5} sx={{ boxSizing: "border-box", overflow: "auto" }}>
         <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.card')}</Typography>
           <Form 
             key={key} 

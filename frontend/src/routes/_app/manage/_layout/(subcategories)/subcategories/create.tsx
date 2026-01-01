@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { apiPost } from '@/api/apiPost';
 import type { Category, DriveType } from '@/api/types';
@@ -90,13 +90,12 @@ function RouteComponent() {
   } = useQuery({ queryKey: ["driveTypes"], queryFn: () => apiGet<DriveType>({ url: "/drive-types" }), retry: 0, refetchInterval: 10000 });
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         ((cIsSuccess && dIsSuccess) || (cData && dData)) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-          
-          <FormPaper square elevation={5}>
+          <FormPaper square elevation={5} sx={{ boxSizing: "border-box", overflow: "auto" }}>
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.subcategory')}</Typography>
             <Form 
               key={key} 
@@ -143,6 +142,6 @@ function RouteComponent() {
           info="failureDialog.info.data"
         />
       }
-    </>
+    </Box>
   );
 }

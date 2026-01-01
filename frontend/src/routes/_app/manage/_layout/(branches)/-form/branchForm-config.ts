@@ -1,5 +1,5 @@
-import { ResidenceFieldsGroup } from "../groups/ResidenceFieldsGroup";
-import type { FormConfig } from "../types/types";
+import { ResidenceFieldsGroup } from "../../../-forms/groups/ResidenceFieldsGroup";
+import type { FormConfig } from "../../../-forms/types/types";
 
 
 const cantBeEmpty = (value: any) => {

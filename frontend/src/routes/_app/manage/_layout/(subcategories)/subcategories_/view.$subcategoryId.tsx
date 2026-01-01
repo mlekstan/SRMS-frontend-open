@@ -1,7 +1,7 @@
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { apiGet } from '@/api/apiGet';
@@ -155,16 +155,15 @@ function RouteComponent() {
 
 
   return (
-    <>
+    <Box sx={{ height: "100%" }}>
       {
         (
           (subcategoryQuery.isSuccess && categoriesQuery.isSuccess && driveTypesQuery.isSuccess) ||
           (subcategoryQuery.data && categoriesQuery.data && driveTypesQuery.data)
         ) &&
 
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ boxSizing: "border-box", height: "100%", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-          
           <FormPaper square elevation={5}>
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.subcategory')}</Typography>
             <Form 
@@ -217,6 +216,6 @@ function RouteComponent() {
           }
         />
       }
-    </>
+    </Box>
   );
 }

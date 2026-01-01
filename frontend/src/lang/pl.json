@@ -53,7 +53,8 @@
     "subcategories": "Podkategorie",
     "branches": "Oddziały",
     "driveTypes": "Rodzaje napędu",
-    "users": "Użytkownicy"
+    "users": "Użytkownicy",
+    "priceList": "Cennik"
   },
 
   "registration": {

@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import { createChildForm } from '../../../-forms/createChildForm';
@@ -79,13 +79,12 @@ function RouteComponent() {
 
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-          
-          <FormPaper square elevation={5}>
+          <FormPaper square elevation={5} sx={{ boxSizing: "border-box", overflow: "auto" }}>
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.user')}</Typography>
             <Form 
               key={key} 
@@ -121,6 +120,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

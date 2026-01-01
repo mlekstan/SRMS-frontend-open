@@ -10,6 +10,7 @@ import { usersTableColumns } from '../-table/users-table-columns';
 import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { User } from '@/api/types';
+import { Box } from '@mui/material';
 
 
 export const Route = createFileRoute("/_app/manage/_layout/(users)/users/view/")({
@@ -64,10 +65,10 @@ function RouteComponent() {
   });
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={usersTableColumns} 
@@ -95,6 +96,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

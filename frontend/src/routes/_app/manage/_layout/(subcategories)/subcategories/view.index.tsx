@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { Subcategory } from '@/api/types';
 import { subcategoriesTableColumns } from '../-table/subcategories-table-columns';
+import { Box } from '@mui/material';
 
 
 export const Route = createFileRoute("/_app/manage/_layout/(subcategories)/subcategories/view/")({
@@ -66,10 +67,10 @@ function RouteComponent() {
   console.log(data)
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={subcategoriesTableColumns} 
@@ -97,7 +98,7 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }
 

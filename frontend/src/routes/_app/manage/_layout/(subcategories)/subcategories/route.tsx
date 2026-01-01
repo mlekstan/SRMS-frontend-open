@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Paper } from '@mui/material';
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 import { CustomTabs, type CustomTabProps } from '../../../-components/general/CustomTabs';
 
@@ -20,9 +20,9 @@ const tabs: CustomTabProps[] = [
 function RouteComponent() {
 
   return (
-    <Box>
+    <Paper sx={{ height: "100%", display: "flex", flexDirection: "column", minHeight: 0 }}>
       <CustomTabs props={tabs} />
       <Outlet />
-    </Box>
+    </Paper>
   );
 }

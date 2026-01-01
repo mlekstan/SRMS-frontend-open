@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { Item } from '@/api/types';
 import { itemsTableColumns } from '../-table/items-table-columns';
+import { Box } from '@mui/material';
 
 
 export const Route = createFileRoute("/_app/manage/_layout/(items)/items/view/")({
@@ -66,10 +67,10 @@ function RouteComponent() {
   console.log(data)
 
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={itemsTableColumns} 
@@ -97,6 +98,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

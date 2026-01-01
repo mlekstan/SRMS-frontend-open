@@ -8,7 +8,7 @@ import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { useQuery } from '@tanstack/react-query';
 import { createChildForm } from '../../../-forms/createChildForm';
@@ -90,10 +90,10 @@ function RouteComponent() {
   }
 
   return (
-    <>
+    <Box sx={{ height: "100%" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ boxSizing: "border-box", height: "100%", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
@@ -135,6 +135,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

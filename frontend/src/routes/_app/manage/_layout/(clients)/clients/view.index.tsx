@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { Client } from '@/api/types';
 import { clientsTableColumns } from '../-table/clients-table-columns';
+import { Box } from '@mui/material';
 
 
 export const Route = createFileRoute("/_app/manage/_layout/(clients)/clients/view/")({
@@ -63,13 +64,11 @@ function RouteComponent() {
     refetchInterval: 10000 
   });
 
-  console.log(data)
-
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={clientsTableColumns} 
@@ -97,6 +96,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

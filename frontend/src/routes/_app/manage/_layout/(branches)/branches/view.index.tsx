@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { branchesTableColumns } from '../-table/branches-table-columns';
 import { apiGet } from '@/api/apiGet';
 import type { Branch } from '@/api/types';
+import { Box } from '@mui/material';
 
 export const Route = createFileRoute('/_app/manage/_layout/(branches)/branches/view/')({
   component: RouteComponent,
@@ -64,10 +65,10 @@ function RouteComponent() {
   });
   
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={branchesTableColumns} 
@@ -95,6 +96,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

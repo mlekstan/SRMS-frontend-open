@@ -6,7 +6,7 @@ import { branchFormOpts } from '../-form/branchForm-options';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { branchFormSchema } from '../-form/branchForm-schema';
 import { branchFormConfig } from '../-form/branchForm-config';
@@ -29,27 +29,28 @@ function RouteComponent() {
   const {t} = useTranslationContext();
 
   return (
-    <FormPaperContainer>
-      <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
-      
-      <FormPaper square elevation={5}>
-        <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.branch')}</Typography>
-          <Form 
-            key={key} 
-            reset={() => {
-              setKey(prev => prev + 1)
-            }} 
-            requestFn={(value) => apiPost("/branches", value)}
-            formOptions={branchFormOpts}
-            validationSchema={branchFormSchema}
-            childFormComponent={ChildForm}
-            childFormsProps={[
-              {
-                title: "registration.branch.form.branch.title", formConfig: branchFormConfig.branchFieldsConfig
-              },
-            ]}
-          />  
-      </FormPaper>
-    </FormPaperContainer>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
+      <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
+        <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
+        <FormPaper square elevation={5} sx={{ boxSizing: "border-box", overflow: "auto" }}>
+          <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('registration.branch')}</Typography>
+            <Form 
+              key={key} 
+              reset={() => {
+                setKey(prev => prev + 1)
+              }} 
+              requestFn={(value) => apiPost("/branches", value)}
+              formOptions={branchFormOpts}
+              validationSchema={branchFormSchema}
+              childFormComponent={ChildForm}
+              childFormsProps={[
+                {
+                  title: "registration.branch.form.branch.title", formConfig: branchFormConfig.branchFieldsConfig
+                },
+              ]}
+            />  
+        </FormPaper>
+      </FormPaperContainer>
+    </Box>
   );
 }

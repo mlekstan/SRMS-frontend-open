@@ -32,6 +32,7 @@ import { Route as AppManageLayoutcardsCardsRouteRouteImport } from './routes/_ap
 import { Route as AppManageLayoutbranchesBranchesRouteRouteImport } from './routes/_app/manage/_layout/(branches)/branches/route'
 import { Route as AppManageLayoutusersUsersIndexRouteImport } from './routes/_app/manage/_layout/(users)/users/index'
 import { Route as AppManageLayoutsubcategoriesSubcategoriesIndexRouteImport } from './routes/_app/manage/_layout/(subcategories)/subcategories/index'
+import { Route as AppManageLayoutpriceListPriceListIndexRouteImport } from './routes/_app/manage/_layout/(price-list)/price-list/index'
 import { Route as AppManageLayoutitemsItemsIndexRouteImport } from './routes/_app/manage/_layout/(items)/items/index'
 import { Route as AppManageLayoutdriveTypesDriveTypesIndexRouteImport } from './routes/_app/manage/_layout/(drive-types)/drive-types/index'
 import { Route as AppManageLayoutclientsClientsIndexRouteImport } from './routes/_app/manage/_layout/(clients)/clients/index'
@@ -184,6 +185,12 @@ const AppManageLayoutsubcategoriesSubcategoriesIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AppManageLayoutsubcategoriesSubcategoriesRouteRoute,
+  } as any)
+const AppManageLayoutpriceListPriceListIndexRoute =
+  AppManageLayoutpriceListPriceListIndexRouteImport.update({
+    id: '/(price-list)/price-list/',
+    path: '/price-list/',
+    getParentRoute: () => AppManageLayoutRouteRoute,
   } as any)
 const AppManageLayoutitemsItemsIndexRoute =
   AppManageLayoutitemsItemsIndexRouteImport.update({
@@ -399,6 +406,7 @@ export interface FileRoutesByFullPath {
   '/manage/clients/': typeof AppManageLayoutclientsClientsIndexRoute
   '/manage/drive-types/': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/manage/items/': typeof AppManageLayoutitemsItemsIndexRoute
+  '/manage/price-list': typeof AppManageLayoutpriceListPriceListIndexRoute
   '/manage/subcategories/': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/manage/users/': typeof AppManageLayoutusersUsersIndexRoute
   '/manage/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
@@ -440,6 +448,7 @@ export interface FileRoutesByTo {
   '/manage/clients': typeof AppManageLayoutclientsClientsIndexRoute
   '/manage/drive-types': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/manage/items': typeof AppManageLayoutitemsItemsIndexRoute
+  '/manage/price-list': typeof AppManageLayoutpriceListPriceListIndexRoute
   '/manage/subcategories': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/manage/users': typeof AppManageLayoutusersUsersIndexRoute
   '/manage/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
@@ -495,6 +504,7 @@ export interface FileRoutesById {
   '/_app/manage/_layout/(clients)/clients/': typeof AppManageLayoutclientsClientsIndexRoute
   '/_app/manage/_layout/(drive-types)/drive-types/': typeof AppManageLayoutdriveTypesDriveTypesIndexRoute
   '/_app/manage/_layout/(items)/items/': typeof AppManageLayoutitemsItemsIndexRoute
+  '/_app/manage/_layout/(price-list)/price-list/': typeof AppManageLayoutpriceListPriceListIndexRoute
   '/_app/manage/_layout/(subcategories)/subcategories/': typeof AppManageLayoutsubcategoriesSubcategoriesIndexRoute
   '/_app/manage/_layout/(users)/users/': typeof AppManageLayoutusersUsersIndexRoute
   '/_app/manage/_layout/(branches)/branches/view/$branchId': typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
@@ -549,6 +559,7 @@ export interface FileRouteTypes {
     | '/manage/clients/'
     | '/manage/drive-types/'
     | '/manage/items/'
+    | '/manage/price-list'
     | '/manage/subcategories/'
     | '/manage/users/'
     | '/manage/branches/view/$branchId'
@@ -590,6 +601,7 @@ export interface FileRouteTypes {
     | '/manage/clients'
     | '/manage/drive-types'
     | '/manage/items'
+    | '/manage/price-list'
     | '/manage/subcategories'
     | '/manage/users'
     | '/manage/branches/view/$branchId'
@@ -644,6 +656,7 @@ export interface FileRouteTypes {
     | '/_app/manage/_layout/(clients)/clients/'
     | '/_app/manage/_layout/(drive-types)/drive-types/'
     | '/_app/manage/_layout/(items)/items/'
+    | '/_app/manage/_layout/(price-list)/price-list/'
     | '/_app/manage/_layout/(subcategories)/subcategories/'
     | '/_app/manage/_layout/(users)/users/'
     | '/_app/manage/_layout/(branches)/branches/view/$branchId'
@@ -824,6 +837,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/manage/subcategories/'
       preLoaderRoute: typeof AppManageLayoutsubcategoriesSubcategoriesIndexRouteImport
       parentRoute: typeof AppManageLayoutsubcategoriesSubcategoriesRouteRoute
+    }
+    '/_app/manage/_layout/(price-list)/price-list/': {
+      id: '/_app/manage/_layout/(price-list)/price-list/'
+      path: '/price-list'
+      fullPath: '/manage/price-list'
+      preLoaderRoute: typeof AppManageLayoutpriceListPriceListIndexRouteImport
+      parentRoute: typeof AppManageLayoutRouteRoute
     }
     '/_app/manage/_layout/(items)/items/': {
       id: '/_app/manage/_layout/(items)/items/'
@@ -1209,6 +1229,7 @@ interface AppManageLayoutRouteRouteChildren {
   AppManageLayoutitemsItemsRouteRoute: typeof AppManageLayoutitemsItemsRouteRouteWithChildren
   AppManageLayoutsubcategoriesSubcategoriesRouteRoute: typeof AppManageLayoutsubcategoriesSubcategoriesRouteRouteWithChildren
   AppManageLayoutusersUsersRouteRoute: typeof AppManageLayoutusersUsersRouteRouteWithChildren
+  AppManageLayoutpriceListPriceListIndexRoute: typeof AppManageLayoutpriceListPriceListIndexRoute
   AppManageLayoutbranchesBranchesViewBranchIdRoute: typeof AppManageLayoutbranchesBranchesViewBranchIdRoute
   AppManageLayoutcardsCardsViewCardIdRoute: typeof AppManageLayoutcardsCardsViewCardIdRoute
   AppManageLayoutcategoriesCategoriesViewCategoryIdRoute: typeof AppManageLayoutcategoriesCategoriesViewCategoryIdRoute
@@ -1236,6 +1257,8 @@ const AppManageLayoutRouteRouteChildren: AppManageLayoutRouteRouteChildren = {
     AppManageLayoutsubcategoriesSubcategoriesRouteRouteWithChildren,
   AppManageLayoutusersUsersRouteRoute:
     AppManageLayoutusersUsersRouteRouteWithChildren,
+  AppManageLayoutpriceListPriceListIndexRoute:
+    AppManageLayoutpriceListPriceListIndexRoute,
   AppManageLayoutbranchesBranchesViewBranchIdRoute:
     AppManageLayoutbranchesBranchesViewBranchIdRoute,
   AppManageLayoutcardsCardsViewCardIdRoute:

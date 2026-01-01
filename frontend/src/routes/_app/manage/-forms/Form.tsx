@@ -88,7 +88,7 @@ export default function Form({
   console.log("Main form", form);
 
   return(
-    <>
+    <Box>
       <form.Subscribe selector={(state) => state.isSubmitting}>
         {
           (isSubmitting) => {
@@ -144,6 +144,6 @@ export default function Form({
           </form>      
         </form.AppForm>
       </ConditionalRenderProvider>
-    </>
+    </Box>
   );
 }

@@ -5,11 +5,11 @@ import FormAutocomplete from "@/global-form/field-components/FormAutocomplete";
 import FormTextField from "@/global-form/field-components/FormTextField";
 import { SecureFromTextField } from "@/global-form/field-components/SecureFormTextField";
 import { EditClientCardsTable } from "@/routes/_app/manage/_layout/(clients)/clients_/-table/EditClientCardsTable";
-import { CategoryAutocomplete } from "@/routes/_app/rental/rental-sale/-components/forms/field-components/CategoryAutocomplete";
-import { SubcategoryAutocomplete } from "@/routes/_app/rental/rental-sale/-components/forms/field-components/SubcategoryAutocomplete";
-import { SpeedAutocomplete } from "@/routes/_app/rental/rental-sale/-components/forms/field-components/SpeedAutocomplete";
-import { QuantityAutocomplete } from "@/routes/_app/rental/rental-sale/-components/forms/field-components/QuantityAutocomplete";
-import { CardAutocomplete } from "@/routes/_app/rental/rental-sale/-components/forms/field-components/CardAutocomplete";
+import { CategoryAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/CategoryAutocomplete";
+import { SubcategoryAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/SubcategoryAutocomplete";
+import { SpeedAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/SpeedAutocomplete";
+import { QuantityAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/QuantityAutocomplete";
+import { CardAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/CardAutocomplete";
 import { FormAutocompleteWrapper } from "../field-components/FormAutocompleteWrapper";
 
 const global = {

@@ -53,7 +53,8 @@
     "subcategories": "Subcategories",
     "branches": "Branches",
     "driveTypes": "Drive types",
-    "users": "Users"
+    "users": "Users",
+    "priceList": "Price list"
   },
 
   "registration": {

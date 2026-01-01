@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { apiGet } from '@/api/apiGet';
 import type { DriveType } from '@/api/types';
 import { driveTypesTableColumns } from '../-table/driveTypes-table-columns';
+import { Box } from '@mui/material';
 
 
 export const Route = createFileRoute('/_app/manage/_layout/(drive-types)/drive-types/view/')({
@@ -65,10 +66,10 @@ function RouteComponent() {
   });
   
   return (
-    <>
+    <Box sx={{ flex: 1, overflow: "hidden" }}>
       {
         (isSuccess || data) &&
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ height: "100%", boxSizing: "border-box", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           <CustomTable 
             columns={driveTypesTableColumns} 
@@ -96,6 +97,6 @@ function RouteComponent() {
           message={error.message}
         />
       }
-    </>
+    </Box>
   );
 }

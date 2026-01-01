@@ -7,7 +7,7 @@ import { memo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { userFormConfig } from '../-form/userForm-config';
 import { userFormSchema } from '../-form/userForm-schema';
@@ -108,14 +108,14 @@ function RouteComponent() {
   }
 
   return (
-    <>
+    <Box sx={{ height: "100%" }}>
       {
         (
           (branchesQuery.isSuccess && userQuery.isSuccess) ||
           (branchesQuery.data && userQuery.data)
         ) &&
 
-        <FormPaperContainer>
+        <FormPaperContainer sx={{ boxSizing: "border-box", height: "100%", overflow: "auto" }}>
           <CustomBreadcrumbs breadcrumbsOptions={breadcrumbsOptions}/>
           
           <FormPaper square elevation={5}>
@@ -164,6 +164,6 @@ function RouteComponent() {
           }
         />
       }
-    </>
+    </Box>
   );
 }
