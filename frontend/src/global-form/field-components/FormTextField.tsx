@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useContext, useRef, type ReactNode } from "react";
+import { forwardRef, useEffect, useContext, useRef, type ReactNode, useCallback } from "react";
 import { IMaskInput } from "react-imask";
 import { InputAdornment, TextField } from "@mui/material";
 import { useFieldContext } from "../hooks/form-context";
@@ -49,17 +49,14 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
   const {t} = useTranslationContext();
   const { label, endAdornment, required, disabled, type, imaskProps } = props;
+  const formatValue = () => {
+    if (field.state.value === null || disabled)
+      return "";
 
-  useEffect(() => {
-    if (field.state.value === null || disabled) {
-      field.setValue("");
-    } else if (typeof field.state.value === "number") {
-      field.setValue(String(value));
-    }
-  }, [field.state.value, disabled])
+    return String(field.state.value);
+  }
 
-  const value = field.state.value;
-
+  const value = formatValue();
 
   useEffect(() => {
     if (setAccordionValidState) {
@@ -71,7 +68,7 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
     }
   }, [field.state.meta.isValid]);
 
-  console.log("Text field", field.name, value, field.state.value);
+  console.log("Text field", field.name, field.state.value);
 
   
   return (

@@ -94,8 +94,8 @@ function RouteComponent() {
       "branchData.zipCode": data.zipCode,
     };
   }
-
-
+  
+  
   return (
     <Box sx={{ height: "100%" }}>
       {
