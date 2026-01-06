@@ -5,29 +5,21 @@ import { useFormContext } from "@/global-form/hooks/form-context";
 import { useStore } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 
-type Props = {
-  rowId: string;
-};
-
-export function SubcategoryAutocomplete({ rowId }: Props) {
+export function SubcategoryAutocomplete() {
   const form = useFormContext();
-  const categoryId = useStore(form.store, state => state.values.positions[rowId].categoryId);
-  const { data } = useQuery({ 
-    queryKey: ["subcategories", rowId], 
+  const categoryId = useStore(form.store, state => state.values.categoryId);
+  const { data } = useQuery({
+    queryKey: ["subcategories"],
     queryFn: () => apiGet<Subcategory>({ url: "/subcategories", searchParams: { categoryId } }),
     enabled: !!categoryId,
     gcTime: 0,
-    staleTime: 0
+    staleTime: 0,
   });
 
-  console.log("categoryID", categoryId)
-
   return (
-    <FormAutocomplete
+    <FormAutocomplete 
       props={{
-        sx: {
-          width: "auto"
-        },
+        label: "registration.priceList.form.filter.subcategory",
         required: true,
         type: "text",
         optionLabel: "name",

@@ -8,7 +8,7 @@ import type { LangKeys } from "@/routes/-context-api/translation/TranslationProv
 
 
 export type FormTextFieldProps = {
-  label: LangKeys;
+  label?: LangKeys;
   endAdornment?: ReactNode;  
   required: boolean;
   disabled?: boolean;
@@ -75,7 +75,7 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
     <TextField
       helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
       error={!field.state.meta.isValid}
-      label={t(label)}
+      label={label ? t(label) : undefined}
       required={required}
       value={value}
       type={type}

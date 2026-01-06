@@ -11,6 +11,9 @@ import { SpeedAutocomplete } from "@/routes/_app/rental/rental-sale/-components/
 import { QuantityAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/QuantityAutocomplete";
 import { CardAutocomplete } from "@/routes/_app/rental/rental-sale/-components/form/field-components/CardAutocomplete";
 import { FormAutocompleteWrapper } from "../field-components/FormAutocompleteWrapper";
+import { TimeUnitTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/TimeUnitTextField";
+import { MaxSpeedTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/MaxSpeedTextField";
+import { PriceTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/PriceTextField";
 
 const global = {
   FormTextField,
@@ -28,10 +31,17 @@ const rentalSale = {
   CardAutocomplete,
 }
 
+const priceList = {
+  TimeUnitTextField,
+  MaxSpeedTextField,
+  PriceTextField
+}
+
 const fieldComponents = {
   ...global,
   EditClientCardsTable,
-  ...rentalSale
+  ...rentalSale,
+  ...priceList
 }
 
 export const { useAppForm, withForm, withFieldGroup } = createFormHook({

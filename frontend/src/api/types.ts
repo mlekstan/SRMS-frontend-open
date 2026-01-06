@@ -113,3 +113,11 @@ export type DriveType = {
 export type AccessToken = {
   accessToken: string;
 };
+
+export type VehiclePrice = {
+  id: number;
+  vehicleId: number;
+  timeUnit: string;
+  maxSpeed: number;
+  price: string;
+}

@@ -148,7 +148,18 @@
     "user.form.user.lastName": "Nazwisko",
     "user.form.user.email": "E-mail",
     "user.form.user.branch": "Oddział",
-    "user.form.user.password": "Hasło"
+    "user.form.user.password": "Hasło",
+
+
+    "priceList": "Cennik",
+    "priceList.form.filter.category": "Kategoria",
+    "priceList.form.filter.subcategory": "Podkategoria",
+    "priceList.table.column.number": "No.",
+    "priceList.table.column.timeUnit": "Czas",
+    "priceList.table.column.maxSpeed": "Prędkość",
+    "priceList.table.column.price": "Cena",
+    "priceList.table.column.actions": "Akcje"
+
   },  
 
   "view": {

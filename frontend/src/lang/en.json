@@ -148,7 +148,18 @@
     "user.form.user.lastName": "Last name",
     "user.form.user.email": "E-mail",
     "user.form.user.branch": "Branch",
-    "user.form.user.password": "Password"
+    "user.form.user.password": "Password",
+
+
+    "priceList": "Price list",
+    "priceList.form.filter.category": "Category",
+    "priceList.form.filter.subcategory": "Subcategory",
+    "priceList.table.column.number": "No.",
+    "priceList.table.column.timeUnit": "Time unit",
+    "priceList.table.column.maxSpeed": "Max. speed",
+    "priceList.table.column.price": "Price",
+    "priceList.table.column.actions": "Actions"
+
   },
 
   "view": {
