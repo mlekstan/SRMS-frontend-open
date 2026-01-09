@@ -39,7 +39,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPost("/branches", value)}
+              requestFn={(value) => apiPost({ url: "/branches", value })}
               formOptions={branchFormOpts}
               validationSchema={branchFormSchema}
               childFormComponent={ChildForm}

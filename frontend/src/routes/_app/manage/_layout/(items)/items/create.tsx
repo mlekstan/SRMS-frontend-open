@@ -105,7 +105,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPost("/items", value)}
+              requestFn={(value) => apiPost({ url: "/items", value })}
               formOptions={itemFormOpts}
               validationSchema={itemFormSchema}
               childFormComponent={ChildForm}

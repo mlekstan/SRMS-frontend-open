@@ -39,7 +39,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPost("/categories", value)}
+              requestFn={(value) => apiPost({ url: "/categories", value })}
               formOptions={categoryFormOpts}
               validationSchema={categoryFormSchema}
               childFormComponent={ChildForm}

@@ -53,7 +53,7 @@ export default function Form({
     ...formOptions,
     onSubmit: async ({ value }) => {
       try {
-        const modifiedValue = validationSchema.parse(value);
+        const modifiedValue = await validationSchema.parseAsync(value);
         await mutation.mutateAsync(modifiedValue);
       } catch (error) {
         if (error instanceof z.ZodError) {

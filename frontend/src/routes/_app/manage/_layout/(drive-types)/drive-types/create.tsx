@@ -39,7 +39,7 @@ function RouteComponent() {
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPost("/drive-types", value)}
+              requestFn={(value) => apiPost({ url: "/drive-types", value })}
               formOptions={driveTypeFormOpts}
               validationSchema={driveTypeFormSchema}
               childFormComponent={ChildForm}

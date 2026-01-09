@@ -22,7 +22,7 @@ export async function apiGet(
         "Content-Type": "application/json",
         "Authorization": `Bearer ${authService.getState().accessToken}`,
       },
-      searchParams: searchParams
+      searchParams
     });
 
     const result = await response.json();
