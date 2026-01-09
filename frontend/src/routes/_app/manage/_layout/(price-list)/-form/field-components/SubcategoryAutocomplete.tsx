@@ -19,6 +19,9 @@ export function SubcategoryAutocomplete() {
   return (
     <FormAutocomplete 
       props={{
+        sx: {
+          width: "200px"
+        },
         label: "registration.priceList.form.filter.subcategory",
         required: true,
         type: "text",

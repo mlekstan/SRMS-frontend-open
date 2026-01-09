@@ -50,9 +50,9 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   const {t} = useTranslationContext();
   const { label, endAdornment, required, disabled, type, imaskProps } = props;
   const formatValue = () => {
-    if (field.state.value === null || disabled)
+    if (field.state.value === null || disabled) 
       return "";
-
+      
     return String(field.state.value);
   }
 
@@ -73,7 +73,7 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   
   return (
     <TextField
-      helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
+      helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : " "}
       error={!field.state.meta.isValid}
       label={label ? t(label) : undefined}
       required={required}

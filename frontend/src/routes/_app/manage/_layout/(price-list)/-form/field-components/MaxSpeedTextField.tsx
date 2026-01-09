@@ -8,7 +8,7 @@ export function MaxSpeedTextField() {
         endAdornment: "km/h",
         required: true,
         type: "text",
-        imaskProps: { mask: /^.{1,255}$/u , overwrite: true, lazy: false }
+        imaskProps: { mask: Number, scale: 0, min: 1, max: 2147483647, overwrite: true, lazy: false }
       }}
     />    
   );

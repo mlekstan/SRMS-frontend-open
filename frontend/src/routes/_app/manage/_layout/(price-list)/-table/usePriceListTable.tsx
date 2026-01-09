@@ -1,7 +1,10 @@
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import { createColumnHelper, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useMemo } from "react";
-import { usePriceListData } from "./usePriceListData";
+import { useFormContext } from "@/global-form/hooks/form-context";
+import { useStore } from "@tanstack/react-form";
+import { ActionsCell } from "./ActionsCell";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 export type PriceListPosition = {
   id: number | null;
@@ -13,9 +16,10 @@ export type PriceListPosition = {
 
 const columnHelper = createColumnHelper<PriceListPosition>();
 
-export function usePriceListTable(form: any) {
+export function usePriceListTable() {
+  const form = useFormContext();
+  const positions = useStore(form.store, state => state.values.positions);
   const { t, lang } = useTranslationContext();
-  const dataObject = usePriceListData();
 
   const columns = useMemo(() => [
     columnHelper.display({
@@ -25,12 +29,22 @@ export function usePriceListTable(form: any) {
     }),
     columnHelper.accessor("timeUnit", {
       header: t("registration.priceList.table.column.timeUnit"),
-      cell: ({ row, cell }) => (
+      cell: ({ row }) => (
         <form.AppField 
           name={`positions[${row.index}].timeUnit`}
+          validators={{
+            onChange: ({ value }) => {
+              const regex = /^\d{2} ([0-1]\d|2[0-3]):[0-5]\d$/;
+              if (!regex.test(value)) 
+                return "validation.empty" as LangKeys;
+            }
+          }}
         >
           {
-            (subField: any) => <subField.TimeUnitField />
+            (subField: any) => {
+              console.log("form", form)
+              return <subField.TimeUnitTextField />
+            }
           }
         </form.AppField>
       )
@@ -52,6 +66,13 @@ export function usePriceListTable(form: any) {
       cell: ({ row }) => (
         <form.AppField 
           name={`positions[${row.index}].price`}
+          validators={{
+            onChange: ({ value }) => {
+              if (value === "") {
+                return "validation.empty" as LangKeys;
+              }
+            }
+          }}
         >
           {
             (subField: any) => <subField.PriceTextField />
@@ -61,16 +82,17 @@ export function usePriceListTable(form: any) {
     }),
     columnHelper.display({
       id: "actions",
-      header: t("registration.priceList.table.column.actions")
+      header: t("registration.priceList.table.column.actions"),
       cell: ({ row }) => (
-
+        <ActionsCell rowIndex={row.index} form={form} />
       )
     })
-  ], [lang, form, dataObject]);
+  ], [lang, form]);
+
 
   const table = useReactTable({
     columns, 
-    data: dataObject.data, 
+    data: positions, 
     getCoreRowModel: getCoreRowModel()
   });
 

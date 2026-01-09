@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
+import { Button, type SxProps, type Theme } from "@mui/material";
 import { useFormContext } from "@/global-form/hooks/form-context"
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 
-export function SubmitButton({ title }: { title?: LangKeys }) {
+export function SubmitButton({ sx, title }: { sx?: SxProps<Theme> ,title?: LangKeys }) {
   const form = useFormContext();
   const {t} = useTranslationContext();
   
@@ -13,9 +13,7 @@ export function SubmitButton({ title }: { title?: LangKeys }) {
       {
         (isSubmitting) => (
           <Button
-            sx={{
-              
-            }}
+            sx={sx}
             variant="outlined"
             type="submit"
             onClick={() => form.handleSubmit()}

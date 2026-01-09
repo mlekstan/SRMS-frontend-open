@@ -1,40 +1,34 @@
 import { apiGet } from "@/api/apiGet";
-import { useFormContext } from "@/global-form/hooks/form-context";
 import { useStore } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import type { PriceListPosition } from "./usePriceListTable";
-import { useTableFormData } from "./useTableFormData";
+import { useEffect, useMemo } from "react";
 import type { VehiclePrice } from "@/api/types";
+import { mergeServerData } from "./mergeServerData";
+import { filterServerData } from "../-form/filterServerData";
 
 
-const initialData: PriceListPosition[] = [
-  { id: null, timeUnit: "", maxSpeed: "", price: "" },
-]
-
-export function usePriceListData() {
-  const form = useFormContext();
+export function usePriceListData(form: any) {
   const categoryId = useStore(form.store, state => state.values.categoryId);
   const subcategoryId = useStore(form.store, state => state.values.subcategoryId);
-  const { data = [] } = useQuery({ 
+  const positions = form.state.values.positions;
+  
+  const { data } = useQuery({ 
     queryKey: ["price-list", { categoryId, subcategoryId }],
     queryFn: () => apiGet<VehiclePrice>({ url: "/price-list", searchParams: { categoryId, subcategoryId } }),
     enabled: !!(categoryId && subcategoryId),
-    select: data => data.map((pos) => {
-      const { vehicleId, maxSpeed, ...other } = pos;
-      return { 
-        maxSpeed: String(maxSpeed), 
-        ...other
-      };
-    })
+    select: data => filterServerData(data),
+    staleTime: 0
   });
 
-  const dataObject = useTableFormData(initialData);
+  const mergedData = useMemo(() => (data) ? mergeServerData(positions, data) : [], [data]);
+  console.log("mergedData", mergedData)
 
   useEffect(() => {
-    dataObject.setSeverData(data);
-    form.setFieldValue("positions", data);
+    form.setFieldValue("deletedPositions", []);
+  }, [data, form]);
+
+  useEffect(() => {
+    form.setFieldValue("positions", mergedData);
   }, [data]);
 
-  return dataObject;
 }

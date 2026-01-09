@@ -6,12 +6,17 @@ import { useQuery } from "@tanstack/react-query";
 export function CategoryAutocomplete() {
   const { data } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => apiGet<Category>({ url: "/categories" })
+    queryFn: () => apiGet<Category>({ url: "/categories" }),
+    gcTime: 0,
+    staleTime: 0,
   });
 
   return (
     <FormAutocomplete 
       props={{
+        sx: {
+          width: "200px"
+        },
         label: "registration.priceList.form.filter.category",
         required: true,
         type: "text",

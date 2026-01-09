@@ -9,15 +9,16 @@ export function TimeUnitTextField() {
         required: true,
         type: "text",
         imaskProps: {
-          mask: "d:h:m",
+          mask: "d h:m",
           lazy: false,
           autofix: true,
+          overwrite: true,
           blocks: {
             d: {
               mask: IMask.MaskedRange,
-              from: 0, 
+              from: 0,
               to: 99, 
-              maxLength: 2, 
+              maxLength: 1,
               placeholderChar: 'd'
             },
             h: {
@@ -33,7 +34,7 @@ export function TimeUnitTextField() {
               to: 59, 
               maxLength: 2,
               placeholderChar: 'm'
-            }
+            },
           }
         }
       }}

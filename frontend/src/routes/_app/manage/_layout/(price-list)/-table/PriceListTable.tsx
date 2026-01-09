@@ -1,11 +1,58 @@
-import { Table, TableContainer } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { usePriceListTable } from "./usePriceListTable";
+import { useFormContext } from "@/global-form/hooks/form-context";
+import { flexRender } from "@tanstack/react-table";
+
 
 export function PriceListTable() {
-
+  const form = useFormContext();
+  const table = usePriceListTable();
+  
   return (
-    <TableContainer sx={{ height: "100%" }}>
-      <Table stickyHeader>
-        
+    <TableContainer sx={{ flex: 1 }}>
+      <Table stickyHeader sx={{}}>
+        <TableHead>
+          {
+            table.getHeaderGroups().map(group => (
+              <TableRow key={group.id}>
+                {
+                  group.headers.map(header => (
+                    <TableCell key={header.id}>
+                      {
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )
+                      }
+                    </TableCell>
+                  ))
+                }
+              </TableRow>
+            ))
+          }
+        </TableHead>
+        <TableBody>
+          <form.AppField name="positions" mode="array">
+            {
+              () => table.getRowModel().rows.map(row => (
+                <TableRow key={row.id}>
+                  {
+                    row.getVisibleCells().map(cell => (
+                      <TableCell key={cell.id}>
+                        {
+                          flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )
+                        }
+                      </TableCell>
+                    ))
+                  }
+                </TableRow>
+              ))
+            }
+          </form.AppField>
+        </TableBody>
       </Table>
     </TableContainer>
   );
