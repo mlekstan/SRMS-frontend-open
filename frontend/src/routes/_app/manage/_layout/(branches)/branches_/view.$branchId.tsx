@@ -1,6 +1,5 @@
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import type { Leaves } from '@/types/Leaves';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { branchFormOpts } from '../-form/branchForm-options';
@@ -13,15 +12,12 @@ import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
 import { branchFormConfig } from '../-form/branchForm-config';
 import { branchFormSchema } from '../-form/branchForm-schema';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createChildForm } from '../../../-forms/createChildForm';
 import { apiPut } from '@/api/apiPut';
 import { apiGet } from '@/api/apiGet';
 import type { Branch } from '@/api/types';
-
-
-type FormFields = Leaves<typeof branchFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, string | number>;
+import { transformData } from '../-form/transformData';
 
 
 export const Route = createFileRoute(
@@ -29,13 +25,10 @@ export const Route = createFileRoute(
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["branch", params.branchId],
-      queryFn: () => apiGet<Branch>({ url: "/branches", id: params.branchId }),
-      staleTime: 10000,
+      queryFn: () => apiGet<Branch>({ url: "/branches", id: params.branchId })
     });
-
   },
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
@@ -75,25 +68,13 @@ function RouteComponent() {
   const canGoBack = useCanGoBack();
   const {t} = useTranslationContext();
   const params = Route.useParams();
+  const queryClient = useQueryClient();
   const { data, error, isSuccess, isPending, isError } = useQuery({
     queryKey: ["branch", params.branchId], 
     queryFn: () => apiGet<Branch>({ url: "/branches", id: params.branchId }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000, 
+    select: data => transformData(data)
   });
-
-  let initialFieldsValuesMap: FieldsValuesMap | undefined;
-  if (data) {
-    initialFieldsValuesMap = {
-      "branchData.name": data.name,
-      "branchData.country": data.country,
-      "branchData.city": data.city,
-      "branchData.street": data.street,
-      "branchData.streetNumber": data.streetNumber,
-      "branchData.flatNumber": data.flatNumber,
-      "branchData.zipCode": data.zipCode,
-    };
-  }
   
   
   return (
@@ -107,11 +88,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.branch')}</Typography>
               <Form 
                 key={key}
-                initialFieldsValuesMap={initialFieldsValuesMap}
+                initialFieldsValuesMap={data}
                 reset={() => {
                   setKey(prev => prev + 1)
                 }} 
                 requestFn={(value) => apiPut("/branches", params.branchId, value)}
+                onSubmit={() => queryClient.invalidateQueries({ queryKey: ["branch", params.branchId], exact: true })}
                 formOptions={branchFormOpts}
                 validationSchema={branchFormSchema}
                 childFormComponent={ChildForm}

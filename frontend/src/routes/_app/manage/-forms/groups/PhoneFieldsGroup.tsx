@@ -1,12 +1,12 @@
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import { withFieldGroup } from "@/global-form/hooks/form";
-import type { LangCodes, LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
 
 
 export const PhoneFieldsGroup = withFieldGroup({
   defaultValues: {
-    areaCode: '',
-    phoneNumber: '',
+    areaCode: "",
+    phoneNumber: "",
     props: {
       fields: {
         areaCode: "",
@@ -19,13 +19,19 @@ export const PhoneFieldsGroup = withFieldGroup({
     }
   },
   render: function Render({ group, fields, requiredMap }) {
-    const {t} = useTranslationContext();
+    const { t } = useTranslationContext();
     //const areaCode = useStore(group.store, (state) => state.values.areaCode)
 
     return (
       <>
         <group.AppField 
           name="areaCode"
+          listeners={{
+            onChange: ({ value }) => {
+              if (!value)
+                group.setFieldValue("phoneNumber", ""); 
+            }
+          }}
           validators={{
             onChange: ({ value }) => {
               if (requiredMap["areaCode"] && !value) {
@@ -49,7 +55,7 @@ export const PhoneFieldsGroup = withFieldGroup({
           name="phoneNumber"
           validators={{
             onChangeListenTo: [fields["areaCode"]],
-            onChange: ({value, fieldApi}) => {
+            onChange: ({ value, fieldApi }) => {
               console.log("phone nuber", fieldApi.form.getFieldValue(fields["areaCode"]), value)
               if (
                 ((fieldApi.form.getFieldValue(fields["areaCode"])) && 

@@ -23,7 +23,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<Category>({ url: "/categories" }),
-      queryKey: "categories",
+      queryKey: ["categories"],
       triggerChildFormRender: "registration.subcategory.form.vehicle.title",
       triggerRenderOnValue: 1, // 1 -> "Pojazd"
       triggerChildFormClose: [
@@ -57,7 +57,7 @@ export const subcategoryFormConfig: FormConfig<keys> = {
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
-      queryKey: "driveTypes",
+      queryKey: ["driveTypes"],
       triggerChildFormRender: "registration.subcategory.form.electricVehicle.title",
       triggerRenderOnValue: 2, // 2 -> "Elektryczny"
       triggerChildFormClose: [

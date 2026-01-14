@@ -31,7 +31,7 @@ type DynamicFieldConfig = BaseFieldConfig & {
   optionLabel: string;
   optionValue: string;
   queryFn: any;
-  queryKey: string;
+  queryKey: any[];
 }
 
 export type FieldConfig = StaticFieldConfig | DynamicFieldConfig;

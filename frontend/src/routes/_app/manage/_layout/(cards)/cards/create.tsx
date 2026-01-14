@@ -12,6 +12,7 @@ import { cardFormOpts } from '../-form/cardForm-options';
 import { cardFormSchema } from '../-form/cardForm-schema';
 import { cardFormConfig } from '../-form/cardForm-config';
 
+
 export const Route = createFileRoute('/_app/manage/_layout/(cards)/cards/create')({
   component: RouteComponent,
 })

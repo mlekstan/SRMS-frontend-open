@@ -4,20 +4,20 @@ import { formOptions } from "@tanstack/react-form";
 export const subcategoryFormOpts = formOptions({
   defaultValues: {
     subcategoryData: {
-      categoryId: '',
-      name: '',
+      categoryId: "",
+      name: "",
     },
     vehicleData: {
-      driveTypeId: '',
-      curbWeight: '',
-      maxLoad: '',
-      minAge: '',
-      maxAge: '',
+      driveTypeId: "",
+      curbWeight: "",
+      maxLoad: "",
+      minAge: "",
+      maxAge: "",
     },
     electricVehicleData: {
-      enginePower: '',
-      batteryVoltage: '',
-      batteryCapacity: '',
+      enginePower: "",
+      batteryVoltage: "",
+      batteryCapacity: "",
     }
   },
 })

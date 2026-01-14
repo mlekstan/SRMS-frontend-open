@@ -4,7 +4,7 @@ import { Loader } from '@/routes/-components/Loader';
 import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
 import { memo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { FormPaper, FormPaperContainer } from '../../../-components/general/FormPaper';
 import { Box, Typography } from '@mui/material';
@@ -12,37 +12,29 @@ import Form from '../../../-forms/Form';
 import { userFormConfig } from '../-form/userForm-config';
 import { userFormSchema } from '../-form/userForm-schema';
 import { createChildForm } from '../../../-forms/createChildForm';
-import type { Leaves } from '@/types/Leaves';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { apiGet } from '@/api/apiGet';
 import type { Branch, User } from '@/api/types';
 import { apiPut } from '@/api/apiPut';
+import { transformData } from '../-form/transformData';
 
-type FormFields = Leaves<typeof userFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, string | number>;
 
 export const Route = createFileRoute(
   "/_app/manage/_layout/(users)/users/view/$userId",
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-    
     await context.queryClient.fetchQuery({
       queryKey: ["braches"],
       queryFn: () => apiGet<Branch>({ url: "branches" }),
-      staleTime: 10000,
     });
     
     await context.queryClient.fetchQuery({
       queryKey: ["user", params.userId],
       queryFn: () => apiGet<User>({ url: "/users", id: params.userId }),
-      staleTime: 10000,
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -75,37 +67,24 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
 const ChildForm = memo(createChildForm(userFormOpts));
 
 function RouteComponent() {
+  const { t } = useTranslationContext();
   const [key, setKey] = useState(0);
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
+  const queryClient = useQueryClient();
+
   const branchesQuery = useQuery({ 
     queryKey: ["branches"], 
     queryFn: () => apiGet<Branch>({ url: "/branches" }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000
   });
   const userQuery = useQuery({ 
     queryKey: ["user", params.userId], 
     queryFn: () => apiGet<User>({ url: "/users", id: params.userId }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000, 
+    select: data => transformData(data)
   });
-  const {t} = useTranslationContext();
-
-  let initialFieldsValuesMap: FieldsValuesMap | undefined;
-  if (userQuery.data) {
-    initialFieldsValuesMap = {
-      "userData.firstName": userQuery.data.firstName,
-      "userData.middleName": userQuery.data.middleName,
-      "userData.lastName": userQuery.data.lastName,
-      "userData.email": userQuery.data.email,
-      "userData.areaCode": userQuery.data.areaCode,
-      "userData.phoneNumber": userQuery.data.phoneNumber,
-      "userData.branchId": userQuery.data.branch.id,
-      "userData.password": "",
-    };
-  }
 
   return (
     <Box sx={{ height: "100%" }}>
@@ -122,11 +101,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.user')}</Typography>
             <Form 
               key={key}
-              initialFieldsValuesMap={initialFieldsValuesMap}
+              initialFieldsValuesMap={userQuery.data}
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
               requestFn={(value) => apiPut("/users", params.userId, value)}
+              onSubmit={() => queryClient.invalidateQueries({ queryKey: ["user", params.userId] })}
               formOptions={userFormOpts}
               validationSchema={userFormSchema}
               childFormComponent={ChildForm}

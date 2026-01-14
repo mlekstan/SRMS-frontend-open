@@ -21,16 +21,11 @@ import type { Card } from '@/api/types';
 export const Route = createFileRoute('/_app/manage/_layout/(clients)/clients/create')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
-
     await context.queryClient.fetchQuery({
-      queryKey: ["activeCards"],
-      queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { active: "true" }}),
-      staleTime: 10000,
+      queryKey: ["cards", { issued: false }],
+      queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "false" }}),
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -62,16 +57,16 @@ const ChildForm = memo(createChildForm(clientFormOpts));
 
 
 function RouteComponent() {
+  const {t} = useTranslationContext();
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
   const { data, error, isSuccess, isPending, isError } = useQuery({ 
-    queryKey: ["activeCards"], 
-    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { active: "true" }}), 
-    retry: 0, 
-    refetchInterval: 10000 
+    queryKey: ["cards", { issued: false }], 
+    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "false" }}), 
+    staleTime: 10 * 1000 
   });
-  const {t} = useTranslationContext();
+
 
   return (
     <Box sx={{ flex: 1, overflow: "hidden" }}>
@@ -109,7 +104,6 @@ function RouteComponent() {
         </FormPaperContainer>       
       }
 
-      
       { isPending && <Loader open={true} /> }
       
       { 

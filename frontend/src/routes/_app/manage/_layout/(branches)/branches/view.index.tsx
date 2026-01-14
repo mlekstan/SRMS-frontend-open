@@ -15,16 +15,11 @@ import { Box } from '@mui/material';
 export const Route = createFileRoute('/_app/manage/_layout/(branches)/branches/view/')({
   component: RouteComponent,
   loader: async ({ context }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      staleTime: 10000,
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -60,8 +55,7 @@ function RouteComponent() {
   const { data, error, isSuccess, isPending, isError } = useQuery({ 
     queryKey: ["branches"], 
     queryFn: () => apiGet<Branch>({ url: "/branches" }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000
   });
   
   return (

@@ -22,22 +22,16 @@ import type { Branch, Subcategory } from '@/api/types';
 export const Route = createFileRoute('/_app/manage/_layout/(items)/items/create')({
   component: RouteComponent,
   loader: async ({ context }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["subcategories"],
       queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      staleTime: 10000,
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -66,13 +60,11 @@ const breadcrumbsOptions: ExtendedLinkOptions[] = [
 
 const ChildForm = memo(createChildForm(clientFormOpts));
 
-
-
 function RouteComponent() {
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
-  const {t} = useTranslationContext();
+  const { t } = useTranslationContext();
 
   const { 
     data: sData, 
@@ -80,7 +72,7 @@ function RouteComponent() {
     isSuccess: sIsSuccess, 
     isPending: sIsPending, 
     isError: sIsError 
-  } = useQuery({ queryKey: ["subcategories"], queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }), retry: 0, refetchInterval: 10000 });
+  } = useQuery({ queryKey: ["subcategories"], queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }), staleTime: 10 * 1000 });
   
   const {
     data: bData,
@@ -88,9 +80,8 @@ function RouteComponent() {
     isSuccess: bIsSuccess,
     isPending: bIsPending,
     isError: bIsError
-  } = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>({ url: "/branches" }), retry: 0, refetchInterval: 10000 });
+  } = useQuery({ queryKey: ["branches"], queryFn: () => apiGet<Branch>({ url: "/branches" }), staleTime: 10 * 1000 });
 
-  console.log("Subcategories:", sData);
 
   return (
     <Box sx={{ flex: 1, overflow: "hidden" }}>

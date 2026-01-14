@@ -12,6 +12,7 @@ import { categoryFormOpts } from '../-form/categoryForm-options';
 import { categoryFormSchema } from '../-form/categoryForm-schema';
 import { categoryFormConfig } from '../-form/categoryForm-config';
 
+
 export const Route = createFileRoute('/_app/manage/_layout/(categories)/categories/create')({
   component: RouteComponent,
 })

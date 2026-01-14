@@ -12,6 +12,7 @@ import { branchFormSchema } from '../-form/branchForm-schema';
 import { branchFormConfig } from '../-form/branchForm-config';
 import { apiPost } from '@/api/apiPost';
 
+
 export const Route = createFileRoute('/_app/manage/_layout/(branches)/branches/create')({
   component: RouteComponent,
 })

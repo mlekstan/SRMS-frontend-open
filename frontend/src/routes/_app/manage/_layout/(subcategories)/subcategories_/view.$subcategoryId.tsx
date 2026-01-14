@@ -5,12 +5,11 @@ import { Box, Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { apiGet } from '@/api/apiGet';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { Category, DriveType, Subcategory } from '@/api/types';
 import Form from '../../../-forms/Form';
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import type { Leaves } from '@/types/Leaves';
 import { apiPut } from '@/api/apiPut';
 import { Loader } from '@/routes/-components/Loader';
 import { FailureDialog } from '../../../-components/general/FailureDialog';
@@ -18,10 +17,7 @@ import { goBack } from '../../../-forms/goBack';
 import { subcategoryFormOpts } from '../-form/subcategoryForm-options';
 import { subcategoryFormSchema } from '../-form/subcategoryForm-schema';
 import { subcategoryFormConfig } from '../-form/subcategoryForm-config';
-
-
-type FormFields = Leaves<typeof subcategoryFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, any>;
+import { transformData } from '../-form/transformData';
 
 
 const formatErrorMsg = (errors: Array<Error | null>): string => {
@@ -44,24 +40,19 @@ export const Route = createFileRoute(
     await context.queryClient.fetchQuery({
       queryKey: ["subcategory", params.subcategoryId],
       queryFn: () => apiGet<Subcategory>({ url: "/subcategories", id: params.subcategoryId }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
       queryKey: ["categories"],
       queryFn: () => apiGet<Category>({ url: "/categories" }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
       queryKey: ["driveTypes"],
       queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
-      staleTime: 10000,
     });
 
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -99,59 +90,26 @@ function RouteComponent() {
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
+  const queryClient = useQueryClient();
   
   const subcategoryQuery = useQuery({ 
     queryKey: ["subcategory", params.subcategoryId], 
     queryFn: () => apiGet<Subcategory>({ url: "/subcategories", id: params.subcategoryId }),
-    retry: 0,
-    refetchInterval: 10000,
+    staleTime: 10 * 1000,
+    select: data => transformData(data)
   });
 
   const categoriesQuery = useQuery({
     queryKey: ["categories"],
     queryFn: () => apiGet<Category>({ url: "/categories" }),
-    retry: 0,
-    refetchInterval: 10000,
+    staleTime: 10 * 1000
   });
 
   const driveTypesQuery = useQuery({
     queryKey: ["driveTypes"],
     queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
-    retry: 0,
-    refetchInterval: 10000,
+    staleTime: 10 * 1000
   });
-
-  console.log("Subcategory:", subcategoryQuery.data);
-
-  let initialFiledsValueMap: Partial<FieldsValuesMap> | undefined;
-  if (subcategoryQuery.data) {
-    const d = subcategoryQuery.data;
-
-    initialFiledsValueMap = {
-      ...(d.category && {
-        "subcategoryData.categoryId": d.category.id,
-        "subcategoryData.name": d.name,
-      }),
-
-      ...(d.vehicle && {
-        "vehicleData.curbWeight": d.vehicle.curbWeight,
-        "vehicleData.maxLoad": d.vehicle.maxLoad,
-        "vehicleData.minAge": d.vehicle.minAge,
-        "vehicleData.maxAge": d.vehicle.maxAge,
-      }),
-
-      ...(d.vehicle?.driveType && {
-        "vehicleData.driveTypeId": d.vehicle.driveType.id,
-      }),
-
-      ...(d.vehicle?.electricVehicle && {
-        "electricVehicleData.enginePower": d.vehicle.electricVehicle.enginePower,
-        "electricVehicleData.batteryVoltage": d.vehicle.electricVehicle.batteryVoltage,
-        "electricVehicleData.batteryCapacity": d.vehicle.electricVehicle.batteryCapacity,
-      }),
-    };
-  }
-
 
 
   return (
@@ -168,12 +126,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.subcategory')}</Typography>
             <Form 
               key={key}
-              initialFieldsValuesMap={initialFiledsValueMap}
+              initialFieldsValuesMap={subcategoryQuery.data}
               reset={() => {
-                subcategoryQuery.refetch();
                 setKey(prev => prev + 1);
               }} 
               requestFn={(value) => apiPut("/subcategories", params.subcategoryId, value)}
+              onSubmit={() => queryClient.invalidateQueries({ queryKey: ["subcategory", params.subcategoryId], exact: true })}
               formOptions={subcategoryFormOpts}
               validationSchema={subcategoryFormSchema}
               childFormComponent={ChildForm}

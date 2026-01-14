@@ -5,45 +5,36 @@ import { Box, Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { apiGet } from '@/api/apiGet';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { Card, Client } from '@/api/types';
 import Form from '../../../-forms/Form';
 import { memo, useState } from 'react';
 import { editClientFormOpts } from './-form/editClientForm-options';
 import { createChildForm } from '../../../-forms/createChildForm';
 import { editClientFormConfig } from './-form/editClientForm-config';
-import type { Leaves } from '@/types/Leaves';
 import { apiPut } from '@/api/apiPut';
 import { editClientFormSchema } from './-form/editClientForm-schema';
 import { Loader } from '@/routes/-components/Loader';
 import { FailureDialog } from '../../../-components/general/FailureDialog';
 import { goBack } from '../../../-forms/goBack';
+import { transformData } from './-form/transformData';
 
-
-type FormFields = Leaves<typeof editClientFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, any>;
 
 export const Route = createFileRoute(
   '/_app/manage/_layout/(clients)/clients/view/$clientId',
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["client", params.clientId],
       queryFn: () => apiGet<Client>({ url: "/clients", id: params.clientId }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
-      queryKey: ["activeCards"],
-      queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { active: "true" }}),
-      staleTime: 10000,
+      queryKey: ["cards", { issued: false }],
+      queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "false" }}),
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -81,39 +72,20 @@ function RouteComponent() {
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
+  const queryClient = useQueryClient();
   
   const clientQuery = useQuery({ 
     queryKey: ["client", params.clientId], 
-    queryFn: () => apiGet<Client>({ url: "/clients", id: params.clientId }),
-    retry: 0,
-    refetchInterval: 10000,
+    queryFn: () => apiGet<Client>({ url: "/clients", id: params.clientId }), 
+    staleTime: 10 * 1000, 
+    select: data => transformData(data)
   });
 
   const activeCardsQuery = useQuery({
-    queryKey: ["activeCards"],
-    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { active: "true" } }),
-    retry: 0,
-    refetchInterval: 10000,
+    queryKey: ["cards", { issued: false }],
+    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "false" } }), 
+    staleTime: 10 * 1000
   });
-
-  let initialFiledsValueMap: Partial<FieldsValuesMap> | undefined;
-  if (clientQuery.data) {
-    initialFiledsValueMap = {
-      "personalData.firstName": clientQuery.data.firstName,
-      "personalData.middleName": clientQuery.data.middleName,
-      "personalData.lastName": clientQuery.data.lastName,
-      "personalData.identityCardNumber": clientQuery.data.identityCardNumber,
-      "residenceData.country": clientQuery.data.country,
-      "residenceData.city": clientQuery.data.city,
-      "residenceData.street": clientQuery.data.street,
-      "residenceData.streetNumber": clientQuery.data.streetNumber,
-      "residenceData.flatNumber": clientQuery.data.flatNumber,
-      "residenceData.zipCode": clientQuery.data.zipCode,
-      "contactData.areaCode": clientQuery.data.areaCode,
-      "contactData.phoneNumber": clientQuery.data.phoneNumber,
-      "contactData.email": clientQuery.data.email,
-    }
-  }
 
 
   return (
@@ -130,11 +102,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.client')}</Typography>
             <Form 
               key={key}
-              initialFieldsValuesMap={initialFiledsValueMap}
+              initialFieldsValuesMap={clientQuery.data}
               reset={() => {
                 setKey(prev => prev + 1)
               }} 
-              requestFn={(value) => apiPut("/clients", params.clientId, value)}
+              requestFn={(value) => apiPut("/clients", params.clientId, value)} 
+              onSubmit={() => queryClient.invalidateQueries({ queryKey: ["client", params.clientId], exact: true })}
               formOptions={editClientFormOpts}
               validationSchema={editClientFormSchema}
               childFormComponent={ChildForm}

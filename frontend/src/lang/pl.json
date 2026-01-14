@@ -29,14 +29,16 @@
   "rentalService": {
     "sale": "Sprzedaż usługi wypożyczenia",
     "sale.table.column.number": "lp.",
-    "sale.table.column.category": "Kategoria",
     "sale.table.column.subcategory": "Podkategoria",
     "sale.table.column.speed": "Prędkość",
+    "sale.table.column.rentalLength": "Czas",
     "sale.table.column.numberOfItems": "szt.",
+    "sale.table.column.price": "Cena",
+    "sale.table.column.discount": "Upust",
     "sale.table.column.charge": "Opłata",
     "sale.table.column.actions": "Akcje",
-    "sale.form.card.title": "Karta klienta",
-    "sale.form.card.barcode": "Kod kreskowy",
+    "sale.form.barcode": "Kod kreskowy",
+    "sale.form.category": "Kategoria",
 
     "status": "Status sprzętu"
   },
@@ -99,7 +101,7 @@
     
     
     "card": "Dodaj kartę",
-    "card.form.card.title": "Dodaj nową kartę",
+    "card.form.card.title": "Dane karty",
     "card.form.card.barcode": "Kod kreskowy",
 
 
@@ -167,6 +169,8 @@
   },  
 
   "view": {
+    "table.search": "Szukaj",
+
     "clients": "Wyświetl klientów",
     "clients.table.search": "Szukaj klienta",
     "clients.table.column.id": "ID",

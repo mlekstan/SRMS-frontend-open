@@ -70,7 +70,7 @@ export function CustomTable<T extends Data>({ columns, data, rowsPerPageOptions,
           onChange={
             (e) => table.setGlobalFilter(e.target.value.toString())
           }
-          placeholder={t("view.users.table.search")}
+          placeholder={t("view.table.search")}
         />
       </Box>
 

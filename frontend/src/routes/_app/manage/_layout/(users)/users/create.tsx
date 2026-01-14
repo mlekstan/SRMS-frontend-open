@@ -21,16 +21,11 @@ import { apiPost } from '@/api/apiPost';
 export const Route = createFileRoute('/_app/manage/_layout/(users)/users/create')({
   component: RouteComponent,
   loader: async ({ context, route }) => {
-    
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      staleTime: 10000,
-    })
-
+    });
   },
-  gcTime: 0, // when route match, it allowes program to always enter to loader function
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -64,20 +59,17 @@ const ChildForm = memo(createChildForm(userFormOpts));
 
 
 function RouteComponent() {
+  const { t } = useTranslationContext();
   const [key, setKey] = useState(0);
   const router = useRouter();
   const canGoBack = useCanGoBack();
   const { data, error, isSuccess, isPending, isError } = useQuery({ 
     queryKey: ["branches"], 
     queryFn: () => apiGet<Branch>({ url: "/branches" }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000
   });
-  const {t} = useTranslationContext();
+
   
-  console.log(Object.keys(userFormOpts.defaultValues.userData))
-
-
   return (
     <Box sx={{ flex: 1, overflow: "hidden" }}>
       {

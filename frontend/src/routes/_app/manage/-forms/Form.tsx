@@ -15,6 +15,7 @@ type FormProps = {
   reset: () => void;
   initialFieldsValuesMap?: any;
   requestFn: (value: Record<string, unknown>) => Promise<void>;
+  onSubmit?: () => Promise<void>; 
   formOptions: any;
   validationSchema: z.ZodObject;
   childFormComponent: any;
@@ -29,6 +30,7 @@ export default function Form({
   reset,
   initialFieldsValuesMap,
   requestFn, 
+  onSubmit, 
   formOptions, 
   validationSchema, 
   childFormComponent: ChildForm, 
@@ -55,6 +57,8 @@ export default function Form({
       try {
         const modifiedValue = await validationSchema.parseAsync(value);
         await mutation.mutateAsync(modifiedValue);
+        if (onSubmit)
+          await onSubmit();
       } catch (error) {
         if (error instanceof z.ZodError) {
           setShowError(() => true);
@@ -127,7 +131,6 @@ export default function Form({
               form.handleSubmit();
             }}
           >
-
             {
               childFormsProps.map((props, idx) => {
                 return (
@@ -137,7 +140,6 @@ export default function Form({
                 );
               })
             }
-
             <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: 4}}>
               <SubmitButton />
             </Box> 

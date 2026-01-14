@@ -42,14 +42,12 @@ export function EditClientCardsTable() {
   const clientQuery = useQuery({ 
     queryKey: ["client", params.clientId], 
     queryFn: () => apiGet<Client>({ url: "/clients", id: params.clientId }),
-    retry: 0,
-    refetchInterval: 10000
+    staleTime: 10 * 1000
   });
   const activeCardsQuery = useQuery({
-    queryKey: ["activeCards"],
-    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { active: "true" } }),
-    retry: 0,
-    refetchInterval: 10000
+    queryKey: ["cards", { issued: false }],
+    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "false" } }),
+    staleTime: 10 * 1000
   });
 
   

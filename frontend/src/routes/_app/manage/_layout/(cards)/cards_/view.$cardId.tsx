@@ -1,6 +1,5 @@
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
-import type { Leaves } from '@/types/Leaves';
 import { createFileRoute, useCanGoBack, useRouter } from '@tanstack/react-router'
 import { memo, useState } from 'react';
 import { Loader } from '@/routes/-components/Loader';
@@ -10,7 +9,7 @@ import { FormPaper, FormPaperContainer } from '../../../-components/general/Form
 import CustomBreadcrumbs from '../../../-components/general/CustomBreadcrumbs';
 import { Box, Typography } from '@mui/material';
 import Form from '../../../-forms/Form';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { createChildForm } from '../../../-forms/createChildForm';
 import { apiPut } from '@/api/apiPut';
 import { apiGet } from '@/api/apiGet';
@@ -18,10 +17,7 @@ import type { Card } from '@/api/types';
 import { cardFormOpts } from '../-form/cardForm-options';
 import { cardFormSchema } from '../-form/cardForm-schema';
 import { cardFormConfig } from '../-form/cardForm-config';
-
-
-type FormFields = Leaves<typeof cardFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, string | number>;
+import { transformData } from '../-form/transformData';
 
 
 export const Route = createFileRoute(
@@ -29,13 +25,10 @@ export const Route = createFileRoute(
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["card", params.cardId],
-      queryFn: () => apiGet<Card>({ url: "/cards", id: params.cardId }),
-      staleTime: 10000,
+      queryFn: () => apiGet<Card>({ url: "/cards", id: params.cardId })
     });
-
   },
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
@@ -75,19 +68,14 @@ function RouteComponent() {
   const canGoBack = useCanGoBack();
   const {t} = useTranslationContext();
   const params = Route.useParams();
+  const queryClient = useQueryClient();
   const { data, error, isSuccess, isPending, isError } = useQuery({
     queryKey: ["card", params.cardId], 
     queryFn: () => apiGet<Card>({ url: "/cards", id: params.cardId }), 
-    retry: 0, 
-    refetchInterval: 10000 
+    staleTime: 10 * 1000,
+    select: data => transformData(data)
   });
 
-  let initialFieldsValuesMap: FieldsValuesMap | undefined;
-  if (data) {
-    initialFieldsValuesMap = {
-      "cardData.barcode": data.barcode,
-    };
-  }
 
   return (
     <Box sx={{ height: "100%" }}>
@@ -99,11 +87,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.card')}</Typography>
               <Form 
                 key={key}
-                initialFieldsValuesMap={initialFieldsValuesMap}
+                initialFieldsValuesMap={data}
                 reset={() => {
                   setKey(prev => prev + 1);
                 }} 
                 requestFn={(value) => apiPut("/cards", params.cardId, value)}
+                onSubmit={() => queryClient.invalidateQueries({ queryKey: ["card", params.cardId], exact: true })}
                 formOptions={cardFormOpts}
                 validationSchema={cardFormSchema}
                 childFormComponent={ChildForm}

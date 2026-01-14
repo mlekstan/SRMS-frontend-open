@@ -21,22 +21,16 @@ import { subcategoryFormConfig } from '../-form/subcategoryForm-config';
 export const Route = createFileRoute('/_app/manage/_layout/(subcategories)/subcategories/create')({
   component: RouteComponent,
   loader: async ({ context }) => {
-
-    await context.queryClient.fetchQuery({
+    await context.queryClient.ensureQueryData({
       queryKey: ["categories"],
       queryFn: () => apiGet<Category>({ url: "/categories" }),
-      staleTime: 10000,
     });
 
-    await context.queryClient.fetchQuery({
+    await context.queryClient.ensureQueryData({
       queryKey: ["driveTypes"],
       queryFn: () => apiGet<DriveType>({ url: "/drive-types" }),
-      staleTime: 10000,
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -79,7 +73,7 @@ function RouteComponent() {
     isSuccess: cIsSuccess, 
     isPending: cIsPending, 
     isError: cIsError 
-  } = useQuery({ queryKey: ["categories"], queryFn: () => apiGet<Category>({ url: "/categories" }), retry: 0, refetchInterval: 10000 });
+  } = useQuery({ queryKey: ["categories"], queryFn: () => apiGet<Category>({ url: "/categories" }), staleTime: 10 * 1000 });
   
   const {
     data: dData,
@@ -87,7 +81,7 @@ function RouteComponent() {
     isSuccess: dIsSuccess,
     isPending: dIsPending,
     isError: dIsError
-  } = useQuery({ queryKey: ["driveTypes"], queryFn: () => apiGet<DriveType>({ url: "/drive-types" }), retry: 0, refetchInterval: 10000 });
+  } = useQuery({ queryKey: ["driveTypes"], queryFn: () => apiGet<DriveType>({ url: "/drive-types" }), staleTime: 10 * 1000 });
 
   return (
     <Box sx={{ flex: 1, overflow: "hidden" }}>

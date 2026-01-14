@@ -14,7 +14,6 @@ export const clientFormConfig: FormConfig<keys> = {
       label: "registration.client.form.card.barcode", 
       required: true, 
       type: 'text', 
-      // imaskProps: { mask: "0".repeat(8) , overwrite: true, lazy: false, placeholderChar: '_' },
       validators: {
         onChange: ({ value }) => {
           const length = value.length
@@ -26,15 +25,14 @@ export const clientFormConfig: FormConfig<keys> = {
       componentName: "FormAutocomplete",
       optionLabel: "barcode",
       optionValue: "id",
-      queryFn: () => apiGet({ url: "/cards", searchParams: { active: "true" } }),
-      queryKey: "activeCards",
+      queryFn: () => apiGet({ url: "/cards", searchParams: { issued: "false" } }),
+      queryKey: ["cards", { issued: false }],
     },
     { 
       fieldName: "cardData.isTemp",
       label: "registration.client.form.card.isTemp",
       required: true, 
       type: 'text', 
-      imaskProps: {},
       validators: {
         onChange: ({ value }) => {
           if (!value) {

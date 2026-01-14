@@ -29,14 +29,16 @@
   "rentalService": {
     "sale": "Sale of rental service",
     "sale.table.column.number": "No.",
-    "sale.table.column.category": "Category",
     "sale.table.column.subcategory": "Subcategory",
     "sale.table.column.speed": "Speed",
+    "sale.table.column.rentalLength": "Time",
     "sale.table.column.numberOfItems": "Qty.",
+    "sale.table.column.price": "Price",
+    "sale.table.column.discount": "Discount",
     "sale.table.column.charge": "Charge",
     "sale.table.column.actions": "Actions",
-    "sale.form.card.title": "Client card",
-    "sale.form.card.barcode": "Barcode",
+    "sale.form.barcode": "Barcode",
+    "sale.form.category": "Category",
 
     "status": "Equipment status"
   },
@@ -167,6 +169,8 @@
   },
 
   "view": {
+    "table.search": "Search",
+
     "clients": "Dispaly clients",
     "clients.table.search": "Search client",
     "clients.table.column.id": "ID",

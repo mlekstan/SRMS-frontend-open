@@ -40,7 +40,7 @@ export const itemFormConfig: FormConfig<keys> = {
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
-      queryKey: "subcategories",
+      queryKey: ["subcategories"],
     },
     {
       fieldName: "basicData.branchId",
@@ -58,7 +58,7 @@ export const itemFormConfig: FormConfig<keys> = {
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      queryKey: "branches"
+      queryKey: ["branches"]
     },
     {
       fieldName: "basicData.name",

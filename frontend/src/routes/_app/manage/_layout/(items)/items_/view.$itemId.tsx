@@ -5,12 +5,11 @@ import { Box, Typography } from '@mui/material';
 import type { ExtendedLinkOptions } from '@/types/ExtendedLinkOptions';
 import { useTranslationContext } from '@/routes/-context-api/translation/TranslationContext';
 import { apiGet } from '@/api/apiGet';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { Branch, Item, Subcategory } from '@/api/types';
 import Form from '../../../-forms/Form';
 import { memo, useState } from 'react';
 import { createChildForm } from '../../../-forms/createChildForm';
-import type { Leaves } from '@/types/Leaves';
 import { apiPut } from '@/api/apiPut';
 import { Loader } from '@/routes/-components/Loader';
 import { FailureDialog } from '../../../-components/general/FailureDialog';
@@ -18,10 +17,7 @@ import { goBack } from '../../../-forms/goBack';
 import { itemFormOpts } from '../-form/itemForm-options';
 import { itemFormSchema } from '../-form/itemForm-schema';
 import { itemFormConfig } from '../-form/itemForm-config';
-
-
-type FormFields = Leaves<typeof itemFormOpts.defaultValues>;
-type FieldsValuesMap = Record<FormFields, any>;
+import { transformData } from '../-form/transformData';
 
 
 const formatErrorMsg = (errors: Array<Error | null>): string => {
@@ -40,28 +36,21 @@ export const Route = createFileRoute(
 )({
   component: RouteComponent,
   loader: async ({ context, params }) => {
-
     await context.queryClient.fetchQuery({
       queryKey: ["item", params.itemId],
       queryFn: () => apiGet<Item>({ url: "/items", id: params.itemId }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
       queryKey: ["subcategories"],
       queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
-      staleTime: 10000,
     });
 
     await context.queryClient.fetchQuery({
       queryKey: ["branches"],
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      staleTime: 10000,
     });
-
   },
-  gcTime: 0,
-  shouldReload: false,
   pendingComponent: () => <Loader open={true} />,
   errorComponent: ({ error, reset }) => {
     const router = useRouter();
@@ -99,43 +88,26 @@ function RouteComponent() {
   const params = Route.useParams();
   const router = useRouter();
   const canGoBack = useCanGoBack();
+  const queryClient = useQueryClient();
   
   const itemQuery = useQuery({ 
     queryKey: ["item", params.itemId], 
-    queryFn: () => apiGet<Item>({ url: "/items", id: params.itemId }),
-    retry: 0,
-    refetchInterval: 10000,
+    queryFn: () => apiGet<Item>({ url: "/items", id: params.itemId }), 
+    staleTime: 10 * 1000, 
+    select: data => transformData(data)
   });
 
   const subcategoriesQuery = useQuery({
     queryKey: ["subcategories"],
-    queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }),
-    retry: 0,
-    refetchInterval: 10000,
+    queryFn: () => apiGet<Subcategory>({ url: "/subcategories" }), 
+    staleTime: 10 * 1000
   });
 
   const branchesQuery = useQuery({
     queryKey: ["branches"],
-    queryFn: () => apiGet<Branch>({ url: "/branches" }),
-    retry: 0,
-    refetchInterval: 10000,
+    queryFn: () => apiGet<Branch>({ url: "/branches" }), 
+    staleTime: 10 * 1000
   });
-
-
-
-  let initialFiledsValueMap: Partial<FieldsValuesMap> | undefined;
-  if (itemQuery.data) {
-    initialFiledsValueMap = {
-      "basicData.barcode": itemQuery.data.barcode,
-      "basicData.subcategoryId": itemQuery.data.subcategory.id,
-      "basicData.branchId": itemQuery.data.branch.id,
-      "basicData.name": itemQuery.data.name,
-      "basicData.shortName": itemQuery.data.shortName,
-      "basicData.marketValue": itemQuery.data.marketValue,
-      "saleData.forSale": itemQuery.data.forSale,
-      "saleData.sellPrice": itemQuery.data.sellPrice,
-    };
-  }
 
 
   return (
@@ -152,11 +124,12 @@ function RouteComponent() {
             <Typography variant='h5' sx={(theme) => ({marginBottom: theme.spacing(8)})}>{t('edit.item')}</Typography>
             <Form 
               key={key}
-              initialFieldsValuesMap={initialFiledsValueMap}
+              initialFieldsValuesMap={itemQuery.data}
               reset={() => {
                 setKey(prev => prev + 1);
               }} 
               requestFn={(value) => apiPut("/items", params.itemId, value)}
+              onSubmit={() => queryClient.invalidateQueries({ queryKey: ["item", params.itemId], exact: true })}
               formOptions={itemFormOpts}
               validationSchema={itemFormSchema}
               childFormComponent={ChildForm}

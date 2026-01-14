@@ -34,10 +34,7 @@ export const clientFormSchema = z.object(
           return val;
         }
       ),
-      isTemp: z.string().refine(
-        (val) => (val === "True" || val === "False") ? true : false,
-        {error: "Must be 'True' or 'False'"}
-      ).transform((val) => (val === "True") ? true : false) 
+      isTemp: z.boolean()
     }),
     personalData: z.object({
       firstName: z.string().regex(

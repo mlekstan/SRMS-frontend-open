@@ -86,7 +86,7 @@ export const userFormConfig: FormConfig<keys> = {
       optionLabel: "name",
       optionValue: "id",
       queryFn: () => apiGet<Branch>({ url: "/branches" }),
-      queryKey: "branches"
+      queryKey: ["branches"]
     },
     {
       fieldName: "userData.password",
@@ -100,7 +100,8 @@ export const userFormConfig: FormConfig<keys> = {
             return ("validation.empty");
           }
         },
-      },      
+      }, 
+      componentName: "SecureFromTextField"  
     }
   ],
 }
