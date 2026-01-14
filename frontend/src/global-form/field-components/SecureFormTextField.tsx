@@ -9,7 +9,7 @@ type SecureFormTextFieldProps = Omit<FormTextFieldProps, "endAdornment" | "type"
 
 export function SecureFromTextField({ props }: { props: SecureFormTextFieldProps }) {
   const [visible, setVisible] = useState(false);
-  const { label, required, disabled, imaskProps } = props;
+  const { sx, label, required, disabled, imaskProps } = props;
 
   const endAdornment = useMemo(() => (
     <IconButton
@@ -23,6 +23,7 @@ export function SecureFromTextField({ props }: { props: SecureFormTextFieldProps
   return (
     <FormTextField
       props={{
+        sx,
         type: visible ? "text" : "password",
         label,
         required,

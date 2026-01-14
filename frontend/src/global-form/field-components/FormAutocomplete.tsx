@@ -10,6 +10,7 @@ import type { LangKeys } from "@/routes/-context-api/translation/TranslationProv
 export type FormAutcompleteProps<T> = {
   props: {
     sx?: SxProps<Theme>;
+    disabled?: boolean;
     label?: LangKeys;
     required: boolean;
     type: string;
@@ -17,14 +18,14 @@ export type FormAutcompleteProps<T> = {
     optionLabel: keyof T;
     optionValue: keyof T;
     queryFn?: () => Promise<T[]>;
-    queryKey?: string;
+    queryKey?: any[];
   };
 };
 
 type ConditionalQueryParams<P> = {
   enabled: boolean;
   queryFn: (() => Promise<P[]>) | undefined;
-  queryKey: string | undefined;
+  queryKey: any[] | undefined;
 };
 
 
@@ -37,7 +38,7 @@ function useConditonalQuery<S>({
     return null;
   }
 
-  const query = useQuery({ queryKey: [queryKey], queryFn: queryFn, enabled: false });
+  const query = useQuery({ queryKey: queryKey ?? [], queryFn: queryFn, enabled: false });
   return query;
 }
 
@@ -48,7 +49,8 @@ export default function FormAutocomplete<K extends Record<string, any>>({ props 
   const {t} = useTranslationContext();
 
   const { 
-    sx,
+    sx, 
+    disabled,
     label, 
     required, 
     type, 
@@ -89,6 +91,7 @@ export default function FormAutocomplete<K extends Record<string, any>>({ props 
   return (
     <Autocomplete 
       sx={sx ?? { width: "fit-content", display: "inline-flex" }}
+      disabled={!!disabled}
       options={options}
       // It is necessary to provide in order to see changes done in TanStack's form obj in our Autocomplete e.g. form.reset().
       value={value}
@@ -106,14 +109,14 @@ export default function FormAutocomplete<K extends Record<string, any>>({ props 
         try {
           return t(option[optionLabel] as LangKeys);
         } catch (error) {
-          return option[optionLabel];
+          return String(option[optionLabel]);
         }
       }}
       renderInput={(params) => (
         <TextField
           {...params}
           type={type}
-          helperText={!field.state.meta.isValid && (field.state.meta.errors.map((error) => t(error)).join(' '))}
+          helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : " "}
           error={!field.state.meta.isValid}
           required={required}
           label={label ? t(label) : undefined}

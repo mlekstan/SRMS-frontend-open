@@ -1,6 +1,6 @@
-import { forwardRef, useEffect, useContext, useRef, type ReactNode, useCallback } from "react";
+import { forwardRef, useEffect, useContext, useRef, type ReactNode } from "react";
 import { IMaskInput } from "react-imask";
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField, type SxProps, type Theme } from "@mui/material";
 import { useFieldContext } from "../hooks/form-context";
 import { AccordionValidUpdateContext } from "../../routes/_app/manage/-forms/AccordionValidUpdateContext";
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
@@ -8,6 +8,7 @@ import type { LangKeys } from "@/routes/-context-api/translation/TranslationProv
 
 
 export type FormTextFieldProps = {
+  sx?: SxProps<Theme>;
   label?: LangKeys;
   endAdornment?: ReactNode;  
   required: boolean;
@@ -48,15 +49,8 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   const field = useFieldContext();
   const setAccordionValidState = useContext(AccordionValidUpdateContext);
   const {t} = useTranslationContext();
-  const { label, endAdornment, required, disabled, type, imaskProps } = props;
-  const formatValue = () => {
-    if (field.state.value === null || disabled) 
-      return "";
-      
-    return String(field.state.value);
-  }
-
-  const value = formatValue();
+  const { sx, label, endAdornment, required, disabled, type, imaskProps } = props;
+  const value = field.state.value;
 
   useEffect(() => {
     if (setAccordionValidState) {
@@ -73,6 +67,7 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   
   return (
     <TextField
+      sx={sx}
       helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : " "}
       error={!field.state.meta.isValid}
       label={label ? t(label) : undefined}

@@ -15,7 +15,7 @@ export type FormAutcompleteWrapperProps<T> = {
     optionLabel: keyof T;
     optionValue: keyof T;
     queryFn?: () => Promise<T[]>;
-    queryKey?: string;
+    queryKey?: any[];
     triggerChildFormRender?: string;
     triggerRenderOnValue?: string | number;
     triggerChildFormClose?: string[];    
