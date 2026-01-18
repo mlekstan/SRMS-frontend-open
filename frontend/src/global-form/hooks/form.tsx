@@ -14,6 +14,7 @@ import { FormAutocompleteWrapper } from "../field-components/FormAutocompleteWra
 import { TimeUnitTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/TimeUnitTextField";
 import { MaxSpeedTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/MaxSpeedTextField";
 import { PriceTextField } from "@/routes/_app/manage/_layout/(price-list)/-form/field-components/PriceTextField";
+import { TimeTextField } from "@/routes/_app/rental/rental-sale/-components/form/field-components/TimeTextField";
 
 const global = {
   FormTextField,
@@ -29,6 +30,7 @@ const rentalSale = {
   SpeedAutocomplete,
   QuantityAutocomplete,
   CardAutocomplete,
+  TimeTextField
 }
 
 const priceList = {

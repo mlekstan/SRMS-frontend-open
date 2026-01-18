@@ -68,7 +68,7 @@ function FormTextField({ props }: { props: FormTextFieldProps }) {
   return (
     <TextField
       sx={sx}
-      helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : " "}
+      helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : ""}
       error={!field.state.meta.isValid}
       label={label ? t(label) : undefined}
       required={required}

@@ -11,22 +11,18 @@ type Props = {
 
 export function SubcategoryAutocomplete({ rowId }: Props) {
   const form = useFormContext();
-  const categoryId = useStore(form.store, state => state.values.positions[rowId].categoryId);
+  const categoryId = useStore(form.store, state => state.values.categoryId);
   const { data } = useQuery({ 
-    queryKey: ["subcategories", rowId], 
+    queryKey: ["subcategories", rowId, { categoryId }], 
     queryFn: () => apiGet<Subcategory>({ url: "/subcategories", searchParams: { categoryId } }),
     enabled: !!categoryId,
-    gcTime: 0,
-    staleTime: 0
   });
-
-  console.log("categoryID", categoryId)
 
   return (
     <FormAutocomplete
       props={{
         sx: {
-          width: "auto"
+          width: "210px"
         },
         required: true,
         type: "text",

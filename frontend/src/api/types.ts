@@ -120,4 +120,13 @@ export type VehiclePrice = {
   timeUnit: string;
   maxSpeed: number;
   price: string;
-}
+};
+
+export type Count = {
+  count: number;
+};
+
+export type Speed = {
+  id: number;
+  maxSpeed: number;
+};

@@ -116,7 +116,7 @@ export default function FormAutocomplete<K extends Record<string, any>>({ props 
         <TextField
           {...params}
           type={type}
-          helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : " "}
+          helperText={!field.state.meta.isValid ? (field.state.meta.errors.map((error) => t(error)).join(' ')) : ""}
           error={!field.state.meta.isValid}
           required={required}
           label={label ? t(label) : undefined}

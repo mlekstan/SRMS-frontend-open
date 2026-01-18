@@ -9,7 +9,7 @@ export const Route = createFileRoute('/_app/rental/rental-sale/')({
 function RouteComponent() {
   
   return (
-    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ height: "100%", display: "flex", flexDirection: "column", minHeight: 0 }}>
       <RentalSaleForm />
     </Box>
   );

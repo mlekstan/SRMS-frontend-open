@@ -1,43 +1,40 @@
 import { Box, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import type { RentalSaleDataType } from "./useRentalSaleData";
+import type { RentalSalePosition } from "./useRentalSaleTable";
 
 type Props = {
   rowIndex: number;
-  dataObject: RentalSaleDataType;
   form: any;
 };
 
-const emptyRow = {
-  categoryId: "",
+const emptyRow: RentalSalePosition = {
   subcategoryId: "",
   speed: "",
   numberOfItems: "",
-  rentalLenght: "",
-  charge: "",
+  rentalLength: "",
+  charge: 0,
+  discount: "0",
+  price: 0
 }
 
-export function ActionsCell({ rowIndex, dataObject, form }: Props) {
+export function ActionsCell({ rowIndex, form }: Props) {
 
   return (
     <Box width={"80px"}>
       <IconButton onClick={() => {
-        dataObject.insert(rowIndex + 1, emptyRow);
         form.insertFieldValue("positions", rowIndex + 1, emptyRow);
       }}>
         <AddBoxIcon />
       </IconButton>
 
-      {
-        (rowIndex > 0) &&
-        <IconButton onClick={() => {
-          dataObject.remove(rowIndex);
+      <IconButton 
+        disabled={rowIndex === 0}
+        onClick={() => {
           form.removeFieldValue("positions", rowIndex);
         }}>
-          <DeleteIcon />
-        </IconButton>
-      }
+        <DeleteIcon />
+      </IconButton>
 
     </Box>
   );

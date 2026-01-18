@@ -38,8 +38,13 @@
     "sale.table.column.charge": "Opłata",
     "sale.table.column.actions": "Akcje",
     "sale.form.barcode": "Kod kreskowy",
-    "sale.form.category": "Kategoria",
-
+    "sale.form.category": "Kategoria", 
+    "sale.form.speed.undefined": "nieokr.", 
+    "sale.form.submitButton": "Zapisz", 
+    "sale.form.summary.subtotal": "Wartość cennikowa",
+    "sale.form.summary.discount": "Rabat", 
+    "sale.form.summary.total": "Opłata",
+    
     "status": "Status sprzętu"
   },
 

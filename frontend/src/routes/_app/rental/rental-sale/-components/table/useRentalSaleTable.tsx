@@ -1,24 +1,33 @@
 import { useTranslationContext } from "@/routes/-context-api/translation/TranslationContext";
 import { createColumnHelper, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useMemo } from "react";
-import { useRentalSaleData } from "./useRentalSaleData";
 import { ActionsCell } from "./ActionsCell";
+import { DiscountTextField } from "../form/field-components/DiscountTextField";
+import { useFormContext } from "@/global-form/hooks/form-context";
+import { useStore } from "@tanstack/react-form";
+import { PriceText } from "../form/field-components/PriceText";
+import { ChargeText } from "../form/field-components/ChargeText";
+import type { LangKeys } from "@/routes/-context-api/translation/TranslationProvider";
+
 
 export type RentalSalePosition = {
-  categoryId: string;
-  subcategoryId: string;
-  speed: string;
-  numberOfItems: string;
-  rentalLenght: string;
-  charge: string;
+  subcategoryId: number | "";
+  speed: number | "null" | "";
+  numberOfItems: number | "";
+  rentalLength: string;
+  price: number;
+  discount: string;
+  charge: number;
 }
 
 
 const columnHelper = createColumnHelper<RentalSalePosition>();
+const rentalLengthRegexp = /^(\d{1,2})\s(0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
 
-export function useRentalSaleTable(form: any, initialData: RentalSalePosition[]) {
+export function useRentalSaleTable() {
   const { t, lang } = useTranslationContext();
-  const dataObject = useRentalSaleData(initialData);
+  const form = useFormContext();
+  const positions = useStore(form.store, state => state.values.positions)
 
   const columns = useMemo(() => [
     columnHelper.display({
@@ -26,23 +35,30 @@ export function useRentalSaleTable(form: any, initialData: RentalSalePosition[])
       header: t("rentalService.sale.table.column.number"),
       cell: info => info.row.index + 1,
     }),
-    columnHelper.accessor("categoryId", {
-      header: t("rentalService.sale.table.column.category"),
-      cell: ({ row }) => (
-        <form.AppField
-          name={`positions[${row.index}].categoryId`}
-        >
-          {
-            (subField: any) => <subField.CategoryAutocomplete rowId={row.id} />
-          }
-        </form.AppField>
-      )
-    }),
     columnHelper.accessor("subcategoryId", {
       header: t("rentalService.sale.table.column.subcategory"),
       cell: ({ row }) => (
         <form.AppField
           name={`positions[${row.index}].subcategoryId`}
+          listeners={{
+            onChange: ({ value }) => {
+              if (!value) {
+                form.setFieldValue(`positions[${row.index}].speed`, "");
+                form.setFieldValue(`positions[${row.index}].rentalLength`, "");
+                form.setFieldValue(`positions[${row.index}].numberOfItems`, "");
+                form.setFieldValue(`positions[${row.index}].price`, 0);
+                form.setFieldValue(`positions[${row.index}].discount`, "0");
+                form.setFieldValue(`positions[${row.index}].charge`, 0);
+              }
+            }
+          }}
+          validators={{
+            onSubmit: ({ value }) => {
+              if (!value) {
+                return "validation.empty" as LangKeys;
+              }
+            }
+          }}
         >
           {
             (subField: any) => <subField.SubcategoryAutocomplete rowId={row.id} />
@@ -55,9 +71,53 @@ export function useRentalSaleTable(form: any, initialData: RentalSalePosition[])
       cell: ({ row }) => (
         <form.AppField
           name={`positions[${row.index}].speed`}
+          listeners={{
+            onChange: ({ value }) => {
+              if (!value) {
+                form.setFieldValue(`positions[${row.index}].price`, 0);
+                form.setFieldValue(`positions[${row.index}].discount`, "0");
+                form.setFieldValue(`positions[${row.index}].charge`, 0)          
+              }
+            }
+          }}
+          validators={{
+            onSubmit: ({ value }) => {
+              if (!value) {
+                return "validation.empty" as LangKeys;
+              }
+            } 
+          }}
         >
           {
-            (subField: any) => <subField.SpeedAutocomplete rowId={row.id} />
+            (subField: any) => <subField.SpeedAutocomplete rowId={row.id} rowIndex={row.index} />
+          }
+        </form.AppField>
+      )
+    }),
+    columnHelper.accessor("rentalLength", {
+      header: t("rentalService.sale.table.column.rentalLength"),
+      cell: ({ row }) => (
+        <form.AppField
+          name={`positions[${row.index}].rentalLength`}
+          listeners={{
+            onChange: ({ value }) => {
+              if (!rentalLengthRegexp.test(value)) {
+                form.setFieldValue(`positions[${row.index}].price`, 0);
+                form.setFieldValue(`positions[${row.index}].discount`, "0");
+                form.setFieldValue(`positions[${row.index}].charge`, 0)          
+              }
+            }
+          }}
+          validators={{
+            onSubmit: ({ value }) => {
+              if (!rentalLengthRegexp.test(value)) {
+                return "validation.empty" as LangKeys;
+              }
+            }
+          }}
+        >
+          {
+            (subField: any) => <subField.TimeTextField rowId={row.id} rowIndex={row.index} />
           }
         </form.AppField>
       )
@@ -67,9 +127,53 @@ export function useRentalSaleTable(form: any, initialData: RentalSalePosition[])
       cell: ({ row }) => (
         <form.AppField
           name={`positions[${row.index}].numberOfItems`}
+          listeners={{
+            onChange: ({ value }) => {
+              if (!value) {
+                form.setFieldValue(`positions[${row.index}].price`, 0);
+                form.setFieldValue(`positions[${row.index}].discount`, "0");
+                form.setFieldValue(`positions[${row.index}].charge`, 0)          
+              }
+            }
+          }}
+          validators={{
+            onSubmit: ({ value }) => {
+              if (!value) {
+                return "validation.empty" as LangKeys;
+              }
+            }
+          }}
         >
           {
-            (subField: any) => <subField.QuantityAutocomplete rowId={row.id} />
+            (subField: any) => 
+              <subField.QuantityAutocomplete 
+                rowId={row.id} 
+                rowIndex={row.index} 
+              />
+          }
+        </form.AppField>
+      )
+    }),
+    columnHelper.accessor("price", {
+      header: t("rentalService.sale.table.column.price"),
+      cell: ({ row }) => (
+        <form.AppField
+          name={`positions[${row.index}].price`}
+        >
+          {
+            (subField: any) => <PriceText rowId={row.id} rowIndex={row.index} />
+          }
+        </form.AppField>
+      )
+    }),
+    columnHelper.accessor("discount", {
+      header: t("rentalService.sale.table.column.discount"),
+      cell: ({ row }) => (
+        <form.AppField
+          name={`positions[${row.index}].discount`}
+        >
+          {
+            (subField: any) => <DiscountTextField rowIndex={row.index} />
           }
         </form.AppField>
       )
@@ -81,7 +185,7 @@ export function useRentalSaleTable(form: any, initialData: RentalSalePosition[])
           name={`positions[${row.index}].charge`}
         >
           {
-            (subField: any) => <></>
+            (subField: any) => <ChargeText rowIndex={row.index}/>
           }
         </form.AppField>
       )
@@ -89,14 +193,14 @@ export function useRentalSaleTable(form: any, initialData: RentalSalePosition[])
     columnHelper.display({
       id: "actions",
       header: t("rentalService.sale.table.column.actions"),
-      cell: ({ row }) => <ActionsCell rowIndex={row.index} dataObject={dataObject} form={form} />
+      cell: ({ row }) => <ActionsCell rowIndex={row.index} form={form} />
     })
-  ], [lang, form, dataObject]);
+  ], [lang, form]);
 
 
   const table = useReactTable({
     columns, 
-    data: dataObject.data, 
+    data: positions, 
     getCoreRowModel: getCoreRowModel() 
   });
 

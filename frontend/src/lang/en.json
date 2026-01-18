@@ -39,6 +39,11 @@
     "sale.table.column.actions": "Actions",
     "sale.form.barcode": "Barcode",
     "sale.form.category": "Category",
+    "sale.form.speed.undefined": "undef.",
+    "sale.form.submitButton": "Save",
+    "sale.form.summary.subtotal": "Subtotal",
+    "sale.form.summary.discount": "Discount", 
+    "sale.form.summary.total": "Total",
 
     "status": "Equipment status"
   },

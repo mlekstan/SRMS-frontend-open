@@ -92,7 +92,7 @@ export function PriceListForm() {
           </Box>
           <PriceListTable />
             <SubmitButton 
-              sx={{ marginX: "auto", marginY: "20px" }} 
+              sx={{ marginX: "auto", marginY: "50px" }} 
               title="registration.priceList.form.submitButton"
             />
         </Paper>

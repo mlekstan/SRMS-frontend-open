@@ -2,15 +2,14 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { flexRender } from "@tanstack/react-table";
 import { useFormContext } from "@/global-form/hooks/form-context";
 import { useRentalSaleTable } from "./useRentalSaleTable";
-import { initialPositionsData } from "../form/RentalSaleForm";
 
 
 export function RentalSaleTable() {
   const form = useFormContext();
-  const table = useRentalSaleTable(form, initialPositionsData);
+  const table = useRentalSaleTable();
 
   return (
-    <TableContainer sx={{ height: "100%" }}>
+    <TableContainer sx={{ flex: 1 }}>
       <Table stickyHeader>
         <TableHead>
           {

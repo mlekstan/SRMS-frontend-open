@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 
 export function CardAutocomplete() {
   const { data } = useQuery({ 
-    queryKey: ["cards", "issued"], 
-    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "true" } }) 
+    queryKey: ["cards", { issued: true }], 
+    queryFn: () => apiGet<Card>({ url: "/cards", searchParams: { issued: "true" } }), 
   });
 
   return (
@@ -15,7 +15,7 @@ export function CardAutocomplete() {
         sx: {
           width: "200px"
         },
-        label: "rentalService.sale.form.card.barcode",
+        label: "rentalService.sale.form.barcode",
         required: true,
         type: "text",
         optionLabel: "barcode",

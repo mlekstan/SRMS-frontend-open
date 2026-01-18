@@ -3,19 +3,20 @@ import type { Category } from "@/api/types";
 import FormAutocomplete from "@/global-form/field-components/FormAutocomplete";
 import { useQuery } from "@tanstack/react-query";
 
-type Props = {
-  rowId: string;
-};
 
-export function CategoryAutocomplete({ rowId }: Props) {
-  const { data } = useQuery({ queryKey: ["categories", rowId], queryFn: () => apiGet<Category>({ url: "/categories" }) });
+export function CategoryAutocomplete() {
+  const { data } = useQuery({ 
+    queryKey: ["categories"],
+    queryFn: () => apiGet<Category>({ url: "/categories" }),
+  });
 
   return (
     <FormAutocomplete
       props={{
         sx: {
-          width: "auto"
+          width: "200px"
         },
+        label: "rentalService.sale.form.category",
         required: true,
         type: "text",
         optionLabel: "name",
