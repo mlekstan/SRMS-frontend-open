@@ -2,6 +2,10 @@ function isKeyOfDict<T extends Record<string, unknown>>(val: string, dict: T): v
   return typeof val === "string" && val in dict;
 }
 
+function isObject(val: unknown): val is Record<string, unknown> {
+  return typeof val === "object" && val !== null && !Array.isArray(val);
+}
+
 
 export function pickTranslation(key: string, dict: Record<string, unknown>): string | never {
   
@@ -14,40 +18,28 @@ export function pickTranslation(key: string, dict: Record<string, unknown>): str
   } 
   
   const keys = key.split(".");
-  let temp: any = dict;
 
-  let idx = 0
-  for (let k of keys) {        
-    const rest_k = keys.slice(idx+1).join(".");
+  for (let i = 0; i < keys.length; i++) {
+    const baseKey = keys.slice(0, i+1).join(".");
+    const restKey = keys.slice(i+1).join(".");
 
-    if (!isKeyOfDict(k, temp)) {
-      throw new Error (`${k} is not valid part of key.`);
+    if (!isKeyOfDict(baseKey, dict)) {
+      continue;
     }
 
-    if (typeof temp[k] === "string") {
-      if (idx === keys.length - 1) {
-        return temp[k];
-      } else {
-        throw new Error(`Part ${k} of key ${key} returns string.`);
+    const value = dict[baseKey];
+
+    if (typeof value === "string") {
+      continue;
+    }
+
+    if (isObject(value)) {
+      if (!restKey) {
+        throw new Error(`Key exist but its value is not a string.`);
       }
+      return pickTranslation(restKey, value);
     }
-
-    if (rest_k && isKeyOfDict(rest_k, temp[k]) && typeof temp[k][rest_k] === "string") {
-      return temp[k][rest_k];
-    }
-
-    if (rest_k && typeof temp[k] === "object" && temp[k] !== null) {
-      temp = temp[k];
-    } else {
-      throw new Error(`Part ${k} of key ${key} does not return object.`);
-    }
-    
-    idx++;
   }
 
-  if (typeof temp === "string") {
-    return temp;
-  }
-  
-  throw new Error (`${temp} is not a string.`); 
+  throw new Error(`Part of the key do not exist: ${key}`); 
 }
